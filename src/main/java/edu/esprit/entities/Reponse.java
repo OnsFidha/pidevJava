@@ -11,10 +11,17 @@ public class Reponse {
     public Reponse() {
     }
 
-    public Reponse(int relation_id, String reponse, Date date_reponse) {
+    public Reponse(int id, int relation_id, String reponse) {
+        this.id = id;
         this.relation_id = relation_id;
         this.reponse = reponse;
-        this.date_reponse = date_reponse;
+
+    }
+
+    public Reponse(int relation_id, String reponse) {
+        this.relation_id = relation_id;
+        this.reponse = reponse;
+        this.date_reponse =  new Date();
     }
 
     public int getId() {
@@ -47,5 +54,28 @@ public class Reponse {
 
     public void setDate_reponse(Date date_reponse) {
         this.date_reponse = date_reponse;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reponse reponse1 = (Reponse) o;
+        return id == reponse1.id && relation_id == reponse1.relation_id && Objects.equals(reponse, reponse1.reponse) && Objects.equals(date_reponse, reponse1.date_reponse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, relation_id, reponse, date_reponse);
+    }
+
+    @Override
+    public String toString() {
+        return "Reponse{" +
+                "id=" + id +
+                ", relation_id=" + relation_id +
+                ", reponse='" + reponse + '\'' +
+                ", date_reponse=" + date_reponse +
+                '}';
     }
 }

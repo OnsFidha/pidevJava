@@ -13,7 +13,15 @@ public class Reclamation {
     public Reclamation() {
     }
 
-    public Reclamation(String type, String description, Date date_creation) {
+    public Reclamation(int id, String type, String description) {
+        this.id = id;
+        this.type = type;
+        this.description = description;
+        this.etat = false;
+
+    }
+
+    public Reclamation(String type, String description) {
         this.type = type;
         this.description = description;
         this.etat = false;
