@@ -1,0 +1,77 @@
+package edu.esprit.controllers;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import tn.esprit.utils.SessionManager;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class MenuController implements Initializable {
+    @FXML
+    private Button AdminP;
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        if (SessionManager.getRole().equals("User")) {
+            AdminP.setVisible(false);
+        }
+        if (SessionManager.getRole().equals("Admin")) {
+            AdminP.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void UserInterface(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserInterface.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Utilisateurs");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void PanelAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void Deconnection(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("artistool - Connection");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
