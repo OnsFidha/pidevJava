@@ -8,9 +8,15 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import edu.esprit.utils.SessionManager;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +24,10 @@ import java.util.ResourceBundle;
 public class MenuController implements Initializable {
     @FXML
     private Button AdminP;
-
+    @FXML
+    private ImageView logedUserimage;
+    @FXML
+    private TextField logedUsername;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (SessionManager.getRole().equals("User")) {
@@ -27,6 +36,22 @@ public class MenuController implements Initializable {
         if (SessionManager.getRole().equals("Admin")) {
             AdminP.setVisible(true);
         }
+        String imagePath = SessionManager.getImage();
+        String nameP= SessionManager.getNom()+" "+SessionManager.getPrenom();
+        logedUsername.setText(nameP);
+        if (imagePath != null) {
+            try {
+                File file = new File(imagePath);
+                FileInputStream inputStream = new FileInputStream(file);
+                Image image = new Image(inputStream);
+                logedUserimage.setImage(image);
+            } catch (FileNotFoundException e) {
+                System.err.println("Image file not found: " + imagePath);
+            }
+        } else {
+            System.err.println("Image path is null for");
+        }
+
     }
 
     @FXML
