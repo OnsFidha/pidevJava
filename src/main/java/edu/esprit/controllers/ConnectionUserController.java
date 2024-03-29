@@ -12,10 +12,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
-import tn.esprit.models.Utilisateur;
-import tn.esprit.services.ServiceUtilisateur;
-import tn.esprit.utils.MyDataBase;
-import tn.esprit.utils.SessionManager;
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
+import edu.esprit.utils.MyDataBase;
+import edu.esprit.utils.SessionManager;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

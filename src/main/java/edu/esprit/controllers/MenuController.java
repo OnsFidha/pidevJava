@@ -9,7 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import tn.esprit.utils.SessionManager;
+import edu.esprit.utils.SessionManager;
 
 import java.io.IOException;
 import java.net.URL;

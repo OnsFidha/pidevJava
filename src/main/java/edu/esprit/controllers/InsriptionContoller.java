@@ -11,8 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import tn.esprit.models.Utilisateur;
-import tn.esprit.services.ServiceUtilisateur;
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 
 import java.io.File;
 import java.io.IOException;
