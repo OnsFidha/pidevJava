@@ -110,5 +110,30 @@ public class ReclamationService implements IService <Reclamation> {
         return reclamation;
     }
 
+    public List<Reclamation> refreshReclam(){
+        List<Reclamation> myList = new ArrayList<>();
+
+        try{
+            String requete = "SELECT * FROM reclamation";
+            Statement st = conn.createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+
+            while(rs.next()){
+                Reclamation reclamation = new Reclamation();
+                reclamation.setId(rs.getInt("id"));
+                reclamation.setType(rs.getString("type"));
+                reclamation.setDescription(rs.getString("description"));
+                reclamation.setEtat(rs.getBoolean("etat"));
+                reclamation.setDate_creation(rs.getDate("date_creation"));
+
+                myList.add(reclamation);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+    }
 
 }
