@@ -16,6 +16,11 @@ public class Feedback {
         this.text = text;
     }
 
+    public Feedback(int id_evenment, String text) {
+        this.id_evenment = id_evenment;
+        this.text = text;
+    }
+
     public int getId() {
         return id;
     }
