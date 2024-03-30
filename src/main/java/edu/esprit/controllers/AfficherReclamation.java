@@ -103,12 +103,12 @@ public class AfficherReclamation implements Initializable {
         myList = FXCollections.observableList(reclam);
         tableauReclam.setItems(myList);
 
-        descReclam.setCellValueFactory(new PropertyValueFactory<>("description_reclamation"));
-        typeReclam.setCellValueFactory(new PropertyValueFactory<>("type_reclamation"));
+        descReclam.setCellValueFactory(new PropertyValueFactory<>("description"));
+        typeReclam.setCellValueFactory(new PropertyValueFactory<>("type"));
 
 
-        etatReclam.setCellValueFactory(new PropertyValueFactory<>("etat_reclamation"));
-        DateReclam.setCellValueFactory(new PropertyValueFactory<>("date_reclamation"));
+        etatReclam.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        DateReclam.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
 
     }
 }
