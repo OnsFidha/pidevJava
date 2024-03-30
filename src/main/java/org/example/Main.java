@@ -16,11 +16,11 @@ public class Main {
         ReclamationService reclam = new ReclamationService();
         ReponseService rep = new ReponseService();
 
-        //try {
-            //reclam.ajouter(new Reclamation("type2","decription2 "));
-        //} catch (SQLException e) {
-            //System.out.println(e.getMessage());
-        //}
+        try {
+            reclam.ajouter(new Reclamation("type21234","decription212345 "));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
 
         //try {
            // rep.ajouter(new Reponse(1,"ajout reponse test 22 "));

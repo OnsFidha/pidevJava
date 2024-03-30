@@ -18,6 +18,7 @@ public class ReclamationService implements IService <Reclamation> {
             statement.setBoolean(3, reclamation.isEtat());
             statement.setTimestamp(4, new Timestamp(reclamation.getDate_creation().getTime()));
 
+            //statement.setTimestamp(4, new Timestamp(reclamation.getDate_creation().getTime()));
             statement.executeUpdate();
             System.out.println("Bien ajoutee");
         }
