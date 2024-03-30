@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,8 +27,10 @@ public class MenuController implements Initializable {
     private Button AdminP;
     @FXML
     private ImageView logedUserimage;
+
     @FXML
-    private TextField logedUsername;
+    private Label logedUsernamee;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if (SessionManager.getRole().equals("User")) {
@@ -38,13 +41,15 @@ public class MenuController implements Initializable {
         }
         String imagePath = SessionManager.getImage();
         String nameP= SessionManager.getNom()+" "+SessionManager.getPrenom();
-        logedUsername.setText(nameP);
+
+        logedUsernamee.setText(nameP);
         if (imagePath != null) {
             try {
                 File file = new File(imagePath);
                 FileInputStream inputStream = new FileInputStream(file);
                 Image image = new Image(inputStream);
                 logedUserimage.setImage(image);
+
             } catch (FileNotFoundException e) {
                 System.err.println("Image file not found: " + imagePath);
             }

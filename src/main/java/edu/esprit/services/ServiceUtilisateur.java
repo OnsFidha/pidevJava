@@ -229,12 +229,12 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         }
         return exists;
     }
-
+    //email
     public boolean isValidEmail(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*\\.?[a-zA-Z0-9_+&*-]+@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         return email.matches(emailRegex);
     }
-
+    //phone number
     public boolean isValidPhoneNumber(int numTel) {
         String numTelStr = String.valueOf(numTel);
         return numTelStr.length() == 8;
