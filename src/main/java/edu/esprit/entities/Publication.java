@@ -15,19 +15,20 @@ public class Publication {
 
     public Publication() {
     }
-    public Publication( int id,String type, String text, String lieu, Integer avis, String photo) {
-        this.id=id;
+    public Publication(String type, String text, String lieu, Integer avis, String photo) {
         this.type = type;
         this.text = text;
         this.lieu = lieu;
         this.avis = avis;
         this.photo = photo;
     }
-    public Publication( String type, String text, String lieu, Integer avis, String photo) {
+
+
+    public Publication(int id,String type, String text, String lieu, String photo) {
+        this.id=id;
         this.type = type;
         this.text = text;
         this.lieu = lieu;
-        this.avis = avis;
         this.photo = photo;
     }
 
@@ -115,6 +116,7 @@ public class Publication {
                 ", text='" + text + '\'' +
                 ", lieu='" + lieu + '\'' +
                 ", dateCreation=" + dateCreation +
+                ", datemodificationn=" + dateModification +
                 '}'+'\n';
     }
 }

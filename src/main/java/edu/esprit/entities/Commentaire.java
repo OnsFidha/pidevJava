@@ -6,17 +6,21 @@ import java.util.Objects;
 public class Commentaire {
     private int id;
 
-    //@Column(name = "id_publication_id")
+
     private int id_publication_id;
     private String text;
     private Date dateCreation;
+    public Commentaire() {
+    }
 
-    public Commentaire( int id_publication_id, String text) {
+    public Commentaire( String text,int id_publication_id) {
         this.id_publication_id = id_publication_id;
         this.text = text;
     }
 
-    public Commentaire() {
+    public Commentaire(int id, String text) {
+        this.id = id;
+        this.text = text;
     }
 
     public int getId() {
@@ -71,7 +75,7 @@ public class Commentaire {
                 ", id_publication_id=" + id_publication_id +
                 ", text='" + text + '\'' +
                 ", dateCreation=" + dateCreation +
-                '}';
+                '}'+'\n';
     }
 
 }

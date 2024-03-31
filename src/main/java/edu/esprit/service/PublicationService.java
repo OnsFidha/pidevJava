@@ -29,15 +29,14 @@ public class PublicationService implements IService <Publication> {
 
     @Override
     public void modifier(Publication publication) throws SQLException {
-        String sql = "UPDATE publication SET type = ?, text = ?, lieu = ?, avis = ?, photo = ?, date_modification = CURRENT_TIMESTAMP WHERE id = ?";
+        String sql = "UPDATE publication SET type = ?, text = ?, lieu = ?, photo = ?, date_modification = CURRENT_TIMESTAMP WHERE id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, publication.getType());
             statement.setString(2, publication.getText());
             statement.setString(3, publication.getLieu());
-            statement.setInt(4, publication.getAvis());
-            statement.setString(5, publication.getPhoto());
-            statement.setInt(6, publication.getId());
+            statement.setString(4, publication.getPhoto());
+            statement.setInt(5, publication.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

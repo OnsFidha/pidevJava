@@ -13,12 +13,11 @@ public class CommentaireService implements IService<Commentaire> {
 
     @Override
     public void ajouter(Commentaire commentaire) throws SQLException {
-        String sql = "INSERT INTO commentaire (id_publication_id, text, date_creation, id_user_id) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO commentaire (id_publication_id, text) VALUES (?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, commentaire.getId_publication());
             statement.setString(2, commentaire.getText());
-            statement.setTimestamp(3, new java.sql.Timestamp(commentaire.getDateCreation().getTime()));
           //  statement.setInt(4, commentaire.getUserId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -29,14 +28,12 @@ public class CommentaireService implements IService<Commentaire> {
 
     @Override
     public void modifier(Commentaire commentaire) throws SQLException {
-        String sql = "UPDATE commentaire SET id_publication_id = ?, text = ?, date_creation = ?, id_user_id = ? WHERE id = ?";
+        String sql = "UPDATE commentaire SET  text = ? WHERE id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setInt(1, commentaire.getId_publication());
-            statement.setString(2, commentaire.getText());
-            statement.setTimestamp(3, new java.sql.Timestamp(commentaire.getDateCreation().getTime()));
+            statement.setString(1, commentaire.getText());
            // statement.setInt(4, commentaire.getUserId());
-            statement.setInt(5, commentaire.getId());
+            statement.setInt(2, commentaire.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
