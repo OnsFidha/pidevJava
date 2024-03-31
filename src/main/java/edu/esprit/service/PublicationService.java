@@ -3,12 +3,9 @@ package edu.esprit.service;
 import edu.esprit.entities.Publication;
 import edu.esprit.utils.DataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.*;
+import java.util.*;
+
 
 public class PublicationService implements IService <Publication> {
     Connection conn= DataSource.getInstance().getConn();

@@ -27,11 +27,11 @@ public class Commentaire {
         this.id = id;
     }
 
-    public int getId_publication_id() {
+    public int getId_publication() {
         return id_publication_id;
     }
 
-    public void setId_publication_id(int id_publication_id) {
+    public void setId_publication(int id_publication_id) {
         this.id_publication_id = id_publication_id;
     }
 
