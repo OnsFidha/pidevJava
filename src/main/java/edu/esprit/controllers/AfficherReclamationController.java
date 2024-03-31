@@ -26,6 +26,7 @@ package edu.esprit.controllers;
         import javafx.scene.Scene;
         import javafx.stage.Stage;
 
+
 public class AfficherReclamationController implements Initializable {
 
     @FXML
@@ -115,21 +116,39 @@ public class AfficherReclamationController implements Initializable {
 
     }
 
+
     @FXML
     void updateReclamation(ActionEvent event) {
+        Reclamation r = tableauReclam.getSelectionModel().getSelectedItem();
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierReclamation.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.setTitle("artistool - Modifier Reclamation");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+        if(r == null) {
+            System.out.println("Aucune réclamation sélectionnée");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune réclamation sélectionnée");
+            alert.showAndWait();
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierReclamation.fxml"));
+                Parent root = loader.load();
+
+                ModifierRecalationController mr = loader.getController();
+                mr.setData(r.getId(), r.getDescription(), r.getType());
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Modifier Réclamation");
+                stage.show();
+
+                // Hide the current window
+                ((Node) event.getSource()).getScene().getWindow().hide();
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
+
 
 
     @FXML
