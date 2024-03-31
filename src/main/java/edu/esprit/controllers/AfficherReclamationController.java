@@ -1,13 +1,8 @@
 
 package edu.esprit.controllers;
 
-        import com.mysql.cj.conf.BooleanProperty;
         import edu.esprit.entities.Reclamation;
         import edu.esprit.service.ReclamationService;
-        import javafx.beans.binding.Bindings;
-        import javafx.beans.binding.StringBinding;
-        import javafx.beans.property.SimpleBooleanProperty;
-        import javafx.beans.value.ObservableBooleanValue;
         import javafx.collections.FXCollections;
         import javafx.collections.ObservableList;
         import javafx.event.ActionEvent;
@@ -31,7 +26,7 @@ package edu.esprit.controllers;
         import javafx.scene.Scene;
         import javafx.stage.Stage;
 
-public class AfficherReclamation implements Initializable {
+public class AfficherReclamationController implements Initializable {
 
     @FXML
     private TableView<Reclamation> tableauReclam;
@@ -123,7 +118,19 @@ public class AfficherReclamation implements Initializable {
     @FXML
     void updateReclamation(ActionEvent event) {
 
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierReclamation.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Modifier Reclamation");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     @FXML
     void verifierReponseReclamation(ActionEvent event) {
