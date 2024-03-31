@@ -15,7 +15,9 @@ public class Main {
         System.out.println(DataSource.getInstance());
         PublicationService ps=new PublicationService();
         CommentaireService cs=new CommentaireService();
-                //TEST CRUD PUBLICATION
+        /**
+         * TEST CRUD PUBLICATION
+        **/
 //        try {
 //            ps.ajouter(new Publication("offre","test test","Tunis",2,"heheh"));
 //        } catch (SQLException e) {
@@ -48,7 +50,9 @@ public class Main {
 //        }catch (SQLException s){
 //            System.out.println(s.getMessage());
 //        }
-                //TEST CRUD COMMENTAIRE
+        /**
+         * TEST CRUD COMMENTAIRE
+        **/
 //        try {
 //            cs.ajouter(new Commentaire("test",1));
 //        } catch (SQLException e) {
