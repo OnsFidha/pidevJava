@@ -4,27 +4,27 @@ import java.util.Objects;
 
 public class Produit {
     private int id;
-    private int categorie_id;
+    private Categorie categorie;
     private int quantite;
     private double prix;
     private String nom,description,image;
     public Produit(){
 
     }
-    public Produit(int categorie_id, int quantite, double prix, String nom, String description, String image) {
-        this.categorie_id = categorie_id;
-        this.quantite = quantite;
-        this.prix = prix;
+    public Produit(Categorie categorie, int quantite, double prix, String nom, String description, String image) {
+        this.categorie = categorie;
+        this.setQuantite(quantite);
+        this.setPrix(prix);
         this.nom = nom;
         this.description = description;
         this.image = image;
     }
 
-    public Produit(int id, int categorie_id, int quantite, double prix, String nom, String description, String image) {
+    public Produit(int id, Categorie categorie, int quantite, double prix, String nom, String description, String image) {
         this.id = id;
-        this.categorie_id = categorie_id;
-        this.quantite = quantite;
-        this.prix = prix;
+        this.categorie = categorie;
+        this.setQuantite(quantite);
+        this.setPrix(prix);
         this.nom = nom;
         this.description = description;
         this.image = image;
@@ -34,8 +34,8 @@ public class Produit {
         return id;
     }
 
-    public int getCategorie_id() {
-        return categorie_id;
+    public Categorie getCategorie() {
+        return categorie;
     }
 
     public int getQuantite() {
@@ -62,15 +62,21 @@ public class Produit {
         this.id = id;
     }
 
-    public void setCategorie_id(int categorie_id) {
-        this.categorie_id = categorie_id;
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 
     public void setQuantite(int quantite) {
+        if (quantite<=0){
+            throw new IllegalArgumentException("La quantité doit être supérieur à 0");
+        }
         this.quantite = quantite;
     }
 
     public void setPrix(double prix) {
+        if (quantite<=0){
+            throw new IllegalArgumentException("Le prix doit être supérieur à 0");
+        }
         this.prix = prix;
     }
 
@@ -102,7 +108,7 @@ public class Produit {
     @Override
     public String toString() {
         return "Produit{" +
-                "categorie_id=" + categorie_id +
+                "categorie=" + categorie +
                 ", quantite=" + quantite +
                 ", prix=" + prix +
                 ", nom='" + nom + '\'' +

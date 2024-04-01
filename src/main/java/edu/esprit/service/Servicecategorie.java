@@ -10,6 +10,18 @@ import java.util.Set;
 
 public class Servicecategorie implements IService <Categorie>{
     Connection conn= DataSource.getInstance().getConn();
+    static IService<Categorie> servicecategorie;
+
+    private Servicecategorie() {
+        System.out.println("Servicecategorie crée");
+    }
+
+    public static IService<Categorie> getInstance() {
+        if (servicecategorie == null)
+            servicecategorie = new Servicecategorie();
+        return servicecategorie;
+    }
+
     @Override
     public void ajouter(Categorie categorie) {
         String req= "INSERT INTO `categorie`(`nom`,`description`) VALUES (?,?)";
