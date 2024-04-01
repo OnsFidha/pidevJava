@@ -2,34 +2,35 @@ package edu.esprit.entities;
 
 public class Utilisateur {
 
-    private int id , numtel ;
-    private String nom , prenom, email, password, role, image;
+    private int id , phone ;
+    private String name , prename, email, password, roles, image;
     public static Utilisateur Current_User;
 
     public Utilisateur() {}
 
-    public Utilisateur(int id, String nom, String prenom, String email, String password, int numtel, String role, String image) {
+    public Utilisateur(int id, String name, String prename, String email, String password, int phone, String roles, String image) {
         this.id = id;
-        this.numtel = numtel;
-        this.nom = nom;
-        this.prenom = prenom;
+        this.phone = phone;
+        this.name = name;
+        this.prename = prename;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
         this.image = image;
     }
+
 
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
 
-    public int getNumtel() {return numtel;}
-    public void setNumtel(int numtel) {this.numtel = numtel;}
+    public int getPhone() {return phone;}
+    public void setPhone(int phone) {this.phone = phone;}
 
-    public String getNom() {return nom;}
-    public void setNom(String nom) {this.nom = nom;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
 
-    public String getPrenom() {return prenom;}
-    public void setPrenom(String prenom) {this.prenom = prenom;}
+    public String getPrename() {return prename;}
+    public void setPrename(String prename) {this.prename = prename;}
 
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
@@ -37,8 +38,8 @@ public class Utilisateur {
     public String getPassword() {return password;}
     public void setPassword(String password) {this.password = password;}
 
-    public String getRole() {return role;}
-    public void setRole(String role) {this.role = role;}
+    public String getRoles() {return roles;}
+    public void setRoles(String roles) {this.roles = roles;}
 
     public String getImage() {return image;}
     public void setImage(String image) {this.image = image;}
@@ -50,12 +51,12 @@ public class Utilisateur {
     public String toString() {
         return "Utilisateur{" +
                 "id=" + id +
-                ", numtel=" + numtel +
-                ", nom='" + nom + '\'' +
-                ", prenom='" + prenom + '\'' +
+                ", phone=" + phone +
+                ", nom='" + name + '\'' +
+                ", prenom='" + prename + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
+                ", roles='" + roles + '\'' +
                 ", image='" + image + '\'' +
                 '}';
     }

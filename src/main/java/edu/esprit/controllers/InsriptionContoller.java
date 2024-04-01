@@ -28,15 +28,15 @@ import java.util.UUID;
 
 public class InsriptionContoller {
     @FXML
-    private TextField nomreg;
+    private TextField namereg;
     @FXML
-    private TextField prenomreg;
+    private TextField prenamereg;
     @FXML
     private TextField emailreg;
     @FXML
     private TextField mdpreg;
     @FXML
-    private TextField numtelreg;
+    private TextField phonereg;
     @FXML
     private TextField imagereg;
     @FXML
@@ -67,22 +67,22 @@ public class InsriptionContoller {
 
     @FXML
     public void inscription(javafx.event.ActionEvent actionEvent) {
-        int NUMTEL = Integer.parseInt(numtelreg.getText());
-        String NOM = nomreg.getText();
-        String PRENOM = prenomreg.getText();
+        int PHONE = Integer.parseInt(phonereg.getText());
+        String NAME = namereg.getText();
+        String PRENAME = prenamereg.getText();
         String EMAIL = emailreg.getText();
         String MDP = mdpreg.getText();
         String IMAGE = imagereg.getText();
         try {
             if (!UserS.isValidEmail(emailreg.getText())) {
                 reginfo.setText("Email est invalide");
-            } else if (!(UserS.isValidPhoneNumber(Integer.parseInt(numtelreg.getText())))) {
+            } else if (!(UserS.isValidPhoneNumber(Integer.parseInt(phonereg.getText())))) {
                 reginfo.setText("N° Telephone est invalide");
             } else if (UserS.checkUserExists(EMAIL)) {
                 reginfo.setText("Email déjà existe");
             } else {
                 this.verificationCode = generateVerificationCode();
-                sendVerificationCode(String.valueOf(NUMTEL), this.verificationCode);
+                sendVerificationCode(String.valueOf(PHONE), this.verificationCode);
                 boolean isCodeVerified = false;
                 while (!isCodeVerified) {
                     TextInputDialog dialog = new TextInputDialog();
@@ -107,7 +107,7 @@ public class InsriptionContoller {
                             }
                             String mdpHash = hexString.toString();
                             isCodeVerified = true;
-                            UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, mdpHash, NUMTEL,"User", IMAGE));
+                            UserS.Add(new Utilisateur(0, NAME, PRENAME, EMAIL, mdpHash, PHONE,"User", IMAGE));
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
                                 Parent root = loader.load();
@@ -143,7 +143,7 @@ public class InsriptionContoller {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image File");
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif"));
-        Stage stage = (Stage) nomreg.getScene().getWindow();
+        Stage stage = (Stage) namereg.getScene().getWindow();
         File selectedFile = fileChooser.showOpenDialog(stage);
         if (selectedFile != null) {
             try {

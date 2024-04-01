@@ -16,15 +16,15 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
 
     @Override
     public void Add(Utilisateur user) {
-        String qry = "INSERT INTO `user`(`nom`, `prenom`, `email`,`password`, `numtel`,`role`, `image`) VALUES (?,?,?,?,?,?,?)";
+        String qry = "INSERT INTO `user`(`name`, `prename`, `email`,`password`, `phone`,`roles`, `image`) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setString(1, user.getNom());
-            stm.setString(2, user.getPrenom());
+            stm.setString(1, user.getName());
+            stm.setString(2, user.getPrename());
             stm.setString(3, user.getEmail());
             stm.setString(4, user.getPassword());
-            stm.setInt(5, user.getNumtel());
-            stm.setString(6, user.getRole());
+            stm.setInt(5, user.getPhone());
+            stm.setString(6, user.getRoles());
             stm.setString(7, user.getImage());
             stm.executeUpdate();
         } catch (SQLException e) {
@@ -35,19 +35,19 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     @Override
     public List<Utilisateur> afficher() {
         List<Utilisateur> users = new ArrayList<>();
-        String sql = "SELECT `id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role`, `image` FROM `user`";
+        String sql = "SELECT `id`, `name`, `prename`, `email`, `password`, `phone`, `roles`, `image` FROM `user`";
         try {
             Statement ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
                 Utilisateur user = new Utilisateur();
                 user.setId(rs.getInt("id"));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setNumtel(rs.getInt("numtel"));
-                user.setRole(rs.getString("role"));
+                user.setPhone(rs.getInt("phone"));
+                user.setRoles(rs.getString("roles"));
                 user.setImage(rs.getString("image"));
                 users.add(user);
             }
@@ -58,21 +58,21 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     }
 
     @Override
-    public List<Utilisateur> TriparNom() {
+    public List<Utilisateur> TriparName() {
         List<Utilisateur> users = new ArrayList<>();
-        String sql = "SELECT `id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role`, `image` FROM `user` ORDER BY `nom`";
+        String sql = "SELECT `id`, `name`, `prename`, `email`, `password`, `phone`, `roles`, `image` FROM `user` ORDER BY `name`";
         try {
             Statement ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
                 Utilisateur user = new Utilisateur();
                 user.setId(rs.getInt("id"));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setNumtel(rs.getInt("numtel"));
-                user.setRole(rs.getString("role"));
+                user.setPhone(rs.getInt("phone"));
+                user.setRoles(rs.getString("roles"));
                 user.setImage(rs.getString("image"));
                 users.add(user);
             }
@@ -85,19 +85,19 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     @Override
     public List<Utilisateur> TriparEmail() {
         List<Utilisateur> users = new ArrayList<>();
-        String sql = "SELECT `id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role`, `image` FROM `user` ORDER BY `email`";
+        String sql = "SELECT `id`, `name`, `prename`, `email`, `password`, `phone`, `roles`, `image` FROM `user` ORDER BY `email`";
         try {
             Statement ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
                 Utilisateur user = new Utilisateur();
                 user.setId(rs.getInt("id"));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setNumtel(rs.getInt("numtel"));
-                user.setRole(rs.getString("role"));
+                user.setPhone(rs.getInt("phone"));
+                user.setRoles(rs.getString("roles"));
                 user.setImage(rs.getString("image"));
                 users.add(user);
             }
@@ -110,19 +110,19 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     @Override
     public List<Utilisateur> Rechreche(String recherche) {
         List<Utilisateur> users = new ArrayList<>();
-        String sql = "SELECT `id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role`, `image` FROM `user` WHERE `nom` LIKE '%" + recherche + "%' OR `prenom` LIKE '%" + recherche + "%' OR `email`LIKE '%" + recherche + "%'";
+        String sql = "SELECT `id`, `name`, `prename`, `email`, `password`, `phone`, `roles`, `image` FROM `user` WHERE `name` LIKE '%" + recherche + "%' OR `prename` LIKE '%" + recherche + "%' OR `email`LIKE '%" + recherche + "%'";
         try {
             Statement ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
             while (rs.next()) {
                 Utilisateur user = new Utilisateur();
                 user.setId(rs.getInt("id"));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setNumtel(rs.getInt("numtel"));
-                user.setRole(rs.getString("role"));
+                user.setPhone(rs.getInt("phone"));
+                user.setRoles(rs.getString("roles"));
                 user.setImage(rs.getString("image"));
                 users.add(user);
             }
@@ -142,12 +142,12 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
             while (rs.next()) {
                 Utilisateur user = new Utilisateur();
                 user.setId(rs.getInt("id"));
-                user.setNom(rs.getString("nom"));
-                user.setPrenom(rs.getString("prenom"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
-                user.setNumtel(rs.getInt("numtel"));
-                user.setRole(rs.getString("role"));
+                user.setPhone(rs.getInt("phone"));
+                user.setRoles(rs.getString("roles"));
                 users.add(user);
             }
         } catch (SQLException e) {
@@ -159,13 +159,13 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     @Override
     public void Update(Utilisateur user) {
        /* try {
-            String qry = "UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`password`=?,`numtel`=?, `role`=?, `image`=? WHERE `id`=?";
+            String qry = "UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`password`=?,`phone`=?, `role`=?, `image`=? WHERE `id`=?";
            // PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, user.getNom());
             stm.setString(2, user.getPrenom());
             stm.setString(3, user.getEmail());
             stm.setString(4, user.getPassword());
-            stm.setInt(5, user.getNumtel());
+            stm.setInt(5, user.getphone());
             stm.setString(6, user.getRole());
             stm.setString(7, user.getImage());
             stm.setInt(8, user.getId());
@@ -235,9 +235,9 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         return email.matches(emailRegex);
     }
     //phone number
-    public boolean isValidPhoneNumber(int numTel) {
-        String numTelStr = String.valueOf(numTel);
-        return numTelStr.length() == 8;
+    public boolean isValidPhoneNumber(int phone) {
+        String phoneStr = String.valueOf(phone);
+        return phoneStr.length() == 8;
     }
 
 }

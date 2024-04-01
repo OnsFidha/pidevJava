@@ -3,7 +3,7 @@
 }
 
 .btn {
-    -fx-background-color: linear-gradient(to right, #93d9f2 0%, #f76a79 50%, #93d9f2 100%);
+    -fx-background-color: #f8a835; /* Couleur unique */
     -fx-background-radius: 15px;
     -fx-border-width: 1px;
     -fx-border-radius: 15px;
@@ -14,8 +14,9 @@
 .btn:hover {
     -fx-transition: -fx-background-color 1s;
     -fx-border-color: white;
-    -fx-background-color: #93d9f2;
+    -fx-background-color: #93d9f2; /* Couleur unique pour le survol */
 }
+
 
 .text-field {
     -fx-border-width: 0.1em; /* Vous pouvez ajuster cette valeur selon vos besoins */
@@ -46,14 +47,14 @@
 
 .MainButton {
     -fx-background-radius: 15px;
-    -fx-border-width: 1px;
+    -fx-border-width: 2px;
     -fx-border-radius: 15px;
     -fx-background-color: #f76a79;
     -fx-border-color: #fdee6d;
 }
 
 .MainButton:hover {
-    -fx-border-color: #bde7b7;
+    -fx-border-color: #93d9f2;
 }
 
 .scrollpanes {

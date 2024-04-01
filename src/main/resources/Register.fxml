@@ -41,18 +41,18 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label prefHeight="31.0" prefWidth="106.0" text="Nom :">
+            <Label prefHeight="31.0" prefWidth="106.0" text="name :">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="nomreg" prefHeight="40.0" prefWidth="150.0" text="Mehid" GridPane.columnIndex="1" />
+            <TextField fx:id="namereg" prefHeight="40.0" prefWidth="150.0" text="Mehid" GridPane.columnIndex="1" />
             <Label prefHeight="31.0" prefWidth="106.0" text="Prenom :" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="prenomreg" prefHeight="40.0" prefWidth="150.0" text="Bchir" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="prenamereg" prefHeight="40.0" prefWidth="150.0" text="Bchir" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="31.0" prefWidth="106.0" text="Email :" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -70,7 +70,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="numtelreg" prefHeight="40.0" prefWidth="150.0" promptText="+216" text="56107695" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="phonereg" prefHeight="40.0" prefWidth="150.0" promptText="+216" text="56107695" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label prefHeight="31.0" prefWidth="178.0" text="Photo de profile :" GridPane.rowIndex="5">
                <font>
                   <Font name="System Bold" size="14.0" />

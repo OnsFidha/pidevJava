@@ -4,25 +4,25 @@ public class SessionManager {
     private static SessionManager instance;
 
     private static int id_user;
-    private static String nom;
-    private static String prenom;
-    private static int numtel;
+    private static String name;
+    private static String prename;
+    private static int phone;
     private static String email;
-    private static String role;
+    private static String roles;
     private static String image;
 
-    private SessionManager(int id_user , String nom , String prenom , int numtel , String email, String role, String image) {
+    private SessionManager(int id_user , String name , String prename , int phone , String email, String roles, String image) {
         SessionManager.id_user=id_user;
-        SessionManager.nom=nom;
-        SessionManager.prenom=prenom;
-        SessionManager.numtel=numtel;
+        SessionManager.name=name;
+        SessionManager.prename=prename;
+        SessionManager.phone=phone;
         SessionManager.email=email;
-        SessionManager.role=role;
+        SessionManager.roles=roles;
         SessionManager.image=image;
     }
-    public static SessionManager getInstace(int id_user , String nom , String prenom , int numtel , String email , String role, String image) {
+    public static SessionManager getInstace(int id_user , String name , String prename , int phone , String email , String roles, String image) {
         if(instance == null) {
-            instance = new SessionManager(id_user, nom , prenom, numtel, email, role, image);
+            instance = new SessionManager(id_user, name , prename, phone, email, roles, image);
         }
         return instance;
     }
@@ -31,15 +31,15 @@ public class SessionManager {
 
     public static int getId_user() {return id_user;}
 
-    public static String getNom() {return nom;}
+    public static String getName() {return name;}
 
-    public static String getPrenom() {return prenom;}
+    public static String getPrename() {return prename;}
 
     public static String getEmail() {return email;}
 
-    public static int getNumtel() {return numtel;}
+    public static int getPhone() {return phone;}
 
-    public static String getRole() {return role;}
+    public static String getRoles() {return roles;}
 
     public static String getImage() {return image;}
 
@@ -47,25 +47,25 @@ public class SessionManager {
 
     public static void setId_user(int id_user) {SessionManager.id_user = id_user;}
 
-    public static void setNom(String nom) {SessionManager.nom = nom;}
+    public static void setName(String name) {SessionManager.name = name;}
 
-    public static void setPrenom(String prenom) {SessionManager.prenom = prenom;}
+    public static void setPrename(String prename) {SessionManager.prename = prename;}
 
-    public static void setNumtel(int numtel) {SessionManager.numtel = numtel;}
+    public static void setPhone(int phone) {SessionManager.phone = phone;}
 
     public static void setEmail(String email) {SessionManager.email = email;}
 
-    public static void setRole(String role) {SessionManager.role = role;}
+    public static void setRoles(String roles) {SessionManager.roles = roles;}
 
     public static void setImage(String image) {SessionManager.image = image;}
 
     public static void cleanUserSession() {
         id_user=0;
-        nom="";
-        prenom="";
-        numtel=0;
+        name="";
+        prename="";
+        phone=0;
         email="";
-        role="";
+        roles="";
         image="";
     }
 

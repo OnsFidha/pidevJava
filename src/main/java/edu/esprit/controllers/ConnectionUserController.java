@@ -119,12 +119,12 @@ public class ConnectionUserController implements Initializable {
             Utilisateur CurUser;
 
             if (rs.next()) {
-                CurUser = new Utilisateur(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getInt("numtel"), rs.getString("role"), rs.getString("image"));
+                CurUser = new Utilisateur(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getString("email"), rs.getString("password"), rs.getInt("phone"), rs.getString("roles"), rs.getString("image"));
                 Utilisateur.setCurrent_User(CurUser);
-                SessionManager.getInstace(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("numtel"), rs.getString("email"), rs.getString("role"), rs.getString("image"));
-                String role = rs.getString("role");
+                SessionManager.getInstace(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getInt("phone"), rs.getString("email"), rs.getString("roles"), rs.getString("image"));
+                String roles = rs.getString("roles");
                 System.out.println("Login Successful");
-                if (role.equals("Admin")) {
+                if (roles.equals("Admin")) {
                     try {
                         FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
                         Parent loadingRoot = loadingLoader.load();
@@ -156,7 +156,7 @@ public class ConnectionUserController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-                if (role.equals("User")) {
+                if (roles.equals("User")) {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
                         Parent root = loader.load();

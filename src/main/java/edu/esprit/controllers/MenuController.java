@@ -33,14 +33,14 @@ public class MenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        if (SessionManager.getRole().equals("User")) {
+        if (SessionManager.getRoles().equals("User")) {
             AdminP.setVisible(false);
         }
-        if (SessionManager.getRole().equals("Admin")) {
+        if (SessionManager.getRoles().equals("Admin")) {
             AdminP.setVisible(true);
         }
         String imagePath = SessionManager.getImage();
-        String nameP= SessionManager.getNom()+" "+SessionManager.getPrenom();
+        String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
         logedUsernamee.setText(nameP);
         if (imagePath != null) {
