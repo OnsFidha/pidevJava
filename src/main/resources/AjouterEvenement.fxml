@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="330.0" prefWidth="404.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="38.0" layoutY="83.0" prefHeight="8.0" prefWidth="141.0" promptText="Nom" />
+      <TextField layoutX="38.0" layoutY="194.0" prefHeight="8.0" prefWidth="141.0" promptText="Lieu" />
+      <TextField layoutX="38.0" layoutY="138.0" prefHeight="8.0" prefWidth="141.0" promptText="Description" />
+      <DatePicker layoutX="223.0" layoutY="83.0" prefHeight="25.0" prefWidth="141.0" promptText="Date de début" />
+      <DatePicker layoutX="223.0" layoutY="138.0" prefHeight="25.0" prefWidth="141.0" promptText="Date de fin" />
+      <TextField layoutX="223.0" layoutY="194.0" prefHeight="8.0" prefWidth="141.0" promptText="Nombre de participants" />
+      <Button layoutX="112.0" layoutY="256.0" mnemonicParsing="false" prefHeight="19.0" prefWidth="180.0" style="-fx-background-color: #f0c2ff;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Pane prefHeight="61.0" prefWidth="404.0" style="-fx-background-color: #f0c2ff;">
+         <children>
+            <Label layoutX="81.0" layoutY="14.0" text="Ajouter un évènement" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
