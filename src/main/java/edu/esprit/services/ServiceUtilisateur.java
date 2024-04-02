@@ -158,21 +158,21 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
 
     @Override
     public void Update(Utilisateur user) {
-       /* try {
-            String qry = "UPDATE `user` SET `nom`=?,`prenom`=?,`email`=?,`password`=?,`phone`=?, `role`=?, `image`=? WHERE `id`=?";
-           // PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setString(1, user.getNom());
-            stm.setString(2, user.getPrenom());
+       try {
+            String qry = "UPDATE `user` SET `name`=?,`prename`=?,`email`=?,`password`=?,`phone`=?, `roles`=?, `image`=? WHERE `id`=?";
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setString(1, user.getName());
+            stm.setString(2, user.getPrename());
             stm.setString(3, user.getEmail());
             stm.setString(4, user.getPassword());
-            stm.setInt(5, user.getphone());
-            stm.setString(6, user.getRole());
+            stm.setInt(5, user.getPhone());
+            stm.setString(6, user.getRoles());
             stm.setString(7, user.getImage());
             stm.setInt(8, user.getId());
             stm.executeUpdate();
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
-        }*/
+        }
     }
 
     @Override

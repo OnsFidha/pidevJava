@@ -11,7 +11,7 @@
             <Image url="@assets/uploads/top-view-paint-brush-corner.jpg" />
          </image>
       </ImageView>
-      <ImageView fitHeight="342.0" fitWidth="350.0" layoutX="483.0" layoutY="248.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="342.0" fitWidth="350.0" layoutX="294.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/uploads/1308a5cd-bb39-4c1c-9a1b-94eac6ca6f96_logo.png" />
          </image>

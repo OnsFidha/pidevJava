@@ -34,9 +34,9 @@
                 <Image url="@assets/uploads/1308a5cd-bb39-4c1c-9a1b-94eac6ca6f96_logo.png" />
             </image>
         </ImageView>
-        <Button layoutX="241.0" layoutY="471.0" mnemonicParsing="false" onAction="#connecter" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: f76a79;" text="Se connecter" textFill="WHITE" />
+        <Button layoutX="241.0" layoutY="471.0" mnemonicParsing="false" onAction="#connecter" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: f76a79;" styleClass="btn" stylesheets="@css/style.css" text="Se connecter" textFill="WHITE" />
         <Label layoutX="168.0" layoutY="520.0" prefHeight="39.0" prefWidth="160.0" text="Vous n’avez pas de compte ?" />
-        <Button layoutX="329.0" layoutY="528.0" mnemonicParsing="false" onAction="#inscription" prefHeight="23.0" prefWidth="106.0" style="-fx-background-color: #93d9f2;" text="Inscrivez-vous" textFill="WHITE">
+        <Button layoutX="329.0" layoutY="528.0" mnemonicParsing="false" onAction="#inscription" prefHeight="23.0" prefWidth="106.0" styleClass="btn" stylesheets="@css/style.css" text="Inscrivez-vous" textFill="WHITE">
             <font>
                 <Font name="Roboto Regular" size="13.0" />
             </font>

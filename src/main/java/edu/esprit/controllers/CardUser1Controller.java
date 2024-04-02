@@ -24,7 +24,7 @@ public class CardUser1Controller {
     @FXML
     private Label emaillb;
     @FXML
-    private Label numtellb;
+    private Label phonelb;
     @FXML
     private Label rolelb;
 
@@ -49,9 +49,9 @@ public class CardUser1Controller {
             System.err.println("Image path is null for user: " + user);
         }
         nomprenomlb.setText(user.getName() + " " + user.getPrename());
-        emaillb.setText(user.getEmail());
-        rolelb.setText("+216 "+user.getRoles());
-        numtellb.setText(String.valueOf(user.getPhone()));
+        emaillb.setText("email: "+user.getEmail());
+        rolelb.setText("role: "+user.getRoles());
+        phonelb.setText(String.valueOf("num: "+user.getPhone()));
         userpane.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
     }

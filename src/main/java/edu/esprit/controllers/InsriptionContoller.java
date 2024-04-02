@@ -79,6 +79,7 @@ public class InsriptionContoller {
             } else if (!(UserS.isValidPhoneNumber(Integer.parseInt(phonereg.getText())))) {
                 reginfo.setText("N° Telephone est invalide");
             } else if (UserS.checkUserExists(EMAIL)) {
+                //chercher si l'email existe deja
                 reginfo.setText("Email déjà existe");
             } else {
                 this.verificationCode = generateVerificationCode();
