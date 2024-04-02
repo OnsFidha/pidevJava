@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.esprit.controllers.AjouterPub"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterPub">
+   <children>
+      <Label layoutX="118.0" layoutY="54.0" text="Type" />
+      <Label layoutX="119.0" layoutY="104.0" text="Text" />
+      <Label layoutX="115.0" layoutY="200.0" text="Photo" />
+      <Label layoutX="119.0" layoutY="153.0" text="Lieu" />
+      <TextArea fx:id="textPub" layoutX="200.0" layoutY="87.0" prefHeight="51.0" prefWidth="200.0" />
+      <Accordion layoutX="130.0" layoutY="235.0" />
+      <TextField fx:id="lieuPub" layoutX="200.0" layoutY="149.0" prefHeight="26.0" prefWidth="200.0" />
+      <TextField fx:id="photoPub" layoutX="200.0" layoutY="195.0" prefHeight="26.0" prefWidth="200.0" />
+      <Button layoutX="274.0" layoutY="296.0" mnemonicParsing="false" onAction="#addPub" text="Ajouter" />
+      <TextField fx:id="typePub" layoutX="200.0" layoutY="41.0" prefHeight="26.0" prefWidth="200.0" />
+   </children>
 </AnchorPane>
