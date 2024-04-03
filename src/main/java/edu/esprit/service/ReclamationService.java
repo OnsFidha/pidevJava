@@ -29,13 +29,15 @@ public class ReclamationService implements IService <Reclamation> {
     }
     @Override
     public void modifier(Reclamation reclamation) throws SQLException{
-        String sql = "UPDATE reclamation SET type = ?, description = ? WHERE id = ?";
+        String sql = "UPDATE reclamation SET type = ?, description = ?, etat= ? WHERE id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, reclamation.getType());
             statement.setString(2, reclamation.getDescription());
 
-            statement.setInt(3, reclamation.getId());
+            statement.setBoolean(3, reclamation.isEtat());
+            statement.setInt(4, reclamation.getId());
+
             statement.executeUpdate();
             System.out.println("modification effectuée");
         } catch (SQLException e) {

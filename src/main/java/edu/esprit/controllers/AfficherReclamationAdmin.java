@@ -121,11 +121,11 @@ public class AfficherReclamationAdmin {
             Parent root = loader.load();
 
             //AjouterReponseController mr = loader.getController();
-            //.setData(selected.getId(), selected.getDescription(), selected.getType());
+            //mr.setData(selected.getId(), selected.getDescription(), selected.getType(),selected.isEtat());
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.setTitle("Modifier Réclamation");
+            stage.setTitle("Répondre a une  Réclamation");
             stage.show();
 
             // Hide the current window

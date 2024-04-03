@@ -50,34 +50,50 @@ public class AjouterReponseController {
     private TextArea reponse;
 
     @FXML
-    void ajoutReponse(ActionEvent event) throws SQLException {
+    void ajoutReponse(ActionEvent event) {
         try {
             int rec_id = AfficherReclamationAdmin.selected.getId();
+            String reponseText = reponse.getText();
+
+            // Check if the reponseText is empty
+            if (reponseText.isEmpty()) {
+                System.out.println("Reponse text is empty.");
+                return;
+            }
+
+            // Create a new Reponse object
             Reponse rep = new Reponse();
-            rep.setReponse(reponse.getText());
-            // Initialize the creation date to the current date
+            rep.setReponse(reponseText);
             rep.setDate_reponse(new Date());
             rep.setRelation_id(rec_id);
 
-            ReponseService pst = new ReponseService();
-            pst.ajouter(rep);
+            // Check if a Reponse with the same relation_id already exists
+            ReponseService reponseService = new ReponseService();
 
-            // Now update the state of the corresponding Reclamation to true
+
+            // Insert the Reponse object into the database
+            reponseService.ajouter(rep);
+
+            // Update the state of the corresponding Reclamation to true
             ReclamationService recService = new ReclamationService();
             Reclamation rec = recService.getOneById(rec_id);
             if (rec != null) {
                 rec.setEtat(true);
                 recService.modifier(rec);
                 System.out.println("State of the reclamation with ID " + rec_id + " has been successfully updated to true.");
+                System.out.println(rec.isEtat());
+                System.out.println(rec.getId());
+                System.out.println(rec);
             } else {
                 System.out.println("Reclamation with ID " + rec_id + " not found.");
             }
+
+            System.out.println("Reponse added successfully.");
         } catch (SQLException ex) {
-            System.out.println("An error occurred while updating the state of the reclamation:");
+            System.out.println("An error occurred while adding the Reponse:");
             ex.printStackTrace();
         }
     }
-
 
 
 
@@ -125,5 +141,6 @@ public class AjouterReponseController {
 
 
     }
+
 
 }
