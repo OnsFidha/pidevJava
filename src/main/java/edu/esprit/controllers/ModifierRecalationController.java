@@ -59,7 +59,7 @@ public class ModifierRecalationController  implements Initializable {
             }else {
 
                 rec.setDescription(description.getText());
-                rec.setType(comb.getTypeSelector());
+                rec.setType(comb.getSelectionModel().getSelectedItem());
                 ReclamationService sr = new ReclamationService();
                 try{
                     sr.modifier(rec);
