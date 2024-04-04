@@ -22,6 +22,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 
@@ -45,41 +46,42 @@ public class ModifierRecalationController  implements Initializable {
 
         Reclamation rec=new Reclamation();
 
-        @FXML
-        void ModifierReclam(ActionEvent event) {
-            if (rec == null) {
-
-                System.out.println("Choisir une réclamation");
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Modifier réclamation");
-                alert.setHeaderText(null);
-                alert.setContentText("La réclamation n'est pas modifié!");
-
-                alert.showAndWait();
-            }else {
-
-                rec.setDescription(description.getText());
-                rec.setType(comb.getSelectionModel().getSelectedItem());
-                ReclamationService sr = new ReclamationService();
-                try{
-                    sr.modifier(rec);
-                    System.out.println("ok");}
-                catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                }
-                System.out.println("Modification terminé");}
-
-
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Modification terminée avec succès.");
+    @FXML
+    void ModifierReclam(ActionEvent event) {
+        if (rec == null) {
+            System.out.println("Choisir une réclamation");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Modifier réclamation");
             alert.setHeaderText(null);
-            alert.setContentText("Votre réclamation a été modifié avec succés.");
+            alert.setContentText("La réclamation n'est pas modifiée!");
             alert.showAndWait();
-
+        } else {
+            rec.setDescription( description.getText());
+            rec.setType(comb.getSelectionModel().getSelectedItem());
+            rec.setEtat(false);
+            // Appel de la méthode modifier avec les champs à mettre à jour
+            ReclamationService sr = new ReclamationService();
+            try {
+                sr.modifier(rec);
+                System.out.println("Modification terminée");
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Modification terminée avec succès.");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("Votre réclamation a été modifiée avec succès.");
+                successAlert.showAndWait();
+            } catch (SQLException ex) {
+                System.out.println("Erreur lors de la modification: " + ex.getMessage());
+                Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                errorAlert.setTitle("Erreur lors de la modification.");
+                errorAlert.setHeaderText(null);
+                errorAlert.setContentText("Une erreur s'est produite lors de la modification de votre réclamation.");
+                errorAlert.showAndWait();
+            }
         }
+    }
 
-        @FXML
+
+    @FXML
         void Selecttype(ActionEvent event) {
             String selectedItem = comb.getSelectionModel().getSelectedItem();
             System.out.println("Selected item: " + selectedItem);
