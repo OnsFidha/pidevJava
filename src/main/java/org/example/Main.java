@@ -45,7 +45,12 @@ public class Main {
             System.out.println("one by Id \n"+ps.getOneById(1));
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }  try {
+            System.out.println("liste comm by pub\n"+ps.getCommentairesByPublicationId(1));
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
         }
+
 //        try {ps.supprimer(11);
 //        }catch (SQLException s){
 //            System.out.println(s.getMessage());

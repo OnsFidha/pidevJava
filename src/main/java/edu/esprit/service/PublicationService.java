@@ -1,5 +1,6 @@
 package edu.esprit.service;
 
+import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.Publication;
 import edu.esprit.utils.DataSource;
 
@@ -113,5 +114,27 @@ public class PublicationService implements IService <Publication> {
 
         return publication;
     }
+    public List<Commentaire> getCommentairesByPublicationId(int publicationId) throws SQLException {
+        List<Commentaire> commentaires = new ArrayList<>();
+        String sql = "SELECT * FROM commentaire WHERE id_publication_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, publicationId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Commentaire commentaire = new Commentaire();
+                commentaire.setId(resultSet.getInt("id"));
+                commentaire.setText(resultSet.getString("text"));
+                //  commentaire.setInt(4, resultSet.getUserId());
+                commentaires.add(commentaire);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return commentaires;
+    }
+
 
 }
