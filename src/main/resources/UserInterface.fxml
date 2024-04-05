@@ -20,7 +20,7 @@
          </image>
       </ImageView>
       <Pane layoutY="83.0" opacity="0.43" prefHeight="52.0" prefWidth="1179.0" style="-fx-background-color: rgb(149, 165, 166);" />
-      <Pane prefHeight="83.0" prefWidth="1179.0" styleClass="pane">
+      <Pane prefHeight="83.0" prefWidth="1179.0" styleClass="pane1">
          <children>
             <Pane layoutX="14.0" layoutY="8.0" style="-fx-background-color: #ffff; -fx-background-radius: 9;">
                <children>

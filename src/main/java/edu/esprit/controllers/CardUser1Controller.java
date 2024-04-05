@@ -26,7 +26,7 @@ public class CardUser1Controller {
     @FXML
     private Label phonelb;
     @FXML
-    private Label rolelb;
+    private Label roleslb;
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
@@ -50,7 +50,7 @@ public class CardUser1Controller {
         }
         nomprenomlb.setText(user.getName() + " " + user.getPrename());
         emaillb.setText("email: "+user.getEmail());
-        rolelb.setText("role: "+user.getRoles());
+        roleslb.setText("role: "+user.getRoles());
         phonelb.setText(String.valueOf("num: "+user.getPhone()));
         userpane.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");

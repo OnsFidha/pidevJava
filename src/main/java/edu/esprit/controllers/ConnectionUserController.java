@@ -124,6 +124,7 @@ public class ConnectionUserController implements Initializable {
                 SessionManager.getInstace(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getInt("phone"), rs.getString("email"), rs.getString("roles"), rs.getString("image"));
                 String roles = rs.getString("roles");
                 System.out.println("Login Successful");
+                System.out.println(SessionManager.getEmail());
                 if (roles.equals("Admin")) {
                     try {
                         FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));

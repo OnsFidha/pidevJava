@@ -1,4 +1,7 @@
 .pane {
+    -fx-background-color: #FEFCF3;
+}
+.pane1 {
     -fx-background-color: #f8a835;
 }
 
