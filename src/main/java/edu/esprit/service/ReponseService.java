@@ -31,13 +31,14 @@ public class ReponseService implements IService <Reponse> {
 
     @Override
     public void modifier(Reponse reponse) throws SQLException {
-        String sql = "UPDATE reponse SET relation_id = ?, reponse = ? WHERE id = ?";
+        //String sql = "UPDATE reponse SET relation_id = ?, reponse = ? WHERE id = ?";
+        String sql = "UPDATE reponse SET  reponse = ? WHERE id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
-            statement.setInt(1, reponse.getRelation_id());
-            statement.setString(2, reponse.getReponse());
+            //statement.setInt(1, reponse.getRelation_id());
+            statement.setString(1, reponse.getReponse());
 
-            statement.setInt(3, reponse.getId());
+            statement.setInt(2, reponse.getId());
             statement.executeUpdate();
             System.out.println("modification effectuée");
         } catch (SQLException e) {

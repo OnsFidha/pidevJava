@@ -122,6 +122,34 @@ public class AfficherReponseAdminController {
 
     @FXML
     void updateReponse(ActionEvent event) {
+        Reponse r = tableauRep.getSelectionModel().getSelectedItem();
+
+        if(r == null) {
+            System.out.println("Aucune réponse est sélectionnée");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune réponse est  sélectionnée");
+            alert.showAndWait();
+        } else {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierReponse.fxml"));
+                Parent root = loader.load();
+
+                ModifierReponseController mr = loader.getController();
+                mr.setData(r.getId(), r.getReponse());
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Modifier Réclamation");
+                stage.show();
+
+                // Hide the current window
+                ((Node) event.getSource()).getScene().getWindow().hide();
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        }
 
     }
 
