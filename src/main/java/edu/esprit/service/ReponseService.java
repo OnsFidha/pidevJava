@@ -111,4 +111,30 @@ public class ReponseService implements IService <Reponse> {
 
         return reponse;
     }
+
+    public List<Reponse> refreshRep(){
+        List<Reponse> myList = new ArrayList<>();
+
+        try{
+            String requete = "SELECT * FROM reponse";
+            Statement st = conn.createStatement();
+            ResultSet rs =  st.executeQuery(requete);
+
+            while(rs.next()){
+                Reponse reponse = new Reponse();
+                reponse.setId(rs.getInt("id"));
+               // reponse.setRelation_id(rs.getInt("relation_id"));
+                reponse.setReponse(rs.getString("reponse"));
+                reponse.setDate_reponse(rs.getDate("date_reponse"));
+
+                myList.add(reponse);
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return myList;
+    }
+
 }

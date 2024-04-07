@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #FEFCF3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherReclamationAdmin">
+<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #FEFCF3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherReponseAdminController">
 
     <children>
         <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #BEE5B4;">
@@ -38,34 +38,34 @@
                         <Rectangle2D />
                     </viewport>
                 </ImageView>
-            <Label text="Admin" textFill="#f9a936" translateX="75.0">
-               <font>
-                  <Font size="36.0" />
-               </font>
-            </Label>
-            <HBox prefHeight="36.0" prefWidth="213.0" spacing="3.0">
-               <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/UserIcon.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Utilisateurs">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="30.0" top="10.0" />
-               </VBox.margin>
-            </HBox>
+                <Label text="Admin" textFill="#f9a936" translateX="75.0">
+                    <font>
+                        <Font size="36.0" />
+                    </font>
+                </Label>
+                <HBox prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/UserIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Utilisateurs">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="30.0" top="10.0" />
+                    </VBox.margin>
+                </HBox>
                 <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -138,7 +138,7 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
-                <HBox prefHeight="2.0" prefWidth="204.0" spacing="3.0">
+                <HBox accessibleRole="BUTTON" onMouseClicked="#reclamationSideBar" prefHeight="2.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -148,7 +148,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Reclamation" textFill="#f9a936">
+                        <Label text="Reclamation">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -157,36 +157,36 @@
                             </HBox.margin>
                         </Label>
                     </children>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets bottom="10.0" />
-               </VBox.margin>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="10.0" />
+                    </VBox.margin>
                 </HBox>
-            <HBox onMouseClicked="#reponseSideBar" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
-               <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/ReponsIcon.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Reponse">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets left="30.0" right="40.0" />
-               </VBox.margin>
-            </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/ReponsIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Reponse" textFill="#f9a936">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="30.0" right="40.0" />
+                    </VBox.margin>
+                </HBox>
             </children>
         </VBox>
         <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="991.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10;">
@@ -198,31 +198,31 @@
                 </DropShadow>
             </effect>
             <children>
-            <TextField fx:id="rechercheText" prefHeight="40.0" prefWidth="324.0" style="-fx-background-color: #B2B2B2;" translateX="70.0" translateY="20.0">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </TextField>
+                <TextField fx:id="rechercheText" prefHeight="40.0" prefWidth="324.0" style="-fx-background-color: #B2B2B2;" translateX="70.0" translateY="20.0">
+                    <font>
+                        <Font size="13.0" />
+                    </font>
+                </TextField>
 
-            <Button fx:id="BtnRecherche" mnemonicParsing="false" onAction="#chercherReclam" prefHeight="37.0" prefWidth="59.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 0;" textFill="WHITE" translateX="70.0" translateY="20.0">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <effect>
-                  <DropShadow height="46.72" radius="19.4525" width="33.09">
-                     <color>
-                        <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <graphic>
-                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@icons/LoopIcon.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Button>
+                <Button fx:id="BtnRecherche" mnemonicParsing="false" prefHeight="37.0" prefWidth="59.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 0;" textFill="WHITE" translateX="70.0" translateY="20.0">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                    <effect>
+                        <DropShadow height="46.72" radius="19.4525" width="33.09">
+                            <color>
+                                <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
+                            </color>
+                        </DropShadow>
+                    </effect>
+                    <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/LoopIcon.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
                 <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="440.0" translateY="15.0">
                     <HBox.margin>
                         <Insets />
@@ -232,17 +232,15 @@
 
             </children>
         </HBox>
-        <Label layoutX="487.0" layoutY="111.0" text="Liste des Reclamations">
+        <Label layoutX="487.0" layoutY="111.0" text="Liste des Reponses">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
         </Label>
-        <TableView fx:id="tableauReclam" layoutX="287.0" layoutY="206.0" prefHeight="308.0" prefWidth="778.0" style="-fx-background-color: #FFFFFF;">
+        <TableView fx:id="tableauRep" layoutX="274.0" layoutY="175.0" prefHeight="308.0" prefWidth="778.0" style="-fx-background-color: #FFFFFF;">
             <columns>
-                <TableColumn fx:id="typeReclam" prefWidth="225.9999542236328" text="type" />
-                <TableColumn fx:id="descReclam" minWidth="0.0" prefWidth="304.6667175292969" text="reclamation" />
-                <TableColumn fx:id="etatReclam" prefWidth="94.66668701171875" text="etat" />
-                <TableColumn fx:id="DateReclam" minWidth="0.0" prefWidth="153.333251953125" text="date creation" />
+                <TableColumn fx:id="reponse" prefWidth="461.3332824707031" text="reponse" />
+                <TableColumn fx:id="dateReponse" minWidth="0.0" prefWidth="316.0" text="date de reponse" />
             </columns>
             <styleClass>
                 <String fx:value="scroll-bar" />
@@ -256,20 +254,43 @@
             </effect>
 
         </TableView>
-      <Line endX="578.3333129882812" endY="-97.66667175292969" layoutX="444.0" layoutY="118.0" startX="578.3333129882812" startY="-37.00000762939453" />
-
-        <Button fx:id="bouttonRepondre" layoutX="653.0" layoutY="553.0" mnemonicParsing="false" onAction="#repondreReclamation" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Repondre" textFill="WHITE">
-            <font>
-                <Font size="14.0" />
-            </font>
-            <effect>
-                <DropShadow height="46.72" radius="19.4525" width="33.09">
-                    <color>
-                        <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
-                    </color>
-                </DropShadow>
-            </effect>
-        </Button>
+        <Line endX="578.3333129882812" endY="-97.66667175292969" layoutX="444.0" layoutY="118.0" startX="578.3333129882812" startY="-37.00000762939453" />
+      <Button fx:id="supprimerReponse" layoutX="410.0" layoutY="499.0" mnemonicParsing="false" onAction="#deleteReponse" prefHeight="36.0" prefWidth="125.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Supprimer" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="46.72" radius="19.4525" width="33.09">
+               <color>
+                  <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="ModifierReponse" layoutX="591.0" layoutY="499.0" mnemonicParsing="false" onAction="#updateReponse" prefHeight="36.0" prefWidth="125.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="46.72" radius="19.4525" width="33.09">
+               <color>
+                  <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
+      <Button fx:id="refresh" layoutX="785.0" layoutY="501.0" mnemonicParsing="false" onAction="#refreshReponse" prefHeight="36.0" prefWidth="128.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Refresh" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="46.72" radius="19.4525" width="33.09">
+               <color>
+                  <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
     </children>
 
 </AnchorPane>

@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -132,6 +133,22 @@ public class AfficherReclamationAdmin {
             ((Node) event.getSource()).getScene().getWindow().hide();
         } catch(IOException ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @FXML
+    void reponseSideBar(MouseEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReponseAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Ajout Reclamation");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
