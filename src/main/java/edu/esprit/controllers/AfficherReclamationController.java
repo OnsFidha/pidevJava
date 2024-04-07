@@ -60,6 +60,9 @@ public class AfficherReclamationController implements Initializable {
 
     @FXML
     private Button verifier;
+    static Reclamation selected;
+    private Stage stage;
+    private Scene scene;
 
     @FXML
     void addReclamation(ActionEvent event) throws IOException {
@@ -153,8 +156,25 @@ public class AfficherReclamationController implements Initializable {
 
     @FXML
     void verifierReponseReclamation(ActionEvent event) {
+        selected = tableauReclam.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReponseClient.fxml"));
 
+        try {
+
+            Parent root1 = loader.load();
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            scene = new Scene(root1);
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (IOException ex) {
+
+        }
+        ReponseClientController reponseRecClientController = loader.getController();
+       // reponseClientController.setData(selected.getId(), selected.getReference(), selected.getEtat());
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

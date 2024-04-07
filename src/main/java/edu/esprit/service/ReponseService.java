@@ -138,4 +138,25 @@ public class ReponseService implements IService <Reponse> {
         return myList;
     }
 
+    public Reponse getReponseByReclamationId(int reclamationId) {
+        Reponse reponse = null;
+        try {
+            String req = "SELECT * FROM reponse WHERE relation_id = ? LIMIT 1";
+            PreparedStatement sttm = conn.prepareStatement(req);
+            sttm.setInt(1, reclamationId);
+            ResultSet rst = sttm.executeQuery();
+            if (rst.next()) {
+                reponse = new Reponse();
+                reponse.setId(rst.getInt("id"));
+                reponse.setReponse(rst.getString("reponse"));
+                reponse.setDate_reponse(rst.getDate("date_reponse"));
+
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return reponse;
+    }
+
+
 }

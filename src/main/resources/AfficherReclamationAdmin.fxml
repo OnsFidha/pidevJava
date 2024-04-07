@@ -258,7 +258,7 @@
         </TableView>
       <Line endX="578.3333129882812" endY="-97.66667175292969" layoutX="444.0" layoutY="118.0" startX="578.3333129882812" startY="-37.00000762939453" />
 
-        <Button fx:id="bouttonRepondre" layoutX="653.0" layoutY="553.0" mnemonicParsing="false" onAction="#repondreReclamation" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Repondre" textFill="WHITE">
+        <Button fx:id="bouttonRepondre" layoutX="545.0" layoutY="540.0" mnemonicParsing="false" onAction="#repondreReclamation" prefHeight="36.0" prefWidth="239.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Repondre" textFill="WHITE">
             <font>
                 <Font size="14.0" />
             </font>

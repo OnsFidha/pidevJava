@@ -88,6 +88,17 @@ public class AfficherReponseAdminController {
     void deleteReponse(ActionEvent event) throws SQLException {
         ReponseService sr = new ReponseService();
         Reponse r = (Reponse) tableauRep.getSelectionModel().getSelectedItem();
+
+        // Obtenez la réclamation associée à la réponse
+        ReclamationService reclamationService = new ReclamationService();
+        Reclamation rec = reclamationService.getOneById(r.getRelation_id());
+
+
+        // Mettez l'état de la réclamation à "non traité" (false)
+        rec.setEtat(false);
+        // Mettez à jour l'état de la réclamation en base de données
+        reclamationService.modifier(rec);
+        System.out.println(rec);
         sr.supprimer(r.getId());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         try {
