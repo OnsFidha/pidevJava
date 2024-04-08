@@ -5,6 +5,7 @@ import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
+import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Reponse;
 import edu.esprit.service.ReponseService;
 import javafx.fxml.FXML;
@@ -36,11 +37,20 @@ public class ReponseClientController {
     @FXML
     private Label date_rep;
 
-    @FXML
-    private Label etatDeReclamation;
 
     @FXML
     private Label reponse;
+
+    // Champ privé pour stocker la réclamation sélectionnée
+    private Reclamation selectedReclamation;
+
+
+    // Méthode pour définir la réclamation sélectionnée
+    public void setSelectedReclamation(Reclamation selectedReclamation) {
+        this.selectedReclamation = selectedReclamation;
+        // Mettre à jour l'interface utilisateur avec les détails de la réclamation sélectionnée
+        ReponseDeClient();
+    }
 
 
     @FXML
@@ -71,30 +81,27 @@ public class ReponseClientController {
 
     public void ReponseDeClient() {
         try {
-            ReponseService reponseService = new ReponseService(); // Créez une instance de ReponseService
-            int reclamationId = AfficherReclamationController.selected.getId();
+            if (selectedReclamation != null) {
+                ReponseService reponseService = new ReponseService();
+                int reclamationId = selectedReclamation.getId();
+                Reponse rep = reponseService.getReponseByReclamationId(reclamationId);
 
-            // Appelez la fonction getReponseByReclamationId
-            Reponse rep = reponseService.getReponseByReclamationId(reclamationId);
-
-            // Vérifiez si une réponse a été trouvée
-            if (rep != null) {
-                // Affichez les détails de la réponse
-                reponse.setText(rep.getReponse());
-                // Formatez la date en utilisant SimpleDateFormat
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                String formattedDate = dateFormat.format(rep.getDate_reponse());
-                date_rep.setText(formattedDate);
-
+                if (rep != null) {
+                    reponse.setText(rep.getReponse());
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                    String formattedDate = dateFormat.format(rep.getDate_reponse());
+                    date_rep.setText(formattedDate);
+                } else {
+                    reponse.setText("Votre réclamation n'a pas encore été répondue.");
+                    date_rep.setText("*********");
+                }
             } else {
-                reponse.setText("Votre réclamation n'a pas encore été répondue.");
+                reponse.setText("Aucune réclamation sélectionnée.");
+                date_rep.setText("Aucune réclamation sélectionnée.");
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
-
-
-
 
 }

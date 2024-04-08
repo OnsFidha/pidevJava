@@ -11,6 +11,9 @@ package edu.esprit.controllers;
         import javafx.scene.control.*;
         import javafx.scene.control.cell.PropertyValueFactory;
         import javafx.scene.image.Image;
+        import javafx.scene.layout.AnchorPane;
+        import javafx.scene.layout.GridPane;
+        import javafx.scene.layout.VBox;
         import javafx.scene.paint.ImagePattern;
         import javafx.scene.shape.Circle;
 
@@ -29,6 +32,8 @@ package edu.esprit.controllers;
 
 public class AfficherReclamationController implements Initializable {
 
+    @FXML
+    private GridPane reclamationsContainer;
     @FXML
     private TableView<Reclamation> tableauReclam;
     @FXML
@@ -60,9 +65,11 @@ public class AfficherReclamationController implements Initializable {
 
     @FXML
     private Button verifier;
-    static Reclamation selected;
+    public static Reclamation selectedReclamation;
     private Stage stage;
     private Scene scene;
+
+
 
     @FXML
     void addReclamation(ActionEvent event) throws IOException {
@@ -81,50 +88,94 @@ public class AfficherReclamationController implements Initializable {
 
     @FXML
     void deleteReclamation(ActionEvent event) throws SQLException {
-        ReclamationService sr = new ReclamationService();
-        Reclamation r = (Reclamation) tableauReclam.getSelectionModel().getSelectedItem();
-        sr.supprimer(r.getId());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        try {
-            if(JOptionPane.showConfirmDialog(null,"attention vous allez supprimer votre reclamation,est ce que tu et sure?"
-                    ,"supprimer reclamation",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+        // Récupérer la carte sélectionnée dans le GridPane
+        AnchorPane selectedCard = (AnchorPane) reclamationsContainer.getChildren().stream()
+                .filter(node -> node.getStyle().contains("-fx-background-color: lightblue;"))
+                .findFirst().orElse(null);
 
-                if(!r.getDescription().isEmpty()){
+        if (selectedCard != null) {
+            // Récupérer la réclamation associée à la carte
+            Reclamation selectedReclamation = (Reclamation) selectedCard.getUserData();
 
-                    alert.setContentText("Votre réclamation a ete bien supprime");
-                    JOptionPane.showMessageDialog(null,"reclamation supprime");
-                }//ca est pour recharger la list des stagiaire
-                else { JOptionPane.showMessageDialog(null,"veuillez remplire le champ id !");}
+            // Supprimer la réclamation
+            ReclamationService sr = new ReclamationService();
+            sr.supprimer(selectedReclamation.getId());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            try {
+                if(JOptionPane.showConfirmDialog(null,"Attention, vous allez supprimer votre réclamation. Êtes-vous sûr ?"
+                        ,"Supprimer réclamation",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 
-        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());}
+                    if(!selectedReclamation.getDescription().isEmpty()){
 
+                        alert.setContentText("Votre réclamation a été supprimée avec succès.");
+                        JOptionPane.showMessageDialog(null,"Réclamation supprimée");
+                    } else {
+                        JOptionPane.showMessageDialog(null,"Veuillez remplir le champ ID !");
+                    }
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null,"Erreur lors de la suppression :\n" + e.getMessage());
+            }
+        } else {
+            // Aucune carte sélectionnée
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aucune réclamation sélectionnée");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une réclamation à supprimer.");
+            alert.showAndWait();
+        }
     }
 
     @FXML
     void refreshReclamation(ActionEvent event) {
 
+        // Initialize ReclamationService
         ReclamationService sr = new ReclamationService();
-        List<Reclamation> reclam = sr.refreshReclam();
-        myList = FXCollections.observableList(reclam);
-        tableauReclam.setItems(myList);
+        List<Reclamation> reclam;
+        try {
+            // Get all reclamations from the service
+            reclam = sr.getAll();
 
-        descReclam.setCellValueFactory(new PropertyValueFactory<>("description"));
-        typeReclam.setCellValueFactory(new PropertyValueFactory<>("type"));
+            int column = 0;
+            int row = 0;
+
+            // Iterate over the list of reclamations
+            for (Reclamation reclamation : reclam) {
+                // Load the reclam card FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReclamCard.fxml"));
+                AnchorPane card = loader.load();
 
 
-        etatReclam.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        DateReclam.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
+                // Pass the data to the controller of the card
+                ReclamCardController controller = loader.getController();
+                controller.setData(reclamation);
 
-        tableauReclam.setItems(myList);
+
+                // Add the card to the GridPane container
+                reclamationsContainer.add(card, column, row);
+
+
+                // Increment row and reset column if needed
+                column++;
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
 
     @FXML
     void updateReclamation(ActionEvent event) {
-        Reclamation r = tableauReclam.getSelectionModel().getSelectedItem();
+        // Récupérer la carte sélectionnée dans le GridPane
+        AnchorPane selectedCard = (AnchorPane) reclamationsContainer.getChildren().stream()
+                .filter(node -> node.getStyle().contains("-fx-background-color: lightblue;"))
+                .findFirst().orElse(null);
 
-        if(r == null) {
+        if(selectedCard == null) {
             System.out.println("Aucune réclamation sélectionnée");
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Erreur");
@@ -136,8 +187,13 @@ public class AfficherReclamationController implements Initializable {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierReclamation.fxml"));
                 Parent root = loader.load();
 
+                // Récupérer la réclamation associée à la carte
+                Reclamation selectedReclamation = (Reclamation) selectedCard.getUserData();
+
+
+
                 ModifierRecalationController mr = loader.getController();
-                mr.setData(r.getId(), r.getDescription(), r.getType());
+                mr.setData(selectedReclamation.getId(), selectedReclamation.getDescription(), selectedReclamation.getType());
 
                 Stage stage = new Stage();
                 stage.setScene(new Scene(root));
@@ -156,23 +212,44 @@ public class AfficherReclamationController implements Initializable {
 
     @FXML
     void verifierReponseReclamation(ActionEvent event) {
-        selected = tableauReclam.getSelectionModel().getSelectedItem();
+        // Récupérer la carte sélectionnée dans le GridPane
+        AnchorPane selectedCard = (AnchorPane) reclamationsContainer.getChildren().stream()
+                .filter(node -> node.getStyle().contains("-fx-background-color: lightblue;"))
+                .findFirst().orElse(null);
+
+        // Vérifier si aucune carte n'a été sélectionnée
+        if (selectedCard == null) {
+            System.out.println("Aucune réclamation sélectionnée");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune réclamation sélectionnée");
+            alert.showAndWait();
+            return; // Sortir de la méthode car aucune réclamation n'a été sélectionnée
+        }
+
+        // Récupérer la réclamation associée à la carte
+        Reclamation selectedReclamation = (Reclamation) selectedCard.getUserData();
+        System.out.println(selectedReclamation);
+
+        // Charger le contrôleur ReponseClientController
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReponseClient.fxml"));
 
         try {
-
             Parent root1 = loader.load();
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             scene = new Scene(root1);
             stage.setScene(scene);
             stage.show();
 
+            // Mettre à jour la réclamation sélectionnée dans le contrôleur ReponseClientController
+            ReponseClientController controller = loader.getController();
+            controller.setSelectedReclamation(selectedReclamation);
         } catch (IOException ex) {
-
+            ex.printStackTrace();
         }
-        ReponseClientController reponseRecClientController = loader.getController();
-       // reponseClientController.setData(selected.getId(), selected.getReference(), selected.getEtat());
     }
+
 
 
 
@@ -182,14 +259,74 @@ public class AfficherReclamationController implements Initializable {
         Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
         circle.setFill(new ImagePattern(img));
-            // TODO
-        try {
+        // TODO
+       /* try {
             afficherReclam();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+        // Initialize ReclamationService
+        ReclamationService sr = new ReclamationService();
+        List<Reclamation> reclam;
+        try {
+            // Get all reclamations from the service
+            reclam = sr.getAll();
 
+            int column = 0;
+            int row = 0;
+
+            // Iterate over the list of reclamations
+            for (Reclamation reclamation : reclam) {
+                // Load the reclam card FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReclamCard.fxml"));
+                AnchorPane card = loader.load();
+
+
+                // Pass the data to the controller of the card
+                ReclamCardController controller = loader.getController();
+                controller.setData(reclamation);
+
+
+                // Add the card to the GridPane container
+                reclamationsContainer.add(card, column, row);
+
+                // Add mouse event handler to the card
+                card.setOnMouseClicked(event -> {
+                    // Set the color of all cards to white
+                    for (Node node : reclamationsContainer.getChildren()) {
+                        node.setStyle("-fx-background-color: white;");
+                    }
+
+                    // Highlight the selected card
+                    card.setStyle("-fx-background-color: lightblue;");
+
+                    // Retrieve the corresponding reclamation object
+                    Reclamation selectedReclamation = (Reclamation) card.getUserData();
+
+                    // Perform action based on the selected card
+                    // For example:
+                    // If event.getClickCount() == 2, it's a double click
+                    // You can perform an action here, like opening a new window
+                    // Or you can check the button pressed if it's a single click
+                    // (event.isPrimaryButtonDown() for left click, event.isSecondaryButtonDown() for right click)
+                });
+
+                // Set the reclamation object as user data for the card
+                card.setUserData(reclamation);
+
+                // Increment row and reset column if needed
+                column++;
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
     }
+
+
     private void afficherReclam() throws SQLException {
       /* ServiceReclamation sr = new ServiceReclamation();
         ObservableList<Reclamation> o = FXCollections.observableArrayList(sr.afficherReclamation());*/

@@ -183,12 +183,12 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Label fx:id="reponse" text="Label" translateX="340.0" translateY="100.0">
+            <Label fx:id="reponse" text="Label" translateX="250.0" translateY="100.0">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="date_rep" text="Label" translateX="340.0" translateY="130.0">
+            <Label fx:id="date_rep" text="Label" translateX="310.0" translateY="130.0">
                <font>
                   <Font size="18.0" />
                </font>
