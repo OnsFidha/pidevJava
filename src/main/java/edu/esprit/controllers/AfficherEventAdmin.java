@@ -1,7 +1,4 @@
 package edu.esprit.controllers;
 
-
-
-public class AjouterEvent  {
-
+public class AfficherEventAdmin {
 }

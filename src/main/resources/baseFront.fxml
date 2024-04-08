@@ -3,23 +3,21 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1000.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEvent">
+<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterEvent">
     <children>
         <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
             <effect>
@@ -47,6 +45,14 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
+                        <Label text="Home">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
                     </children>
                     <VBox.margin>
                         <Insets left="30.0" right="40.0" top="40.0" />
@@ -111,7 +117,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Evenement" textFill="#f9a936">
+                        <Label text="Evenement"  textFill="#f9a936">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -167,83 +173,6 @@
 
             </children>
         </HBox>
-      <VBox layoutX="217.0" layoutY="101.0" prefHeight="670.0" prefWidth="996.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css">
-         <children>
-            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
-               <children>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="45.0" prefWidth="217.0" spacing="10.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/addicon.png" />
-                           </image>
-                        </ImageView>
-                        <Label text="Ajouter évènement">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Label>
-                     </children>
-                     <styleClass>
-                        <String fx:value="shadow" />
-                        <String fx:value="rect-round" />
-                     </styleClass>
-                  </HBox>
-                  <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                  <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="45.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: #fff;">
-                     <children>
-                        <TextField prefHeight="25.0" prefWidth="264.0" promptText="Rechercher" styleClass="transparent" stylesheets="@css/styles.css" />
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@icons/LoopIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                     <styleClass>
-                        <String fx:value="shadow" />
-                        <String fx:value="rect-round" />
-                     </styleClass>
-                  </HBox>
-               </children>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </VBox.margin>
-            </HBox>
-                  <Label text="Évenements">
-                      <font>
-                          <Font name="System Bold" size="24.0" />
-                      </font>
-               <VBox.margin>
-                  <Insets left="20.0" />
-               </VBox.margin>
-                  </Label>
-            <ScrollPane prefHeight="200.0" prefWidth="850.0" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="564.0" prefWidth="957.0">
-                     <children>
-                        <GridPane fx:id="eventgrid" layoutX="-5.0" layoutY="-2.0" prefHeight="500.0" prefWidth="963.0">
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-              </content>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </VBox.margin>
-               <styleClass>
-                  <String fx:value="transparent" />
-                  <String fx:value="primary-color" />
-               </styleClass>
-            </ScrollPane>
-         </children>
-         <styleClass>
-            <String fx:value="primary-color" />
-            <String fx:value="rect-round" />
-            <String fx:value="shadow" />
-         </styleClass>
-      </VBox>
 
     </children>
 
