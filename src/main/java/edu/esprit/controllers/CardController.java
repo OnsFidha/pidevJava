@@ -1,17 +1,15 @@
 package edu.esprit.controllers;
+
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import edu.esprit.entities.Publication;
+import edu.esprit.entities.Reclamation;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 
 public class CardController {
-
-
 
         @FXML
         private ResourceBundle resources;
@@ -20,23 +18,29 @@ public class CardController {
         private URL location;
 
         @FXML
-        private Label descPub;
+        private Label DateCreation;
 
         @FXML
-        private ImageView imgPub;
-        private String [] colors={"B9E5FF"};
+        private Label DescPub;
+
+
+
+        @FXML
+        private Label TypePub;
 
         @FXML
         void initialize() {
 
-        }
-        void setData(Publication pub){
-               Image img = new Image(getClass().getResourceAsStream(pub.getPhoto()));
-                imgPub.setImage(img);
-                descPub.setText(pub.getText());
 
         }
 
-    }
+        public void setData(Publication pub){
+                DescPub.setText(pub.getText());
+                TypePub.setText(pub.getType());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+                String formattedDate = dateFormat.format(pub.getDateCreation());
+                DateCreation.setText(formattedDate);
 
+        }
 
+}

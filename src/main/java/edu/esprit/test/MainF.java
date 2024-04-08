@@ -16,11 +16,12 @@ public class MainF extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+      //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
-
         try {
-            Parent root=loader.load();
-            Scene scene=new Scene(root);
+            Parent root = loader.load();
+            Scene scene =new Scene(root);
+            primaryStage.setTitle("Artistool - reclamation");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
