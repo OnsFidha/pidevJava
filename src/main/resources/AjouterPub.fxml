@@ -1,23 +1,295 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Accordion?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterPub">
+
    <children>
-      <Label layoutX="118.0" layoutY="54.0" text="Type" />
-      <Label layoutX="119.0" layoutY="104.0" text="Text" />
-      <Label layoutX="115.0" layoutY="200.0" text="Photo" />
-      <Label layoutX="119.0" layoutY="153.0" text="Lieu" />
-      <TextArea fx:id="textPub" layoutX="200.0" layoutY="87.0" prefHeight="51.0" prefWidth="200.0" />
-      <Accordion layoutX="130.0" layoutY="235.0" />
-      <TextField fx:id="lieuPub" layoutX="200.0" layoutY="149.0" prefHeight="26.0" prefWidth="200.0" />
-      <TextField fx:id="photoPub" layoutX="200.0" layoutY="195.0" prefHeight="26.0" prefWidth="200.0" />
-      <Button layoutX="274.0" layoutY="296.0" mnemonicParsing="false" onAction="#addPub" text="Ajouter" />
-      <TextField fx:id="typePub" layoutX="200.0" layoutY="41.0" prefHeight="26.0" prefWidth="200.0" />
+      <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+         <effect>
+            <DropShadow />
+         </effect>
+         <children>
+            <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
+               </image>
+               <VBox.margin>
+                  <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+               </VBox.margin>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+            </ImageView>
+            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/homeIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Home">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets left="30.0" right="40.0" top="40.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/ProductIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Produit">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/postIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="35.0" prefWidth="134.0" text="Publication" textFill="#f9a936">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/EventIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Evenement">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/EventIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Reclamation">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="991.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5263158082962036" green="0.516569197177887" blue="0.516569197177887" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Label>
+            <Circle fx:id="circle" fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" translateX="780.0" translateY="5.0" />
+
+         </children>
+      </HBox>
+      <VBox layoutX="221.0" layoutY="115.0" prefHeight="440.0" prefWidth="967.0">
+         <children>
+            <VBox alignment="CENTER" prefHeight="58.0" prefWidth="967.0">
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Ajouter une publication" />
+               </children>
+            </VBox>
+            <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="967.0">
+               <opaqueInsets>
+                  <Insets left="20.0" right="20.0" />
+               </opaqueInsets>
+               <children>
+                  <HBox alignment="CENTER" prefHeight="84.0" prefWidth="971.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                           <children>
+                              <Label text="Type:" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="84.0" prefWidth="255.0">
+                           <children>
+                              <TextField fx:id="typePub" alignment="TOP_CENTER">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="971.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                           <children>
+                              <Label text="Lieu:" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="84.0" prefWidth="255.0">
+                           <children>
+                              <TextField fx:id="lieuPub" alignment="TOP_CENTER">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="971.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                           <children>
+                              <Label text="Description:" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="84.0" prefWidth="255.0">
+                           <children>
+                              <TextField fx:id="TextPub" alignment="TOP_CENTER">
+                                 <VBox.margin>
+                                    <Insets top="15.0" />
+                                 </VBox.margin>
+                              </TextField>
+                           </children>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="CENTER" layoutX="10.0" layoutY="178.0" prefHeight="84.0" prefWidth="971.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="84.0" prefWidth="971.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                 <children>
+                                    <Label text="Photo:" />
+                                 </children>
+                              </VBox>
+                              <VBox prefHeight="84.0" prefWidth="255.0">
+                                 <children>
+                                    <TextField fx:id="photoPub" alignment="TOP_CENTER">
+                                       <VBox.margin>
+                                          <Insets top="12.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Button onAction="#choose_file" text="Sélectionner une photo">
+                                 <HBox.margin>
+                                    <Insets top="15.0" />
+                                 </HBox.margin></Button>
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+
+
+               </children>
+            </VBox>
+            <Button fx:id="" alignment="CENTER"  onAction="#addPub" contentDisplay="CENTER" mnemonicParsing="false" text="Button" textAlignment="CENTER" />
+         </children>
+      </VBox>
+
    </children>
 </AnchorPane>

@@ -1,7 +1,11 @@
 package edu.esprit.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -16,14 +20,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 
 public class AjouterPub {
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
     private URL location;
+
+    @FXML
+    private TextField TextPub;
+
+    @FXML
+    private Circle circle;
 
     @FXML
     private TextField lieuPub;
@@ -32,14 +39,12 @@ public class AjouterPub {
     private TextField photoPub;
 
     @FXML
-    private TextArea textPub;
-
-    @FXML
     private TextField typePub;
+
 
     @FXML
     void addPub(ActionEvent event) {
-        Publication p=new Publication(typePub.getText(),textPub.getText(),lieuPub.getText(),2,photoPub.getText());
+        Publication p=new Publication(typePub.getText(),TextPub.getText(),lieuPub.getText(),2,photoPub.getText());
         PublicationService ps=new PublicationService();
         try {
             ps.ajouter(p);
@@ -51,7 +56,7 @@ public class AjouterPub {
                 Parent root=loader.load();
                 AfficherPub pub= loader.getController();
                 pub.setTypePub(typePub.getText());
-                pub.setTextPub(textPub.getText());
+                pub.setTextPub(TextPub.getText());
                 pub.setLieuPub(lieuPub.getText());
                 pub.setDateCreationPub(new Date());
                 pub.setDateModificationPub(new Date());
@@ -66,7 +71,39 @@ public class AjouterPub {
         }
 
     }
+    public void choose_file(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+        File selectedFile = fileChooser.showOpenDialog(null);
 
+        if (selectedFile != null) {
+            String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/pub/";
+
+            // Générer un nom de fichier unique
+            String fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
+
+            try {
+                // Copier le fichier sélectionné dans le répertoire de destination
+                Path destinationPath = new File(destinationDirectory + fileName).toPath();
+                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
+                // Mettre à jour le chemin de la photo dans votre modèle
+                String photoPath = destinationPath.toUri().toString();
+                photoPub.setText(fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("Aucun fichier sélectionné.");
+        }
+    }
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf('.');
+        return (dotIndex == -1) ? "" : fileName.substring(dotIndex);
+    }
     @FXML
     void initialize() {
 
