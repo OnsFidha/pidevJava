@@ -1,7 +1,13 @@
 package edu.esprit.entities;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Reclamation {
     private int id;
@@ -57,7 +63,15 @@ public class Reclamation {
     }
 
     public void setDescription(String description) {
-        this.description = description;
+
+        //this.description = description;
+        // Vérifier si la description contient des mots interdits
+        String descriptionCleaned = filterBadWords(description);
+
+        // Affecter la description nettoyée
+        this.description = descriptionCleaned;
+
+        //return this;
     }
 
     public void setEtat(boolean etat) {
@@ -90,5 +104,34 @@ public class Reclamation {
                 ", etat=" + etat +
                 ", date_creation=" + date_creation +
                 '}';
+    }
+
+    private String filterBadWords(String description) {
+        // Chemin vers le fichier contenant la liste des mots interdits
+        String filePath = "C:\\Users\\21624\\Desktop\\pidevJava\\full-list-of-bad-words_text-file_2022_05_05.txt";
+
+        // Lire la liste des mots interdits à partir du fichier
+        List<String> badWords = new ArrayList<>();
+        try (var br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                badWords.add(line.trim().toLowerCase());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Gérer l'erreur d'accès au fichier ou de lecture
+            // Ici, je print l'erreur, mais vous pouvez gérer différemment selon vos besoins.
+        }
+
+        // Convertir la description en minuscules pour éviter les correspondances de casse
+        String descriptionLowercase = description.toLowerCase();
+
+        // Remplacer les mots interdits par des astérisques
+        for (String badWord : badWords) {
+            descriptionLowercase = descriptionLowercase.replaceAll("(?i)" + Pattern.quote(badWord), "*".repeat(badWord.length()));
+        }
+
+        // Retourner la description nettoyée
+        return descriptionLowercase;
     }
 }
