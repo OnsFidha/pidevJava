@@ -204,7 +204,7 @@
                     </font>
                 </TextField>
 
-                <Button fx:id="BtnRecherche" mnemonicParsing="false" prefHeight="37.0" prefWidth="59.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 0;" textFill="WHITE" translateX="70.0" translateY="20.0">
+                <Button fx:id="BtnRecherche" mnemonicParsing="false" onAction="#chercherReponse" prefHeight="37.0" prefWidth="59.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 0;" textFill="WHITE" translateX="70.0" translateY="20.0">
                     <font>
                         <Font size="14.0" />
                     </font>

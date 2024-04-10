@@ -4,6 +4,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -63,6 +64,14 @@ public class AfficherReclamationAdmin {
 
     @FXML
     void chercherReclam(ActionEvent event) {
+        String recherche = rechercheText.getText();
+        ReclamationService sr = new ReclamationService();
+        // Efface les éléments précédents de la TableView
+        tableauReclam.getItems().clear();
+        // Effectue la recherche et récupère les réclamations trouvées
+        List<Reclamation> reclamations = sr.RechrecheRec(recherche);
+        // Ajoute les réclamations trouvées à la TableView
+        tableauReclam.getItems().addAll(reclamations);
 
     }
 
@@ -115,24 +124,35 @@ public class AfficherReclamationAdmin {
     @FXML
     void repondreReclamation(ActionEvent event) {
 
-        selected=tableauReclam.getSelectionModel().getSelectedItem();
+        // Récupérer la réclamation sélectionnée
+        selected = tableauReclam.getSelectionModel().getSelectedItem();
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReponse.fxml"));
-            Parent root = loader.load();
+        // Vérifier si une réclamation est sélectionnée
+        if (selected != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReponse.fxml"));
+                Parent root = loader.load();
 
-            //AjouterReponseController mr = loader.getController();
-            //mr.setData(selected.getId(), selected.getDescription(), selected.getType(),selected.isEtat());
+                //AjouterReponseController mr = loader.getController();
+                //mr.setData(selected.getId(), selected.getDescription(), selected.getType(),selected.isEtat());
 
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Répondre a une  Réclamation");
-            stage.show();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("Répondre à une Réclamation");
+                stage.show();
 
-            // Hide the current window
-            ((Node) event.getSource()).getScene().getWindow().hide();
-        } catch(IOException ex) {
-            ex.printStackTrace();
+                // Cacher la fenêtre actuelle
+                ((Node) event.getSource()).getScene().getWindow().hide();
+            } catch(IOException ex) {
+                ex.printStackTrace();
+            }
+        } else {
+            // Afficher un message si aucune réclamation n'est sélectionnée
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aucune Réclamation Sélectionnée");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez sélectionner une réclamation pour répondre.");
+            alert.showAndWait();
         }
     }
 
@@ -151,6 +171,29 @@ public class AfficherReclamationAdmin {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    void TrierParType(ActionEvent event) {
+        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
+        reclamations.sort(Comparator.comparing(Reclamation::getType));
+
+    }
+
+
+    @FXML
+    void trierParDate(ActionEvent event) {
+
+        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
+        reclamations.sort(Comparator.comparing(Reclamation::getDate_creation));
+    }
+
+    @FXML
+    void trierParEtat(ActionEvent event) {
+        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
+        reclamations.sort((rec1, rec2) -> Boolean.compare(rec1.isEtat(), rec2.isEtat()));
+    }
+
 
 }
 

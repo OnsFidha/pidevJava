@@ -159,4 +159,22 @@ public class ReponseService implements IService <Reponse> {
     }
 
 
+    public List<Reponse> RechrecheReponse(String recherche) {
+        List<Reponse> reps = new ArrayList<>();
+        String sql = "SELECT * FROM `reponse` WHERE `reponse` LIKE '%" + recherche + "%' OR `date_reponse` LIKE '%" + recherche + "%' ";
+        try {
+            Statement ste = conn.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Reponse rep = new Reponse();
+                rep.setId(rs.getInt("id"));
+                rep.setReponse(rs.getString("reponse"));
+                rep.setDate_reponse(rs.getDate("date_reponse"));
+                reps.add(rep);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return reps;
+    }
 }

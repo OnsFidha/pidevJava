@@ -64,14 +64,13 @@ public class Reclamation {
 
     public void setDescription(String description) {
 
-        //this.description = description;
         // Vérifier si la description contient des mots interdits
         String descriptionCleaned = filterBadWords(description);
 
         // Affecter la description nettoyée
         this.description = descriptionCleaned;
 
-        //return this;
+
     }
 
     public void setEtat(boolean etat) {

@@ -31,6 +31,12 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import com.twilio.Twilio;
+import com.twilio.converter.Promoter;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
+import java.net.URI;
+import java.math.BigDecimal;
 
 public class AjoutReclamationController implements Initializable {
 
@@ -53,6 +59,9 @@ public class AjoutReclamationController implements Initializable {
 
     @FXML
     private ComboBox<String> comb;
+
+    public static final String ACCOUNT_SID = "AC0caafa1f675f3f429a7df499c1e754b7";
+    public static final String AUTH_TOKEN = "***********************************";
 
     @FXML
     void Selecttype(ActionEvent event) {
@@ -109,6 +118,16 @@ public class AjoutReclamationController implements Initializable {
 
             ReclamationService pst = new ReclamationService();
             pst.ajouter(r);
+
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                            new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
+                            new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
+                            "Sana khiari a envoyee une Reclamation , vous pouvez le contacter sur : 24171676")
+                    .create();
+
+            System.out.println("msg whatsapp envoyee");
+
 
 
 

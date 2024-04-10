@@ -67,6 +67,21 @@ public class AfficherReponseAdminController {
     @FXML
     private TableView<Reponse> tableauRep;
 
+
+    @FXML
+    void chercherReponse(ActionEvent event) {
+        String recherche = rechercheText.getText();
+        ReponseService sr = new ReponseService();
+        // Efface les éléments précédents de la TableView
+        tableauRep.getItems().clear();
+        // Effectue la recherche et récupère les réponses trouvées
+        List<Reponse> reponses = sr.RechrecheReponse(recherche);
+        // Ajoute les réponses trouvées à la TableView
+        tableauRep.getItems().addAll(reponses);
+
+    }
+
+
     @FXML
     void reclamationSideBar(MouseEvent event) {
         try {
@@ -86,34 +101,48 @@ public class AfficherReponseAdminController {
 
     @FXML
     void deleteReponse(ActionEvent event) throws SQLException {
+
         ReponseService sr = new ReponseService();
         Reponse r = (Reponse) tableauRep.getSelectionModel().getSelectedItem();
+        if(r == null) {
+            System.out.println("Aucune réponse est sélectionnée");
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Aucune réponse est  sélectionnée");
+            alert.showAndWait();
+        } else {
 
-        // Obtenez la réclamation associée à la réponse
-        ReclamationService reclamationService = new ReclamationService();
-        Reclamation rec = reclamationService.getOneById(r.getRelation_id());
+            // Obtenez la réclamation associée à la réponse
+            ReclamationService reclamationService = new ReclamationService();
+            Reclamation rec = reclamationService.getOneById(r.getRelation_id());
 
 
-        // Mettez l'état de la réclamation à "non traité" (false)
-        rec.setEtat(false);
-        // Mettez à jour l'état de la réclamation en base de données
-        reclamationService.modifier(rec);
-        System.out.println(rec);
-        sr.supprimer(r.getId());
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        try {
-            if(JOptionPane.showConfirmDialog(null,"attention vous allez supprimer votre reponse,est ce que tu et sure?"
-                    ,"supprimer reponse",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+            // Mettez l'état de la réclamation à "non traité" (false)
+            rec.setEtat(false);
+            // Mettez à jour l'état de la réclamation en base de données
+            reclamationService.modifier(rec);
+            System.out.println(rec);
+            sr.supprimer(r.getId());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            try {
+                if (JOptionPane.showConfirmDialog(null, "attention vous allez supprimer votre reponse,est ce que tu et sure?"
+                        , "supprimer reponse", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 
-                if(!r.getReponse().isEmpty()){
+                    if (!r.getReponse().isEmpty()) {
 
-                    alert.setContentText("Votre reponse a ete bien supprime");
-                    JOptionPane.showMessageDialog(null,"reponse supprime");
-                }//ca est pour recharger la list des stagiaire
-                else { JOptionPane.showMessageDialog(null,"veuillez remplire le champ id !");}
+                        alert.setContentText("Votre reponse a ete bien supprime");
+                        JOptionPane.showMessageDialog(null, "reponse supprime");
+                    }//ca est pour recharger la list des stagiaire
+                    else {
+                        JOptionPane.showMessageDialog(null, "veuillez remplire le champ id !");
+                    }
 
-        }catch (Exception e){JOptionPane.showMessageDialog(null,"erreur de supprimer \n"+e.getMessage());}
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "erreur de supprimer \n" + e.getMessage());
+            }
 
+        }
 
     }
 
