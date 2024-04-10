@@ -1,7 +1,7 @@
 package edu.esprit.controllers;
 
 import edu.esprit.entities.Evenement;
-import edu.esprit.model.Event;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -31,12 +31,20 @@ public class EventController {
         private Label username;
 
         public void setData(Evenement event){
-            Image image = new Image(getClass().getResourceAsStream(event.getImage()));
-//            Image image = new Image("/img/Event5.png");
-            EventImage.setImage(image);
+//            Image image = new Image(getClass().getResourceAsStream(event.getImage()));
+////            Image image = new Image("/img/Event5.png");
+//            EventImage.setImage(image);
+            if (event.getImage() != null) {
+                Image image = new Image(event.getImage());
+                EventImage.setImage(image);
+            } else {
+                // Handle the case where image path is null
+                // For example, set a default image or display an error message
+                System.err.println("Image path is null for the event: " + event.getNom());
+            }
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-            image = new Image("/img/user2.png");
+            Image image = new Image("/img/user2.png");
             ProfileImage.setImage(image);
 
 //            username.setText(event.getUsername());
