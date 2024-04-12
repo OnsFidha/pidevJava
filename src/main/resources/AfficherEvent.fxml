@@ -11,17 +11,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" prefHeight="597.0" prefWidth="535.0" spacing="10.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEventController">
    <children>
       <HBox alignment="CENTER_LEFT" prefHeight="60.0" style="-fx-background-color: white;">
          <children>
-            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="10.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/previous.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="userimg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="userimg" fitHeight="50.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>
@@ -40,12 +39,12 @@
             <Pane prefHeight="50.0" prefWidth="222.0" HBox.hgrow="ALWAYS" />
             <HBox alignment="CENTER" prefHeight="50.0" prefWidth="129.0" spacing="10.0">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="30.0" onMouseClicked="#handleEditClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/edit.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="30.0" fitWidth="50.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/delete.png" />
                      </image>

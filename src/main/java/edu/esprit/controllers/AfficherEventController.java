@@ -1,11 +1,21 @@
 package edu.esprit.controllers;
 
 import edu.esprit.entities.Evenement;
+import edu.esprit.service.EvenementService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -36,6 +46,7 @@ public class AfficherEventController {
 
     @FXML
     private Label username;
+    private Evenement event;
     @FXML
     void initialize() {
 
@@ -67,35 +78,123 @@ public class AfficherEventController {
         dateF.setText(event.getDateFin().toString());
 
         nbrmax.setText(Integer.toString(event.getNbreMax()));
+        this.event = event;
 
 
     }
-    public void setDateD(Date DateD) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = dateFormat.format(DateD);
-        this.DateD.setText(formattedDate);
+    @FXML
+    private void handleEditClicked(MouseEvent Mouseevent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modifierEvent.fxml"));
+            Parent root = loader.load();
+
+            // Pass the selected event to the edit controller
+            modifierEvent editController = loader.getController();
+            editController.initData(this.event);
+
+            // Show the edit page in a new window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception gracefully
+        }
+    }
+    @FXML
+    void goBack(MouseEvent event) {
+        try {
+            // Load the previous FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the previous page. Please try again.");
+            alert.showAndWait();
+        }
+    }
+    @FXML
+    void onDeleteClicked(MouseEvent Mevent) {
+        // Retrieve the id of the event to be deleted
+        int eventId = event.getId(); // Replace this with how you retrieve the event id
+
+        // Call the supprimer function in EvenementService
+        EvenementService es = new EvenementService();
+        try {
+            es.supprimer(eventId);
+
+            // Show an alert message indicating successful deletion
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("L'événement a été supprimé avec succès.");
+
+            // Show the alert and wait for the user's response
+            alert.showAndWait();
+
+            // After successful deletion, navigate back to the events page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            try {
+                Parent root = loader.load();
+
+                // Get the current stage
+                Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
+
+                // Set the new scene
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle the IOException
+            }
+        } catch (SQLException e) {
+            // Exception handling
+        }
     }
 
-    public void setDateF(Date dateF) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = dateFormat.format(dateF);
-        this.dateF.setText(formattedDate);
-    }
 
-    public void setLieu(String lieu) {
-        this.lieu.setText(lieu);
-    }
-    public void setNom(String eventname) {
-        this.eventname.setText(eventname);
-    }
-    public void setDescription(String eventdesc) {
-        this.eventdesc.setText(eventdesc);
-    }
-    public void setNbr(String nbrmax) {
-        this.nbrmax.setText(nbrmax);
-    }
-    public void setUsername(String username) {
-        this.username.setText(username);
-    }
+
+
+//    public void setDateD(Date DateD) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        String formattedDate = dateFormat.format(DateD);
+//        this.DateD.setText(formattedDate);
+//    }
+//
+//    public void setDateF(Date dateF) {
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+//        String formattedDate = dateFormat.format(dateF);
+//        this.dateF.setText(formattedDate);
+//    }
+//
+//    public void setLieu(String lieu) {
+//        this.lieu.setText(lieu);
+//    }
+//    public void setNom(String eventname) {
+//        this.eventname.setText(eventname);
+//    }
+//    public void setDescription(String eventdesc) {
+//        this.eventdesc.setText(eventdesc);
+//    }
+//    public void setNbr(String nbrmax) {
+//        this.nbrmax.setText(nbrmax);
+//    }
+//    public void setUsername(String username) {
+//        this.username.setText(username);
+//    }
+
 
 }
