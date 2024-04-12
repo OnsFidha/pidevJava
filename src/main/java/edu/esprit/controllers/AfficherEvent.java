@@ -48,6 +48,12 @@ public class AfficherEvent implements Initializable {
 
                 EventController eventController = fxmlLoader.getController();
                 eventController.setData(event);
+                // Add event handling logic
+                eventbox.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) { // Double click
+                        redirectToEventPage(event);
+                    }
+                });
 
                 if (columns == 3) {
                     columns = 0;
@@ -61,6 +67,7 @@ public class AfficherEvent implements Initializable {
             e.printStackTrace();
             // Handle any potential errors here
         }
+
     }
     @FXML
     void MoveToAdd(MouseEvent event) {
@@ -85,6 +92,28 @@ public class AfficherEvent implements Initializable {
             alert.showAndWait();
         }
     }
+
+
+    private void redirectToEventPage(Evenement selectedEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
+            Parent root = loader.load();
+
+            // Pass event data to the event page controller
+            AfficherEventController eventController = loader.getController();
+            eventController.setData(selectedEvent);
+
+
+            // Display the event page in a new window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle error loading the event page
+        }
+    }
+
 
 //    public void initialize(URL url, ResourceBundle resourceBundle) {
 //        events= new ArrayList<>(data());

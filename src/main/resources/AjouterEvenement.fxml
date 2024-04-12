@@ -50,8 +50,8 @@
             </HBox>
             <HBox spacing="80.0">
                <children>
-                  <DatePicker fx:id="DFEvent" prefHeight="25.0" prefWidth="141.0" promptText="Date de fin" />
                   <DatePicker fx:id="DDEvent" prefHeight="25.0" prefWidth="141.0" promptText="Date de début" />
+                  <DatePicker fx:id="DFEvent" prefHeight="25.0" prefWidth="141.0" promptText="Date de fin" />
                </children>
                <padding>
                   <Insets left="20.0" />

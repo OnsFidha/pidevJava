@@ -49,6 +49,29 @@ public class AjouterEvent {
 
     @FXML
     void Add(ActionEvent event) {
+        // Vérifiez que tous les champs sont remplis
+        if (NomEvent.getText().isEmpty() || DescEvent.getText().isEmpty() || LieuEvent.getText().isEmpty() ||
+                DDEvent.getValue() == null || DFEvent.getValue() == null || NbrparticipantsEvent.getText().isEmpty()) {
+            showAlert("Veuillez remplir tous les champs.");
+            return;
+        }
+        // Vérifiez que la longueur de la description ne dépasse pas 255 caractères
+        if (DescEvent.getText().length() > 255) {
+            showAlert("La description ne peut pas dépasser 255 caractères.");
+            return;
+        }
+
+        // Vérifiez que NbrparticipantsEvent contient uniquement des chiffres
+        if (!isNumeric(NbrparticipantsEvent.getText())) {
+            showAlert("Le champ Nombre de participants ne peut contenir que des chiffres.");
+            return;
+        }
+
+        // Vérifiez que la date de début est avant la date de fin
+        if (DDEvent.getValue().isAfter(DFEvent.getValue())) {
+            showAlert("La date de début doit être avant la date de fin.");
+            return;
+        }
 
         Evenement ev=new Evenement(NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),eventimg.getText());
         EvenementService es=new EvenementService();
@@ -57,8 +80,18 @@ public class AjouterEvent {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("L'évenement a été ajouté avec succée");
             alert.show();
-           FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
-//            try {
+           FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            try {
+                Parent root = loader.load();
+
+                // Get the current stage
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                // Set the new scene
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
 //                Parent root=loader.load();
 //                AfficherEventController event= loader.getController();
 //                event.s(typePub.getText());
@@ -67,9 +100,9 @@ public class AjouterEvent {
 //                pub.setDateCreationPub(new Date());
 //                pub.setDateModificationPub(new Date());
 //                lieuPub.getScene().setRoot(root);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         } catch (SQLException e) {
             Alert alert1=new Alert(Alert.AlertType.ERROR);
             alert1.setContentText(e.getMessage());
@@ -77,6 +110,18 @@ public class AjouterEvent {
         }
 
 
+    }
+    // Utility method to show an alert
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    // Utility method to check if a string contains only numeric characters
+    private boolean isNumeric(String str) {
+        return str.matches("\\d+");
     }
 
     @FXML
