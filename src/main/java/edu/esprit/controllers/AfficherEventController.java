@@ -132,10 +132,18 @@ public class AfficherEventController {
             modifierEvent editController = loader.getController();
             editController.initData(this.event);
 
-            // Show the edit page in a new window
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
+            // Get the current stage
+            Stage stage = (Stage) ((Node) Mouseevent.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
             stage.show();
+
+//            // Show the edit page in a new window
+//            Stage stage = new Stage();
+//            stage.setScene(new Scene(root));
+//            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
             // Handle the exception gracefully

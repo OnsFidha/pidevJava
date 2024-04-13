@@ -22,8 +22,8 @@ public class EvenementService implements IService <Evenement>{
                 statement.setString(3, event.getLieu());
                 statement.setInt(4, event.getNbreParticipants());
                 statement.setInt(5, event.getNbreMax());
-                statement.setDate(6, new Date(event.getDateFin().getTime()));
-                statement.setDate(7, new Date(event.getDateDebut().getTime()));
+                statement.setDate(7, new Date(event.getDateFin().getTime()));
+                statement.setDate(6, new Date(event.getDateDebut().getTime()));
 
                 statement.setString(8, event.getImage());
                 statement.executeUpdate();
@@ -44,8 +44,8 @@ public class EvenementService implements IService <Evenement>{
                 statement.setString(3, event.getLieu());
                 statement.setInt(4, event.getNbreParticipants());
                 statement.setInt(5, event.getNbreMax());
-                statement.setDate(6, new java.sql.Date(event.getDateFin().getTime()));
-                statement.setDate(7, new java.sql.Date(event.getDateDebut().getTime()));
+                statement.setDate(7, new java.sql.Date(event.getDateFin().getTime()));
+                statement.setDate(6, new java.sql.Date(event.getDateDebut().getTime()));
                 statement.setString(8, event.getImage());
                 statement.setInt(9, event.getId());
                 statement.executeUpdate();

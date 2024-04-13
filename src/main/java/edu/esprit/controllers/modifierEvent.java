@@ -100,6 +100,29 @@ public class modifierEvent {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("L'évenement a été modifié avec succée");
             alert.show();
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            try {
+                Parent root = loader.load();
+
+                // Get the current stage
+                Stage stage = (Stage) ((Node) Aevent.getSource()).getScene().getWindow();
+
+                // Set the new scene
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            }
+//                Parent root=loader.load();
+//                AfficherEventController event= loader.getController();
+//                event.s(typePub.getText());
+//                pub.setTextPub(TextPub.getText());
+//                pub.setLieuPub(lieuPub.getText());
+//                pub.setDateCreationPub(new Date());
+//                pub.setDateModificationPub(new Date());
+//                lieuPub.getScene().setRoot(root);
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
             //FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
 //            try {
 //                Parent root = loader.load();

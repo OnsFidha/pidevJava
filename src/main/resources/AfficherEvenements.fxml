@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -19,9 +20,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="808.0" prefWidth="1301.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEvent">
+<AnchorPane prefHeight="619.0" prefWidth="1238.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEvent">
     <children>
-        <VBox prefHeight="808.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+        <VBox prefHeight="616.0" prefWidth="203.0" style="-fx-background-color: #FEFCF3;">
             <effect>
                 <DropShadow />
             </effect>
@@ -154,7 +155,7 @@
                 </HBox>
             </children>
         </VBox>
-        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="1061.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="997.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
             <effect>
                 <DropShadow>
                     <color>
@@ -172,7 +173,7 @@
 
             </children>
         </HBox>
-      <VBox layoutX="217.0" layoutY="101.0" prefHeight="698.0" prefWidth="1064.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css">
+      <VBox layoutX="217.0" layoutY="101.0" prefHeight="510.0" prefWidth="1000.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css">
          <children>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
                <children>
@@ -193,6 +194,9 @@
                         <String fx:value="shadow" />
                         <String fx:value="rect-round" />
                      </styleClass>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </HBox>
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="45.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: #fff;">
@@ -222,9 +226,9 @@
                   <Insets left="20.0" />
                </VBox.margin>
                   </Label>
-            <ScrollPane prefHeight="578.0" prefWidth="1040.0" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
+            <ScrollPane prefHeight="400.0" prefWidth="1040.0" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="876.0" prefWidth="1293.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1293.0">
                      <children>
                         <GridPane fx:id="eventgrid" layoutX="-5.0" layoutY="-2.0" prefHeight="600.0" prefWidth="1023.0">
                           <rowConstraints>

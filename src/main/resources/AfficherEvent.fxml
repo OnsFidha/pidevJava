@@ -20,6 +20,9 @@
                <image>
                   <Image url="@icons/previous.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="userimg" fitHeight="50.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
@@ -44,11 +47,17 @@
                      <image>
                         <Image url="@icons/edit.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                   <ImageView fitHeight="30.0" fitWidth="50.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@icons/delete.png" />
                      </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </ImageView>
                </children>
                <HBox.margin>
