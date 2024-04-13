@@ -61,7 +61,7 @@ public class Main {
 //        }
 
 //        try {
-//            fs.modifier(new Feedback( 2,2,"Modification"));
+//            fs.modifier(new Feedback( 3,6,"Modification"));
 //        } catch (SQLException e) {
 //            System.out.println(e.getMessage());
 //        }

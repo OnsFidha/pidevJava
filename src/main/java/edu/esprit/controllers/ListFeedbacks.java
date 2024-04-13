@@ -4,6 +4,7 @@ import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -90,6 +91,41 @@ public class ListFeedbacks implements Initializable {
             alert.setContentText("An error occurred while navigating to the event page. Please try again.");
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    void AddFb(ActionEvent event) {
+        try {
+            // Load the event page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddFeedback.fxml"));
+            Parent root = loader.load();
+            // Get the ListFeedbacks controller
+            AddFeedback controller = loader.getController();
+
+            // Set the event ID
+            controller.setEventId(eventId);
+
+//            // Pass any necessary data back to the event page
+//            AfficherEventController eventPageController = loader.getController();
+//            eventPageController.setEventData(eventId);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the event page. Please try again.");
+            alert.showAndWait();
+        }
+
     }
 
 
