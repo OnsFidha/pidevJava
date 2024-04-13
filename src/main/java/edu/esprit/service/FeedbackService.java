@@ -88,6 +88,33 @@ public class FeedbackService implements IService<Feedback>{
         return feedbacks;
     }
 
+    public List<Feedback> getAllById(int id) throws SQLException {
+        List<Feedback> feedbacks = new ArrayList<>();
+        String sql = "SELECT * FROM feedback WHERE id_evenement = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            // Set the value for the parameter
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Feedback feedback = new Feedback();
+                feedback.setId(resultSet.getInt("id"));
+                feedback.setId_evenment(resultSet.getInt("id_evenement"));
+                feedback.setText(resultSet.getString("text"));
+
+                // feedback.setUserId(resultSet.getInt("id_user_id"));
+
+                feedbacks.add(feedback);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return feedbacks;
+    }
+
     @Override
     public Feedback getOneById(int id) throws SQLException {
         Feedback feedback = null;

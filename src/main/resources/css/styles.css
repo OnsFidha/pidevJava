@@ -17,4 +17,20 @@
 .mouse-moved:hover{
     -fx-background-color: #EFEFEF;
 }
+.mouse-moved2:hover{
+    -fx-background-color: #fcd5bb;
+
+}
+.reactions-container{
+    -fx-background-color: #fff;
+    -fx-background-radius: 50;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0,0.0,0.0,5.0);
+    -fx-border-width: 1;
+    -fx-border-color: #B8B9BB;
+    -fx-border-radius: 50;
+}
+
+
+
+
 

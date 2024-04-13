@@ -79,6 +79,10 @@ public class Main {
 //        }catch (SQLException s){
 //            System.out.println(s.getMessage());
 //        }
+//        try {System.out.println(fs.getAllById(2));
+//        }catch (SQLException s){
+//            System.out.println(s.getMessage());
+//        }
 
     }
 }

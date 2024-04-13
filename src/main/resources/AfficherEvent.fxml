@@ -148,7 +148,7 @@
          </children>
       </HBox>
       <ImageView fx:id="eventimg" fitHeight="315.0" fitWidth="490.0" pickOnBounds="true" preserveRatio="true" />
-      <Button mnemonicParsing="false" style="-fx-background-color: #ff9f5e;" stylesheets="@css/styles.css" text="Consulter les feedbacks" textFill="WHITE">
+      <Button mnemonicParsing="false" onMouseClicked="#ConsulterFeedbacks" style="-fx-background-color: #ff9f5e;" stylesheets="@css/styles.css" text="Consulter les feedbacks" textFill="WHITE">
          <VBox.margin>
             <Insets bottom="10.0" top="5.0" />
          </VBox.margin>

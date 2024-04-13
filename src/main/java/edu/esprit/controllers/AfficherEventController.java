@@ -82,6 +82,46 @@ public class AfficherEventController {
 
 
     }
+    public void setEventData(int id) {
+        EvenementService eventService = new EvenementService();
+        try {
+        Evenement event = eventService.getOneById(id);
+//            Image image = new Image(getClass().getResourceAsStream(event.getImage()));
+////            Image image = new Image("/img/Event5.png");
+//            EventImage.setImage(image);
+        if (event.getImage() != null) {
+            Image image = new Image(event.getImage());
+            eventimg.setImage(image);
+        } else {
+            // Handle the case where image path is null
+            // For example, set a default image or display an error message
+            System.err.println("Image path is null for the event: " + event.getNom());
+        }
+
+//            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
+        Image image = new Image("/img/user2.png");
+        userimg.setImage(image);
+
+//            username.setText(event.getUsername());
+        username.setText("Syrine Zaier");
+        eventname.setText(event.getNom());
+        eventdesc.setText(event.getDescription());
+        lieu.setText(event.getLieu());
+
+        DateD.setText(event.getDateDebut().toString());
+        dateF.setText(event.getDateFin().toString());
+
+        nbrmax.setText(Integer.toString(event.getNbreMax()));
+            this.event = event;
+        }
+
+        catch (SQLException e) {
+            // Handle the SQLException here
+            e.printStackTrace(); // or any other appropriate handling
+        }
+
+
+    }
     @FXML
     private void handleEditClicked(MouseEvent Mouseevent) {
         try {
@@ -164,6 +204,38 @@ public class AfficherEventController {
             // Exception handling
         }
     }
+    @FXML
+    void ConsulterFeedbacks(MouseEvent Mevent) {
+        int eventId = event.getId();
+        try {
+            // Load the previous FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            Parent root = loader.load();
+
+            // Get the ListFeedbacks controller
+            ListFeedbacks controller = loader.getController();
+
+            // Set the event ID
+            controller.setEventId(eventId);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the previous page. Please try again.");
+            alert.showAndWait();
+        }
+    }
+
 
 
 
