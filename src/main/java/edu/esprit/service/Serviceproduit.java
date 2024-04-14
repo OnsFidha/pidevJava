@@ -12,6 +12,19 @@ import java.util.Set;
 public class Serviceproduit implements IService <Produit>{
     Connection conn= DataSource.getInstance().getConn();
     IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
+
+    static IService<Produit> serviceproduit;
+    private Serviceproduit() {
+        System.out.println("Serviceproduit crée");
+    }
+
+    public static IService<Produit> getInstance() {
+        if (serviceproduit == null)
+            serviceproduit = new Serviceproduit();
+        return serviceproduit;
+    }
+
+
     @Override
     public void ajouter(Produit produit) {
         String req= "INSERT INTO `produit`(`categorie_id`, `nom`, `prix`, `quantite`, `description`, `image`) VALUES (?,?,?,?,?,?)";

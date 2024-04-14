@@ -11,14 +11,14 @@ public class Categorie {
     }
 
     public Categorie(String nom,String description) {
-        this.nom = nom;
-        this.description=description;
+        this.setNom(nom);
+        this.setDescription(description);
     }
 
     public Categorie(int id, String nom, String description) {
         this.id = id;
-        this.nom = nom;
-        this.description = description;
+        this.setNom(nom);
+        this.setDescription(description);
     }
 
     public int getId() {
@@ -38,13 +38,18 @@ public class Categorie {
     }
 
     public void setNom(String nom) {
+        if (nom==null || nom.trim().equalsIgnoreCase("")){
+            throw new IllegalArgumentException("Le champ Nom est obligatoire");
+        }
         this.nom = nom;
     }
 
     public void setDescription(String description) {
+        if (description==null || description.trim().equalsIgnoreCase("")){
+            throw new IllegalArgumentException("Le champ Description est obligatoire");
+        }
         this.description = description;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
