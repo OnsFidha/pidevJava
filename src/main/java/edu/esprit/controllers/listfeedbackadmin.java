@@ -105,9 +105,7 @@ public class listfeedbackadmin implements Initializable {
             // Set the event ID
             controller.setEventId(eventId);
 
-//            // Pass any necessary data back to the event page
-//            AfficherEventController eventPageController = loader.getController();
-//            eventPageController.setEventData(eventId);
+
 
             // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();

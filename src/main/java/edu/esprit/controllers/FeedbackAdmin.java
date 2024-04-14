@@ -52,11 +52,11 @@ public class FeedbackAdmin {
     void GoToEdit(MouseEvent event) {
         // Ensure feedback is not null
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateFeedback.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/editfeedadmin.fxml"));
             Parent root = loader.load();
 
             // Pass the selected feedback to the edit controller
-            UpdateFeedback editController = loader.getController();
+            editFeedAdmin editController = loader.getController();
             editController.initData(this.feedback);
 
             // Show the edit page in a new window
@@ -95,11 +95,11 @@ public class FeedbackAdmin {
             alert.showAndWait();
 
             // After successful deletion, navigate back to the events page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lisfeedadmin.fxml"));
             try {
                 Parent root = loader.load();
                 // Pass any necessary data back to the event page
-                ListFeedbacks list = loader.getController();
+                listfeedbackadmin list = loader.getController();
                 list.setEventId(feedback.getId_evenment());
 
                 // Get the current stage
