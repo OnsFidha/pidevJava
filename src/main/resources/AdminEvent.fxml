@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-border-color: #c6f5c7; -fx-border-radius: 50;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AdminEventController">
+   <children>
+      <VBox prefHeight="112.0" prefWidth="712.0">
+         <children>
+            <HBox prefHeight="109.0" prefWidth="712.0">
+               <children>
+                  <VBox>
+                     <children>
+                        <HBox prefHeight="69.0" prefWidth="197.0" spacing="10.0">
+                           <children>
+                              <ImageView fx:id="userimg" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@img/user2.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets left="20.0" top="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="username" text="Syrine Zaier">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="20.0" />
+                                 </HBox.margin>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="474.0">
+                           <children>
+                              <ImageView fx:id="eventimg" fitHeight="100.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <VBox prefHeight="100.0" prefWidth="271.0">
+                                 <children>
+                                    <Label fx:id="eventname" text="Nom Event">
+                                       <font>
+                                          <Font name="Segoe UI Semibold" size="20.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                    <Label fx:id="eventdesc" prefHeight="25.0" prefWidth="199.0" text="Description">
+                                       <font>
+                                          <Font name="Segoe UI Historic" size="16.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets left="10.0" />
+                                       </padding>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="160.0" prefWidth="43.0" />
+                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="108.0" prefWidth="285.0" spacing="10.0">
+                     <children>
+                        <VBox spacing="10.0">
+                           <HBox.margin>
+                              <Insets left="10.0" top="15.0" />
+                           </HBox.margin>
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/schedule.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/schedule.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                        <VBox spacing="10.0">
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <Label fx:id="datedeb" text="Date de début">
+                                 <font>
+                                    <Font name="Segoe UI Semilight" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="datefin" layoutX="10.0" layoutY="10.0" text="Date de fin">
+                                 <font>
+                                    <Font name="Segoe UI Semilight" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <VBox layoutX="20.0" layoutY="25.0" prefHeight="80.0" prefWidth="30.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/placeholder%20(1).png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="30.0" layoutX="10.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/group.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="15.0" />
+                           </HBox.margin>
+                        </VBox>
+                        <VBox layoutX="60.0" layoutY="30.0" spacing="10.0">
+                           <children>
+                              <Label fx:id="lieu" text="Lieu">
+                                 <font>
+                                    <Font name="Segoe UI Semilight" size="15.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="nbr" layoutX="10.0" layoutY="10.0" text="Nbr">
+                                 <font>
+                                    <Font name="Segoe UI Semilight" size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="8.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                           <HBox.margin>
+                              <Insets top="20.0" />
+                           </HBox.margin>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="712.0" spacing="10.0">
+         <children>
+            <ImageView fitHeight="29.0" fitWidth="30.0" onMouseClicked="#delete" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/bin.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="692.0" layoutY="26.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/edit.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="692.0" layoutY="26.0" onMouseClicked="#goFeed" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@icons/right-arrow.png" />
+               </image>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </ImageView>
+         </children>
+      </HBox>
+   </children>
+</VBox>
