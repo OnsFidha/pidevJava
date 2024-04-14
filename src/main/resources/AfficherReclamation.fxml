@@ -172,7 +172,7 @@
 
             </children>
         </HBox>
-        <Label layoutX="495.0" layoutY="103.0" text="Liste des Reclamations">
+        <Label layoutX="495.0" layoutY="100.0" text="Liste des Reclamations">
             <font>
                 <Font name="System Bold" size="36.0" />
             </font>
@@ -237,9 +237,9 @@
             </DropShadow>
          </effect>
       </Button>
-        <ScrollPane layoutX="416.0" layoutY="167.0" prefHeight="330.0" prefWidth="479.0" style="-fx-background-color: transparent;">
+        <ScrollPane layoutX="369.0" layoutY="149.0" prefHeight="331.0" prefWidth="636.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 15;">
             <content>
-                <GridPane fx:id="reclamationsContainer" hgap="10" vgap="10" />
+                <GridPane fx:id="reclamationsContainer" hgap="10" prefHeight="299.0" prefWidth="647.0" style="-fx-background-color: #FEFCF3; -fx-border-radius: 15;" vgap="10" />
             </content>
          <padding>
             <Insets bottom="20.0" left="1.0" right="1.0" top="20.0" />

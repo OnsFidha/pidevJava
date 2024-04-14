@@ -128,7 +128,6 @@ public class AfficherReclamationController implements Initializable {
     @FXML
     void refreshReclamation(ActionEvent event) {
 
-        // Initialize ReclamationService
         ReclamationService sr = new ReclamationService();
         List<Reclamation> reclam;
         try {
@@ -153,6 +152,29 @@ public class AfficherReclamationController implements Initializable {
                 // Add the card to the GridPane container
                 reclamationsContainer.add(card, column, row);
 
+                // Add mouse event handler to the card
+                card.setOnMouseClicked(MouseEvent -> {
+                    // Set the color of all cards to white
+                    for (Node node : reclamationsContainer.getChildren()) {
+                        node.setStyle("-fx-background-color: white;");
+                    }
+
+                    // Highlight the selected card
+                    card.setStyle("-fx-background-color: lightblue;");
+
+                    // Retrieve the corresponding reclamation object
+                    Reclamation selectedReclamation = (Reclamation) card.getUserData();
+
+                    // Perform action based on the selected card
+                    // For example:
+                    // If event.getClickCount() == 2, it's a double click
+                    // You can perform an action here, like opening a new window
+                    // Or you can check the button pressed if it's a single click
+                    // (event.isPrimaryButtonDown() for left click, event.isSecondaryButtonDown() for right click)
+                });
+
+                // Set the reclamation object as user data for the card
+                card.setUserData(reclamation);
 
                 // Increment row and reset column if needed
                 column++;
@@ -164,8 +186,8 @@ public class AfficherReclamationController implements Initializable {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
-
     }
+
 
 
     @FXML
