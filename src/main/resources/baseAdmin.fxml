@@ -258,7 +258,7 @@
                         <Insets left="20.0" />
                      </HBox.margin>
                   </Pane>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #c6f5c7;" stylesheets="@css/styles.css" text="Ajouter" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#Ajouter" style="-fx-background-color: #c6f5c7;" stylesheets="@css/styles.css" text="Ajouter" textFill="WHITE">
                      <styleClass>
                         <String fx:value="mouse-moved" />
                         <String fx:value="rect-round" />
@@ -293,7 +293,7 @@
       </VBox>
       <ScrollPane layoutX="221.0" layoutY="183.0" prefHeight="403.0" prefWidth="994.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="792.0" prefWidth="1120.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1120.0">
                <children>
                   <GridPane fx:id="eventgrid" layoutX="37.0" layoutY="59.0">
                     <rowConstraints>
