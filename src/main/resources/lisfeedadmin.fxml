@@ -42,7 +42,7 @@
                         <Font name="Segoe UI Semibold" size="15.0" />
                     </font>
                     <styleClass>
-                        <String fx:value="mouse-moved2" />
+                        <String fx:value="mouse-moved3" />
                         <String fx:value="transparent" />
                     </styleClass>
                     <graphic>
@@ -60,7 +60,7 @@
         </HBox>
         <ScrollPane prefHeight="471.0" prefWidth="441.0">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="568.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="568.0">
                     <children>
                         <GridPane fx:id="feedbackgrid" prefHeight="151.0" prefWidth="447.0">
                             <rowConstraints>

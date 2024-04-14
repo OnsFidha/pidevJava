@@ -97,10 +97,10 @@ public class listfeedbackadmin implements Initializable {
     void AddFb(ActionEvent event) {
         try {
             // Load the event page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddFeedback.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddFeedAdmin.fxml"));
             Parent root = loader.load();
             // Get the ListFeedbacks controller
-            AddFeedback controller = loader.getController();
+            AddFeedAdmin controller = loader.getController();
 
             // Set the event ID
             controller.setEventId(eventId);

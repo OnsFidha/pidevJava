@@ -228,7 +228,7 @@
                   </Label>
             <ScrollPane prefHeight="400.0" prefWidth="1040.0" stylesheets="@css/styles.css" VBox.vgrow="ALWAYS">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="800.0" prefWidth="1293.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1293.0">
                      <children>
                         <GridPane fx:id="eventgrid" layoutX="-5.0" layoutY="-2.0" prefHeight="600.0" prefWidth="1023.0">
                           <rowConstraints>

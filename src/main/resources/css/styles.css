@@ -21,6 +21,10 @@
     -fx-background-color: #fcd5bb;
 
 }
+.mouse-moved3:hover{
+    -fx-background-color: #bff2c0;
+
+}
 .reactions-container{
     -fx-background-color: #fff;
     -fx-background-radius: 50;
