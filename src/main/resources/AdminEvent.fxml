@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -161,11 +162,17 @@
                <image>
                   <Image url="@icons/bin.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="692.0" layoutY="26.0" onMouseClicked="#edit" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@icons/edit.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="692.0" layoutY="26.0" onMouseClicked="#goFeed" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -174,6 +181,9 @@
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
          </children>
       </HBox>

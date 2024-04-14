@@ -68,6 +68,8 @@ public class AfficherEventAdmin implements Initializable {
 
     }
 
+
+
     @FXML
     void Ajouter(ActionEvent event) {
 
