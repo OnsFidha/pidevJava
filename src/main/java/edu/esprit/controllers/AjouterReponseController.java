@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
@@ -49,50 +50,69 @@ public class AjouterReponseController {
     @FXML
     private TextArea reponse;
 
+    public Boolean ValidateFields() {
+        if (reponse.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Validate fields");
+            alert.setHeaderText(null);
+            alert.setContentText("Please Enter Into The Fields");
+            alert.showAndWait();
+            return false;
+        }
+        return true;
+    }
     @FXML
     void ajoutReponse(ActionEvent event) {
-        try {
-            int rec_id = AfficherReclamationAdmin.selected.getId();
-            String reponseText = reponse.getText();
+        if(ValidateFields() ){
+            try {
+                int rec_id = AfficherReclamationAdmin.selected.getId();
+                String reponseText = reponse.getText();
 
-            // Check if the reponseText is empty
-            if (reponseText.isEmpty()) {
-                System.out.println("Reponse text is empty.");
-                return;
+                // Check if the reponseText is empty
+                if (reponseText.isEmpty()) {
+                    System.out.println("Reponse text is empty.");
+                    return;
+                }
+
+                // Create a new Reponse object
+                Reponse rep = new Reponse();
+                rep.setReponse(reponseText);
+                rep.setDate_reponse(new Date());
+                rep.setRelation_id(rec_id);
+
+                // Check if a Reponse with the same relation_id already exists
+                ReponseService reponseService = new ReponseService();
+
+
+                // Insert the Reponse object into the database
+                reponseService.ajouter(rep);
+
+                // Update the state of the corresponding Reclamation to true
+                ReclamationService recService = new ReclamationService();
+                Reclamation rec = recService.getOneById(rec_id);
+                if (rec != null) {
+                    rec.setEtat(true);
+                    recService.modifier(rec);
+                    System.out.println("State of the reclamation with ID " + rec_id + " has been successfully updated to true.");
+                    System.out.println(rec.isEtat());
+                    System.out.println(rec.getId());
+                    System.out.println(rec);
+                } else {
+                    System.out.println("Reclamation with ID " + rec_id + " not found.");
+                }
+
+                System.out.println("Reponse added successfully.");
+            } catch (SQLException ex) {
+                System.out.println("An error occurred while adding the Reponse:");
+                ex.printStackTrace();
             }
-
-            // Create a new Reponse object
-            Reponse rep = new Reponse();
-            rep.setReponse(reponseText);
-            rep.setDate_reponse(new Date());
-            rep.setRelation_id(rec_id);
-
-            // Check if a Reponse with the same relation_id already exists
-            ReponseService reponseService = new ReponseService();
-
-
-            // Insert the Reponse object into the database
-            reponseService.ajouter(rep);
-
-            // Update the state of the corresponding Reclamation to true
-            ReclamationService recService = new ReclamationService();
-            Reclamation rec = recService.getOneById(rec_id);
-            if (rec != null) {
-                rec.setEtat(true);
-                recService.modifier(rec);
-                System.out.println("State of the reclamation with ID " + rec_id + " has been successfully updated to true.");
-                System.out.println(rec.isEtat());
-                System.out.println(rec.getId());
-                System.out.println(rec);
-            } else {
-                System.out.println("Reclamation with ID " + rec_id + " not found.");
-            }
-
-            System.out.println("Reponse added successfully.");
-        } catch (SQLException ex) {
-            System.out.println("An error occurred while adding the Reponse:");
-            ex.printStackTrace();
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("répondre");
+        alert.setHeaderText(null);
+        alert.setContentText("Votre réponse a ete bien ajoute");
+        alert.showAndWait();
+
     }
 
 

@@ -94,7 +94,7 @@ public class AjoutReclamationController implements Initializable {
 
 
     public Boolean ValidateFields() {
-        if (description.getText().isEmpty() ) {
+        if (description.getText().isEmpty() || comb.getSelectionModel().isEmpty()  ) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Validate fields");
             alert.setHeaderText(null);
