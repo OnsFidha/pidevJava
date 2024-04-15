@@ -51,19 +51,20 @@ public class AjouterPub {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("La publication a été ajouté avec succée");
             alert.show();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherPub.fxml"));
-            try {
-                Parent root=loader.load();
-                AfficherPub pub= loader.getController();
-                pub.setTypePub(typePub.getText());
-                pub.setTextPub(TextPub.getText());
-                pub.setLieuPub(lieuPub.getText());
-                pub.setDateCreationPub(new Date());
-                pub.setDateModificationPub(new Date());
-                lieuPub.getScene().setRoot(root);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+//            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherPub.fxml"));
+//            try {
+//                Parent root=loader.load();
+//                AfficherPub pub= loader.getController();
+//                pub.setTypePub(typePub.getText());
+//                pub.setTextPub(TextPub.getText());
+//                pub.setLieuPub(lieuPub.getText());
+//                pub.setDateCreationPub(new Date());
+//                pub.setDateModificationPub(new Date());
+//                lieuPub.getScene().setRoot(root);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
         } catch (SQLException e) {
             Alert alert1=new Alert(Alert.AlertType.ERROR);
             alert1.setContentText(e.getMessage());

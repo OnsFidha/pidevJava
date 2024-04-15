@@ -4,21 +4,19 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherPub">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ModifierPub">
+
     <children>
         <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
             <effect>
@@ -92,7 +90,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
+                        <Label prefHeight="35.0" prefWidth="134.0" text="Publication" textFill="#f9a936">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -141,7 +139,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Reclamation" textFill="#f9a936">
+                        <Label text="Reclamation">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -174,71 +172,124 @@
 
             </children>
         </HBox>
-        <GridPane layoutX="427.0" layoutY="110.0" prefHeight="380.0" prefWidth="580.0" style="-fx-background-color: #FEFCF3;">
-            <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.5999755859375" minWidth="10.0" prefWidth="251.5999755859375" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.800048828125" minWidth="10.0" prefWidth="174.40003662109376" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.60003662109375" minWidth="10.0" prefWidth="154.3999633789062" />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints />
-            </rowConstraints>
+        <VBox layoutX="221.0" layoutY="115.0" prefHeight="440.0" prefWidth="967.0">
             <children>
-                <ImageView fitHeight="201.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-                    <image>
-                        <Image url="@imgPub/gallery-11.jpg" />
-                    </image>
-                </ImageView>
-                <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="1">
+                <VBox alignment="CENTER" prefHeight="58.0" prefWidth="967.0">
                     <children>
-                        <Label prefHeight="18.0" prefWidth="70.0" text="Type: " />
-                        <Label fx:id="typePub" text="Label" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Ajouter une publication" />
                     </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                </VBox>
+                <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="967.0">
+                    <opaqueInsets>
+                        <Insets left="20.0" right="20.0" />
+                    </opaqueInsets>
                     <children>
-                        <Label prefHeight="18.0" prefWidth="70.0" text="Lieu:" />
-                        <Label fx:id="lieuPub" text="Label" />
+                        <HBox alignment="CENTER" prefHeight="84.0" prefWidth="971.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                    <children>
+                                        <Label text="Type:" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="84.0" prefWidth="255.0">
+                                    <children>
+                                        <TextField fx:id="typePub" alignment="TOP_CENTER">
+                                            <VBox.margin>
+                                                <Insets top="15.0" />
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="971.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                    <children>
+                                        <Label text="Lieu:" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="84.0" prefWidth="255.0">
+                                    <children>
+                                        <TextField fx:id="lieuPub" alignment="TOP_CENTER">
+                                            <VBox.margin>
+                                                <Insets top="15.0" />
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="971.0">
+                            <children>
+                                <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                    <children>
+                                        <Label text="Description:" />
+                                    </children>
+                                </VBox>
+                                <VBox prefHeight="84.0" prefWidth="255.0">
+                                    <children>
+                                        <TextField fx:id="TextPub" alignment="TOP_CENTER">
+                                            <VBox.margin>
+                                                <Insets top="15.0" />
+                                            </VBox.margin>
+                                        </TextField>
+                                    </children>
+                                </VBox>
+                            </children>
+                            <padding>
+                                <Insets left="20.0" />
+                            </padding>
+                        </HBox>
+                        <VBox alignment="CENTER" layoutX="10.0" layoutY="178.0" prefHeight="84.0" prefWidth="971.0">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="84.0" prefWidth="971.0">
+                                    <children>
+                                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                            <children>
+                                                <Label text="Photo:" />
+                                            </children>
+                                        </VBox>
+                                        <VBox prefHeight="84.0" prefWidth="255.0">
+                                            <children>
+                                                <TextField fx:id="photoPub" alignment="TOP_CENTER">
+                                                    <VBox.margin>
+                                                        <Insets top="12.0" />
+                                                    </VBox.margin>
+                                                </TextField>
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                    <padding>
+                                        <Insets left="20.0" />
+                                    </padding>
+                                </HBox>
+                                <HBox alignment="CENTER">
+                                    <children>
+                                        <Button onAction="#choose_file" text="Sélectionner une photo">
+                                            <HBox.margin>
+                                                <Insets top="15.0" />
+                                            </HBox.margin></Button>
+                                    </children>
+                                    <padding>
+                                        <Insets left="20.0" />
+                                    </padding>
+                                </HBox>
+                            </children>
+                        </VBox>
+
+
                     </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="2">
-                    <children>
-                        <Label text="Date de création:" />
-                        <Label fx:id="dateCreationPub" accessibleRole="DATE_PICKER" text="Label" />
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                    <children>
-                        <Label text="Date de modification:" />
-                        <Label fx:id="dateModificationPub" accessibleRole="DATE_PICKER" text="Label" />
-                    </children>
-                </FlowPane>
-                <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.rowSpan="2">
-                    <children>
-                        <Label fx:id="textPub" text="Publication text" textAlignment="CENTER" />
-                    </children>
-                </FlowPane>
-                <Button fx:id="btn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#retour" text="Retour" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.valignment="TOP" />
-            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modify" text="Modifier" textAlignment="RIGHT" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#delete" text="Supprimer" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#addC" text="Commentaire" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
+                </VBox>
+                <Button  alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ModifyPub" text="Modifier" textAlignment="CENTER" />
             </children>
-        </GridPane>
+        </VBox>
 
     </children>
-
 </AnchorPane>

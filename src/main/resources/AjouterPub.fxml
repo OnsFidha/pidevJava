@@ -287,7 +287,7 @@
 
                </children>
             </VBox>
-            <Button fx:id="" alignment="CENTER"  onAction="#addPub" contentDisplay="CENTER" mnemonicParsing="false" text="Button" textAlignment="CENTER" />
+            <Button fx:id="" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPub" text="Button" textAlignment="CENTER" />
          </children>
       </VBox>
 

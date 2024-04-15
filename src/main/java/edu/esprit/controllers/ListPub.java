@@ -3,8 +3,14 @@ package edu.esprit.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
+
+import javafx.event.ActionEvent;
+import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import java.util.ResourceBundle;
 import edu.esprit.entities.Publication;
@@ -62,7 +68,10 @@ public class ListPub implements Initializable {
                 // Pass the data to the controller of the card
                 CardController controller = loader.getController();
                 controller.setData(publication);
-
+                card.setOnMouseClicked(mouseEvent -> {
+                    if (mouseEvent.getClickCount() == 2) {
+                        redirectToEventPage(publication);
+                    }     });
                 // Add the card to the GridPane container
                 pubList.add(card, column, row);
 
@@ -74,8 +83,35 @@ public class ListPub implements Initializable {
                     column = 0;
                     row++;
                 }
+                GridPane.setMargin(card, new Insets(7));
             }
         } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void redirectToEventPage(Publication publication) {
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherPub.fxml"));
+            try {
+                Parent root=loader.load();
+                AfficherPub pub= loader.getController();
+                pub.initData(publication);
+                pub.setTypePub(publication.getType());
+                pub.setTextPub(publication.getText());
+                pub.setLieuPub(publication.getLieu());
+                pub.setDateCreationPub(new Date());
+                pub.setDateModificationPub(new Date());
+                pubList.getScene().setRoot(root);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+    }
+
+    @FXML
+    void add(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/AjouterPub.fxml"));
+            pubList.getScene().setRoot(root);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
