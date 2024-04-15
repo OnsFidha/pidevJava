@@ -4,6 +4,7 @@ import edu.esprit.entities.Reclamation;
 import edu.esprit.service.ReclamationService;
 
 
+import edu.esprit.utils.JavaMailUtil;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -106,7 +107,7 @@ public class AjoutReclamationController implements Initializable {
 
     }
     @FXML
-    void ajouterReclam(ActionEvent event) throws SQLException {
+    void ajouterReclam(ActionEvent event) throws Exception {
 
         if(ValidateFields() ){
             Reclamation r = new Reclamation();
@@ -119,14 +120,15 @@ public class AjoutReclamationController implements Initializable {
             ReclamationService pst = new ReclamationService();
             pst.ajouter(r);
 
-            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            Message message = Message.creator(
-                            new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
-                            new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
-                            "Sana khiari a envoyee une Reclamation , vous pouvez le contacter sur : 24171676")
-                    .create();
+           // Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            //Message message = Message.creator(
+             //               new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
+               //             new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
+                //            "Sana khiari a envoyee une Reclamation , vous pouvez le contacter sur : 24171676")
+                 //   .create();
 
             System.out.println("msg whatsapp envoyee");
+            JavaMailUtil.sendEmail( "sana.khiari2002@gmail.com", "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
 
 
 

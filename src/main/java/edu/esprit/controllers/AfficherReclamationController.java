@@ -1,6 +1,7 @@
 
 package edu.esprit.controllers;
 
+import javafx.scene.input.MouseEvent;
         import edu.esprit.entities.Reclamation;
         import edu.esprit.service.ReclamationService;
         import javafx.collections.FXCollections;
@@ -16,7 +17,6 @@ package edu.esprit.controllers;
         import javafx.scene.layout.VBox;
         import javafx.scene.paint.ImagePattern;
         import javafx.scene.shape.Circle;
-
         import java.io.IOException;
         import java.net.URL;
         import java.sql.SQLException;
@@ -68,6 +68,25 @@ public class AfficherReclamationController implements Initializable {
     public static Reclamation selectedReclamation;
     private Stage stage;
     private Scene scene;
+
+
+
+    @FXML
+    void mailer(MouseEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EnvoyerEmail.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Ajout Reclamation");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 
 
@@ -379,4 +398,7 @@ public class AfficherReclamationController implements Initializable {
         DateReclam.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
 
     }
+
+
+
 }

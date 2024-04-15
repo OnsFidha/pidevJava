@@ -133,7 +133,7 @@
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/EventIcon.png" />
+                                <Image url="@icons/ReclamIcon.png" />
                             </image>
                             <HBox.margin>
                                 <Insets top="5.0" />
@@ -152,6 +152,29 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
+            <HBox onMouseClicked="#mailer" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/email.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="mailer">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
             </children>
         </VBox>
         <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="991.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
