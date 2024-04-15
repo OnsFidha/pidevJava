@@ -43,7 +43,7 @@ public class AjouterPub {
 
 
     @FXML
-    void addPub(ActionEvent event) {
+    void addPub(ActionEvent event) throws SQLException {
         Publication p=new Publication(typePub.getText(),TextPub.getText(),lieuPub.getText(),2,photoPub.getText());
         PublicationService ps=new PublicationService();
         try {
@@ -52,27 +52,21 @@ public class AjouterPub {
             alert.setContentText("La publication a été ajouté avec succée");
             alert.show();
             FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
-//            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherPub.fxml"));
-//            try {
-//                Parent root=loader.load();
-//                AfficherPub pub= loader.getController();
-//                pub.setTypePub(typePub.getText());
-//                pub.setTextPub(TextPub.getText());
-//                pub.setLieuPub(lieuPub.getText());
-//                pub.setDateCreationPub(new Date());
-//                pub.setDateModificationPub(new Date());
-//                lieuPub.getScene().setRoot(root);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
+            try {
+                Parent root = loader.load();
+                lieuPub.getScene().setRoot(root);
+            }
+                catch (IOException e) {
+                    Alert alert1=new Alert(Alert.AlertType.ERROR);
+                    alert1.setContentText(e.getMessage());
+                    alert1.show();
+                }
         } catch (SQLException e) {
             Alert alert1=new Alert(Alert.AlertType.ERROR);
             alert1.setContentText(e.getMessage());
             alert1.show();
-        }
-
-    }
-    public void choose_file(ActionEvent actionEvent) {
+        }}
+        public void choose_file(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(

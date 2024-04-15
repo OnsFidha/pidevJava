@@ -46,12 +46,16 @@ public class AfficherPub {
     @FXML
     private Label typePub;
     private Publication p;
+
     @FXML
     void initialize() {
 
     }
+
     public void initData(Publication publication) {
-        this.p = publication;}
+        this.p = publication;
+    }
+
     public void setDateCreationPub(Date dateCreationPub) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String formattedDate = dateFormat.format(dateCreationPub);
@@ -83,13 +87,14 @@ public class AfficherPub {
         this.typePub.setText(typePub);
 
     }
+
     @FXML
     void retour(ActionEvent event) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
-        try{
-        Parent root=loader.load();
-        lieuPub.getScene().setRoot(root);}
-        catch (IOException e) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+            Parent root = loader.load();
+            lieuPub.getScene().setRoot(root);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -116,6 +121,7 @@ public class AfficherPub {
             // Handle the exception gracefully
         }
     }
+
     @FXML
     void delete(ActionEvent event) throws SQLException {
 
@@ -124,46 +130,31 @@ public class AfficherPub {
         p.supprimer(this.p.getId());
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         try {
-            if(JOptionPane.showConfirmDialog(null,"Attention, vous allez supprimer votre Publication. Êtes-vous sûr ?"
-                    ,"Supprimer ",JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
+            if (JOptionPane.showConfirmDialog(null, "Attention, vous allez supprimer votre Publication. Êtes-vous sûr ?"
+                    , "Supprimer ", JOptionPane.YES_NO_OPTION) == JOptionPane.OK_OPTION)
 
                 alert.setContentText("Votre Publication a été supprimée avec succès.");
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
-            try{
-                Parent root=loader.load();
-                lieuPub.getScene().setRoot(root);}
-            catch (IOException e) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+            try {
+                Parent root = loader.load();
+                lieuPub.getScene().setRoot(root);
+            } catch (IOException e) {
                 throw new RuntimeException(e);
-                }
             }
-        catch (Exception e){
-            JOptionPane.showMessageDialog(null,"Erreur lors de la suppression :\n" + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erreur lors de la suppression :\n" + e.getMessage());
         }
     }
+
     @FXML
     void addC(ActionEvent event) {
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCom.fxml"));
+        try {
+            Parent root = loader.load();
+            lieuPub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
-//    @FXML
-//    void addC(ActionEvent event) {
-//        Commentaire commentaire = new Commentaire();
-//        commentaire.setId_publication(idPublication);
-//        commentaire.setText(texteCommentaire);
-//
-//        // Appeler le service de commentaire pour ajouter le commentaire
-//        CommentaireService commentaireService = new CommentaireService();
-//        try {
-//            commentaireService.ajouter(commentaire);
-//            // Afficher une alerte ou effectuer d'autres actions si l'ajout réussit
-//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//            alert.setContentText("Le commentaire a été ajouté avec succès");
-//            alert.show();
-//        } catch (SQLException e) {
-//            // Afficher une alerte en cas d'erreur lors de l'ajout du commentaire
-//            Alert alert = new Alert(Alert.AlertType.ERROR);
-//            alert.setContentText("Erreur lors de l'ajout du commentaire : " + e.getMessage());
-//            alert.show();
-//        }
-//    }
 
 }
