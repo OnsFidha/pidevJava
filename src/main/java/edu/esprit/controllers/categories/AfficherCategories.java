@@ -3,6 +3,7 @@ package edu.esprit.controllers.categories;
 import edu.esprit.entities.Categorie;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
+import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 
@@ -23,6 +25,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import static edu.esprit.utils.CommonUtils.createGridHeaderLabel;
 
 public class AfficherCategories  implements Initializable {
 
@@ -39,12 +43,12 @@ public class AfficherCategories  implements Initializable {
         try {
             Set<Categorie> categories = serviceCategorie.getAll();
             int index=0;
-            gridCategories.addRow(index, new Label("Nom"), new Label("Description"));
+            gridCategories.addRow(index, createGridHeaderLabel("Nom"), createGridHeaderLabel("Description"));
             index++;
             for (Categorie categorie: categories){
                 Button btnModifier = getUpdateButton(categorie);
                 Button btnSupprimer = getDeleteButton(url, resourceBundle, categorie);
-                HBox hbox = new HBox(5); // spacing between nodes
+                HBox hbox = new HBox(10); // spacing between nodes
                 hbox.getChildren().addAll(btnModifier, btnSupprimer);
                 gridCategories.addRow(index, new Label(categorie.getNom()), new Label(categorie.getDescription()), hbox);
                 index++;
@@ -56,6 +60,7 @@ public class AfficherCategories  implements Initializable {
 
     private Button getDeleteButton(URL url, ResourceBundle resourceBundle, Categorie categorie) {
         Button btnSupprimer = new Button("Supprimer");
+        btnSupprimer.getStyleClass().add("btn-delete");
         EventHandler<ActionEvent> btnSupprimerHandler = event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -78,6 +83,7 @@ public class AfficherCategories  implements Initializable {
 
     private Button getUpdateButton(Categorie categorie) {
         Button btn = new Button("Modifier");
+        btn.getStyleClass().add("btn-update");
         EventHandler<ActionEvent> btnHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -99,7 +105,7 @@ public class AfficherCategories  implements Initializable {
 
                             // Create a new scene with the loaded FXML file
                             Scene scene = new Scene(root);
-
+                            scene.getStylesheets().addAll(getClass().getResource("/css/styles.css").toExternalForm());
                             // Get the stage from the button and set the new scene
                             Stage stage = (Stage) btn.getScene().getWindow();
                             stage.setScene(scene);
@@ -119,17 +125,8 @@ public class AfficherCategories  implements Initializable {
     void goToAddCategoryView(ActionEvent event) {
         // Load the AnotherView.fxml file
         try {
-            // Load the AnotherView.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/ajouterCategorie.fxml"));
-            Parent root = loader.load();
-
-            // Create a new scene with the loaded FXML file
-            Scene scene = new Scene(root);
-
-            // Get the stage from the button and set the new scene
-            Stage stage = (Stage) btnAjouterCategorie.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/ajouterCategorie.fxml"), btnAjouterCategorie,
+                    List.of(getClass().getResource("/css/styles.css").toExternalForm()));
         } catch (IOException e) {
             displayAlertErreure("Error", "Il y a un problème lors de la redirection vers la bonne interface");
         }

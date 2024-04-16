@@ -5,6 +5,7 @@ import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.service.Serviceproduit;
+import edu.esprit.utils.CommonUtils;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Collections;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.scene.image.ImageView;
@@ -58,16 +61,6 @@ public class AjouterProduit implements Initializable {
         try {
             Categorie categorie = categorieDropDown.getValue();
             Image image = productImageView.getImage();
-            // Convert the JavaFX Image to BufferedImage
-//            BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-//
-//            // Create a File object for the output file path
-//            File outputFile = new File("resources/images/produits");
-//
-//            // Use ImageIO to write the BufferedImage to the output file
-//            ImageIO.write(bufferedImage, ".png", outputFile);
-//
-//            System.out.println("Image saved successfully to: " + "resources/images/produits");
             Produit produit = new Produit(categorie, Integer.parseInt(TFquantite.getText()), Double.parseDouble(TFprix.getText()),
                     TFnom.getText(), TFdescription.getText(), image==null?"":image.getUrl());
             serviceProduit.ajouter(produit);
@@ -77,17 +70,8 @@ public class AjouterProduit implements Initializable {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        // Load the AnotherView.fxml file
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/afficherProduits.fxml"));
-                        Parent root = loader.load();
-
-                        // Create a new scene with the loaded FXML file
-                        Scene scene = new Scene(root);
-
-                        // Get the stage from the button and set the new scene
-                        Stage stage = (Stage) ajouterProduitBtn.getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
+                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/produits/afficherProduits.fxml"), ajouterProduitBtn,
+                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de l'ajout d'un produit");
                     }
@@ -109,20 +93,22 @@ public class AjouterProduit implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
             Set<Categorie> categories = serviceCategorie.getAll();
-            categorieDropDown.setConverter(new StringConverter<>() {
-                @Override
-                public String toString(Categorie objet) {
-                    // Retourne la représentation en String de l'objet que vous voulez afficher
-                    return objet.getNom();
-                }
+            if (categories!=null && !categories.isEmpty()) {
+                categorieDropDown.setConverter(new StringConverter<>() {
+                    @Override
+                    public String toString(Categorie objet) {
+                        // Retourne la représentation en String de l'objet que vous voulez afficher
+                        return objet.getNom();
+                    }
 
-                @Override
-                public Categorie fromString(String s) {
-                    return null;
-                }
-            });
-            categorieDropDown.setItems(FXCollections.observableArrayList(categories));
-            categorieDropDown.setValue(categories.stream().findFirst().orElse(null));
+                    @Override
+                    public Categorie fromString(String s) {
+                        return null;
+                    }
+                });
+                categorieDropDown.setItems(FXCollections.observableArrayList(categories));
+                categorieDropDown.setValue(categories.stream().findFirst().orElse(null));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

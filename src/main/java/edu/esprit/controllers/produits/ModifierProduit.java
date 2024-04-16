@@ -5,6 +5,7 @@ import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.service.Serviceproduit;
+import edu.esprit.utils.CommonUtils;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,6 +22,7 @@ import javafx.util.StringConverter;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -65,17 +67,8 @@ public class ModifierProduit {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        // Load the AnotherView.fxml file
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/afficherProduits.fxml"));
-                        Parent root = loader.load();
-
-                        // Create a new scene with the loaded FXML file
-                        Scene scene = new Scene(root);
-
-                        // Get the stage from the button and set the new scene
-                        Stage stage = (Stage) modifierProduitBtn.getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
+                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/produits/afficherProduits.fxml"), modifierProduitBtn,
+                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de l'ajout d'un produit");
                     }
@@ -139,10 +132,9 @@ public class ModifierProduit {
         File selectedFile = fileChooser.showOpenDialog(null);
         if (selectedFile != null) {
             String imagePath = selectedFile.toURI().toString();
+            System.out.println("image path: "+imagePath);
             Image image = new Image(imagePath);
             productImageView.setImage(image);
         }
     }
-
-
 }

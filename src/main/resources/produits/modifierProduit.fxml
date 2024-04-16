@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="472.0" prefWidth="600.0" styleClass="window-content" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.produits.ModifierProduit">
+<AnchorPane prefHeight="595.0" prefWidth="695.0" styleClass="window-content" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.produits.ModifierProduit">
    <children>
       <Text layoutX="209.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Produit">
          <font>
@@ -18,19 +18,19 @@
          </font>
       </Text>
       <Label fx:id="TFlabelIdProduit" layoutX="201.0" layoutY="93.0" prefHeight="18.0" prefWidth="124.0" visible="false" />
-      <Label layoutX="59.0" layoutY="78.0" text="Nom" />
-      <Label layoutX="62.0" layoutY="124.0" text="Prix" />
-      <Label layoutX="49.0" layoutY="155.0" text="Quantite" />
-      <Label layoutX="51.0" layoutY="191.0" text="Description" />
-      <Label layoutX="56.0" layoutY="320.0" text="Image" />
-      <Label layoutX="56.0" layoutY="231.0" text="Categorie" />
+      <Label layoutX="46.0" layoutY="78.0" text="Nom" />
+      <Label layoutX="49.0" layoutY="124.0" text="Prix" />
+      <Label layoutX="49.0" layoutY="164.0" text="Quantite" />
+      <Label layoutX="51.0" layoutY="210.0" text="Description" />
+      <Label layoutX="55.0" layoutY="343.0" text="Image" />
+      <Label layoutX="55.0" layoutY="269.0" text="Categorie" />
       <TextField fx:id="TFnom" layoutX="160.0" layoutY="74.0" />
       <TextField fx:id="TFprix" layoutX="160.0" layoutY="120.0" />
-      <TextField fx:id="TFquantite" layoutX="160.0" layoutY="151.0" />
-      <TextArea fx:id="TFdescription" layoutX="160.0" layoutY="181.0" prefHeight="26.0" prefWidth="210.0" />
-      <ChoiceBox fx:id="categorieDropDown" layoutX="160.0" layoutY="227.0" prefHeight="25.0" prefWidth="210.0" />
-      <Button fx:id="modifierProduitBtn" layoutX="233.0" layoutY="405.0" mnemonicParsing="false" onAction="#modifierProduit" text="Modifier" />
-      <ImageView fx:id="productImageView" fitHeight="150.0" fitWidth="200.0" layoutX="376.0" layoutY="268.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="selectImageBtn" layoutX="165.0" layoutY="315.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="26.0" prefWidth="150.0" text="Choisir une image" />
+      <TextField fx:id="TFquantite" layoutX="159.0" layoutY="160.0" />
+      <TextArea fx:id="TFdescription" layoutX="160.0" layoutY="200.0" prefHeight="26.0" prefWidth="210.0" />
+      <ChoiceBox fx:id="categorieDropDown" layoutX="160.0" layoutY="265.0" prefHeight="25.0" prefWidth="210.0" />
+      <ImageView fx:id="productImageView" fitHeight="150.0" fitWidth="200.0" layoutX="377.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="selectImageBtn" layoutX="158.0" layoutY="339.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="26.0" prefWidth="150.0" text="Choisir une image" />
+      <Button fx:id="modifierProduitBtn" styleClass="btn-update" layoutX="273.0" layoutY="490.0" mnemonicParsing="false" onAction="#modifierProduit" text="Modifier" />
    </children>
 </AnchorPane>

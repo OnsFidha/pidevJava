@@ -4,6 +4,7 @@ import edu.esprit.controllers.categories.ModifierCategorie;
 import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Serviceproduit;
+import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,6 +27,8 @@ import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import static edu.esprit.utils.CommonUtils.createGridHeaderLabel;
+
 public class AfficherProduits implements Initializable {
     @FXML
     private GridPane gridProduits;
@@ -40,12 +43,14 @@ public class AfficherProduits implements Initializable {
         try {
             Set<Produit> produits = serviceProduit.getAll();
             int index=0;
-            gridProduits.addRow(index, new Label("Nom"), new Label("Catégorie"), new Label("Prix"), new Label("Quantité"), new Label("Description"));
+            gridProduits.addRow(index, createGridHeaderLabel("Nom"),
+                    createGridHeaderLabel("Catégorie"), createGridHeaderLabel("Prix"),
+                    createGridHeaderLabel("Quantité"), createGridHeaderLabel("Description"));
             index++;
             for (Produit produit: produits){
                 Button btnModifier = getUpdateButton(produit);
                 Button btnSupprimer = getDeleteButton(url, resourceBundle, produit);
-                HBox hbox = new HBox(5); // spacing between nodes
+                HBox hbox = new HBox(10); // spacing between nodes
                 hbox.getChildren().addAll(btnModifier, btnSupprimer);
                 gridProduits.addRow(index, new Label(produit.getNom()), new Label(produit.getCategorie().getNom()),
                         new Label(Objects.toString(produit.getPrix())), new Label(Objects.toString(produit.getQuantite())),
@@ -59,6 +64,7 @@ public class AfficherProduits implements Initializable {
 
     private Button getDeleteButton(URL url, ResourceBundle resourceBundle, Produit produit) {
         Button btnSupprimer = new Button("Supprimer");
+        btnSupprimer.getStyleClass().add("btn-delete");
         EventHandler<ActionEvent> btnSupprimerHandler = event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation");
@@ -81,6 +87,7 @@ public class AfficherProduits implements Initializable {
 
     private Button getUpdateButton(Produit produit) {
         Button btn = new Button("Modifier");
+        btn.getStyleClass().add("btn-update");
         EventHandler<ActionEvent> btnHandler = new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
@@ -102,7 +109,7 @@ public class AfficherProduits implements Initializable {
 
                             // Create a new scene with the loaded FXML file
                             Scene scene = new Scene(root);
-                            scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
+                            scene.getStylesheets().addAll(getClass().getResource("/css/styles.css").toExternalForm());
                             // Get the stage from the button and set the new scene
                             Stage stage = (Stage) btn.getScene().getWindow();
                             stage.setScene(scene);

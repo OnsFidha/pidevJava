@@ -5,6 +5,7 @@ import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.service.Serviceproduit;
+import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class AjouterCategorie {
 
@@ -39,17 +41,8 @@ public class AjouterCategorie {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        // Load the AnotherView.fxml file
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/afficherCategories.fxml"));
-                        Parent root = loader.load();
-
-                        // Create a new scene with the loaded FXML file
-                        Scene scene = new Scene(root);
-
-                        // Get the stage from the button and set the new scene
-                        Stage stage = (Stage) TFbtnAjouterCategorie.getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
+                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/afficherCategories.fxml"), TFbtnAjouterCategorie,
+                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de la suppression de la catégorie");
                     }

@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.categories.ModifierCategorie">
+<AnchorPane styleClass="window-content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.categories.ModifierCategorie">
    <children>
-      <Text layoutX="204.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Catégorie" />
+      <Text layoutX="204.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Catégorie" />
       <Label layoutX="94.0" layoutY="135.0" text="Nom" />
       <Label layoutX="91.0" layoutY="191.0" text="Description" />
       <TextField fx:id="TFnom" layoutX="201.0" layoutY="131.0" prefHeight="26.0" prefWidth="204.0" />
       <TextArea fx:id="TFdescription" layoutX="201.0" layoutY="178.0" prefHeight="39.0" prefWidth="204.0" />
-      <Button fx:id="btnModifierCategorie" layoutX="269.0" layoutY="274.0" mnemonicParsing="false" onAction="#modifierCategorieAction" text="Modifier" />
       <Label fx:id="TFlabelIdCategorie" layoutX="201.0" layoutY="93.0" prefHeight="18.0" prefWidth="124.0" visible="false" />
+      <Button fx:id="btnModifierCategorie" styleClass="btn-update" layoutX="269.0" layoutY="274.0" mnemonicParsing="false" onAction="#modifierCategorieAction" text="Modifier" />
    </children>
 </AnchorPane>

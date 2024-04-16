@@ -3,6 +3,7 @@ package edu.esprit.controllers.categories;
 import edu.esprit.entities.Categorie;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
+import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -44,17 +46,8 @@ public class ModifierCategorie{
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        // Load the AnotherView.fxml file
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/afficherCategories.fxml"));
-                        Parent root = loader.load();
-
-                        // Create a new scene with the loaded FXML file
-                        Scene scene = new Scene(root);
-
-                        // Get the stage from the button and set the new scene
-                        Stage stage = (Stage) btnModifierCategorie.getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
+                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/afficherCategories.fxml"), btnModifierCategorie,
+                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de la suppression de la catégorie");
                     }

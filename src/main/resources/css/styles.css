@@ -1,3 +1,20 @@
 .window-content{
-    -fx-background-color: #f8a835;
+    -fx-background-color: #FEFCF3;
+    -fx-font-size: 16px;
+}
+.btn-delete{
+    -fx-background-color: #ff0000;
+    -fx-font-weight: bold;
+}
+.btn-update{
+    -fx-background-color: #ffff00;
+    -fx-font-weight: bold;
+}
+.btn-add{
+    -fx-background-color: #008000;
+    -fx-font-weight: bold;
+}
+.grid-content .header-node {
+     -fx-font-size: 20px;
+     -fx-font-weight: bold;
 }
