@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import edu.esprit.entities.Commentaire;
+import edu.esprit.entities.Publication;
 import edu.esprit.service.CommentaireService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,11 +31,11 @@ public class AjouterCom {
 
     @FXML
     private TextArea text;
-
+    private Publication p;
     @FXML
     void addCom(ActionEvent event) {
         Commentaire commentaire = new Commentaire();
-        commentaire.setId_publication(1);
+        commentaire.setId_publication(this.p.getId());
         commentaire.setText(text.getText());
 
         CommentaireService commentaireService = new CommentaireService();
@@ -61,7 +62,9 @@ public class AjouterCom {
        }
     }
 
-
+    public void initData(Publication p) {
+        this.p = p;
+    }
     @FXML
     void initialize() {
 

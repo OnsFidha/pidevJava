@@ -90,7 +90,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
+                  <Label prefHeight="35.0" prefWidth="134.0" text="Publication" textFill="#f9a936">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -139,7 +139,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Reclamation" textFill="#f9a936">
+                  <Label text="Reclamation" >
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -172,7 +172,7 @@
 
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="495.0" layoutY="103.0" text="Publications">
+      <Label alignment="CENTER" layoutX="495.0" layoutY="103.0" text="Publications" >
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>

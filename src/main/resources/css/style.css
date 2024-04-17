@@ -1,100 +1,35 @@
-.pane {
-    -fx-background-color: #f8a835;
+.primary-color{
+    -fx-background-color: #F4F5F9;
 }
 
-.btn {
-    -fx-background-color: #f8a835; /* Couleur unique */
-    -fx-background-radius: 15px;
-    -fx-border-width: 1px;
-    -fx-border-radius: 15px;
-    -fx-border-color: #bde7b7;
-    -fx-text-fill: white;
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10,0,0,10);
 }
-
-.btn:hover {
-    -fx-transition: -fx-background-color 1s;
-    -fx-border-color: white;
-    -fx-background-color: #93d9f2; /* Couleur unique pour le survol */
+.rect-round{
+    -fx-background-radius: 20;
 }
-
-
-.text-field {
-    -fx-border-width: 0.1em; /* Vous pouvez ajuster cette valeur selon vos besoins */
-    -fx-border-color: rgba(248, 168, 53, 0.6);
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
 }
-
-
-.text-field:focused,
-.text-field:hover {
-    -fx-border-color: rgba(147, 217, 242, 0.6);
+.selected{
+    -fx-background-color: #F4F5F9;
 }
-
-.combo-box {
-    -fx-background-color: white;
-    -fx-border-color: #bde7b7;
+.mouse-moved:hover{
+    -fx-background-color: #EFEFEF;
 }
+.mouse-moved2:hover{
+    -fx-background-color: #fcd5bb;
 
-.combo-box .arrow {
-    -fx-background-color: #bde7b7;
 }
+.mouse-moved3:hover{
+    -fx-background-color: #bff2c0;
 
-.infolabel {
-    -fx-border-width: 0.5px;
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
-    -fx-border-color: #f8a835;
 }
-
-.MainButton {
-    -fx-background-radius: 15px;
-    -fx-border-width: 2px;
-    -fx-border-radius: 15px;
-    -fx-background-color: #f76a79;
-    -fx-border-color: #fdee6d;
-}
-
-.MainButton:hover {
-    -fx-border-color: #93d9f2;
-}
-
-.scrollpanes {
-    -fx-background-color: transparent;
-    -fx-background: transparent;
-}
-
-.tab-pane > .tab-header-area {
-    -fx-padding: 3;
-}
-
-.tab-pane > .tab-header-area > .tab-header-background {
-    -fx-background-color: rgba(0, 0, 0, 0.07);
-    -fx-background-insets: 0, 0 0 1px 0;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab {
-    -fx-background-color: #bde7b7;
-    -fx-background-insets: 0 0 1px 0;
-    -fx-padding: 4px;
-    -fx-border-color: #c9c9c9;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
-    -fx-text-fill: #f76a79;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab:selected {
-    -fx-background-color: #f8a835, white;
-    -fx-background-insets: 0, 0 0 2px 0;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
-    -fx-text-fill: #f76a79;
-}
-
-.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .focus-indicator {
-    -fx-opacity: 0;
-}
-
-.hboxcard {
-    -fx-background-image: url("/assets/cardbg.png");
+.reactions-container{
+    -fx-background-color: #fff;
+    -fx-background-radius: 50;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0,0.0,0.0,5.0);
+    -fx-border-width: 1;
+    -fx-border-color: #B8B9BB;
+    -fx-border-radius: 50;
 }

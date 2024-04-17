@@ -105,13 +105,11 @@ public class AfficherPub {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierPub.fxml"));
             Parent root = loader.load();
 
-            // Pass the selected event to the edit controller
+            // Pass the selected pub to the edit controller
             ModifierPub modifierPub = loader.getController();
             modifierPub.initData(this.p);
-
             // Get the current stage
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
             // Set the new scene
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -150,7 +148,10 @@ public class AfficherPub {
     void addC(ActionEvent event) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterCom.fxml"));
         try {
+
             Parent root = loader.load();
+            AjouterCom comContr = loader.getController();
+            comContr.initData(this.p);
             lieuPub.getScene().setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
