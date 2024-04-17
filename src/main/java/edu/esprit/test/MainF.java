@@ -18,6 +18,7 @@ public class MainF extends Application {
     public void start(Stage primaryStage) {
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterPub.fxml"));
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+      //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/comments.fxml"));
         try {
             Parent root = loader.load();
             Scene scene =new Scene(root);

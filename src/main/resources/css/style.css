@@ -1,7 +1,9 @@
 .primary-color{
     -fx-background-color: #F4F5F9;
 }
-
+.bg{
+    -fx-background-color: #FEFCF3;
+}
 .shadow{
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10,0,0,10);
 }
@@ -32,4 +34,34 @@
     -fx-border-width: 1;
     -fx-border-color: #B8B9BB;
     -fx-border-radius: 50;
+}
+.comment-textfield-centered {
+    -fx-alignment: center;
+}
+/* styles.css */
+.comment-container {
+    -fx-background-color: #f0f0f0; /* Couleur de fond du conteneur */
+    -fx-padding: 10px; /* Espacement intérieur du conteneur */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-radius: 5px; /* Rayon des coins de la bordure */
+}
+
+.comment-label {
+    -fx-font-size: 14px; /* Taille de police pour les labels */
+    -fx-text-fill: #383838; /* Couleur du texte */
+}
+
+.comment-textfield {
+    -fx-font-size: 14px; /* Taille de police pour les textfields */
+    -fx-border-color: transparent; /* Supprime la bordure par défaut */
+    -fx-focus-color: transparent; /* Supprime la couleur du focus */
+    -fx-background-color: transparent; /* Supprime le fond du textfield */
+    -fx-padding: 0; /* Supprime l'espacement interne */
+}
+.comment-textfield:readonly {
+    -fx-border-color: transparent; /* Supprime la bordure */
+    -fx-background-color: transparent; /* Supprime le fond */
+    -fx-padding: 0; /* Supprime l'espacement interne */
+    -fx-opacity: 1.0; /* Assurez-vous que le texte est complètement visible */
 }
