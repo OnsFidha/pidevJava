@@ -11,7 +11,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -33,7 +36,7 @@ public class AjouterEvent {
     private DatePicker DFEvent;
 
     @FXML
-    private TextField DescEvent;
+    private TextArea DescEvent;
 
     @FXML
     private TextField LieuEvent;
@@ -45,10 +48,13 @@ public class AjouterEvent {
     private TextField NomEvent;
 
     @FXML
-    private TextField eventimg;
+    private ImageView eventimg;
+
+    private String imagePath;
+    private Evenement event= new Evenement();
 
     @FXML
-    void Add(ActionEvent event) {
+    void Add(ActionEvent Aevent) {
         // Vérifiez que tous les champs sont remplis
         if (NomEvent.getText().isEmpty() || DescEvent.getText().isEmpty() || LieuEvent.getText().isEmpty() ||
                 DDEvent.getValue() == null || DFEvent.getValue() == null || NbrparticipantsEvent.getText().isEmpty()) {
@@ -73,10 +79,11 @@ public class AjouterEvent {
             return;
         }
 
-        Evenement ev=new Evenement(NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),eventimg.getText());
+        Evenement ev=new Evenement(NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),event.getImage());
         EvenementService es=new EvenementService();
         try {
             es.ajouter(ev);
+
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("L'évenement a été ajouté avec succée");
             alert.show();
@@ -85,7 +92,7 @@ public class AjouterEvent {
                 Parent root = loader.load();
 
                 // Get the current stage
-                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                Stage stage = (Stage) ((Node) Aevent.getSource()).getScene().getWindow();
 
                 // Set the new scene
                 Scene scene = new Scene(root);
@@ -125,46 +132,54 @@ public class AjouterEvent {
     }
 
     @FXML
-    public void choose_file(ActionEvent event) {
-        String fileName;
-        {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Choisir une image");
-            fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
-                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
-            File selectedFile = fileChooser.showOpenDialog(null);
+    public void choose_file(ActionEvent Aevent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
+                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+        File selectedFile = fileChooser.showOpenDialog(null);
 
-            if (selectedFile != null) {
-                String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
+        if (selectedFile != null) {
+            String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
 
-                // Générer un nom de fichier unique
-                fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
+            // Generate a unique file name
+            String fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
 
-                try {
-                    // Copier le fichier sélectionné dans le répertoire de destination
-                    Path destinationPath = new File(destinationDirectory + fileName).toPath();
-                    Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            try {
+                // Copy the selected file to the destination directory
+                Path destinationPath = new File(destinationDirectory + fileName).toPath();
+                Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
-                    // Mettre à jour le chemin de la photo dans votre modèle
-                    String photoPath = destinationPath.toUri().toString();
-                    // Assuming eventimg is a TextField or similar control
-                    eventimg.setText(photoPath); // Update with the photo path
-                } catch (IOException e) {
-                    // Handle the exception gracefully
-                    e.printStackTrace(); // You might want to log this instead
-                    // Show an error message to the user
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("File Copy Error");
-                    alert.setContentText("An error occurred while copying the file. Please try again.");
-                    alert.showAndWait();
-                }
-            } else {
-                System.out.println("Aucun fichier sélectionné.");
+                // Store the relative path of the selected image in the event object
+                String relativeImagePath = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/" + fileName;
+                event.setImage(relativeImagePath); // Update the Event object with the relative image path
+
+                // Update the image of the ImageView
+                String photoPath = destinationPath.toUri().toString();
+                Image image = new Image(photoPath);
+                eventimg.setImage(image); // Update the ImageView with the new image
+
+                // Optionally, you can store the absolute path of the selected image
+                String absoluteImagePath = destinationPath.toString();
+                // Use the absoluteImagePath variable as needed
+
+            } catch (IOException e) {
+                // Handle the exception gracefully
+                e.printStackTrace(); // You might want to log this instead
+                // Show an error message to the user
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("File Copy Error");
+                alert.setContentText("An error occurred while copying the file. Please try again.");
+                alert.showAndWait();
             }
+        } else {
+            System.out.println("No file selected.");
         }
     }
+
+
 
     // Utility method to get file extension
     private String getFileExtension(String fileName) {

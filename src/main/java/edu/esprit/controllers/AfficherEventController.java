@@ -14,7 +14,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,21 +54,26 @@ public class AfficherEventController {
 
     }
     public void setData(Evenement event){
-//            Image image = new Image(getClass().getResourceAsStream(event.getImage()));
-////            Image image = new Image("/img/Event5.png");
-//            EventImage.setImage(image);
         if (event.getImage() != null) {
-            Image image = new Image(event.getImage());
-            eventimg.setImage(image);
+            try {
+                // Prepend "file:///" to the file path
+                String imagePath = "file:///" + event.getImage();
+                Image image = new Image(imagePath);
+                eventimg.setImage(image);
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Failed to load image for the event: " + event.getNom());
+            }
         } else {
             // Handle the case where image path is null
             // For example, set a default image or display an error message
             System.err.println("Image path is null for the event: " + event.getNom());
         }
 
+
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-        Image image = new Image("/img/user2.png");
-        userimg.setImage(image);
+        Image nimage = new Image("/img/user2.png");
+        userimg.setImage(nimage);
 
 //            username.setText(event.getUsername());
         username.setText("Syrine Zaier");
@@ -82,6 +89,8 @@ public class AfficherEventController {
 
 
     }
+
+
     public void setEventData(int id) {
         EvenementService eventService = new EvenementService();
         try {

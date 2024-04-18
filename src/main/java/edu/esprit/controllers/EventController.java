@@ -30,31 +30,35 @@ public class EventController {
         @FXML
         private Label username;
 
-        public void setData(Evenement event){
-//            Image image = new Image(getClass().getResourceAsStream(event.getImage()));
-////            Image image = new Image("/img/Event5.png");
-//            EventImage.setImage(image);
-            if (event.getImage() != null) {
-                Image image = new Image(event.getImage());
+    public void setData(Evenement event) {
+        // Load event image
+        if (event.getImage() != null) {
+            try {
+                // Prepend "file:///" to the file path
+                String imagePath = "file:///" + event.getImage();
+                Image image = new Image(imagePath);
                 EventImage.setImage(image);
-            } else {
-                // Handle the case where image path is null
-                // For example, set a default image or display an error message
-                System.err.println("Image path is null for the event: " + event.getNom());
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.err.println("Failed to load image for the event: " + event.getNom());
             }
-
-//            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-            Image image = new Image("/img/user2.png");
-            ProfileImage.setImage(image);
-
-//            username.setText(event.getUsername());
-            username.setText("Syrine Zaier");
-            EventName.setText(event.getNom());
-//            starts.setText(event.getNbStars());
-//            comments.setText(event.getNbComments());
-            starts.setText("4/5");
-            comments.setText("3K");
+        } else {
+            // Handle the case where image path is null
+            // For example, set a default image or display an error message
+            System.err.println("Image path is null for the event: " + event.getNom());
         }
+
+        // Load profile image (assuming "/img/user2.png" is a valid image path)
+        Image profileImage = new Image("/img/user2.png");
+        ProfileImage.setImage(profileImage);
+
+        // Set username and event details
+        username.setText("Syrine Zaier");
+        EventName.setText(event.getNom());
+        starts.setText("4/5");
+        comments.setText("3K");
+    }
+
 
 
 
