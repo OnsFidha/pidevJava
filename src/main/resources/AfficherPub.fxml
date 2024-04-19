@@ -177,9 +177,9 @@
 
             </children>
         </HBox>
-      <AnchorPane layoutX="277.0" layoutY="170.0" prefHeight="472.0" prefWidth="775.0" style="-fx-background-color: #FEFCF3;">
+      <AnchorPane layoutX="273.0" layoutY="169.0" prefHeight="472.0" prefWidth="775.0" style="-fx-background-color: #FEFCF3;">
          <children>
-                 <GridPane fx:id="details" layoutX="-2.0" layoutY="-1.0" prefHeight="472.0" prefWidth="775.0" styleClass="bg" stylesheets="@css/style.css" visible="true">
+                 <GridPane fx:id="details" layoutX="10.0" layoutY="14.0" prefHeight="472.0" prefWidth="803.0" styleClass="bg" stylesheets="@css/style.css" visible="true">
                   <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="289.5999755859375" />
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.39999999999998" minWidth="10.0" prefWidth="188.80002441406248" />
@@ -222,7 +222,7 @@
                               <Label fx:id="lieuPub" prefHeight="98.0" prefWidth="102.0" styleClass="label-title" text="Label" wrapText="true" />
                           </children>
                       </FlowPane>
-                      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="74.0" prefWidth="168.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="77.0" prefWidth="238.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                           <children>
                         <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -307,7 +307,7 @@
                       </Button>
                   </children>
               </GridPane>
-            <AnchorPane fx:id="comments" layoutX="-3.0" layoutY="-1.0" prefHeight="472.0" prefWidth="775.0" styleClass="comment-container" stylesheets="@css/style.css" visible="false">
+            <AnchorPane fx:id="comments" layoutX="-3.0" layoutY="-1.0" prefHeight="472.0" prefWidth="826.0" styleClass="comment-container" stylesheets="@css/style.css" visible="false">
                <children>
                   <Text layoutX="277.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les commentaires" textAlignment="CENTER" />
                </children>
@@ -316,19 +316,6 @@
                   <String fx:value="comment-card" />
                </styleClass>
             </AnchorPane>
-            <Button alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="738.0" mnemonicParsing="false" onAction="#hideComments" prefHeight="26.0" prefWidth="28.0" styleClass="btn-icone" stylesheets="@css/style.css">
-             <graphic>
-                 <HBox alignment="CENTER">
-                     <children>
-                         <ImageView fitHeight="36.0" fitWidth="36.0">
-                             <image>
-                                 <Image url="@icons/previous.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
-                             </image>
-                         </ImageView>
-                     </children>
-                 </HBox>
-             </graphic>
-            </Button>
          </children>
       </AnchorPane>
       <ScrollBar layoutX="1191.0" layoutY="300.0" orientation="VERTICAL" prefHeight="194.0" prefWidth="14.0" />

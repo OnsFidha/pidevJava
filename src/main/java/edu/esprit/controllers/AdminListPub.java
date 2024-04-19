@@ -1,2 +1,4 @@
-package edu.esprit.controllers;public class AdminListPub {
+package edu.esprit.controllers;
+
+public class AdminListPub {
 }

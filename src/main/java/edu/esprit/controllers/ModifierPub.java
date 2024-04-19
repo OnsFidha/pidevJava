@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
 import javafx.event.ActionEvent;
@@ -17,7 +16,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -32,9 +31,6 @@ public class ModifierPub {
 
     @FXML
     private URL location;
-
-
-
 
     @FXML
     private TextField TextPub;
@@ -64,15 +60,16 @@ public class ModifierPub {
     private Label typeError;
 
     @FXML
-    private TextField typePub;
+    private ComboBox typePub;
+    private Publication p;
     boolean isValid;
 
     @FXML
     void ModifyPub(ActionEvent event) {
         isValid = true; // Variable pour suivre l'état de la validation
-
+        String selectedType = (String) typePub.getValue();
         // Vérification du champ Type de publication
-        if (typePub.getText().isEmpty()) {
+        if (selectedType.isEmpty()) {
             typeError.setText("Veuillez entrer un type de publication.");
             isValid = false;
         } else {
@@ -107,9 +104,9 @@ public class ModifierPub {
                 Publication updatedPublication;
                 if (photoPub.getText().isEmpty()) {
                     // Si aucun nouveau fichier n'a été sélectionné, conserver l'ancienne valeur de la photo
-                    updatedPublication = new Publication(this.p.getId(), typePub.getText(), TextPub.getText(), lieuPub.getText(), this.p.getPhoto());
+                    updatedPublication = new Publication(this.p.getId(), selectedType, TextPub.getText(), lieuPub.getText(), this.p.getPhoto());
                 } else {
-                    updatedPublication = new Publication(this.p.getId(), typePub.getText(), TextPub.getText(), lieuPub.getText(), photoPub.getText());
+                    updatedPublication = new Publication(this.p.getId(), selectedType, TextPub.getText(), lieuPub.getText(), photoPub.getText());
                 }
 
                 // Mettre à jour la publication dans la base de données
@@ -133,7 +130,6 @@ public class ModifierPub {
             }
         }
     }
-
 
     @FXML
     void choose_file(ActionEvent actionEvent) {
@@ -175,6 +171,7 @@ public class ModifierPub {
             System.out.println("Aucun fichier sélectionné.");
         }
     }
+
     private String getFileExtension(String fileName) {
         int dotIndex = fileName.lastIndexOf('.');
         return (dotIndex == -1) ? "" : fileName.substring(dotIndex);
@@ -184,13 +181,13 @@ public class ModifierPub {
     void initialize() {
 
     }
-    private Publication p;
+
     public void initData(Publication p) {
         this.p = p;
 
         // Pre-fill text fields with event details
         lieuPub.setText(p.getLieu());
-        typePub.setText(p.getType());
+        typePub.setValue(p.getType());
         String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/pub/";
         String imagePath = destinationDirectory + p.getPhoto();
         File file = new File(imagePath);
@@ -202,5 +199,16 @@ public class ModifierPub {
         }
         //photoPub.setText(p.getPhoto());
         TextPub.setText(p.getText());
+    }
+
+    @FXML
+    void retour() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+            Parent root = loader.load();
+            lieuPub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

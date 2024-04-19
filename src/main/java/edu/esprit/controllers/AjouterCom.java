@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.shape.Circle;
 
@@ -24,7 +25,8 @@ public class AjouterCom {
 
     @FXML
     private URL location;
-
+    @FXML
+    private Label textError;
 
     @FXML
     private Circle circle;
@@ -37,31 +39,43 @@ public class AjouterCom {
         Commentaire commentaire = new Commentaire();
         commentaire.setId_publication(this.p.getId());
         commentaire.setText(text.getText());
+        boolean isValid = true; // Variable pour suivre l'état de la validation
 
-        CommentaireService commentaireService = new CommentaireService();
-        try {
-            commentaireService.ajouter(commentaire);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("Le commentaire a été ajouté avec succès");
-            alert.show();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        if (text.getText().isEmpty()) {
+            textError.setText("Veuillez entrer votre commentaire.");
+            isValid = false;
+        } else {
+            if (text.getText().length() < 5 || text.getText().length() > 800) {
+                textError.setText("Le commentaire doit contenir entre 5 et 800 caractères.");
+                isValid = false;
+            } else {
+                textError.setText("");
+            }
+        }
+        if (isValid) {
+            CommentaireService commentaireService = new CommentaireService();
             try {
-                Parent root = loader.load();
-                text.getScene().setRoot(root);
-            }
-            catch (IOException e) {
-                Alert alert1=new Alert(Alert.AlertType.ERROR);
-                alert1.setContentText(e.getMessage());
-                alert1.show();
-            }
-        } catch (SQLException e) {
+                commentaireService.ajouter(commentaire);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("Le commentaire a été ajouté avec succès");
+                alert.show();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+                try {
+                    Parent root = loader.load();
+                    text.getScene().setRoot(root);
+                } catch (IOException e) {
+                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
+                    alert1.setContentText(e.getMessage());
+                    alert1.show();
+                }
+            } catch (SQLException e) {
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Erreur lors de l'ajout du commentaire : " + e.getMessage());
-            alert.show();
-       }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("Erreur lors de l'ajout du commentaire : " + e.getMessage());
+                alert.show();
+            }
+        }
     }
-
     public void initData(Publication p) {
         this.p = p;
     }

@@ -6,7 +6,6 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
 import edu.esprit.service.CommentaireService;
 import javafx.animation.TranslateTransition;
 import edu.esprit.entities.Commentaire;
@@ -146,9 +145,16 @@ public class AfficherPub {
                         container.getChildren().add(commentBox);
 
                     }
-                    Button addButton = createIconButton("/icons/addicon.png", () -> addC());
+                    Button addButton = createIconButton("/icons/addC.png", () -> addC());
                     addButton.getStyleClass().addAll("btn-icone", "small-button", "custom-add-button");
-                    container.getChildren().add(addButton);
+                    Button retourBtn = createIconButton("/icons/previous.png", () -> retour());
+                    retourBtn.getStyleClass().addAll("btn-icone", "small-button", "custom-add-button");
+                    HBox btn = new HBox(); // Créer une boîte horizontale pour les boutons
+                    btn.setSpacing(10);
+                    btn.getChildren().addAll(addButton, retourBtn);
+                    btn.setAlignment(Pos.CENTER);
+                    container.getChildren().add(btn);
+
 
 
                     // Ajouter la vue des commentaires à votre interface utilisateur
@@ -175,6 +181,7 @@ public class AfficherPub {
 
                 return button;
             }
+
         private void editComment(int id) {
             TextField commentaireField = commentaireFields.get(id);
             if (commentaireField != null) {
@@ -254,7 +261,7 @@ public class AfficherPub {
         }
 
         @FXML
-        void retour(ActionEvent event) {
+        void retour() {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
             try {
                 Parent root = loader.load();

@@ -15,6 +15,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterPub">
 
    <children>
@@ -193,14 +196,21 @@
                         </VBox>
                         <VBox prefHeight="64.0" prefWidth="266.0">
                            <children>
-                              <TextField fx:id="typePub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="267.0">
+                              <ComboBox fx:id="typePub" prefHeight="26.0" prefWidth="267.0" styleClass="combo-box" stylesheets="@css/style.css">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
-                              </TextField>
+                                 <items>
+                                    <FXCollections fx:factory="observableArrayList">
+                                       <String fx:value="Ordinaire" />
+                                       <String fx:value="Offre" />
+                                    </FXCollections>
+                                 </items>
+                              </ComboBox>
                               <Label fx:id="typeError" styleClass="error" stylesheets="@css/style.css" />
                            </children>
                         </VBox>
+
                      </children>
                      <padding>
                         <Insets left="20.0" />
@@ -215,7 +225,7 @@
                         </VBox>
                         <VBox prefHeight="64.0" prefWidth="268.0">
                            <children>
-                              <TextField fx:id="lieuPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="274.0">
+                              <TextField fx:id="lieuPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="274.0" styleClass="text-input" stylesheets="@css/style.css">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -237,7 +247,7 @@
                         </VBox>
                         <VBox prefHeight="82.0" prefWidth="270.0">
                            <children>
-                              <TextField fx:id="TextPub" alignment="TOP_CENTER">
+                              <TextField fx:id="TextPub" alignment="TOP_CENTER" styleClass="text-input" stylesheets="@css/style.css">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -262,7 +272,7 @@
                               <VBox prefHeight="64.0" prefWidth="271.0">
                                  <children>
                                     <Label />
-                                    <TextField fx:id="photoPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="270.0">
+                                    <TextField fx:id="photoPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="270.0" styleClass="text-input" stylesheets="@css/style.css">
                                        <VBox.margin>
                                           <Insets top="12.0" />
                                        </VBox.margin>
@@ -297,12 +307,31 @@
                      </children>
                   </VBox>
 
-
                </children>
             </VBox>
             <VBox alignment="CENTER">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPub" prefHeight="34.0" prefWidth="70.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Ajouter" textAlignment="CENTER" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPub" prefHeight="34.0" prefWidth="70.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Ajouter" textAlignment="CENTER" />
+                        <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#retour" styleClass="btn-icone" stylesheets="@css/style.css" textAlignment="RIGHT">
+                           <graphic>
+                              <HBox alignment="CENTER">
+                                 <children>
+                                    <ImageView fitHeight="36.0" fitWidth="36.0">
+                                       <image>
+                                          <Image url="@icons/previous.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </HBox>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="35.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
 
                </children>
             </VBox>

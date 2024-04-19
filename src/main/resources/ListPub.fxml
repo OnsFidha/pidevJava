@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" stylesheets="css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ListPub">
+<AnchorPane prefHeight="625.0" prefWidth="1451.0" style="-fx-background-color: #F5EDE6;" stylesheets="css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ListPub">
    <children>
       <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
          <effect>
@@ -177,15 +177,15 @@
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="238.0" layoutY="171.0" prefHeight="422.0" prefWidth="1206.0" style="-fx-background-color: transparent;">
+      <ScrollPane layoutX="238.0" layoutY="171.0" prefHeight="430.0" prefWidth="1206.0" style="-fx-background-color: #F5EDE6;">
          <content>
-            <GridPane fx:id="pubList" hgap="10" style="-fx-background-color: #FEFCF3;" vgap="10" />
+            <GridPane fx:id="pubList" hgap="10" style="-fx-background-color: #F5EDE6;" vgap="10" />
          </content>
          <padding>
             <Insets bottom="20.0" left="1.0" right="1.0" top="20.0" />
          </padding>
       </ScrollPane>
-      <Button fx:id="btnAdd" layoutX="1052.0" layoutY="145.0" mnemonicParsing="false" onAction="#add"  styleClass="btn-nrml" text="Ajouter Publication" />
+      <Button fx:id="btnAdd" layoutX="1052.0" layoutY="145.0" mnemonicParsing="false" onAction="#add" styleClass="btn-nrml" text="Ajouter Publication" />
    </children>
 
 </AnchorPane>

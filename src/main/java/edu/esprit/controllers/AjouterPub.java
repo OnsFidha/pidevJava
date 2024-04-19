@@ -26,7 +26,6 @@ import javafx.stage.FileChooser;
 public class AjouterPub {
     private URL location;
 
-
     @FXML
     private TextField TextPub;
 
@@ -50,19 +49,31 @@ public class AjouterPub {
 
     @FXML
     private Label typeError;
+
     @FXML
     private ImageView imagePub;
+
     @FXML
-    private TextField typePub;
+    private ComboBox typePub;
 
 
-
+    @FXML
+    void retour() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+            Parent root = loader.load();
+            lieuPub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @FXML
     void addPub(ActionEvent event) throws SQLException {
         boolean isValid = true; // Variable pour suivre l'état de la validation
+        String selectedType = (String) typePub.getValue(); // Récupérer la valeur sélectionnée dans la ComboBox
 
         // Vérification du champ Type de publication
-        if (typePub.getText().isEmpty()) {
+        if (selectedType.isEmpty()) {
             typeError.setText("Veuillez entrer un type de publication.");
             isValid = false;
         } else {
@@ -102,7 +113,7 @@ public class AjouterPub {
 
         // Si tous les champs sont remplis, ajouter la publication
         if (isValid) {
-            Publication p = new Publication(typePub.getText(), TextPub.getText(), lieuPub.getText(), 2, photoPub.getText());
+            Publication p = new Publication(selectedType, TextPub.getText(), lieuPub.getText(), 2, photoPub.getText());
             PublicationService ps = new PublicationService();
             try {
                 ps.ajouter(p);
