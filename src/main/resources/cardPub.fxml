@@ -10,33 +10,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="reclamCard" prefHeight="262.0" prefWidth="284.0" style="-fx-background-color: #FEFCF3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.CardController">
+<AnchorPane id="reclamCard" prefHeight="270.0" prefWidth="301.0" style="-fx-background-radius: 20;" styleClass="reclamCard" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.CardController">
    <children>
-      <VBox alignment="CENTER" onMouseClicked="#onclick" prefHeight="200.0" prefWidth="231.0">
+      <VBox alignment="CENTER" layoutX="26.0" layoutY="23.0" onMouseClicked="#onclick" prefHeight="338.0" prefWidth="280.0" style="-fx-background-radius: 20;" styleClass="cardVBox">
          <children>
-            <ImageView fx:id="imgPub" fitHeight="182.0" fitWidth="262.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgPub" fitHeight="460.0" fitWidth="316.0" pickOnBounds="true" preserveRatio="true" styleClass="cardImage" VBox.vgrow="ALWAYS">
                <image>
                   <Image url="@img/Event5.png" />
                </image>
             </ImageView>
-            <Label fx:id="DateCreation" text="Label">
+            <Label fx:id="DateCreation" styleClass="cardLabel" text="Label">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="101.0" text="Date création:" textAlignment="CENTER">
+                  <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="105.0" styleClass="innerLabel" text="Date création:" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                </graphic>
             </Label>
-            <Label fx:id="userPub" layoutX="130.0" layoutY="192.0" text="User xxx">
+            <Label fx:id="userPub" layoutX="130.0" layoutY="192.0" styleClass="cardLabel" text="Ons Noussa">
                <font>
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="100.0" text="Publiée par" textAlignment="CENTER">
+                  <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="20.0" prefWidth="79.0" styleClass="innerLabel" text="Publiée par" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

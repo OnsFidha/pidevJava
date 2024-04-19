@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ListPub">
+<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" stylesheets="css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ListPub">
    <children>
       <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
          <effect>
@@ -139,7 +139,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Reclamation" >
+                  <Label text="Reclamation">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -154,7 +154,7 @@
             </HBox>
          </children>
       </VBox>
-      <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="991.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+      <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="1230.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
          <effect>
             <DropShadow>
                <color>
@@ -172,20 +172,20 @@
 
          </children>
       </HBox>
-      <Label alignment="CENTER" layoutX="495.0" layoutY="103.0" text="Publications" >
+      <Label alignment="CENTER" layoutX="694.0" layoutY="115.0" styleClass="title-style" stylesheets="@css/style.css" text="Les publications">
          <font>
             <Font name="Arial Bold" size="36.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="230.0" layoutY="167.0" prefHeight="421.0" prefWidth="959.0" style="-fx-background-color: transparent;">
+      <ScrollPane layoutX="238.0" layoutY="171.0" prefHeight="422.0" prefWidth="1206.0" style="-fx-background-color: transparent;">
          <content>
-            <GridPane fx:id="pubList" hgap="10" vgap="10" />
+            <GridPane fx:id="pubList" hgap="10" style="-fx-background-color: #FEFCF3;" vgap="10" />
          </content>
          <padding>
             <Insets bottom="20.0" left="1.0" right="1.0" top="20.0" />
          </padding>
       </ScrollPane>
-      <Button fx:id="btnAdd" layoutX="1052.0" layoutY="145.0" mnemonicParsing="false" onAction="#add" text="Ajouter Publication" />
+      <Button fx:id="btnAdd" layoutX="1052.0" layoutY="145.0" mnemonicParsing="false" onAction="#add"  styleClass="btn-nrml" text="Ajouter Publication" />
    </children>
 
 </AnchorPane>

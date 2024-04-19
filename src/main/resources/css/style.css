@@ -4,6 +4,105 @@
 .bg{
     -fx-background-color: #FEFCF3;
 }
+.small-button {
+    -fx-pref-width: 35px;
+-fx-pref-height: 35px;
+}
+.btn-icone {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-radius: 0; /* Assurez-vous que le rayon de fond est à 0 pour éliminer tout contour arrondi */
+}
+.btn-nrml{
+    -fx-text-fill: white;
+    -fx-background-color: #ff9f5e;
+    -fx-background-radius: 10;
+}
+.comment-text {
+    -fx-font-size: 14px;
+    /* Autres styles de texte */
+}
+
+.user-label {
+    -fx-font-size: 12px;
+    /* Autres styles de texte */
+}
+.comment-card {
+    -fx-background-color: #FEFCF3; /* Changer la couleur de fond */
+     /* Ajouter un padding */
+    -fx-border-radius: 10px;
+    -fx-border-color:pink;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, #FEFCF3, 10, 0.5, 0, 0);
+    /* Autres styles de la carte */
+}
+
+.error{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+.label-title {
+    -fx-font-size:17 px; /* Taille de police */
+    -fx-text-fill: #1E1E1E; /* Couleur du texte */
+    -fx-padding: 2px; /* Rembourrage */
+}#reclamCard {
+     -fx-background-color: #FEFCF3; /* Couleur de fond de la carte */
+     -fx-border-color: #FEFCF3 ; /* Couleur de la bordure */
+     -fx-border-width: 1px; /* Largeur de la bordure */
+     -fx-border-radius: 20px; /* Rayon de la bordure */
+     -fx-padding: 15px; /* Espacement interne */
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2); /* Ombre portée */
+ }
+
+#reclamCard:hover {
+    -fx-background-color: pink; /* Couleur de fond au survol */
+    -fx-border-radius: 20px; /* Rayon de la bordure au survol */
+}
+
+.title-style {
+    -fx-font-size: 36px; /* Taille de police */
+    -fx-text-fill: #333333; /* Couleur du texte */
+    -fx-font-family: Raleway, Arial, Helvetica, sans-serif;/* Police */
+
+    -fx-line-spacing: 1.7; /* Espacement des lignes */
+    /* Ajoutez d'autres propriétés CSS selon vos préférences */
+}
+
+.comment-container{
+    -fx-background-color: #F9A936; /* Couleur de fond du conteneur */
+    -fx-padding: 10px; /* Espacement intérieur du conteneur */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-radius: 10px; /* Rayon des coins de la bordure */
+}
+.vbox-container {
+    -fx-background-color: #FEFCF3; /* Couleur de fond du conteneur */
+    -fx-padding: 10px; /* Espacement intérieur du conteneur */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-color: #ccc; /* Couleur de la bordure */
+    -fx-border-radius: 10px; /* Rayon des coins de la bordure */
+}
+
+#imgPub {
+    -fx-fit-width: 100%; /* Adapter la largeur de l'image à la carte */
+    -fx-fit-height: 182.0; /* Hauteur fixe de l'image */
+    -fx-alignment: center;
+}
+
+.label-style {
+    -fx-font-size: 14px; /* Taille de police */
+    -fx-font-weight: bold; /* Gras */
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+.label-value {
+    -fx-font-size: 15px; /* Taille de police */
+    -fx-text-fill: #555555; /* Couleur du texte */
+    -fx-padding: 2px; /* Rembourrage */
+}
+.btn-icone .icon {
+    -fx-padding: 5; /* Ajoutez un remplissage pour un peu d'espace autour de l'icône */
+}
 .shadow{
     -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10,0,0,10);
 }
@@ -58,8 +157,10 @@
     -fx-focus-color: transparent; /* Supprime la couleur du focus */
     -fx-background-color: transparent; /* Supprime le fond du textfield */
     -fx-padding: 0; /* Supprime l'espacement interne */
+    -fx-alignment: left;
 }
 .comment-textfield:readonly {
+    -fx-alignment: left;
     -fx-border-color: transparent; /* Supprime la bordure */
     -fx-background-color: transparent; /* Supprime le fond */
     -fx-padding: 0; /* Supprime l'espacement interne */

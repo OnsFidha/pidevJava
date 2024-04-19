@@ -99,6 +99,7 @@ public class ListPub implements Initializable {
                 pub.setTextPub(publication.getText());
                 pub.setLieuPub(publication.getLieu());
                 pub.setDateCreationPub(new Date());
+                pub.setPhoto(publication.getPhoto());
                 pub.setDateModificationPub(new Date());
                 pubList.getScene().setRoot(root);
             } catch (IOException e) {

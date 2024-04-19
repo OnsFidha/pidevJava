@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -176,81 +177,158 @@
 
             </children>
         </HBox>
-      <AnchorPane layoutX="330.0" layoutY="170.0" prefHeight="386.0" prefWidth="703.0">
+      <AnchorPane layoutX="277.0" layoutY="170.0" prefHeight="472.0" prefWidth="775.0" style="-fx-background-color: #FEFCF3;">
          <children>
-                 <GridPane fx:id="details" prefHeight="471.0" prefWidth="708.0" styleClass="bg" stylesheets="@css/style.css" visible="true">
+                 <GridPane fx:id="details" layoutX="-2.0" layoutY="-1.0" prefHeight="472.0" prefWidth="775.0" styleClass="bg" stylesheets="@css/style.css" visible="true">
                   <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.5999755859375" minWidth="10.0" prefWidth="251.5999755859375" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="185.800048828125" minWidth="10.0" prefWidth="174.40003662109376" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.60003662109375" minWidth="10.0" prefWidth="154.3999633789062" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.60003662109375" minWidth="10.0" prefWidth="154.3999633789062" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="289.5999755859375" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.39999999999998" minWidth="10.0" prefWidth="188.80002441406248" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.60003662109375" minWidth="10.0" prefWidth="53.80001220703127" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.00003662109373" minWidth="10.0" prefWidth="223.19998779296873" />
                   </columnConstraints>
                   <rowConstraints>
-                      <RowConstraints maxHeight="87.99999694824218" minHeight="10.0" prefHeight="86.39999084472656" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="87.39999389648438" minHeight="0.0" prefHeight="80.79999389648438" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="220.79999389648438" minHeight="0.0" prefHeight="98.40000610351564" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="87.99999694824218" minHeight="10.0" prefHeight="60.199987792968756" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="107.4" minHeight="10.0" prefHeight="82.60001220703126" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="97.19999389648439" minHeight="0.0" prefHeight="97.19999389648439" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="220.79999389648438" minHeight="0.0" prefHeight="62.800006103515614" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="206.5999816894531" minHeight="0.0" prefHeight="107.19999389648439" vgrow="SOMETIMES" />
                       <RowConstraints maxHeight="245.0000061035156" minHeight="0.0" prefHeight="101.39995727539065" vgrow="ALWAYS" />
                   </rowConstraints>
                   <children>
-                      <ImageView fitHeight="188.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                      <ImageView fx:id="imagePub" fitHeight="314.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                           <image>
-                              <Image url="@imgPub/gallery-11.jpg" />
+                              <Image url="@img/notfound.jpg" />
                           </image>
                       </ImageView>
-                      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="70.0" prefWidth="139.0" GridPane.columnIndex="1">
+                      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="70.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                           <children>
-                              <Label prefHeight="18.0" prefWidth="70.0" text="Type: " />
-                              <Label fx:id="typePub" text="Label" />
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                        </ImageView>
+                              <Label prefHeight="26.0" prefWidth="54.0" styleClass="label-value" stylesheets="@css/style.css" text="Type: " />
+                              <Label fx:id="typePub" prefHeight="58.0" prefWidth="99.0" styleClass="label-title" text="Label" />
                           </children>
                       </FlowPane>
-                      <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                      <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
                           <children>
-                              <Label prefHeight="18.0" prefWidth="70.0" text="Lieu:" />
-                              <Label fx:id="lieuPub" text="Label" />
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                        </ImageView>
+                              <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="55.0" styleClass="label-value" text="Lieu:" />
+                              <Label fx:id="lieuPub" prefHeight="98.0" prefWidth="102.0" styleClass="label-title" text="Label" wrapText="true" />
                           </children>
                       </FlowPane>
-                      <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="3">
+                      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="74.0" prefWidth="168.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
                           <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" text="Date de création:      " textAlignment="CENTER" />
-                              <Label fx:id="dateCreationPub" accessibleRole="DATE_PICKER" text="Label" />
+                        <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </ImageView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="84.0" styleClass="label-value" text="Date de création:" wrapText="true" />
+                              <Label fx:id="dateCreationPub" accessibleRole="DATE_PICKER" prefHeight="42.0" prefWidth="100.0" styleClass="label-title" text="Label" />
                           </children>
                       </FlowPane>
-                      <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
                           <children>
-                              <Label text="Date de modification:" />
-                              <Label fx:id="dateModificationPub" accessibleRole="DATE_PICKER" text="Label" />
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                        </ImageView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="91.0" styleClass="label-value" text="Date de modification:" wrapText="true" />
+                              <Label fx:id="dateModificationPub" accessibleRole="DATE_PICKER" prefHeight="46.0" prefWidth="88.0" styleClass="label-title" text="Label" />
                           </children>
                       </FlowPane>
-                      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="187.0" prefWidth="463.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="187.0" prefWidth="463.0" styleClass="label-title" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
                           <children>
-                              <Label fx:id="textPub" text="Publication text" textAlignment="CENTER" />
+                              <Label fx:id="textPub" alignment="CENTER" prefHeight="130.0" prefWidth="224.0" styleClass="label-value" text="Publication text" wrapText="true" />
                           </children>
                       </FlowPane>
-                      <Button fx:id="btn" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#retour" text="Retour" GridPane.columnIndex="3" GridPane.rowIndex="4" GridPane.valignment="TOP" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#modify" text="Modifier" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
+                      <Button alignment="CENTER" contentDisplay="CENTER" onAction="#modify" styleClass="btn-icone" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="39.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/edit.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#delete" text="Supprimer" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="TOP">
-                     <GridPane.margin>
-                        <Insets />
-                     </GridPane.margin>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#showComments" text="Commentaire" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="BOTTOM">
-                     <GridPane.margin>
-                        <Insets bottom="10.0" />
-                     </GridPane.margin>
-                  </Button>
+      
+                      <Button mnemonicParsing="false" onAction="#delete" styleClass="btn-icone" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/delete.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
+                      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#showComments" styleClass="btn-icone" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/feedback.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
+                      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#retour" styleClass="btn-icone" stylesheets="@css/style.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/previous.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
                   </children>
               </GridPane>
-            <AnchorPane fx:id="comments" layoutX="-3.0" layoutY="-1.0" prefHeight="472.0" prefWidth="710.0" styleClass="bg" stylesheets="@css/style.css" visible="false">
+            <AnchorPane fx:id="comments" layoutX="-3.0" layoutY="-1.0" prefHeight="472.0" prefWidth="775.0" styleClass="comment-container" stylesheets="@css/style.css" visible="false">
                <children>
                   <Text layoutX="277.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les commentaires" textAlignment="CENTER" />
-                  <Button layoutX="682.0" mnemonicParsing="false" onAction="#hideComments" prefHeight="26.0" prefWidth="28.0" text="X" />
                </children>
+               <styleClass>
+                  <String fx:value="comment-container" />
+                  <String fx:value="comment-card" />
+               </styleClass>
             </AnchorPane>
+            <Button alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="738.0" mnemonicParsing="false" onAction="#hideComments" prefHeight="26.0" prefWidth="28.0" styleClass="btn-icone" stylesheets="@css/style.css">
+             <graphic>
+                 <HBox alignment="CENTER">
+                     <children>
+                         <ImageView fitHeight="36.0" fitWidth="36.0">
+                             <image>
+                                 <Image url="@icons/previous.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                             </image>
+                         </ImageView>
+                     </children>
+                 </HBox>
+             </graphic>
+            </Button>
          </children>
       </AnchorPane>
       <ScrollBar layoutX="1191.0" layoutY="300.0" orientation="VERTICAL" prefHeight="194.0" prefWidth="14.0" />

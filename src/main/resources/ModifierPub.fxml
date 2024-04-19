@@ -172,32 +172,33 @@
 
             </children>
         </HBox>
-        <VBox layoutX="221.0" layoutY="115.0" prefHeight="440.0" prefWidth="967.0">
+        <VBox alignment="CENTER" layoutX="453.0" layoutY="124.0" prefHeight="430.0" prefWidth="677.0">
             <children>
                 <VBox alignment="CENTER" prefHeight="58.0" prefWidth="967.0">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" text="Ajouter une publication" />
                     </children>
                 </VBox>
-                <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="258.0" prefWidth="967.0">
+                <VBox fillWidth="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="274.0" prefWidth="530.0">
                     <opaqueInsets>
                         <Insets left="20.0" right="20.0" />
                     </opaqueInsets>
                     <children>
-                        <HBox alignment="CENTER" prefHeight="84.0" prefWidth="971.0">
+                        <HBox alignment="CENTER" prefHeight="68.0" prefWidth="554.0">
                             <children>
                                 <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
                                     <children>
                                         <Label text="Type:" />
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="84.0" prefWidth="255.0">
+                                <VBox prefHeight="64.0" prefWidth="266.0">
                                     <children>
-                                        <TextField fx:id="typePub" alignment="TOP_CENTER">
+                                        <TextField fx:id="typePub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="267.0">
                                             <VBox.margin>
                                                 <Insets top="15.0" />
                                             </VBox.margin>
                                         </TextField>
+                                        <Label fx:id="typeError" styleClass="error" stylesheets="@css/style.css" />
                                     </children>
                                 </VBox>
                             </children>
@@ -205,20 +206,21 @@
                                 <Insets left="20.0" />
                             </padding>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="971.0">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="61.0" prefWidth="562.0">
                             <children>
                                 <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
                                     <children>
-                                        <Label text="Lieu:" />
+                                        <Label prefHeight="18.0" prefWidth="34.0" text="Lieu:" />
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="84.0" prefWidth="255.0">
+                                <VBox prefHeight="64.0" prefWidth="268.0">
                                     <children>
-                                        <TextField fx:id="lieuPub" alignment="TOP_CENTER">
+                                        <TextField fx:id="lieuPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="274.0">
                                             <VBox.margin>
                                                 <Insets top="15.0" />
                                             </VBox.margin>
                                         </TextField>
+                                        <Label fx:id="lieuError" styleClass="error" stylesheets="@css/style.css" />
                                     </children>
                                 </VBox>
                             </children>
@@ -226,20 +228,21 @@
                                 <Insets left="20.0" />
                             </padding>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="84.0" prefWidth="971.0">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="560.0">
                             <children>
-                                <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                <VBox alignment="CENTER" prefHeight="68.0" prefWidth="262.0">
                                     <children>
-                                        <Label text="Description:" />
+                                        <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="102.0" text="Description:" textAlignment="RIGHT" />
                                     </children>
                                 </VBox>
-                                <VBox prefHeight="84.0" prefWidth="255.0">
+                                <VBox prefHeight="82.0" prefWidth="270.0">
                                     <children>
                                         <TextField fx:id="TextPub" alignment="TOP_CENTER">
                                             <VBox.margin>
                                                 <Insets top="15.0" />
                                             </VBox.margin>
                                         </TextField>
+                                        <Label fx:id="descError" styleClass="error" stylesheets="@css/style.css" />
                                     </children>
                                 </VBox>
                             </children>
@@ -249,34 +252,44 @@
                         </HBox>
                         <VBox alignment="CENTER" layoutX="10.0" layoutY="178.0" prefHeight="84.0" prefWidth="971.0">
                             <children>
-                                <HBox alignment="CENTER" prefHeight="84.0" prefWidth="971.0">
+                                <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="81.0" prefWidth="602.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                                        <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="81.0" prefWidth="220.0">
                                             <children>
-                                                <Label text="Photo:" />
+                                                <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="63.0" text="Photo:" />
                                             </children>
                                         </VBox>
-                                        <VBox prefHeight="84.0" prefWidth="255.0">
+                                        <VBox prefHeight="64.0" prefWidth="271.0">
                                             <children>
-                                                <TextField fx:id="photoPub" alignment="TOP_CENTER">
+                                                <Label />
+                                                <TextField fx:id="photoPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="270.0">
                                                     <VBox.margin>
                                                         <Insets top="12.0" />
                                                     </VBox.margin>
                                                 </TextField>
+                                                <Label fx:id="photoError" styleClass="error" stylesheets="@css/style.css" />
                                             </children>
                                         </VBox>
+                                        <Button onAction="#choose_file" styleClass="btn-icone" stylesheets="css/style.css">
+                                            <graphic>
+                                                <HBox alignment="CENTER">
+                                                    <children>
+                                                        <ImageView fitHeight="30.0" fitWidth="30.0">
+                                                            <image>
+                                                                <Image url="@icons/download.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                                            </image>
+                                                            <HBox.margin>
+                                                                <Insets left="10.0" />
+                                                            </HBox.margin>
+                                                        </ImageView>
+                                                    </children>
+                                                </HBox>
+                                            </graphic>
+
+                                        </Button>
                                     </children>
-                                    <padding>
-                                        <Insets left="20.0" />
-                                    </padding>
                                 </HBox>
-                                <HBox alignment="CENTER">
-                                    <children>
-                                        <Button onAction="#choose_file" text="Sélectionner une photo">
-                                            <HBox.margin>
-                                                <Insets top="15.0" />
-                                            </HBox.margin></Button>
-                                    </children>
+                                <HBox alignment="CENTER" prefHeight="2.0" prefWidth="813.0">
                                     <padding>
                                         <Insets left="20.0" />
                                     </padding>
@@ -287,9 +300,20 @@
 
                     </children>
                 </VBox>
-                <Button  alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ModifyPub" text="Modifier" textAlignment="CENTER" />
+                <VBox alignment="CENTER">
+                    <children>
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#ModifyPub" prefHeight="34.0" prefWidth="70.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Modifier" textAlignment="CENTER" />
+
+                    </children>
+                </VBox>
             </children>
         </VBox>
+        <ImageView fx:id="imagePub" fitHeight="192.0" fitWidth="234.0" layoutX="287.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@img/notfound.jpg" />
+            </image>
+        </ImageView>
+
 
     </children>
 </AnchorPane>
