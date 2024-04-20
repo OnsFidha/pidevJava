@@ -22,7 +22,7 @@
 
 <AnchorPane prefHeight="619.0" prefWidth="1238.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEvent">
     <children>
-        <VBox prefHeight="616.0" prefWidth="203.0" style="-fx-background-color: #FEFCF3;">
+        <VBox prefHeight="616.0" prefWidth="203.0" style="-fx-background-color: #FEFCF3;" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1035.0" AnchorPane.topAnchor="0.0">
             <effect>
                 <DropShadow />
             </effect>
@@ -155,7 +155,7 @@
                 </HBox>
             </children>
         </VBox>
-        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="997.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="997.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;" AnchorPane.bottomAnchor="526.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
             <effect>
                 <DropShadow>
                     <color>
@@ -173,7 +173,7 @@
 
             </children>
         </HBox>
-      <VBox layoutX="217.0" layoutY="101.0" prefHeight="510.0" prefWidth="1000.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css">
+      <VBox layoutX="217.0" layoutY="101.0" prefHeight="510.0" prefWidth="1000.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">
                <children>
@@ -230,7 +230,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1293.0">
                      <children>
-                        <GridPane fx:id="eventgrid" layoutX="-5.0" layoutY="-2.0" prefHeight="600.0" prefWidth="1023.0">
+                        <GridPane fx:id="eventgrid" layoutX="-5.0" layoutY="-2.0" prefHeight="600.0" prefWidth="1023.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="275.0" AnchorPane.topAnchor="0.0">
                           <rowConstraints>
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>

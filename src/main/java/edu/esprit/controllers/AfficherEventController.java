@@ -1,9 +1,12 @@
 package edu.esprit.controllers;
 
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
+import edu.esprit.service.FeedbackService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -12,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -20,6 +25,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class AfficherEventController {
     @FXML
@@ -45,10 +51,14 @@ public class AfficherEventController {
 
     @FXML
     private ImageView userimg;
+    @FXML
+    private GridPane feedbackgrid;
 
     @FXML
     private Label username;
     private Evenement event;
+    private List<Feedback> feedbacks;
+    private FeedbackService feedbackService = new FeedbackService();
     @FXML
     void initialize() {
 
@@ -87,8 +97,109 @@ public class AfficherEventController {
         nbrmax.setText(Integer.toString(event.getNbreMax()));
         this.event = event;
 
+        FeedbackService feedbackService = new FeedbackService();
+
+        try {
+            feedbacks = feedbackService.getAllById(event.getId());
+
+
+            // Clear existing feedbacks from the grid pane
+            feedbackgrid.getChildren().clear();
+
+            int columns = 0;
+            int rows = 1;
+
+            for (Feedback feedback : feedbacks) {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FeedbackCard.fxml"));
+                VBox feedbackbox = fxmlLoader.load();
+
+                FeedbackController feedbackController = fxmlLoader.getController();
+                feedbackController.setData(feedback);
+
+                if (columns == 1) {
+                    columns = 0;
+                    rows++;
+                }
+
+                feedbackgrid.add(feedbackbox, columns++, rows);
+                GridPane.setMargin(feedbackbox, new Insets(10));
+            }
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+            // Handle any potential errors here
+        }
+
 
     }
+    @FXML
+    void AddFb(MouseEvent event) {
+        try {
+            // Load the event page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddFeedback.fxml"));
+            Parent root = loader.load();
+            // Get the ListFeedbacks controller
+            AddFeedback controller = loader.getController();
+
+            // Set the event ID
+            controller.setEventId(this.event.getId());
+
+//            // Pass any necessary data back to the event page
+//            AfficherEventController eventPageController = loader.getController();
+//            eventPageController.setEventData(eventId);
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the event page. Please try again.");
+            alert.showAndWait();
+        }
+
+    }
+
+//    public void setEventId(int eventId) {
+//        // Use the event ID to retrieve the corresponding feedbacks
+//        FeedbackService feedbackService = new FeedbackService();
+//
+//        try {
+//            feedbacks = feedbackService.getAllById(eventId);
+//
+//
+//            // Clear existing feedbacks from the grid pane
+//            feedbackgrid.getChildren().clear();
+//
+//            int columns = 0;
+//            int rows = 1;
+//
+//            for (Feedback feedback : feedbacks) {
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FeedbackCard.fxml"));
+//                VBox feedbackbox = fxmlLoader.load();
+//
+//                FeedbackController feedbackController = fxmlLoader.getController();
+//                feedbackController.setData(feedback);
+//
+//                if (columns == 1) {
+//                    columns = 0;
+//                    rows++;
+//                }
+//
+//                feedbackgrid.add(feedbackbox, columns++, rows);
+//                GridPane.setMargin(feedbackbox, new Insets(10));
+//            }
+//        } catch (IOException | SQLException e) {
+//            e.printStackTrace();
+//            // Handle any potential errors here
+//        }
+//    }
 
 
     public void setEventData(int id) {
@@ -98,14 +209,24 @@ public class AfficherEventController {
 //            Image image = new Image(getClass().getResourceAsStream(event.getImage()));
 ////            Image image = new Image("/img/Event5.png");
 //            EventImage.setImage(image);
-        if (event.getImage() != null) {
-            Image image = new Image(event.getImage());
-            eventimg.setImage(image);
-        } else {
-            // Handle the case where image path is null
-            // For example, set a default image or display an error message
-            System.err.println("Image path is null for the event: " + event.getNom());
-        }
+            if (event != null) {
+                setData(event);
+            }
+            if (event.getImage() != null) {
+                try {
+                    // Prepend "file:///" to the file path
+                    String imagePath = "file:///" + event.getImage();
+                    Image image = new Image(imagePath);
+                    eventimg.setImage(image);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.err.println("Failed to load image for the event: " + event.getNom());
+                }
+            } else {
+                // Handle the case where image path is null
+                // For example, set a default image or display an error message
+                System.err.println("Image path is null for the event: " + event.getNom());
+            }
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
         Image image = new Image("/img/user2.png");

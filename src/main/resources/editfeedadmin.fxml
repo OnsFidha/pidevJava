@@ -8,60 +8,66 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="429.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.editFeedAdmin">
-    <children>
-        <HBox alignment="CENTER_LEFT" prefHeight="83.0" prefWidth="303.0" spacing="100.0" style="-fx-background-color: #abd6ac;">
-            <children>
-                <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@icons/arrow.png" />
-                    </image>
-                    <HBox.margin>
-                        <Insets left="10.0" />
-                    </HBox.margin>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </ImageView>
-                <Label text="Feedback" textFill="WHITE">
-                    <font>
-                        <Font name="Segoe UI" size="34.0" />
-                    </font>
-                </Label>
-            </children>
-        </HBox>
-        <VBox>
-            <children>
-                <Label style="-fx-font-weight: bold;" text="Modifier votre feedback" textFill="#99bf9a">
-                    <VBox.margin>
-                        <Insets left="12.0" top="20.0" />
-                    </VBox.margin>
-                </Label>
-                <TextArea fx:id="TextFeed" prefHeight="150.0" prefWidth="400.0" promptText="Entrer votre feedback ici..." style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5px;">
-                    <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="10.0" />
-                    </VBox.margin>
-                </TextArea>
-                <Button mnemonicParsing="false" onMouseClicked="#UpdateFeed" prefHeight="31.0" prefWidth="126.0" style="-fx-background-color: #abd6ac;" stylesheets="@css/styles.css" text="Modifier" textFill="WHITE">
-                    <VBox.margin>
-                        <Insets left="150.0" top="30.0" />
-                    </VBox.margin>
-                    <styleClass>
-                        <String fx:value="mouse-moved2" />
-                        <String fx:value="rect-round" />
-                    </styleClass>
-                    <font>
-                        <Font name="Segoe UI Historic" size="15.0" />
-                    </font>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </Button>
-            </children>
-        </VBox>
-    </children>
-</VBox>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.editFeedAdmin">
+   <children>
+      <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="377.0" prefWidth="429.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+          <children>
+              <HBox alignment="CENTER_LEFT" prefHeight="83.0" prefWidth="303.0" spacing="100.0" style="-fx-background-color: #73c987;">
+                  <children>
+                      <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@icons/arrow.png" />
+                          </image>
+                          <HBox.margin>
+                              <Insets left="10.0" />
+                          </HBox.margin>
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                      </ImageView>
+                      <Label text="Feedback" textFill="WHITE">
+                          <font>
+                              <Font name="Segoe UI" size="34.0" />
+                          </font>
+                      </Label>
+                  </children>
+              </HBox>
+              <VBox alignment="CENTER">
+                  <children>
+                      <Label style="-fx-font-weight: bold;" text="Modifier votre feedback" textFill="#73c987">
+                          <VBox.margin>
+                              <Insets top="20.0" />
+                          </VBox.margin>
+                      </Label>
+                      <TextArea fx:id="TextFeed" prefHeight="150.0" prefWidth="400.0" promptText="Entrer votre feedback ici..." style="-fx-font-size: 14px; -fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5px;">
+                          <VBox.margin>
+                              <Insets left="10.0" right="10.0" top="10.0" />
+                          </VBox.margin>
+                      </TextArea>
+                      <Button mnemonicParsing="false" onMouseClicked="#UpdateFeed" prefHeight="31.0" prefWidth="126.0" style="-fx-background-color: #73c987;" stylesheets="@css/styles.css" text="Modifier" textFill="WHITE">
+                          <VBox.margin>
+                              <Insets top="30.0" />
+                          </VBox.margin>
+                          <styleClass>
+                              <String fx:value="mouse-moved2" />
+                              <String fx:value="rect-round" />
+                          </styleClass>
+                          <font>
+                              <Font name="Segoe UI Historic" size="15.0" />
+                          </font>
+                          <cursor>
+                              <Cursor fx:constant="HAND" />
+                          </cursor>
+                      </Button>
+                  </children>
+              </VBox>
+          </children>
+      </VBox>
+   </children>
+</AnchorPane>

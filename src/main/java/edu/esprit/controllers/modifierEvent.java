@@ -233,14 +233,19 @@ public class modifierEvent {
     }
 
     @FXML
-    void goBack(MouseEvent event) {
+    void goBack(MouseEvent mevent) {
         try {
             // Load the previous FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
             Parent root = loader.load();
+            // Get the AfficherEventController
+            AfficherEventController eventController = loader.getController();
+
+            // Pass the event data to the AfficherEventController
+            eventController.setEventData(this.event.getId());
 
             // Get the current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) mevent.getSource()).getScene().getWindow();
 
             // Set the new scene
             Scene scene = new Scene(root);

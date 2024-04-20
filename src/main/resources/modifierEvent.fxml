@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.modifierEvent">
     <children>
-        <VBox alignment="CENTER" layoutX="38.0" layoutY="83.0" spacing="30.0">
+        <VBox alignment="CENTER" layoutX="38.0" layoutY="83.0" spacing="30.0" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="48.0">
             <children>
                 <ImageView fx:id="eventimg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                     <VBox.margin>
@@ -39,7 +39,7 @@
                         </Button>
                     </children>
                 </HBox>
-                <HBox spacing="80.0">
+                <HBox alignment="CENTER" spacing="80.0">
                     <children>
                         <TextField fx:id="NomEvent" prefHeight="8.0" prefWidth="141.0" promptText="Nom" />
                         <TextArea fx:id="DescEvent" prefHeight="8.0" prefWidth="150.0" promptText="Description" />
@@ -48,7 +48,7 @@
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-                <HBox spacing="80.0">
+                <HBox alignment="CENTER" spacing="80.0">
                     <children>
                         <TextField fx:id="LieuEvent" prefHeight="8.0" prefWidth="141.0" promptText="Lieu" />
                         <TextField fx:id="NbrparticipantsEvent" prefHeight="8.0" prefWidth="141.0" promptText="Nombre de participants" />
@@ -57,7 +57,7 @@
                         <Insets left="20.0" />
                     </padding>
                 </HBox>
-                <HBox spacing="80.0">
+                <HBox alignment="CENTER" spacing="80.0">
                     <children>
                         <DatePicker fx:id="DDEvent" prefHeight="25.0" prefWidth="141.0" promptText="Date de début" />
                         <DatePicker fx:id="DFEvent" prefHeight="25.0" prefWidth="141.0" promptText="Date de fin" />
@@ -82,9 +82,9 @@
                 <Insets bottom="20.0" left="10.0" />
             </padding>
         </VBox>
-        <Pane prefHeight="79.0" prefWidth="487.0" style="-fx-background-color: #ff7e70;">
+        <Pane prefHeight="79.0" prefWidth="487.0" style="-fx-background-color: #ff7e70;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <children>
-                <Label contentDisplay="CENTER" layoutX="82.0" layoutY="18.0" text="Ajouter un évènement" textFill="WHITE">
+                <Label contentDisplay="CENTER" layoutX="65.0" layoutY="18.0" text="Modifier votre évènement" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="23.0" />
                     </font>

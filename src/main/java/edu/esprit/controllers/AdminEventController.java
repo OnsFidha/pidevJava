@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -43,12 +44,14 @@ public class AdminEventController {
     private Label username;
     @FXML
     private ImageView eventimg;
+
     private Evenement event;
 
     public void setData(Evenement event){
 
         if (event.getImage() != null) {
-            Image image = new Image(event.getImage());
+            String imagePath = "file:///" + event.getImage();
+            Image image = new Image(imagePath);
             eventimg.setImage(image);
         } else {
             // Handle the case where image path is null

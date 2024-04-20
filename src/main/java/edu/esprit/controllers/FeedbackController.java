@@ -95,12 +95,15 @@ public class FeedbackController {
             alert.showAndWait();
 
             // After successful deletion, navigate back to the events page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
             try {
                 Parent root = loader.load();
                 // Pass any necessary data back to the event page
-                ListFeedbacks list = loader.getController();
-                list.setEventId(feedback.getId_evenment());
+                // Get the AfficherEventController
+                AfficherEventController eventController = loader.getController();
+
+                // Pass the event data to the AfficherEventController
+                eventController.setEventData(feedback.getId_evenment());
 
                 // Get the current stage
                 Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();

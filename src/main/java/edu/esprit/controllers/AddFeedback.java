@@ -22,6 +22,8 @@ public class AddFeedback {
     @FXML
     private TextArea TextFeed;
     private int eventId;
+    private Evenement event= new Evenement();
+
 
     @FXML
     void Add(MouseEvent event) {
@@ -41,11 +43,14 @@ public class AddFeedback {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Votre feedback a été ajouté avec succées");
             alert.show();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
             try {
                 Parent root = loader.load();
-                ListFeedbacks list = loader.getController();
-                list.setEventId(eventId);
+                // Get the AfficherEventController
+                AfficherEventController eventController = loader.getController();
+
+                // Pass the event data to the AfficherEventController
+                eventController.setEventData(eventId);
 
                 // Get the current stage
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -87,19 +92,18 @@ public class AddFeedback {
     }
 
     @FXML
-    void goBack(MouseEvent event) {
+    void goBack(MouseEvent Mevent) {
         try {
             // Load the event page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
             Parent root = loader.load();
-            // Pass any necessary data back to the event page
-            ListFeedbacks list = loader.getController();
-            list.setEventId(eventId);
+            // Get the AfficherEventController
+            AfficherEventController eventController = loader.getController();
 
-
-
+            // Pass the event data to the AfficherEventController
+            eventController.setEventData(eventId);
             // Get the current stage
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
 
             // Set the new scene
             Scene scene = new Scene(root);

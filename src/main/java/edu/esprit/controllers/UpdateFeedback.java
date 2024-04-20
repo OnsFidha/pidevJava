@@ -57,11 +57,14 @@ public class UpdateFeedback {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Votre feedback a été modifié avec succées");
             alert.show();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
             try {
                 Parent root = loader.load();
-                ListFeedbacks list = loader.getController();
-                list.setEventId(eventId);
+                // Get the AfficherEventController
+                AfficherEventController eventController = loader.getController();
+
+                // Pass the event data to the AfficherEventController
+                eventController.setEventData(eventId);
 
                 // Get the current stage
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -98,11 +101,14 @@ public class UpdateFeedback {
     void goBack(MouseEvent event) {
         try {
             // Load the event page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListFeedbacks.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
             Parent root = loader.load();
             // Pass any necessary data back to the event page
-            ListFeedbacks list = loader.getController();
-            list.setEventId(eventId);
+            // Get the AfficherEventController
+            AfficherEventController eventController = loader.getController();
+
+            // Pass the event data to the AfficherEventController
+            eventController.setEventData(eventId);
 
 
 
