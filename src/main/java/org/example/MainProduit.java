@@ -14,11 +14,11 @@ public class MainProduit {
         //System.out.println(DataSource.getInstance());
         ////////////////Ajouter produit//////////////////////
         IService<Produit> sp= Serviceproduit.getInstance();
-        try {
-            sp.ajouter(new Produit(new Categorie(3, "musique", ""), -1, 10.50, "guitare", "outil de loisir1", "iamge path"));
-        }catch (IllegalArgumentException | SQLException ex){
-           System.out.println("vérifier les détails de produit");
-        }
+        //try {
+          //  sp.ajouter(new Produit(new Categorie(3, "musique", ""), -1, 10.50, "guitare", "outil de loisir1", "iamge path"));
+       // }catch (IllegalArgumentException | SQLException ex){
+          // System.out.println("vérifier les détails de produit");
+       // }
         //////////////Modifier produit/////////////////////////
         //sp.modifier(new Produit(4,new Categorie(3, "musique", ""), 5, 10.50, "guitare", "outil de loisir1", "iamge path"));
         ///////////////Supprimer produit//////////////////////////////////

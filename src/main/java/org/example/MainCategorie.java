@@ -14,7 +14,7 @@ public class  MainCategorie {
         ////////////////Ajouter categorie//////////////////////
         IService<Categorie> sc= Servicecategorie.getInstance();
 
-         sc.ajouter(new Categorie("Musique1","outil de loisir1"));
+         //sc.ajouter(new Categorie("Musique1","outil de loisir1"));
          //////////////Modifier categorie/////////////////////////
         //sc.modifier(new Categorie(2,"Peinture","outil"));
         ///////////////Supprimer categorie//////////////////////////////////

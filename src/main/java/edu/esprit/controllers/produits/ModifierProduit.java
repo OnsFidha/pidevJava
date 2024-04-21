@@ -63,7 +63,7 @@ public class ModifierProduit {
             serviceProduit.modifier(produit);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
-            alert.setContentText("Produit ajouté avec succès");
+            alert.setContentText("Produit modifié avec succés");
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {

@@ -16,6 +16,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -36,7 +37,14 @@ public class AfficherProduits implements Initializable {
     @FXML
     private Button ajouterProduitBtn;
 
+    @FXML
+    private BorderPane borderPanel;
+
     IService<Produit> serviceProduit = Serviceproduit.getInstance();
+
+    public void setBorderPanel(BorderPane borderPanel) {
+        this.borderPanel = borderPanel;
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -129,17 +137,8 @@ public class AfficherProduits implements Initializable {
     void goToAddProductView(ActionEvent event) {
         // Load the AnotherView.fxml file
         try {
-            // Load the AnotherView.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/ajouterProduit.fxml"));
-            Parent root = loader.load();
-
-            // Create a new scene with the loaded FXML file
-            Scene scene = new Scene(root);
-            scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
-            // Get the stage from the button and set the new scene
-            Stage stage = (Stage) ajouterProduitBtn.getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+            Parent root =  FXMLLoader.load(getClass().getResource("/produits/ajouterProduit.fxml"));
+            borderPanel.setCenter(root);
         } catch (IOException e) {
             displayAlertErreure("Error", "Il y a un problème lors de la redirection vers la bonne interface");
         }
