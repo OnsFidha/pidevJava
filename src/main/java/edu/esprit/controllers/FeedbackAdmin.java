@@ -10,6 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -77,45 +78,57 @@ public class FeedbackAdmin {
     }
     @FXML
     void Delete(MouseEvent Mevent) {
-        // Retrieve the id of the event to be deleted
-        int feedId = feedback.getId(); // Replace this with how you retrieve the event id
+        // Retrieve the id of the feedback to be deleted
+        int feedId = feedback.getId(); // Replace this with how you retrieve the feedback id
 
-        // Call the supprimer function in EvenementService
-        FeedbackService es = new FeedbackService();
-        try {
-            es.supprimer(feedId);
+        // Show a confirmation dialog before proceeding with deletion
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Confirmation");
+        confirmation.setHeaderText(null);
+        confirmation.setContentText("Êtes-vous sûr de vouloir supprimer ce feedback?");
 
-            // Show an alert message indicating successful deletion
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("L'événement a été supprimé avec succès.");
+        // Wait for the user's response
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // Call the supprimer function in FeedbackService
+                FeedbackService es = new FeedbackService();
+                try {
+                    es.supprimer(feedId);
 
-            // Show the alert and wait for the user's response
-            alert.showAndWait();
+                    // Show an alert message indicating successful deletion
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Ce feedback a été supprimé avec succés.");
 
-            // After successful deletion, navigate back to the events page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/lisfeedadmin.fxml"));
-            try {
-                Parent root = loader.load();
-                // Pass any necessary data back to the event page
-                listfeedbackadmin list = loader.getController();
-                list.setEventId(feedback.getId_evenment());
+                    // Show the alert and wait for the user's response
+                    alert.showAndWait();
 
-                // Get the current stage
-                Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
+                    // After successful deletion, navigate back to the events page
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/lisfeedadmin.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        // Pass any necessary data back to the event page
+                        // Get the AfficherEventController
+                        listfeedbackadmin list = loader.getController();
+                        list.setEventId(feedback.getId_evenment());
 
-                // Set the new scene
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Handle the IOException
+                        // Get the current stage
+                        Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
+
+                        // Set the new scene
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        // Handle the IOException
+                    }
+                } catch (SQLException e) {
+                    // Exception handling
+                }
             }
-        } catch (SQLException e) {
-            // Exception handling
-        }
+        });
     }
 
 }

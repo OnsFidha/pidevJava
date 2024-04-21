@@ -106,14 +106,36 @@ public class modifiereventadmin {
             return;
         }
 
-        Evenement ev=new Evenement(eventId,NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),event.getImage());
-        EvenementService es=new EvenementService();
+        // Check if the image has been changed
+        String oldImagePath = event.getImage(); // Get the current image path
+        Image currentImage = eventimg.getImage(); // Get the current image displayed in the ImageView
+        String newImagePath = null; // Initialize variable to store the new image path
+        if (currentImage != null) {
+            // Get the path of the new image
+            newImagePath = Nevent.getImage();
+            // If newImagePath is null, it means a new image has not been selected, so we keep the old image path
+            if (newImagePath == null) {
+                newImagePath = oldImagePath;
+            }
+        } else {
+            // Handle the case where the current image is null
+            // This might happen if the user previously deleted the image or if there was an error loading the image
+            // In this case, we keep the old image path
+            newImagePath = oldImagePath;
+        }
+
+        // Create the Evenement object with the updated image path
+        Evenement ev = new Evenement(eventId, NomEvent.getText(), DescEvent.getText(), LieuEvent.getText(),
+                Date.valueOf(DDEvent.getValue()), Date.valueOf(DFEvent.getValue()), 0,
+                Integer.parseInt(NbrparticipantsEvent.getText()), newImagePath);
+
+        EvenementService es = new EvenementService();
         try {
             es.modifier(ev);
-            Alert alert=new Alert(Alert.AlertType.INFORMATION);
-            alert.setContentText("L'évenement a été modifié avec succée");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("L'évenement a été modifié avec succès");
             alert.show();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
             try {
                 Parent root = loader.load();
 
@@ -124,27 +146,17 @@ public class modifiereventadmin {
                 Scene scene = new Scene(root);
                 stage.setScene(scene);
                 stage.show();
-            }
-//                Parent root=loader.load();
-//                AfficherEventController event= loader.getController();
-//                event.s(typePub.getText());
-//                pub.setTextPub(TextPub.getText());
-//                pub.setLieuPub(lieuPub.getText());
-//                pub.setDateCreationPub(new Date());
-//                pub.setDateModificationPub(new Date());
-//                lieuPub.getScene().setRoot(root);
-            catch (IOException e) {
+            } catch (IOException e) {
                 throw new RuntimeException(e);
             }
 
         } catch (SQLException e) {
-            Alert alert1=new Alert(Alert.AlertType.ERROR);
+            Alert alert1 = new Alert(Alert.AlertType.ERROR);
             alert1.setContentText(e.getMessage());
             alert1.show();
         }
-
-
     }
+
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Erreur");

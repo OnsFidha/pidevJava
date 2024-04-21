@@ -105,8 +105,25 @@ public class modifierEvent {
             showAlert("La date de début doit être avant la date de fin.");
             return;
         }
+        // Check if the image has been changed
+        String oldImagePath = event.getImage(); // Get the current image path
+        Image currentImage = eventimg.getImage(); // Get the current image displayed in the ImageView
+        String newImagePath = null; // Initialize variable to store the new image path
+        if (currentImage != null) {
+            // Get the path of the new image
+            newImagePath = Nevent.getImage();
+            // If newImagePath is null, it means a new image has not been selected, so we keep the old image path
+            if (newImagePath == null) {
+                newImagePath = oldImagePath;
+            }
+        } else {
+            // Handle the case where the current image is null
+            // This might happen if the user previously deleted the image or if there was an error loading the image
+            // In this case, we keep the old image path
+            newImagePath = oldImagePath;
+        }
 
-        Evenement ev=new Evenement(eventId,NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),event.getImage());
+        Evenement ev=new Evenement(eventId,NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),newImagePath);
         EvenementService es=new EvenementService();
         try {
             es.modifier(ev);
@@ -125,14 +142,7 @@ public class modifierEvent {
                 stage.setScene(scene);
                 stage.show();
             }
-//                Parent root=loader.load();
-//                AfficherEventController event= loader.getController();
-//                event.s(typePub.getText());
-//                pub.setTextPub(TextPub.getText());
-//                pub.setLieuPub(lieuPub.getText());
-//                pub.setDateCreationPub(new Date());
-//                pub.setDateModificationPub(new Date());
-//                lieuPub.getScene().setRoot(root);
+
             catch (IOException e) {
                 throw new RuntimeException(e);
             }

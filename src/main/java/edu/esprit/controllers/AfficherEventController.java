@@ -11,6 +11,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +27,10 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+import javafx.scene.control.ButtonType;
+
 
 public class AfficherEventController {
     @FXML
@@ -59,6 +64,7 @@ public class AfficherEventController {
     private Evenement event;
     private List<Feedback> feedbacks;
     private FeedbackService feedbackService = new FeedbackService();
+
     @FXML
     void initialize() {
 
@@ -305,42 +311,56 @@ public class AfficherEventController {
     }
     @FXML
     void onDeleteClicked(MouseEvent Mevent) {
-        // Retrieve the id of the event to be deleted
-        int eventId = event.getId(); // Replace this with how you retrieve the event id
+        Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmDialog.setTitle("Confirmation");
+        confirmDialog.setHeaderText(null);
+        confirmDialog.setContentText("Êtes-vous sûr de vouloir supprimer cet évènement ?");
 
-        // Call the supprimer function in EvenementService
-        EvenementService es = new EvenementService();
-        try {
-            es.supprimer(eventId);
+        // Add "Yes" and "No" buttons to the dialog
+        ButtonType yesButton = new ButtonType("Yes", ButtonBar.ButtonData.OK_DONE);
+        ButtonType noButton = new ButtonType("No", ButtonBar.ButtonData.CANCEL_CLOSE);
+        confirmDialog.getButtonTypes().setAll(yesButton, noButton);
 
-            // Show an alert message indicating successful deletion
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("L'événement a été supprimé avec succès.");
+        // Show the dialog and wait for the user's response
+        Optional<ButtonType> result = confirmDialog.showAndWait();
 
-            // Show the alert and wait for the user's response
-            alert.showAndWait();
+        // If the user clicks "Yes", delete the event
+        if (result.isPresent() && result.get() == yesButton) {
+            // Retrieve the id of the event to be deleted
+            int eventId = event.getId(); // Replace this with how you retrieve the event id
 
-            // After successful deletion, navigate back to the events page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            EvenementService es = new EvenementService();
             try {
-                Parent root = loader.load();
+                es.supprimer(eventId);
 
-                // Get the current stage
-                Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
+                // Show a success message
+                Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+                successAlert.setTitle("Success");
+                successAlert.setHeaderText(null);
+                successAlert.setContentText("L'événement a été supprimé avec succès.");
+                successAlert.showAndWait();
 
-                // Set the new scene
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
-            } catch (IOException e) {
-                e.printStackTrace();
-                // Handle the IOException
+                // After successful deletion, navigate back to the events page
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+                try {
+                    Parent root = loader.load();
+
+                    // Get the current stage
+                    Stage stage = (Stage) ((Node) Mevent.getSource()).getScene().getWindow();
+
+                    // Set the new scene
+                    Scene scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // Handle the IOException
+                }
+            } catch (SQLException e) {
+                // Exception handling
             }
-        } catch (SQLException e) {
-            // Exception handling
         }
+
     }
     @FXML
     void ConsulterFeedbacks(MouseEvent Mevent) {
