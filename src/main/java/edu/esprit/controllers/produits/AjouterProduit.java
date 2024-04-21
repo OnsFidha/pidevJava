@@ -1,5 +1,6 @@
 package edu.esprit.controllers.produits;
 
+import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
@@ -12,28 +13,22 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.scene.image.ImageView;
 //import javafx.embed.swing.SwingFXUtils;
 
-import javax.imageio.ImageIO;
 
-public class AjouterProduit implements Initializable {
+public class AjouterProduit extends AdminContentPanel implements Initializable {
 
     @FXML
     private TextField TFnom;
@@ -47,9 +42,6 @@ public class AjouterProduit implements Initializable {
 
     @FXML
     private ChoiceBox<Categorie> categorieDropDown;
-
-    @FXML
-    private Button ajouterProduitBtn;
 
     @FXML
     private ImageView productImageView;
@@ -70,8 +62,14 @@ public class AjouterProduit implements Initializable {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/produits/afficherProduits.fxml"), ajouterProduitBtn,
-                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/afficherProduits.fxml"));
+                        Parent root = loader.load();
+                        // Access the controller of the AnotherView
+                        AfficherProduits controller = loader.getController();
+                        controller.setAdminPanelContent(super.getAdminPanelContent());
+                        controller.showData();
+                        super.getAdminPanelContent().getChildren().clear();
+                        super.getAdminPanelContent().getChildren().setAll(root);
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de l'ajout d'un produit");
                     }

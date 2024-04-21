@@ -1,5 +1,6 @@
 package edu.esprit.controllers.produits;
 
+import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
@@ -11,22 +12,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class ModifierProduit {
+public class ModifierProduit extends AdminContentPanel {
 
     @FXML
     private Label TFlabelIdProduit;
@@ -43,9 +41,6 @@ public class ModifierProduit {
 
     @FXML
     private ChoiceBox<Categorie> categorieDropDown;
-
-    @FXML
-    private Button modifierProduitBtn;
 
     @FXML
     private ImageView productImageView;
@@ -67,8 +62,14 @@ public class ModifierProduit {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/produits/afficherProduits.fxml"), modifierProduitBtn,
-                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/afficherProduits.fxml"));
+                        Parent root = loader.load();
+                        // Access the controller of the AnotherView
+                        AfficherProduits controller = loader.getController();
+                        controller.setAdminPanelContent(super.getAdminPanelContent());
+                        controller.showData();
+                        super.getAdminPanelContent().getChildren().clear();
+                        super.getAdminPanelContent().getChildren().setAll(root);
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de l'ajout d'un produit");
                     }

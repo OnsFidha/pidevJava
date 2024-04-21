@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane styleClass="window-content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.categories.AjouterCategorie">
+   <children>
+      <Text layoutX="201.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Catégorie" wrappingWidth="232.7952880859375">
+         <font>
+            <Font size="24.0" />
+         </font></Text>
+      <Label layoutX="94.0" layoutY="135.0" text="Nom" />
+      <Label layoutX="91.0" layoutY="191.0" text="Description" />
+      <TextField fx:id="TFnom" layoutX="201.0" layoutY="131.0" prefHeight="26.0" prefWidth="234.0" />
+      <TextArea fx:id="TFdescription" layoutX="201.0" layoutY="178.0" prefHeight="84.0" prefWidth="233.0" />
+      <Button fx:id="TFbtnAjouterCategorie" styleClass="btn-add" layoutX="269.0" layoutY="283.0" mnemonicParsing="false" onAction="#ajoutercategorieaction" text="Ajouter" textAlignment="CENTER" textFill="#011301">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

@@ -110,4 +110,23 @@ public class Servicecategorie implements IService <Categorie>{
         }
         return categorie;
     }
+
+    @Override
+    public Categorie getOneByName(String nom){
+        String req ="select * from categorie WHERE LOWER(nom)=?";
+        try {
+            PreparedStatement pst= conn.prepareStatement(req);
+            pst.setString(1, nom.toLowerCase());
+            ResultSet rs = pst.executeQuery();
+            if(rs.next()) {
+                int id = rs.getInt("id");
+                String tmpnNom = rs.getString("nom");
+                String description = rs.getString("description");
+                return new Categorie(id,tmpnNom,description);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

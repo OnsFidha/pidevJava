@@ -1,24 +1,19 @@
 package edu.esprit.controllers.categories;
 
+import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
-import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
-import edu.esprit.service.Serviceproduit;
-import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
-public class AjouterCategorie {
+public class AjouterCategorie extends AdminContentPanel {
 
     @FXML
     private TextArea TFdescription;
@@ -26,14 +21,18 @@ public class AjouterCategorie {
     @FXML
     private TextField TFnom;
 
-    @FXML
-    private Button TFbtnAjouterCategorie;
-
     IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
 
     @FXML
     void ajoutercategorieaction(ActionEvent event) {
         try {
+            if(serviceCategorie.getOneByName(TFnom.getText()) != null){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Catégorie existe déjà");
+                alert.showAndWait();
+                return;
+            }
             serviceCategorie.ajouter(new Categorie(TFnom.getText(),TFdescription.getText()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -41,8 +40,15 @@ public class AjouterCategorie {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/afficherCategories.fxml"), TFbtnAjouterCategorie,
-                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/afficherCategories.fxml"));
+                        Parent root = loader.load();
+                        // Access the controller of the AnotherView
+
+                        AfficherCategories controller = loader.getController();
+                        controller.setAdminPanelContent(super.getAdminPanelContent());
+                        controller.showData();
+                        super.getAdminPanelContent().getChildren().clear();
+                        super.getAdminPanelContent().getChildren().setAll(root);
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de la suppression de la catégorie");
                     }

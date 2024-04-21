@@ -1,5 +1,6 @@
 package edu.esprit.controllers.categories;
 
+import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
@@ -7,20 +8,14 @@ import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
-public class ModifierCategorie{
+public class ModifierCategorie extends AdminContentPanel {
 
     @FXML
     private Label TFlabelIdCategorie;
@@ -31,14 +26,19 @@ public class ModifierCategorie{
     @FXML
     private TextArea TFdescription;
 
-    @FXML
-    private Button btnModifierCategorie;
-
     IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
 
     @FXML
     void modifierCategorieAction(ActionEvent event) {
         try {
+            Categorie categorieInDb = serviceCategorie.getOneByName(TFnom.getText());
+            if(categorieInDb != null && categorieInDb.getId() != Integer.parseInt(TFlabelIdCategorie.getText())){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setContentText("Catégorie existe déjà");
+                alert.showAndWait();
+                return;
+            }
             serviceCategorie.modifier(new Categorie(Integer.parseInt(TFlabelIdCategorie.getText()), TFnom.getText(),TFdescription.getText()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -46,8 +46,15 @@ public class ModifierCategorie{
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/afficherCategories.fxml"), btnModifierCategorie,
-                                List.of(getClass().getResource("/css/styles.css").toExternalForm()));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/afficherCategories.fxml"));
+                        Parent root = loader.load();
+                        // Access the controller of the AnotherView
+
+                        AfficherCategories controller = loader.getController();
+                        controller.setAdminPanelContent(super.getAdminPanelContent());
+                        controller.showData();
+                        super.getAdminPanelContent().getChildren().clear();
+                        super.getAdminPanelContent().getChildren().setAll(root);
                     } catch (IOException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de la suppression de la catégorie");
                     }

@@ -1,53 +1,36 @@
 package edu.esprit.controllers.produits;
 
-import edu.esprit.controllers.categories.ModifierCategorie;
+import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Serviceproduit;
-import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.util.Objects;
-import java.util.ResourceBundle;
 import java.util.Set;
 
 import static edu.esprit.utils.CommonUtils.createGridHeaderLabel;
 
-public class AfficherProduits implements Initializable {
+public class AfficherProduits extends AdminContentPanel{
     @FXML
     private GridPane gridProduits;
 
-    @FXML
-    private Button ajouterProduitBtn;
-
-    @FXML
-    private BorderPane borderPanel;
-
     IService<Produit> serviceProduit = Serviceproduit.getInstance();
 
-    public void setBorderPanel(BorderPane borderPanel) {
-        this.borderPanel = borderPanel;
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void showData() {
         try {
             Set<Produit> produits = serviceProduit.getAll();
             int index=0;
@@ -57,7 +40,7 @@ public class AfficherProduits implements Initializable {
             index++;
             for (Produit produit: produits){
                 Button btnModifier = getUpdateButton(produit);
-                Button btnSupprimer = getDeleteButton(url, resourceBundle, produit);
+                Button btnSupprimer = getDeleteButton(produit);
                 HBox hbox = new HBox(10); // spacing between nodes
                 hbox.getChildren().addAll(btnModifier, btnSupprimer);
                 gridProduits.addRow(index, new Label(produit.getNom()), new Label(produit.getCategorie().getNom()),
@@ -70,7 +53,7 @@ public class AfficherProduits implements Initializable {
         }
     }
 
-    private Button getDeleteButton(URL url, ResourceBundle resourceBundle, Produit produit) {
+    private Button getDeleteButton(Produit produit) {
         Button btnSupprimer = new Button("Supprimer");
         btnSupprimer.getStyleClass().add("btn-delete");
         EventHandler<ActionEvent> btnSupprimerHandler = event -> {
@@ -82,7 +65,7 @@ public class AfficherProduits implements Initializable {
                     try {
                         serviceProduit.supprimer(produit.getId());
                         gridProduits.getChildren().clear();
-                        initialize(url, resourceBundle);
+                        showData();
                     } catch (SQLException e) {
                         displayAlertErreure("Error", "Il y a un problème lors de la suppression du produit");
                     }
@@ -96,6 +79,7 @@ public class AfficherProduits implements Initializable {
     private Button getUpdateButton(Produit produit) {
         Button btn = new Button("Modifier");
         btn.getStyleClass().add("btn-update");
+        AnchorPane tmpAdminContentPanel = super.getAdminPanelContent();
         EventHandler<ActionEvent> btnHandler = new EventHandler<>() {
             @Override
             public void handle(ActionEvent event) {
@@ -109,19 +93,11 @@ public class AfficherProduits implements Initializable {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/modifierProduit.fxml"));
                             Parent root = loader.load();
 
-                            // Access the controller of the AnotherView
                             ModifierProduit controller = loader.getController();
-
-                            // Pass parameters to the controller of AnotherView
+                            controller.setAdminPanelContent(tmpAdminContentPanel);
+                            tmpAdminContentPanel.getChildren().clear();
+                            tmpAdminContentPanel.getChildren().setAll(root);
                             controller.setProduitDetails(produit.getId());
-
-                            // Create a new scene with the loaded FXML file
-                            Scene scene = new Scene(root);
-                            scene.getStylesheets().addAll(getClass().getResource("/css/styles.css").toExternalForm());
-                            // Get the stage from the button and set the new scene
-                            Stage stage = (Stage) btn.getScene().getWindow();
-                            stage.setScene(scene);
-                            stage.show();
                         } catch (IOException e) {
                             displayAlertErreure("Error", "Il y a un problème lors de la suppression du produit");
                         }
@@ -137,8 +113,13 @@ public class AfficherProduits implements Initializable {
     void goToAddProductView(ActionEvent event) {
         // Load the AnotherView.fxml file
         try {
-            Parent root =  FXMLLoader.load(getClass().getResource("/produits/ajouterProduit.fxml"));
-            borderPanel.setCenter(root);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/ajouterProduit.fxml"));
+            Parent root = loader.load();
+            // Access the controller of the AnotherView
+            AdminContentPanel controller = loader.getController();
+            controller.setAdminPanelContent(super.getAdminPanelContent());
+            super.getAdminPanelContent().getChildren().clear();
+            super.getAdminPanelContent().getChildren().setAll(root);
         } catch (IOException e) {
             displayAlertErreure("Error", "Il y a un problème lors de la redirection vers la bonne interface");
         }
