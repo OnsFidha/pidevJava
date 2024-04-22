@@ -187,7 +187,7 @@
                             <children>
                                 <VBox prefHeight="84.0" prefWidth="286.0">
                            <children>
-                              <TextArea fx:id="text" prefHeight="200.0" prefWidth="200.0" styleClass="text-input" stylesheets="@css/style.css" VBox.vgrow="SOMETIMES" />
+                              <TextArea fx:id="text" prefHeight="200.0" prefWidth="200.0" stylesheets="@css/style.css" wrapText="true" VBox.vgrow="SOMETIMES" />
                               <Label fx:id="textError" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" styleClass="error" stylesheets="@css/style.css" textAlignment="CENTER" />
                            </children>
                                 </VBox>

@@ -13,6 +13,29 @@
     -fx-padding: 0;
     -fx-background-radius: 0; /* Assurez-vous que le rayon de fond est à 0 pour éliminer tout contour arrondi */
 }
+
+
+.pagination .page-link {
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Style pour les boutons de pagination lorsqu'ils sont désactivés */
+.pagination .page-link:disabled {
+    -fx-background-color: lightgray;
+}
+
+/* Style pour les flèches de pagination */
+.pagination .arrow-button {
+    -fx-background-color: orange;
+    -fx-shape: null;
+}
+
+/* Style pour les flèches de pagination lorsqu'elles sont désactivées */
+.pagination .arrow-button:disabled {
+    -fx-background-color: lightgray;
+}
 .btn-nrml{
     -fx-text-fill: white;
     -fx-background-color: #ff9f5e;
@@ -32,9 +55,26 @@
     -fx-border-radius: 10px;
     -fx-border-color:orange;
     -fx-background-radius: 10px;
-    border: 1px solid #ccc; /* Ajouter une bordure autour des commentaires */
+    border: 1px solid white; /* Ajouter une bordure autour des commentaires */
     padding: 50px; /* Espacement à l'intérieur des commentaires */
 
+}
+
+.no-comment-label {
+    -fx-font-size: 20px; /* Taille de police plus grande */
+    -fx-alignment: center; /* Alignement au centre */
+    -fx-padding: 0 50; /* Réglage du padding gauche et droit pour centrer le texte */
+    -fx-margin: 0 50;
+    -fx-start-margin: 0 50;
+
+}
+
+
+/* Style pour les contrôles d'entrée en surbrillance */
+.text-input:focused {
+    -fx-border-color: pink; /* Couleur de la bordure en surbrillance */
+    -fx-border-width: 1px; /* Largeur de la bordure en surbrillance */
+    -fx-background-color: #fff; /* Couleur de fond en surbrillance */
 }
 .text-input {
     -fx-background-color: #f8f9fa; /* Couleur de fond */
@@ -44,14 +84,6 @@
     -fx-padding: 3px; /* Espacement interne */
     -fx-font-size: 12px; /* Taille de police */
 }
-
-/* Style pour les contrôles d'entrée en surbrillance */
-.text-input:focused {
-    -fx-border-color: #80bdff; /* Couleur de la bordure en surbrillance */
-    -fx-border-width: 2px; /* Largeur de la bordure en surbrillance */
-    -fx-background-color: #fff; /* Couleur de fond en surbrillance */
-}
-
 .error{
     -fx-text-fill: red;
     -fx-font-weight: bold;

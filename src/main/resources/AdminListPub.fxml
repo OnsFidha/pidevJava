@@ -4,11 +4,13 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
@@ -16,7 +18,6 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.GridPane?>
 <AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #FEFCF3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AdminListPub">
 
         <children>
@@ -97,7 +98,7 @@
                                     <Insets top="5.0" />
                                 </HBox.margin>
                             </ImageView>
-                            <Label prefHeight="35.0" prefWidth="134.0" text="Publication" textFill="#f9a936">
+                            <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
                                 <font>
                                     <Font size="24.0" />
                                 </font>
@@ -146,7 +147,7 @@
                                     <Insets top="5.0" />
                                 </HBox.margin>
                             </ImageView>
-                            <Label text="Reclamation" >
+                            <Label text="Reclamation" textFill="#f9a936">
                                 <font>
                                     <Font size="24.0" />
                                 </font>
@@ -231,10 +232,12 @@
 
                 </children>
             </HBox>
-
+            <GridPane fx:id="pubList" layoutX="221.0" layoutY="100.0" prefHeight="500.0" prefWidth="1000.0">
+         <children>
+                  <!-- Pagination -->
+                  <Pagination   stylesheets="css/style.css" fx:id="pagination" prefHeight="501.0" prefWidth="1072.0" />
+         </children></GridPane>
         </children>
 
-    <GridPane fx:id="pubList" layoutX="221.0" layoutY="100.0" prefHeight="500.0" prefWidth="1000.0">
-        <!-- La liste des cartes de publication sera ajoutée ici -->
-    </GridPane>
+
 </AnchorPane>

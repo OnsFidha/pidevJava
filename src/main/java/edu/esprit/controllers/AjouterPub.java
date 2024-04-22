@@ -8,9 +8,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.ResourceBundle;
-
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
 import javafx.event.ActionEvent;
@@ -73,7 +70,7 @@ public class AjouterPub {
         String selectedType = (String) typePub.getValue(); // Récupérer la valeur sélectionnée dans la ComboBox
 
         // Vérification du champ Type de publication
-        if (selectedType.isEmpty()) {
+        if (selectedType==null) {
             typeError.setText("Veuillez entrer un type de publication.");
             isValid = false;
         } else {

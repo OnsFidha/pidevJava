@@ -238,7 +238,7 @@
                                 <Insets left="20.0" />
                             </padding>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="560.0">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="114.0" prefWidth="560.0">
                             <children>
                                 <VBox alignment="CENTER" prefHeight="68.0" prefWidth="262.0">
                                     <children>
@@ -247,7 +247,7 @@
                                 </VBox>
                                 <VBox prefHeight="82.0" prefWidth="270.0">
                                     <children>
-                                        <TextField fx:id="TextPub" alignment="TOP_CENTER" styleClass="text-input" stylesheets="@css/style.css">
+                                        <TextField fx:id="TextPub" accessibleRole="TEXT_AREA" alignment="TOP_CENTER" prefHeight="36.0" prefWidth="270.0" styleClass="text-input" stylesheets="@css/style.css">
                                             <VBox.margin>
                                                 <Insets top="15.0" />
                                             </VBox.margin>

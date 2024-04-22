@@ -69,7 +69,7 @@ public class ModifierPub {
         isValid = true; // Variable pour suivre l'état de la validation
         String selectedType = (String) typePub.getValue();
         // Vérification du champ Type de publication
-        if (selectedType.isEmpty()) {
+        if (selectedType==null) {
             typeError.setText("Veuillez entrer un type de publication.");
             isValid = false;
         } else {

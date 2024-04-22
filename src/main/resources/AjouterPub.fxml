@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
@@ -15,9 +18,6 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import java.lang.String?>
-<?import javafx.collections.FXCollections?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterPub">
 
    <children>
@@ -175,7 +175,7 @@
 
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="453.0" layoutY="124.0" prefHeight="430.0" prefWidth="677.0">
+      <VBox alignment="CENTER" layoutX="453.0" layoutY="124.0" prefHeight="461.0" prefWidth="678.0">
          <children>
             <VBox alignment="CENTER" prefHeight="58.0" prefWidth="967.0">
                <children>
@@ -187,7 +187,7 @@
                   <Insets left="20.0" right="20.0" />
                </opaqueInsets>
                <children>
-                  <HBox alignment="CENTER" prefHeight="68.0" prefWidth="554.0">
+                  <HBox alignment="CENTER" prefHeight="58.0" prefWidth="554.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
                            <children>
@@ -216,16 +216,16 @@
                         <Insets left="20.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="61.0" prefWidth="562.0">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="66.0" prefWidth="562.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="84.0" prefWidth="255.0">
+                        <VBox alignment="CENTER" prefHeight="78.0" prefWidth="255.0">
                            <children>
                               <Label prefHeight="18.0" prefWidth="34.0" text="Lieu:" />
                            </children>
                         </VBox>
                         <VBox prefHeight="64.0" prefWidth="268.0">
                            <children>
-                              <TextField fx:id="lieuPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="274.0" styleClass="text-input" stylesheets="@css/style.css">
+                              <TextField fx:id="lieuPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="274.0" styleClass="input" stylesheets="@css/style.css">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -238,16 +238,16 @@
                         <Insets left="20.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="68.0" prefWidth="560.0">
+                  <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="178.0" prefWidth="560.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="68.0" prefWidth="262.0">
                            <children>
                               <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="18.0" prefWidth="102.0" text="Description:" textAlignment="RIGHT" />
                            </children>
                         </VBox>
-                        <VBox prefHeight="82.0" prefWidth="270.0">
+                        <VBox prefHeight="200.0" prefWidth="270.0">
                            <children>
-                              <TextField fx:id="TextPub" alignment="TOP_CENTER" styleClass="text-input" stylesheets="@css/style.css">
+                              <TextField fx:id="TextPub" accessibleRole="TEXT_AREA" alignment="TOP_CENTER" prefHeight="48.0" prefWidth="270.0" styleClass="input" stylesheets="@css/style.css">
                                  <VBox.margin>
                                     <Insets top="15.0" />
                                  </VBox.margin>
@@ -262,14 +262,14 @@
                   </HBox>
                   <VBox alignment="CENTER" layoutX="10.0" layoutY="178.0" prefHeight="84.0" prefWidth="971.0">
                      <children>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="81.0" prefWidth="602.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="146.0" prefWidth="678.0" VBox.vgrow="ALWAYS">
                            <children>
                               <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="81.0" prefWidth="220.0">
                                  <children>
                                     <Label contentDisplay="CENTER" prefHeight="18.0" prefWidth="63.0" text="Photo:" />
                                  </children>
                               </VBox>
-                              <VBox prefHeight="64.0" prefWidth="271.0">
+                              <VBox prefHeight="56.0" prefWidth="271.0">
                                  <children>
                                     <Label />
                                     <TextField fx:id="photoPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="270.0" styleClass="text-input" stylesheets="@css/style.css">
@@ -311,7 +311,7 @@
             </VBox>
             <VBox alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" prefHeight="18.0" prefWidth="678.0">
                      <children>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addPub" prefHeight="34.0" prefWidth="70.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Ajouter" textAlignment="CENTER" />
                         <Button alignment="TOP_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#retour" styleClass="btn-icone" stylesheets="@css/style.css" textAlignment="RIGHT">
