@@ -1,5 +1,7 @@
 package edu.esprit.controllers;
 
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,8 +15,6 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import edu.esprit.entities.Utilisateur;
-import edu.esprit.services.ServiceUtilisateur;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -37,7 +37,7 @@ public class CardUserController {
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
 
     int uid,unumtel;
-    String unom, uprenom, uemail, umdp, urole;
+    String unom, uprenom, uemail, umdp, urole,uimage;
 
     private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
             "#F4C2D7", "#FFD4E2", "#FFB7D0", "#A6D9FF", "#8BC8FF",
@@ -74,6 +74,7 @@ public class CardUserController {
         umdp = user.getPassword();
         urole = user.getRoles();
         unumtel = user.getPhone();
+        uimage = user.getImage();
     }
 
     public void suppuser(ActionEvent actionEvent) throws IOException {
@@ -94,6 +95,14 @@ public class CardUserController {
             AUC.emailtf.setText(uemail);
             AUC.mdptf.setText(umdp);
             AUC.rolescb.setValue(urole);
+            AUC.pdptf.setText(uimage);
+            if (uimage != null) {
+                File file = new File(uimage);
+                FileInputStream inputStream = new FileInputStream(file);
+                Image image = new Image(inputStream);
+                AUC.imagepdp.setImage(image);
+            }
+
             stage.setScene(scene);
             stage.show();
 

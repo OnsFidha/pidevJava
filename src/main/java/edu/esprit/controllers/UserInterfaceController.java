@@ -1,5 +1,7 @@
 package edu.esprit.controllers;
 
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import edu.esprit.entities.Utilisateur;
-import edu.esprit.services.ServiceUtilisateur;
 
 import java.io.File;
 import java.io.FileInputStream;

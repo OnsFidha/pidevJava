@@ -1,5 +1,10 @@
 package edu.esprit.controllers;
-
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
+import edu.esprit.utils.MyDataBase;
+import edu.esprit.utils.SessionManager;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,11 +17,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.Stage;
-import edu.esprit.entities.Utilisateur;
-import edu.esprit.services.ServiceUtilisateur;
-import edu.esprit.utils.MyDataBase;
-import edu.esprit.utils.SessionManager;
-
+import javafx.application.Platform;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -69,8 +70,8 @@ public class ConnectionUserController implements Initializable {
     }
 
     private void sendEmailWithOTP(String toEmail, String otp) {
-        final String username = "artistool.esprit@gmail.com";
-        final String password = "tgao tbqg wudl aluo";
+        final String username = "mehdibchir02@gmail.com";
+        final String password = "naewrmrmpzoohxaq";
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
@@ -83,8 +84,10 @@ public class ConnectionUserController implements Initializable {
                     }
                 });
         try {
+
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("artistool.esprit@gmail.com"));
+            message.setFrom(new InternetAddress("mehdibchir02@gmail.com"));
+
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(toEmail));
             message.setSubject("2FA Authentication");
             message.setText("Dear user,\n\nYour 2FA code is: " + otp);
@@ -96,9 +99,12 @@ public class ConnectionUserController implements Initializable {
         }
     }
 
+    int loginAttempts = 0;
+    int MAX_ATTEMPTS=5;
     @FXML
     public void connecter(ActionEvent actionEvent) throws IOException {
         String qry = "SELECT * FROM `user` WHERE `email`=? AND `password`=?";
+
         cnx = MyDataBase.getInstance().getCnx();
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
@@ -124,6 +130,8 @@ public class ConnectionUserController implements Initializable {
                 SessionManager.getInstace(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getInt("phone"), rs.getString("email"), rs.getString("roles"), rs.getString("image"));
                 String roles = rs.getString("roles");
                 System.out.println("Login Successful");
+                ///////////////////
+                loginAttempts = 0;
                 System.out.println(SessionManager.getEmail());
                 if (roles.equals("Admin")) {
                     try {
@@ -170,7 +178,32 @@ public class ConnectionUserController implements Initializable {
                         e.printStackTrace();
                     }
                 }
-            }else {System.out.println("Login Failed");}
+            } else {
+                loginAttempts++;
+
+                // Calculer le nombre de tentatives restantes
+                int remainingAttempts = MAX_ATTEMPTS - loginAttempts;
+
+                // Vérifier si le nombre de tentatives de connexion infructueuses atteint 3
+                if (loginAttempts >= MAX_ATTEMPTS) {
+                    // Afficher une alerte pour indiquer que trop de tentatives ont échoué
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur de connexion");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Trop de tentatives de connexion infructueuses. L'application se ferme.");
+                    alert.showAndWait();
+
+                    // Fermer l'application
+                    Platform.exit(); // Assurez-vous d'importer javafx.application.Platform si nécessaire
+                } else {
+                    // Afficher une alerte pour indiquer que la connexion a échoué avec le nombre de tentatives restantes
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Erreur de connexion");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Login Failed. " + remainingAttempts + " tentative(s) restante(s)");
+                    alert.showAndWait();
+                }
+            }
             } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

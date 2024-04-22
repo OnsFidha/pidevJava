@@ -1,9 +1,12 @@
 package edu.esprit.services;
-
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import edu.esprit.interfaces.IUtilisateur;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.utils.MyDataBase;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -158,7 +161,7 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
 
     @Override
     public void Update(Utilisateur user) {
-       try {
+        try {
             String qry = "UPDATE `user` SET `name`=?,`prename`=?,`email`=?,`password`=?,`phone`=?, `roles`=?, `image`=? WHERE `id`=?";
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, user.getName());
@@ -204,13 +207,27 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         String req = "UPDATE `user` SET `password` = ? WHERE `email` = ?";
         try {
             PreparedStatement ps = cnx.prepareStatement(req);
-            ps.setString(1, newPassword); // You should hash the password
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] hash = md.digest(newPassword.getBytes());
+            //String mdpHash = Utility.toHexString(hash);
+            StringBuilder hexString = new StringBuilder();
+            for (byte hashByte : hash) {
+                String hex = Integer.toHexString(0xff & hashByte);
+                if (hex.length() == 1) {
+                    hexString.append('0');
+                }
+                hexString.append(hex);
+            }
+            String newPasswordHashed = hexString.toString();
+            ps.setString(1, newPasswordHashed); // You should hash the password
             ps.setString(2, email);
             int rowsAffected = ps.executeUpdate();
             return rowsAffected > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -239,5 +256,23 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         String phoneStr = String.valueOf(phone);
         return phoneStr.length() == 8;
     }
+    public boolean isValidPassword(String password) {
+        String mdpreg = String.valueOf(password);
+        int minLength = 8; // Longueur minimale du mot de passe
+        int maxLength = 20; // Longueur maximale du mot de passe
 
+        // Vérifier la longueur minimale et maximale
+        if (mdpreg.length() < minLength || mdpreg.length() > maxLength) {
+            return false;
+        }
+
+        // Vérifier s'il y a au moins un chiffre et un caractère alphabétique
+        Pattern digitPattern = Pattern.compile("\\d");
+        Pattern letterPattern = Pattern.compile("[a-zA-Z]");
+
+        Matcher digitMatcher = digitPattern.matcher(mdpreg);
+        Matcher letterMatcher = letterPattern.matcher(mdpreg);
+
+        return digitMatcher.find() && letterMatcher.find();
+    }
 }

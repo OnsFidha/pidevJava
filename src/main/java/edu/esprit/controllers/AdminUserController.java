@@ -1,5 +1,9 @@
 package edu.esprit.controllers;
 
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
+import edu.esprit.utils.MyDataBase;
+import edu.esprit.utils.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -17,10 +21,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import edu.esprit.entities.Utilisateur;
-import edu.esprit.services.ServiceUtilisateur;
-import edu.esprit.utils.MyDataBase;
-import edu.esprit.utils.SessionManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -68,9 +68,15 @@ public class AdminUserController implements Initializable {
     @FXML
     public GridPane userContainer;
     @FXML
-    private ImageView imagepdp;
+    public ImageView imagepdp;
     @FXML
     private Label uinfolabel;
+    @FXML
+    private ImageView logedUserimage;
+
+    @FXML
+    private Label logedUsernamee;
+
     @FXML
     private TextField usersearch;
 
@@ -83,6 +89,11 @@ public class AdminUserController implements Initializable {
         load();
         rolescb.setValue("User");
         rolescb.setItems(RolesList);
+        String imagePath = SessionManager.getImage();
+        String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+        logedUsernamee.setText(nameP);
+
     }
 
     private boolean emailExists(String email) throws SQLException {
@@ -133,12 +144,14 @@ public class AdminUserController implements Initializable {
             if (phonetf.getText().matches("\\d{8}")) {
                 UserS.Update(new Utilisateur(ID, NAME, PRENAME, EMAIL, MDP, PHONE, ROLES, IMAGE));
                 uinfolabel.setText("Modification Effectue");
+                load();
             } else {
                 uinfolabel.setText("N° Telephone est invalide");
             }
         } else {
             uinfolabel.setText("Email est invalide");
         }
+
     }
 
     @FXML
@@ -187,7 +200,7 @@ public class AdminUserController implements Initializable {
                 Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     ++row;
                 }
@@ -210,7 +223,7 @@ public class AdminUserController implements Initializable {
                 Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     ++row;
                 }
@@ -238,7 +251,7 @@ public class AdminUserController implements Initializable {
                 Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     ++row;
                 }
@@ -263,7 +276,7 @@ public class AdminUserController implements Initializable {
                 Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
-                if (column == 3) {
+                if (column == 2) {
                     column = 0;
                     ++row;
                 }
@@ -299,7 +312,7 @@ public class AdminUserController implements Initializable {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             SessionManager.cleanUserSession();
-            stage.setTitle("Waves - Connection");
+            stage.setTitle("artistool - Connection");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

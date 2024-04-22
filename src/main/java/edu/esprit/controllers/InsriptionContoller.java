@@ -3,18 +3,22 @@ package edu.esprit.controllers;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import edu.esprit.entities.Utilisateur;
-import edu.esprit.services.ServiceUtilisateur;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -43,6 +47,8 @@ public class InsriptionContoller {
     private Label reginfo;
     @FXML
     private Button imagebtn;
+    @FXML
+    public ImageView imagepdp;
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
@@ -81,7 +87,12 @@ public class InsriptionContoller {
             } else if (UserS.checkUserExists(EMAIL)) {
                 //chercher si l'email existe deja
                 reginfo.setText("Email déjà existe");
-            } else {
+            }
+            else if (!UserS.isValidPassword(mdpreg.getText())) {
+                //chercher si le mot depasse est faile
+                reginfo.setText("mot de passe faible");
+            }
+            else {
                 this.verificationCode = generateVerificationCode();
                 sendVerificationCode(String.valueOf(PHONE), this.verificationCode);
                 boolean isCodeVerified = false;
@@ -158,6 +169,16 @@ public class InsriptionContoller {
                 imagePath = destinationPath.toString();
                 System.out.println("Image uploaded successfully: " + imagePath);
                 imagereg.setText(imagePath);
+                if (imagePath != null) {
+                    try {
+                        File file = new File(imagePath);
+                        FileInputStream inputStream = new FileInputStream(file);
+                        Image image = new Image(inputStream);
+                        imagepdp.setImage(image);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

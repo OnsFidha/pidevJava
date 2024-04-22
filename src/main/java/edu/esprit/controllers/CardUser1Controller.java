@@ -1,5 +1,7 @@
 package edu.esprit.controllers;
 
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -7,8 +9,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import edu.esprit.entities.Utilisateur;
-import edu.esprit.services.ServiceUtilisateur;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,11 +29,15 @@ public class CardUser1Controller {
     private Label roleslb;
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
-    private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
-            "#F4C2D7", "#FFD4E2", "#FFB7D0", "#A6D9FF", "#8BC8FF",
-            "#E6A9CB", "#FFBFD3", "#FFA7C1", "#9AC2FF", "#74AFFA",
-            "#D8B6D8", "#FFC9D7", "#FFB3C8", "#B0E1FF", "#8DCFFD",
-            "#D3AADB", "#FFBEDF", "#FFA9CC", "#AFD5FF", "#93C5FF"};
+    private String[] colors = {
+            "#F2E6EC", "#FFE3DF", "#FFD9D0", "#E0EAF0", "#D4E4F1",
+            "#F9E3D9", "#FFE6D6", "#FFDCCB", "#D8E7F0", "#C7E2F0",
+            "#EDD3C2", "#FFD9C8", "#FFD2BE", "#CDDCF4", "#B6D7F3",
+            "#EAD3DE", "#FFDBE2", "#FFD3D7", "#D3E6FA", "#BBDFFB",
+            "#E8D3C9", "#FFD8CD", "#FFD0C5", "#D4E1F8", "#BBDBF8"
+    }
+            ;
+
     public void setData1(Utilisateur user) {
         String imagePath = user.getImage();
         if (imagePath != null) {
@@ -49,9 +53,9 @@ public class CardUser1Controller {
             System.err.println("Image path is null for user: " + user);
         }
         nomprenomlb.setText(user.getName() + " " + user.getPrename());
-        emaillb.setText("email: "+user.getEmail());
-        roleslb.setText("role: "+user.getRoles());
-        phonelb.setText(String.valueOf("num: "+user.getPhone()));
+        emaillb.setText(user.getEmail());
+        roleslb.setText(user.getRoles());
+        phonelb.setText(String.valueOf(user.getPhone()));
         userpane.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
         userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
     }
