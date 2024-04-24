@@ -33,6 +33,20 @@
     -fx-border-color: #B8B9BB;
     -fx-border-radius: 50;
 }
+.recla:hover
+{
+    -fx-background-color: #ffe4d9;
+
+}
+.recla{
+    -fx-background-color: white;
+
+}
+
+.adminev:hover{
+    -fx-background-color:  #c6f5c7;
+    -fx-border-radius: 20;
+}
 
 
 

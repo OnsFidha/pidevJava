@@ -15,7 +15,7 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Calendar.fxml"));
 
         try {
             Parent root=loader.load();

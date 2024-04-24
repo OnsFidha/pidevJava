@@ -8,6 +8,7 @@ import edu.esprit.utils.DataSource;
 
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -82,6 +83,12 @@ public class Main {
 //        try {System.out.println(fs.getAllById(2));
 //        }catch (SQLException s){
 //            System.out.println(s.getMessage());
+//        }
+
+//        try {
+//            System.out.println("alll date \n" + es.getEvenementsByDateDebut(LocalDate.of(2024, 4, 19)));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
 //        }
 
     }

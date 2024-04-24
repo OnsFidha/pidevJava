@@ -1,15 +1,12 @@
 package edu.esprit.service;
 
-import edu.esprit.controllers.CalendarActivity;
 import edu.esprit.entities.Evenement;
 import edu.esprit.utils.DataSource;
 
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EvenementService implements IService <Evenement>{
 
@@ -129,44 +126,63 @@ public class EvenementService implements IService <Evenement>{
 
             return event;
         }
-    public Map<Date, List<CalendarActivity>> getCalendarActivities(LocalDate dateFocus) {
-        Map<Date, List<CalendarActivity>> calendarActivityMap = new HashMap<>();
-        Date startDate = Date.valueOf(dateFocus.withDayOfMonth(1));
-        Date endDate = Date.valueOf(dateFocus.withDayOfMonth(dateFocus.lengthOfMonth()));
+//    public List<Evenement> getEvenementsByDateDebut(LocalDate dateDebut) throws SQLException {
+//        List<Evenement> events = new ArrayList<>();
+//        String sql = "SELECT * FROM evenement WHERE DATE(dateDebut) = ?";
+//
+//        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+//            statement.setDate(1, java.sql.Date.valueOf(dateDebut));
+//            ResultSet resultSet = statement.executeQuery();
+//            while (resultSet.next()) {
+//                Evenement event = new Evenement();
+//                event.setId(resultSet.getInt("id"));
+//                event.setNom(resultSet.getString("nom"));
+//                event.setDescription(resultSet.getString("description"));
+//                event.setLieu(resultSet.getString("lieu"));
+//                event.setDateDebut(resultSet.getDate("dateDebut"));
+//                event.setDateFin(resultSet.getDate("dateFin"));
+//                event.setImage(resultSet.getString("image"));
+//                event.setNbreParticipants(resultSet.getInt("nbreParticipants"));
+//                event.setNbreMax(resultSet.getInt("nbreMax"));
+//                events.add(event);
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            throw e;
+//        }
+//
+//        return events;
+//    }
+public List<Evenement> getEvenementsByDateRange(LocalDate startDate, LocalDate endDate) throws SQLException {
+    List<Evenement> events = new ArrayList<>();
+    String sql = "SELECT * FROM evenement WHERE dateDebut BETWEEN ? AND ?";
 
-        try {
-            List<Evenement> events = getAll();
-
-            for (Evenement event : events) {
-                Date eventDate = (Date) event.getDateDebut();
-//                if (event.getDateDebut() instanceof java.sql.Date) {
-//                    // Convert java.sql.Date to ZonedDateTime
-//                    java.sql.Date sqlDate = (java.sql.Date) event.getDateDebut();
-//                    ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(sqlDate.toInstant(), ZoneId.systemDefault());
-//                    // Convert ZonedDateTime to LocalDate
-//                    eventDate = zonedDateTime.toLocalDate();
-//                } else if (event.getDateDebut() instanceof java.util.Date) {
-//                    // Convert java.util.Date to ZonedDateTime
-//                    java.util.Date utilDate = (java.util.Date) event.getDateDebut();
-//                    ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(utilDate.toInstant(), ZoneId.systemDefault());
-//                    // Convert ZonedDateTime to LocalDate
-//                    eventDate = zonedDateTime.toLocalDate();
-//                } else {
-//                    // Handle unsupported date types
-//                    throw new IllegalArgumentException("Unsupported date type: " + event.getDateDebut().getClass());
-//                }
-
-                if (eventDate.equals( startDate) || (eventDate.after(startDate) && eventDate.before(endDate))) {
-                    List<CalendarActivity> activities = calendarActivityMap.getOrDefault(eventDate, new ArrayList<>());
-                    activities.add(new CalendarActivity( event.getDateDebut(), event.getNom(), event.getId()));
-                    calendarActivityMap.put(eventDate, activities);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle database errors
+    try (PreparedStatement statement = conn.prepareStatement(sql)) {
+        statement.setDate(1, java.sql.Date.valueOf(startDate));
+        statement.setDate(2, java.sql.Date.valueOf(endDate));
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()) {
+            Evenement event = new Evenement();
+            event.setId(resultSet.getInt("id"));
+            event.setNom(resultSet.getString("nom"));
+            event.setDescription(resultSet.getString("description"));
+            event.setLieu(resultSet.getString("lieu"));
+            event.setDateDebut(resultSet.getDate("dateDebut"));
+            event.setDateFin(resultSet.getDate("dateFin"));
+            event.setImage(resultSet.getString("image"));
+            event.setNbreParticipants(resultSet.getInt("nbreParticipants"));
+            event.setNbreMax(resultSet.getInt("nbreMax"));
+            events.add(event);
         }
-
-        return calendarActivityMap;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        throw e;
     }
+
+    return events;
+}
+
+
+
+
 }

@@ -46,31 +46,41 @@ public class CalendarController implements Initializable {
         dateFocus = ZonedDateTime.now();
         today = ZonedDateTime.now();
         evenementService = new EvenementService(); // Initialize EvenementService
-        drawCalendar();
+        try {
+            drawCalendar();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
-    void backOneMonth(ActionEvent event) {
+    void backOneMonth(ActionEvent event) throws SQLException {
         dateFocus = dateFocus.minusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
     }
 
     @FXML
-    void forwardOneMonth(ActionEvent event) {
+    void forwardOneMonth(ActionEvent event) throws SQLException {
         dateFocus = dateFocus.plusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
     }
 
-    private void drawCalendar() {
+    private void drawCalendar() throws SQLException {
         year.setText(String.valueOf(dateFocus.getYear()));
         month.setText(String.valueOf(dateFocus.getMonth()));
 
         LocalDate startDate = LocalDate.of(dateFocus.getYear(), dateFocus.getMonthValue(), 1);
         LocalDate endDate = startDate.plusMonths(1).minusDays(1);
 
-        Map<Date, List<CalendarActivity>> calendarActivityMap = evenementService.getCalendarActivities(startDate);
+        // Fetch events from the service for the current month
+        // Fetch events from the service for the current month
+        List<Evenement> calendarEvents = evenementService.getEvenementsByDateRange(startDate, endDate);
+
+
+        // Create a map to store events by day
+        Map<Integer, List<Evenement>> calendarActivityMap = createCalendarMap(calendarEvents);
 
         for (LocalDate date = startDate; date.isBefore(endDate.plusDays(1)); date = date.plusDays(1)) {
             StackPane stackPane = new StackPane();
@@ -82,19 +92,41 @@ public class CalendarController implements Initializable {
             Text text = new Text(String.valueOf(date.getDayOfMonth()));
             stackPane.getChildren().addAll(rectangle, text);
 
-            List<CalendarActivity> activities = calendarActivityMap.get(date);
-            if (activities != null && !activities.isEmpty()) {
-                for (CalendarActivity activity : activities) {
-                    Text eventText = new Text(activity.getClientName());
-                    stackPane.getChildren().add(eventText);
-                }
+            int dayOfMonth = date.getDayOfMonth();
+
+            // Check if there are events for this day and add them to the stack pane
+            if (calendarActivityMap.containsKey(dayOfMonth)) {
+                createCalendarActivity(calendarActivityMap.get(dayOfMonth), rectangle.getHeight(), rectangle.getWidth(), stackPane);
             }
 
             calendar.getChildren().add(stackPane);
         }
     }
 
-    private void createCalendarActivity(List<CalendarActivity> calendarActivities, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
+    private Map<Integer, List<Evenement>> createCalendarMap(List<Evenement> calendarActivities) {
+        Map<Integer, List<Evenement>> calendarActivityMap = new HashMap<>();
+
+        for (Evenement activity : calendarActivities) {
+            // Get the start date of the event
+            java.sql.Date startDate = (Date) activity.getDateDebut();
+
+            // Convert the start date to a LocalDate
+            LocalDate activityDate = startDate.toLocalDate();
+
+            // Get the day of the month
+            int dayOfMonth = activityDate.getDayOfMonth();
+
+            // Add the activity to the list for the corresponding day
+            if (!calendarActivityMap.containsKey(dayOfMonth)) {
+                calendarActivityMap.put(dayOfMonth, new ArrayList<>());
+            }
+            calendarActivityMap.get(dayOfMonth).add(activity);
+        }
+        return calendarActivityMap;
+    }
+
+
+    private void createCalendarActivity(List<Evenement> calendarActivities, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
         VBox calendarActivityBox = new VBox();
         for (int k = 0; k < calendarActivities.size(); k++) {
             if(k >= 2) {
@@ -106,7 +138,7 @@ public class CalendarController implements Initializable {
                 });
                 break;
             }
-            Text text = new Text(calendarActivities.get(k).getClientName() + ", " + calendarActivities.get(k).getDate());
+            Text text = new Text(calendarActivities.get(k).getNom() + ", " + calendarActivities.get(k).getDateDebut());
             calendarActivityBox.getChildren().add(text);
             text.setOnMouseClicked(mouseEvent -> {
                 //On Text clicked
@@ -120,35 +152,5 @@ public class CalendarController implements Initializable {
         stackPane.getChildren().add(calendarActivityBox);
     }
 
-    private Map<Integer, List<CalendarActivity>> createCalendarMap(List<CalendarActivity> calendarActivities) {
-        Map<Integer, List<CalendarActivity>> calendarActivityMap = new HashMap<>();
 
-        for (CalendarActivity activity: calendarActivities) {
-            int activityDate = activity.getDate().getDay();
-            if(!calendarActivityMap.containsKey(activityDate)){
-                calendarActivityMap.put(activityDate, List.of(activity));
-            } else {
-                List<CalendarActivity> OldListByDate = calendarActivityMap.get(activityDate);
-
-                List<CalendarActivity> newList = new ArrayList<>(OldListByDate);
-                newList.add(activity);
-                calendarActivityMap.put(activityDate, newList);
-            }
-        }
-        return  calendarActivityMap;
-    }
-
-    private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
-        List<CalendarActivity> calendarActivities = new ArrayList<>();
-        int year = dateFocus.getYear();
-        int month = dateFocus.getMonth().getValue();
-
-        Random random = new Random();
-//        for (int i = 0; i < 50; i++) {
-//            Date time = Date.of(year, month, random.nextInt(27)+1, 16,0,0,0,dateFocus.getZone());
-//            calendarActivities.add(new CalendarActivity(time, "Hans", 111111));
-//        }
-
-        return createCalendarMap(calendarActivities);
-    }
 }
