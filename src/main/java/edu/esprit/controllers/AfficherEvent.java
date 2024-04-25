@@ -92,6 +92,31 @@ public class AfficherEvent implements Initializable {
             alert.showAndWait();
         }
     }
+    @FXML
+    void movetoCalendar(MouseEvent event) {
+        try {
+            // Load the previous FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Calendar.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the previous page. Please try again.");
+            alert.showAndWait();
+        }
+
+    }
 
 
     private void redirectToEventPage(Evenement selectedEvent) {

@@ -5,15 +5,22 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.sql.Date;
 
@@ -86,8 +93,18 @@ public class CalendarController implements Initializable {
             StackPane stackPane = new StackPane();
 
             Rectangle rectangle = new Rectangle(100, 100);
-            rectangle.setFill(Color.TRANSPARENT);
-            rectangle.setStroke(Color.BLACK);
+            rectangle.setFill(Color.rgb(255, 255, 255)); // Light gray fill color
+            rectangle.setStroke(Color.rgb(215, 194, 194)); // Light gray stroke color
+            rectangle.setStrokeWidth(2); // Stroke width
+            rectangle.setArcWidth(10); // Horizontal corner radius
+            rectangle.setArcHeight(10); // Vertical corner radius
+
+// Add drop shadow effect
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(5);
+            dropShadow.setColor(Color.rgb(255, 255, 255, 0.65)); // Semi-transparent gray shadow
+            rectangle.setEffect(dropShadow);
+
 
             Text text = new Text(String.valueOf(date.getDayOfMonth()));
             stackPane.getChildren().addAll(rectangle, text);
@@ -101,6 +118,7 @@ public class CalendarController implements Initializable {
 
             calendar.getChildren().add(stackPane);
         }
+
     }
 
     private Map<Integer, List<Evenement>> createCalendarMap(List<Evenement> calendarActivities) {
@@ -131,26 +149,79 @@ public class CalendarController implements Initializable {
         for (int k = 0; k < calendarActivities.size(); k++) {
             if(k >= 2) {
                 Text moreActivities = new Text("...");
+                moreActivities.setFill(Color.WHITE);
+                moreActivities.setFont(Font.font("Arial", FontWeight.BOLD, 14));
                 calendarActivityBox.getChildren().add(moreActivities);
                 moreActivities.setOnMouseClicked(mouseEvent -> {
-                    //On ... click print all activities for given date
+                    // On ... click, print all activities for given date
                     System.out.println(calendarActivities);
                 });
                 break;
             }
-            Text text = new Text(calendarActivities.get(k).getNom() + ", " + calendarActivities.get(k).getDateDebut());
+            Text text = new Text(calendarActivities.get(k).getNom());
+            text.setFill(Color.WHITE);
+            text.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+            text.setTextAlignment(TextAlignment.CENTER);
             calendarActivityBox.getChildren().add(text);
+            int finalK = k;
             text.setOnMouseClicked(mouseEvent -> {
-                //On Text clicked
-                System.out.println(text.getText());
+                redirectToEventPage(calendarActivities.get(finalK));
             });
         }
-        calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
+        calendarActivityBox.setAlignment(Pos.CENTER);
+        calendarActivityBox.setTranslateY(rectangleHeight * 0.1);
         calendarActivityBox.setMaxWidth(rectangleWidth * 0.8);
         calendarActivityBox.setMaxHeight(rectangleHeight * 0.65);
-        calendarActivityBox.setStyle("-fx-background-color:GRAY");
+        calendarActivityBox.setStyle("-fx-background-color: #ffb7b7; -fx-background-radius: 10px");
+
         stackPane.getChildren().add(calendarActivityBox);
     }
+    private void redirectToEventPage(Evenement selectedEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
+            Parent root = loader.load();
+
+            // Pass event data to the event page controller
+            AfficherEventController eventController = loader.getController();
+            eventController.setData(selectedEvent);
+
+
+            // Display the event page in a new window
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle error loading the event page
+        }
+    }
+
+    @FXML
+    void goBack(MouseEvent event) {
+        try {
+            // Load the previous FXML file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the previous page. Please try again.");
+            alert.showAndWait();
+        }
+
+    }
+
 
 
 }
