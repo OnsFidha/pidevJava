@@ -207,7 +207,7 @@
                   <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
                   <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="45.0" prefWidth="330.0" spacing="10.0" style="-fx-background-color: #fff;">
                      <children>
-                        <TextField prefHeight="25.0" prefWidth="264.0" promptText="Rechercher" styleClass="transparent" stylesheets="@css/styles.css" />
+                        <TextField fx:id="eventsearch" onAction="#Recherche" prefHeight="25.0" prefWidth="264.0" promptText="Rechercher" styleClass="transparent" stylesheets="@css/styles.css" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@icons/LoopIcon.png" />

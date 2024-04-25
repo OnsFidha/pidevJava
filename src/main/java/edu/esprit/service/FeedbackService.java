@@ -47,6 +47,20 @@ public class FeedbackService implements IService<Feedback>{
         }
 
     }
+    public void updateLikes(int feedbackId, int newLikes) throws SQLException {
+        String sql = "UPDATE feedback SET Likes = ? WHERE id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, newLikes);
+            statement.setInt(2, feedbackId);
+            statement.executeUpdate();
+            System.out.println("Number of likes updated successfully");
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
 
     @Override
     public void supprimer(int id) throws SQLException {
@@ -75,6 +89,7 @@ public class FeedbackService implements IService<Feedback>{
                 feedback.setId(resultSet.getInt("id"));
                 feedback.setId_evenment(resultSet.getInt("id_evenement"));
                 feedback.setText(resultSet.getString("text"));
+                feedback.setLikes(resultSet.getInt("Likes"));
 
                 // publication.setUserId(resultSet.getInt("id_user_id"));
 
@@ -102,6 +117,8 @@ public class FeedbackService implements IService<Feedback>{
                 feedback.setId(resultSet.getInt("id"));
                 feedback.setId_evenment(resultSet.getInt("id_evenement"));
                 feedback.setText(resultSet.getString("text"));
+                feedback.setLikes(resultSet.getInt("Likes"));
+
 
                 // feedback.setUserId(resultSet.getInt("id_user_id"));
 
@@ -128,6 +145,8 @@ public class FeedbackService implements IService<Feedback>{
                 feedback.setId(resultSet.getInt("id"));
                 feedback.setId_evenment(resultSet.getInt("id_evenement"));
                 feedback.setText(resultSet.getString("text"));
+                feedback.setLikes(resultSet.getInt("Likes"));
+
 
             }
         } catch (SQLException e) {

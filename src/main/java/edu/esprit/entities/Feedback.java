@@ -6,6 +6,7 @@ public class Feedback {
     private int id;
     private int id_evenment;
     private String text;
+    private int Likes;
 
     public Feedback() {
     }
@@ -14,11 +15,27 @@ public class Feedback {
         this.id = id;
         this.id_evenment = id_evenment;
         this.text = text;
-    }
 
+    }
     public Feedback(int id_evenment, String text) {
         this.id_evenment = id_evenment;
         this.text = text;
+
+    }
+
+
+    public Feedback(int id_evenment, String text, int Likes) {
+        this.id_evenment = id_evenment;
+        this.text = text;
+        this.Likes=Likes;
+    }
+
+    public int getLikes() {
+        return Likes;
+    }
+
+    public void setLikes(int likes) {
+        Likes = likes;
     }
 
     public int getId() {
@@ -55,7 +72,7 @@ public class Feedback {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, id_evenment, text);
+        return Objects.hash(id, id_evenment, text,Likes);
     }
 
     @Override
@@ -64,6 +81,7 @@ public class Feedback {
                 "id=" + id +
                 ", id_evenment=" + id_evenment +
                 ", text='" + text + '\'' +
+                ", Likes=" + Likes +
                 '}';
     }
 }

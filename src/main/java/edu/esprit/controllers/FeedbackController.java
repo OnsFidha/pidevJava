@@ -43,9 +43,28 @@ public class FeedbackController {
         UserImg.setImage(image);
 
 
+        String nbrlikes= String.valueOf(feedback.getLikes());
         username.setText("Syrine Zaier");
         text.setText(feedback.getText());
+        nbreactions.setText(nbrlikes);
         this.feedback=feedback;
+
+    }
+    @FXML
+    void LikeFeed(MouseEvent event) {
+        feedback.setLikes(feedback.getLikes() + 1);
+
+        // Update the UI to display the new number of likes
+        nbreactions.setText(String.valueOf(feedback.getLikes()));
+
+        // Update the database to save the changes
+        FeedbackService feedbackService = new FeedbackService();
+        try {
+            feedbackService.updateLikes(feedback.getId(), feedback.getLikes());
+        } catch (SQLException e) {
+            // Handle the SQLException
+            e.printStackTrace();
+        }
 
     }
 

@@ -13,8 +13,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -29,6 +31,8 @@ import java.util.ResourceBundle;
 public class AfficherEvent implements Initializable {
     @FXML
     private GridPane eventgrid;
+    @FXML
+    private TextField eventsearch;
     private List<Evenement> events;
     private EvenementService evenementService = new EvenementService();
 
@@ -137,6 +141,31 @@ public class AfficherEvent implements Initializable {
             e.printStackTrace();
             // Handle error loading the event page
         }
+    }
+    @FXML
+    void Recherche(ActionEvent event) {
+        int column = 0;
+        int row = 1;
+        String recherche = eventsearch.getText();
+        try {
+            eventgrid.getChildren().clear();
+            for (Evenement eventt : evenementService.Rechreche(recherche)){
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/Event.fxml"));
+                Pane userBox = fxmlLoader.load();
+                EventController cardC = fxmlLoader.getController();
+                cardC.setData(eventt);
+                if (column == 3) {
+                    column = 0;
+                    ++row;
+                }
+                eventgrid.add(userBox, column++, row);
+                GridPane.setMargin(userBox, new Insets(10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
 
