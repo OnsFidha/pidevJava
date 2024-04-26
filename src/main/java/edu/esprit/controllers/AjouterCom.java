@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import com.google.gson.JsonObject;
+import com.mysql.cj.xdevapi.JsonParser;
 import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.CommentaireService;
@@ -34,54 +35,64 @@ public class AjouterCom {
     @FXML
     private TextArea text;
     private Publication p;
+
     @FXML
     void addCom(ActionEvent event) {
-        Commentaire commentaire = new Commentaire();
-        commentaire.setId_publication(this.p.getId());
-        commentaire.setText(text.getText());
-        boolean isValid = true; // Variable pour suivre l'état de la validation
+        String commentaireText = text.getText();
+        boolean isValid = true;
 
-        if (text.getText().isEmpty()) {
+        // Validation du commentaire
+        if (commentaireText.isEmpty()) {
             textError.setText("Veuillez entrer votre commentaire.");
             isValid = false;
+        } else if (commentaireText.length() < 5 || commentaireText.length() > 800) {
+            textError.setText("Le commentaire doit contenir entre 5 et 800 caractères.");
+            isValid = false;
         } else {
-            if (text.getText().length() < 5 || text.getText().length() > 800) {
-                textError.setText("Le commentaire doit contenir entre 5 et 800 caractères.");
-                isValid = false;
-            } else {
-                textError.setText("");
-            }
+            textError.setText(""); // Effacez les erreurs précédentes si le texte est valide
         }
         if (isValid) {
-            CommentaireService commentaireService = new CommentaireService();
+            // Vérifiez d'abord s'il y a des mots interdits dans le commentaire
             try {
-                commentaireService.ajouter(commentaire);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setContentText("Le commentaire a été ajouté avec succès");
-                alert.show();
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+                String filteredText = BadWordsApi.filterBadWords(commentaireText);
+                if (!filteredText.equals(commentaireText)) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setContentText("Le commentaire contient des mots interdits et a été filtré.");
+                    alert.show();
+                    commentaireText = filteredText; // Remplacez le texte par le texte filtré
+                }
+
+                Commentaire commentaire = new Commentaire();
+                commentaire.setId_publication(this.p.getId());
+                commentaire.setText(commentaireText);
+
+                CommentaireService commentaireService = new CommentaireService();
                 try {
+                    commentaireService.ajouter(commentaire);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setContentText("Le commentaire a été ajouté avec succès");
+                    alert.show();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
                     Parent root = loader.load();
                     text.getScene().setRoot(root);
-                } catch (IOException e) {
-                    Alert alert1 = new Alert(Alert.AlertType.ERROR);
-                    alert1.setContentText(e.getMessage());
-                    alert1.show();
+                } catch (IOException | SQLException e) {
+                    throw new RuntimeException(e);
                 }
-            } catch (SQLException e) {
 
+            } catch (IOException e) {
+                // Gérer les erreurs liées à l'appel de l'API
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Erreur lors de l'ajout du commentaire : " + e.getMessage());
+                alert.setContentText("Erreur lors de la vérification des mots interdits : " + e.getMessage());
                 alert.show();
             }
         }
     }
+
     public void initData(Publication p) {
         this.p = p;
     }
+
     @FXML
     void initialize() {
-
     }
-
 }

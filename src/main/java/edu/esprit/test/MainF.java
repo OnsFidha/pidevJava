@@ -16,8 +16,9 @@ public class MainF extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-       FXMLLoader loader=new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
-     //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+     //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
+     FXMLLoader loader=new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+     //   FXMLLoader loader=new FXMLLoader(getClass().getResource("/testApi.fxml"));
         try {
             Parent root = loader.load();
             Scene scene =new Scene(root);

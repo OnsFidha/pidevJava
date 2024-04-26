@@ -17,8 +17,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterPub">
+<AnchorPane prefHeight="600.0" prefWidth="1367.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterPub">
 
    <children>
       <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
@@ -175,7 +176,7 @@
 
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="453.0" layoutY="124.0" prefHeight="461.0" prefWidth="678.0">
+      <VBox alignment="CENTER" layoutX="285.0" layoutY="93.0" prefHeight="462.0" prefWidth="676.0">
          <children>
             <VBox alignment="CENTER" prefHeight="58.0" prefWidth="967.0">
                <children>
@@ -272,7 +273,7 @@
                               <VBox prefHeight="56.0" prefWidth="271.0">
                                  <children>
                                     <Label />
-                                    <TextField fx:id="photoPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="270.0" styleClass="text-input" stylesheets="@css/style.css">
+                                    <TextField fx:id="photoPub" alignment="TOP_CENTER" prefHeight="26.0" prefWidth="210.0" styleClass="text-input" stylesheets="@css/style.css">
                                        <VBox.margin>
                                           <Insets top="12.0" />
                                        </VBox.margin>
@@ -337,7 +338,8 @@
             </VBox>
          </children>
       </VBox>
-      <ImageView fx:id="imagePub" fitHeight="192.0" fitWidth="234.0" layoutX="287.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true">
+      <WebView fx:id="webView" layoutX="912.0" layoutY="150.0" prefHeight="400.0" prefWidth="300.0" />
+      <ImageView fx:id="imagePub" fitHeight="192.0" fitWidth="234.0" layoutX="219.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@img/notfound.jpg" />
          </image>

@@ -11,9 +11,11 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.web.WebView;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -22,7 +24,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.scene.web.WebEngine;
 import javafx.stage.FileChooser;
+import netscape.javascript.JSObject;
 
 public class ModifierPub {
 
@@ -61,6 +65,8 @@ public class ModifierPub {
 
     @FXML
     private ComboBox typePub;
+    @FXML
+    private WebView webView;
     private Publication p;
     boolean isValid;
 
@@ -179,6 +185,26 @@ public class ModifierPub {
 
     @FXML
     void initialize() {
+        WebEngine engine = webView.getEngine();
+        engine.load(getClass().getResource("/map.html").toExternalForm());
+        // Permet à JavaScript d'appeler la méthode processCoordinates() dans le contrôleur
+        engine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == Worker.State.SUCCEEDED) {
+                JSObject window = (JSObject) engine.executeScript("window");
+                window.setMember("javafxHandler", new JavaFXHandler());
+            }
+        });
+    }
+    public class JavaFXHandler {
+        public void processCoordinates(double lat, double lng) {
+            // Traitez les coordonnées dans JavaFX
+            System.out.println("Latitude: " + lat + ", Longitude: " + lng);
+        }
+        public void processLocation(String city, String country) {
+            // Traitez le nom de la ville et du pays dans JavaFX
+            lieuPub.setText(city + ", " + country);
+        }
+
 
     }
 

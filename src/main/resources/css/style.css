@@ -56,7 +56,7 @@
     -fx-border-color:orange;
     -fx-background-radius: 10px;
     border: 1px solid white; /* Ajouter une bordure autour des commentaires */
-    padding: 50px; /* Espacement à l'intérieur des commentaires */
+    padding: 0px; /* Espacement à l'intérieur des commentaires */
 
 }
 
@@ -191,8 +191,8 @@
     -fx-border-color: transparent; /* Supprime la bordure par défaut */
     -fx-focus-color: transparent; /* Supprime la couleur du focus */
     -fx-background-color: transparent; /* Supprime le fond du textfield */
-    -fx-padding: 20; /* Supprime l'espacement interne */
-    -fx-alignment: left;
+    -fx-padding: 0; /* Supprime l'espacement interne */
+    -fx-alignment: center;
     -fx-pref-width: 600px;
     -fx-pref-height: 100px;
     -fx-wrap-text: true;

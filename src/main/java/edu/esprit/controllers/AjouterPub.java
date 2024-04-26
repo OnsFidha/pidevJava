@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
+import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,7 +19,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
+import javafx.scene.web.WebEngine;
 import javafx.stage.FileChooser;
+import javafx.scene.web.WebView;
+import netscape.javascript.JSObject;
 
 public class AjouterPub {
     private URL location;
@@ -52,7 +56,8 @@ public class AjouterPub {
 
     @FXML
     private ComboBox typePub;
-
+    @FXML
+    private WebView webView;
 
     @FXML
     void retour() {
@@ -169,7 +174,25 @@ public class AjouterPub {
     }
     @FXML
     void initialize() {
-
+        WebEngine engine = webView.getEngine();
+        engine.load(getClass().getResource("/map.html").toExternalForm());
+        // Permet à JavaScript d'appeler la méthode processCoordinates() dans le contrôleur
+        engine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == Worker.State.SUCCEEDED) {
+                JSObject window = (JSObject) engine.executeScript("window");
+                window.setMember("javafxHandler", new JavaFXHandler());
+            }
+        });
+    }
+    public class JavaFXHandler {
+        public void processCoordinates(double lat, double lng) {
+            // Traitez les coordonnées dans JavaFX
+            System.out.println("Latitude: " + lat + ", Longitude: " + lng);
+        }
+        public void processLocation(String city, String country) {
+            System.out.println("c: " + city + ", cou: " + country);
+            lieuPub.setText(city + ", " + country);
+        }
     }
 
 }
