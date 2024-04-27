@@ -53,6 +53,14 @@
     -fx-background-color:  #c6f5c7;
     -fx-border-radius: 20;
 }
+.particip{
+    -fx-background-color: #f8f0ec;
+    -fx-border-radius: 20;
+}
+.particip:hover{
+    -fx-background-color: #f5d1cd;
+    -fx-border-radius: 20;
+}
 
 
 

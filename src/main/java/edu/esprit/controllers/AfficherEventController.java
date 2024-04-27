@@ -4,6 +4,8 @@ import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.utils.JavaMailUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -307,6 +309,49 @@ public class AfficherEventController {
             alert.setHeaderText("Page Navigation Error");
             alert.setContentText("An error occurred while navigating to the previous page. Please try again.");
             alert.showAndWait();
+        }
+    }
+    @FXML
+    void participer(ActionEvent Aevent) {
+        // Check if the current number of participants is less than the maximum
+        if (event.getNbreParticipants() < event.getNbreMax()) {
+            // Increment the number of participants
+            event.setNbreParticipants(event.getNbreParticipants() + 1);
+            // Update the event in the database
+            EvenementService evenementService = new EvenementService();
+            try {
+                evenementService.modifier(event);
+                // Display success message
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Vous avez participé à l'événement avec succès.");
+                alert.showAndWait();
+
+                // Send email to the user
+                sendParticipationEmail("syrinezaier283@gmail.com", event.getNom());
+
+            } catch (SQLException e) {
+                // Handle database update error
+                e.printStackTrace();
+            }
+        } else {
+            // Display error message when max participants reached
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(null);
+            alert.setContentText("Le nombre maximum de participants est déjà atteint.");
+            alert.showAndWait();
+        }
+
+    }
+
+    private void sendParticipationEmail(String recipientEmail, String eventName) {
+        try {
+            JavaMailUtil.sendEventEmail(recipientEmail, eventName);
+        } catch (Exception e) {
+            // Handle email sending error
+            e.printStackTrace();
         }
     }
     @FXML
