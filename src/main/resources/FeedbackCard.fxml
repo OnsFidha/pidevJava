@@ -45,6 +45,11 @@
                               <Insets />
                            </VBox.margin>
                         </Label>
+                        <Label onMouseClicked="#Translate" styleClass="translate" stylesheets="@css/styles.css" text="Traduire" textFill="#868686" underline="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
                      </children>
                   </VBox>
                </children>
@@ -116,7 +121,7 @@
    <effect>
       <DropShadow>
          <color>
-            <Color red="0.8999999761581421" green="0.7031999826431274" blue="0.3959999978542328" />
+            <Color red="0.5394737124443054" green="0.5394737124443054" blue="0.5394737124443054" />
          </color>
       </DropShadow>
    </effect>

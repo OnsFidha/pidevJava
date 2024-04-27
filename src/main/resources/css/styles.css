@@ -61,7 +61,12 @@
     -fx-background-color: #f5d1cd;
     -fx-border-radius: 20;
 }
-
+.translate{
+    -fx-text-fill: rgb(128, 128, 128);
+}
+.translate:hover{
+    -fx-text-fill: rgb(255, 117, 117);
+}
 
 
 

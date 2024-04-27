@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import com.dark.programs.speech.translator.GoogleTranslate;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
@@ -331,6 +332,7 @@ public class AfficherEventController {
                 // Send email to the user
                 sendParticipationEmail("syrinezaier283@gmail.com", event.getNom());
 
+
             } catch (SQLException e) {
                 // Handle database update error
                 e.printStackTrace();
@@ -353,6 +355,13 @@ public class AfficherEventController {
             // Handle email sending error
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void Translate(MouseEvent event) throws IOException {
+        String Newfeedtext = GoogleTranslate.translate("fr", eventdesc.getText());;
+        eventdesc.setText(Newfeedtext);
+
     }
     @FXML
     void onDeleteClicked(MouseEvent Mevent) {
