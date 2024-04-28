@@ -99,6 +99,12 @@ public class EnvoyerEmailController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Artistool");
+        alert.setHeaderText(null);
+        alert.setContentText("Votre email a ete bien envoyer");
+        alert.showAndWait();
+
     }
 
     @FXML
