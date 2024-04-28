@@ -5,8 +5,6 @@ import java.util.Objects;
 
 public class Commentaire {
     private int id;
-
-
     private int id_publication_id;
     private String text;
     private Date dateCreation;

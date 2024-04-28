@@ -185,6 +185,7 @@ public class ModifierPub {
 
     @FXML
     void initialize() {
+        photoPub.setEditable(false);
         WebEngine engine = webView.getEngine();
         engine.load(getClass().getResource("/map.html").toExternalForm());
         // Permet à JavaScript d'appeler la méthode processCoordinates() dans le contrôleur

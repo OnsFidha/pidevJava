@@ -235,6 +235,19 @@
                               <Label fx:id="dateCreationPub" accessibleRole="DATE_PICKER" prefHeight="42.0" prefWidth="100.0" styleClass="label-title" text="Label" />
                           </children>
                       </FlowPane>
+                      <Button mnemonicParsing="false" onAction="#getlistCollab" styleClass="btn-icone" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/people.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
                       <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
                           <children>
                         <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
@@ -265,7 +278,7 @@
                           </graphic>
                   </Button>
       
-                      <Button mnemonicParsing="false" onAction="#delete" styleClass="btn-icone" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                                  <Button mnemonicParsing="false" onAction="#delete" styleClass="btn-icone" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
                           <graphic>
                               <HBox alignment="CENTER">
                                   <children>
@@ -304,6 +317,11 @@
                               </HBox>
                           </graphic>
                       </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addColaboration" styleClass="btn-nrml" stylesheets="@css/style.css" text="Collaborer" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" />
+                     </GridPane.margin>
+                  </Button>
                   </children>
               </GridPane>
              <AnchorPane fx:id="comments" accessibleRole="PAGINATION" layoutX="-3.0" layoutY="-1.0" prefHeight="472.0" prefWidth="826.0" styleClass="comment-container" stylesheets="@css/style.css" visible="false">

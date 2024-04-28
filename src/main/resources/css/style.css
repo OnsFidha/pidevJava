@@ -191,7 +191,7 @@
     -fx-border-color: transparent; /* Supprime la bordure par défaut */
     -fx-focus-color: transparent; /* Supprime la couleur du focus */
     -fx-background-color: transparent; /* Supprime le fond du textfield */
-    -fx-padding: 0; /* Supprime l'espacement interne */
+    -fx-padding: 12; /* Supprime l'espacement interne */
     -fx-alignment: center;
     -fx-pref-width: 600px;
     -fx-pref-height: 100px;
