@@ -279,6 +279,18 @@
       <CheckBox layoutX="407.0" layoutY="507.0" mnemonicParsing="false" onAction="#trierParEtat" text="Etat" />
       <CheckBox layoutX="407.0" layoutY="540.0" mnemonicParsing="false" onAction="#trierParDate" text="Date " />
       <CheckBox layoutX="408.0" layoutY="569.0" mnemonicParsing="false" onAction="#TrierParType" text="Type" />
+      <Button fx:id="bouttonStat" layoutX="814.0" layoutY="530.0" mnemonicParsing="false" onAction="#StatReclamation" prefHeight="36.0" prefWidth="202.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Voir statistiques" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+         <effect>
+            <DropShadow height="46.72" radius="19.4525" width="33.09">
+               <color>
+                  <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
+               </color>
+            </DropShadow>
+         </effect>
+      </Button>
     </children>
 
 </AnchorPane>

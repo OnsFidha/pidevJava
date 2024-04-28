@@ -43,6 +43,10 @@ public class AfficherReclamationAdmin {
     private Button bouttonRepondre;
 
     @FXML
+    private Button bouttonStat;
+
+
+    @FXML
     private Circle circle;
 
     @FXML
@@ -61,6 +65,22 @@ public class AfficherReclamationAdmin {
     private TableColumn<?, ?> typeReclam;
 
     static Reclamation selected;
+
+    @FXML
+    void StatReclamation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/stat.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Ajout Reclamation");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     @FXML
     void chercherReclam(ActionEvent event) {
