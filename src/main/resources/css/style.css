@@ -59,6 +59,13 @@
     padding: 0px; /* Espacement à l'intérieur des commentaires */
 
 }
+.collab-card {
+    -fx-background-color: #FEFCF3; /* Changer la couleur de fond */
+    -fx-border-radius: 10px;
+    -fx-border-color:orange;
+    -fx-background-radius: 10px;
+    border: 1px solid white; /* Ajouter une bordure autour des commentaires */
+}
 
 .no-comment-label {
     -fx-font-size: 20px; /* Taille de police plus grande */

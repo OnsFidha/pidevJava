@@ -67,8 +67,9 @@ public class ListCollab implements Initializable {
                     column = 0;
                     row++;
                 }
-
-                GridPane.setMargin(card, new Insets(7));
+                liste.setHgap(25);
+                liste.setVgap(250);
+             //   GridPane.setMargin(card, new Insets(7));
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
