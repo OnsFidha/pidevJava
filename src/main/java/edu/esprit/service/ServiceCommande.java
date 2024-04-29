@@ -125,7 +125,7 @@ public class ServiceCommande implements IService<Commande> {
         try {
             PreparedStatement pst = conn.prepareStatement(req);
             pst.setInt(1, commandeId);
-            ResultSet rs = pst.executeQuery(req);
+            ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int produit_id = rs.getInt("produit_id");

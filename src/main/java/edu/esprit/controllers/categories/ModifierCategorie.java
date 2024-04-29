@@ -4,7 +4,6 @@ import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
-import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +45,7 @@ public class ModifierCategorie extends AdminContentPanel {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/afficherCategories.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/AfficherCategories.fxml"));
                         Parent root = loader.load();
                         // Access the controller of the AnotherView
 

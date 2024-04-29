@@ -40,7 +40,7 @@ public class AjouterCategorie extends AdminContentPanel {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/afficherCategories.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/AfficherCategories.fxml"));
                         Parent root = loader.load();
                         // Access the controller of the AnotherView
 

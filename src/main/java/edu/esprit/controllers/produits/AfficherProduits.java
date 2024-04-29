@@ -90,7 +90,7 @@ public class AfficherProduits extends AdminContentPanel{
                     if (response == ButtonType.OK) {
                         try {
                             // Load the AnotherView.fxml file
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/modifierProduit.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/ModifierProduit.fxml"));
                             Parent root = loader.load();
 
                             ModifierProduit controller = loader.getController();
@@ -113,7 +113,7 @@ public class AfficherProduits extends AdminContentPanel{
     void goToAddProductView(ActionEvent event) {
         // Load the AnotherView.fxml file
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/ajouterProduit.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/AjouterProduit.fxml"));
             Parent root = loader.load();
             // Access the controller of the AnotherView
             AdminContentPanel controller = loader.getController();

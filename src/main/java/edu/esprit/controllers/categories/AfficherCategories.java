@@ -87,7 +87,7 @@ public class AfficherCategories extends AdminContentPanel{
                     if (response == ButtonType.OK) {
                         try {
                             // Load the AnotherView.fxml file
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/modifierCategorie.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/categories/ModifierCategorie.fxml"));
                             Parent root = loader.load();
 
                             ModifierCategorie controller = loader.getController();
@@ -110,7 +110,7 @@ public class AfficherCategories extends AdminContentPanel{
     void goToAddCategoryView(ActionEvent event) {
         // Load the AnotherView.fxml file
         try {
-            CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/ajouterCategorie.fxml"), super.getAdminPanelContent());
+            CommonUtils.redirectToAnotherWindow(getClass().getResource("/categories/AjouterCategorie.fxml"), super.getAdminPanelContent());
         } catch (IOException e) {
             displayAlertErreure("Error", "Il y a un problème lors de la redirection vers la bonne interface");
         }

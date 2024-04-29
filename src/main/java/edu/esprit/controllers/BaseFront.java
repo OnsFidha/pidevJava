@@ -1,6 +1,5 @@
 package edu.esprit.controllers;
 
-import edu.esprit.controllers.categories.AfficherCategories;
 import edu.esprit.controllers.produitsfront.ListeProduits;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +21,7 @@ public class BaseFront {
     @FXML
     void showProducts(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produitsfront/listeProduits.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produitsfront/ListeProduits.fxml"));
             Parent root = loader.load();
             // Access the controller of the AnotherView
             ListeProduits controller = loader.getController();

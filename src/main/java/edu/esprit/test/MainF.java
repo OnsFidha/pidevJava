@@ -1,6 +1,5 @@
 package edu.esprit.test;
 
-import edu.esprit.controllers.produitsfront.ListeProduits;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,9 +16,9 @@ public class MainF extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
-       FXMLLoader loader=new FXMLLoader(getClass().getResource("/baseFront.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/produitsfront/listeProduits.fxml"));
+   // FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
+       FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/produitsfront/ListeProduits.fxml"));
 
         try {
             Parent root = loader.load();

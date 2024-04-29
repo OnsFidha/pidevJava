@@ -1,8 +1,5 @@
 package edu.esprit.entities;
 
-import java.util.Date;
-import java.util.List;
-
 public class User {
     public int getId() {
         return id;
@@ -17,9 +14,20 @@ public class User {
 
     private String prenom;
 
-    public User(String nom, String prenom) {
+    private String email;
+
+    public User(String nom, String prenom, String email) {
         this.nom = nom;
         this.prenom = prenom;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getNom() {
@@ -41,9 +49,9 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
-                ", nom='" + nom + '\'' +
+                "nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

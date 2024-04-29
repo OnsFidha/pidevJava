@@ -6,7 +6,6 @@ import edu.esprit.entities.Produit;
 import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.service.Serviceproduit;
-import edu.esprit.utils.CommonUtils;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,7 +61,7 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/afficherProduits.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/produits/AfficherProduits.fxml"));
                         Parent root = loader.load();
                         // Access the controller of the AnotherView
                         AfficherProduits controller = loader.getController();

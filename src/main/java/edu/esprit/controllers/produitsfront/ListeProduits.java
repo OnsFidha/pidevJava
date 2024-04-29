@@ -11,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 public class ListeProduits {
 
@@ -47,7 +46,7 @@ public class ListeProduits {
             if(produit == null){
                 return null;
             }
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produitsfront/productCard.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/produitsfront/ProductCard.fxml"));
             Parent root = loader.load();
             // Access the controller of the AnotherView
             ProductCard controller = loader.getController();

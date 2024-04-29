@@ -1,6 +1,5 @@
 package edu.esprit.service;
 
-import edu.esprit.entities.Produit;
 import edu.esprit.entities.User;
 import edu.esprit.utils.DataSource;
 
@@ -51,7 +50,8 @@ public class ServiceUser implements IService<User> {
             if (rs.next()){
                 String nom = rs.getString("name");
                 String prename = rs.getString("prename");
-                User user = new User(nom, prename);
+                String email = rs.getString("email");
+                User user = new User(nom, prename, email);
                 user.setId(id);
                 return user;
             }
