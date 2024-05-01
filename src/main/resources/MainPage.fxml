@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.MainPage">
+    <children>
+        <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                    </VBox.margin>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+                <HBox fx:id="home" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/homeIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Home" textFill="#f9a936">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="30.0" right="40.0" top="40.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/ProductIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Produit">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox fx:id="pub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/postIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/EventIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Evenement">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="30.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/EventIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Reclamation">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="30.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="991.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="0.5263158082962036" green="0.516569197177887" blue="0.516569197177887" />
+                    </color>
+                </DropShadow>
+            </effect>
+            <children>
+                <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Label>
+                <Circle fx:id="circle" fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" translateX="780.0" translateY="5.0" />
+
+            </children>
+        </HBox>
+        <Label layoutX="453.0" layoutY="165.0" stylesheets="@css/style.css" text="Consulter notre musée en ligne ">
+         <styleClass>
+            <String fx:value="label-title" />
+            <String fx:value="title-style" />
+         </styleClass>
+      </Label>
+      <Button layoutX="833.0" layoutY="250.0" mnemonicParsing="false" onAction="#openURL" prefHeight="35.0" prefWidth="78.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Essayer" />
+
+    </children>
+
+</AnchorPane>
