@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>pidev</artifactId>
+    <groupId>edu.esprit</groupId>
+    <artifactId>workshopjdbc3a25</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -36,6 +36,48 @@
             <version>8.0.33</version>
         </dependency>
         <dependency>
+
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>10.0.0</version>
+        </dependency>
+  
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.mkpaz</groupId>
+            <artifactId>atlantafx-base</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.5.6</version> <!-- Remplacez par la dernière version -->
+        </dependency>
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.12</version> <!-- Use the latest version available -->
+        </dependency>
+       <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.32</version> <!-- Use the latest version available -->
+    </dependency>
+        <dependency>
+            <groupId>org.apache.servicemix.bundles</groupId>
+            <artifactId>org.apache.servicemix.bundles.jaxp-ri</artifactId>
+            <version>1.4.5_1</version>
+        </dependency>
+
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>21.0.2</version>
@@ -82,9 +124,12 @@
                 <version>0.0.8</version>
 
                 <configuration>
-                    <mainClass>edu.esprit.test.MainF</mainClass>
+
+                    <mainClass>edu.esprit.test.MainFX</mainClass>
+
                 </configuration>
             </plugin>
         </plugins>
     </build>
+
 </project>
