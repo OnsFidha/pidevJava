@@ -15,7 +15,7 @@ public class EvenementService implements IService <Evenement>{
         Connection conn= DataSource.getInstance().getConn();
         @Override
         public void ajouter(Evenement event) throws SQLException {
-            String sql = "INSERT INTO evenement (nom, description, lieu, nbreParticipants, nbreMax, dateDebut, dateFin, image) VALUES (?, ?, ?, ?, ?,?,?,?)";
+            String sql = "INSERT INTO evenement (nom, description, lieu, nbre_participants, nbre_max, date_debut, date_fin, image) VALUES (?, ?, ?, ?, ?,?,?,?)";
 
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, event.getNom());
@@ -37,7 +37,7 @@ public class EvenementService implements IService <Evenement>{
 
         @Override
         public void modifier(Evenement event) throws SQLException {
-            String sql = "UPDATE evenement SET nom = ?, description = ?, lieu = ?, nbreParticipants = ?, nbreMax = ?, dateDebut = ?, dateFin = ?, image = ? WHERE id = ?";
+            String sql = "UPDATE evenement SET nom = ?, description = ?, lieu = ?, nbre_participants = ?, nbre_max = ?, date_debut = ?, date_fin = ?, image = ? WHERE id = ?";
 
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, event.getNom());
@@ -80,13 +80,15 @@ public class EvenementService implements IService <Evenement>{
                     Evenement event = new Evenement();
                     event.setId(resultSet.getInt("id"));
                     event.setNom(resultSet.getString("nom"));
+                    event.setDateDebut(resultSet.getDate("date_debut"));
+                    event.setDateFin(resultSet.getDate("date_fin"));
                     event.setDescription(resultSet.getString("description"));
                     event.setLieu(resultSet.getString("lieu"));
-                    event.setDateDebut(resultSet.getDate("dateDebut"));
-                    event.setDateFin(resultSet.getDate("dateFin"));
+
+
+                    event.setNbreParticipants(resultSet.getInt("nbre_participants"));
+                    event.setNbreMax(resultSet.getInt("nbre_max"));
                     event.setImage(resultSet.getString("image"));
-                    event.setNbreParticipants(resultSet.getInt("nbreParticipants"));
-                    event.setNbreMax(resultSet.getInt("nbreMax"));
                     // event.setUserId(resultSet.getInt("id_user_id"));
 
                     events.add(event);
@@ -113,11 +115,12 @@ public class EvenementService implements IService <Evenement>{
                     event.setNom(resultSet.getString("nom"));
                     event.setDescription(resultSet.getString("description"));
                     event.setLieu(resultSet.getString("lieu"));
-                    event.setDateDebut(resultSet.getDate("dateDebut"));
-                    event.setDateFin(resultSet.getDate("dateFin"));
+                    event.setDateDebut(resultSet.getDate("date_debut"));
+                    event.setDateFin(resultSet.getDate("date_fin"));
+
+                    event.setNbreParticipants(resultSet.getInt("nbre_participants"));
+                    event.setNbreMax(resultSet.getInt("nbre_max"));
                     event.setImage(resultSet.getString("image"));
-                    event.setNbreParticipants(resultSet.getInt("nbreparticipants"));
-                    event.setNbreMax(resultSet.getInt("nbreMax"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -155,7 +158,7 @@ public class EvenementService implements IService <Evenement>{
 //    }
 public List<Evenement> getEvenementsByDateRange(LocalDate startDate, LocalDate endDate) throws SQLException {
     List<Evenement> events = new ArrayList<>();
-    String sql = "SELECT * FROM evenement WHERE dateDebut BETWEEN ? AND ?";
+    String sql = "SELECT * FROM evenement WHERE date_debut BETWEEN ? AND ?";
 
     try (PreparedStatement statement = conn.prepareStatement(sql)) {
         statement.setDate(1, java.sql.Date.valueOf(startDate));
@@ -167,11 +170,11 @@ public List<Evenement> getEvenementsByDateRange(LocalDate startDate, LocalDate e
             event.setNom(resultSet.getString("nom"));
             event.setDescription(resultSet.getString("description"));
             event.setLieu(resultSet.getString("lieu"));
-            event.setDateDebut(resultSet.getDate("dateDebut"));
-            event.setDateFin(resultSet.getDate("dateFin"));
+            event.setDateDebut(resultSet.getDate("date_debut"));
+            event.setDateFin(resultSet.getDate("date_fin"));
             event.setImage(resultSet.getString("image"));
-            event.setNbreParticipants(resultSet.getInt("nbreParticipants"));
-            event.setNbreMax(resultSet.getInt("nbreMax"));
+            event.setNbreParticipants(resultSet.getInt("nbre_participants"));
+            event.setNbreMax(resultSet.getInt("nbre_max"));
             events.add(event);
         }
     } catch (SQLException e) {

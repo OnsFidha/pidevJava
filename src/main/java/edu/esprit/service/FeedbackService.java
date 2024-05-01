@@ -15,7 +15,7 @@ public class FeedbackService implements IService<Feedback>{
 
     @Override
     public void ajouter(Feedback feedback) throws SQLException {
-        String sql = "INSERT INTO feedback (id_evenement, text) VALUES (?, ?)";
+        String sql = "INSERT INTO feedback (id_evenement_id, text) VALUES (?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1,feedback.getId_evenment());
@@ -32,7 +32,7 @@ public class FeedbackService implements IService<Feedback>{
 
     @Override
     public void modifier(Feedback feedback) throws SQLException {
-        String sql = "UPDATE feedback SET id_evenement = ?, text = ? WHERE id = ?";
+        String sql = "UPDATE feedback SET id_evenement_id = ?, text = ? WHERE id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1, feedback.getId_evenment());
@@ -105,7 +105,7 @@ public class FeedbackService implements IService<Feedback>{
 
     public List<Feedback> getAllById(int id) throws SQLException {
         List<Feedback> feedbacks = new ArrayList<>();
-        String sql = "SELECT * FROM feedback WHERE id_evenement = ?";
+        String sql = "SELECT * FROM feedback WHERE id_evenement_id = ?";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             // Set the value for the parameter
@@ -115,7 +115,7 @@ public class FeedbackService implements IService<Feedback>{
             while (resultSet.next()) {
                 Feedback feedback = new Feedback();
                 feedback.setId(resultSet.getInt("id"));
-                feedback.setId_evenment(resultSet.getInt("id_evenement"));
+                feedback.setId_evenment(resultSet.getInt("id_evenement_id"));
                 feedback.setText(resultSet.getString("text"));
                 feedback.setLikes(resultSet.getInt("Likes"));
 

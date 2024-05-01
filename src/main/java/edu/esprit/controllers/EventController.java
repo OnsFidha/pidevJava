@@ -21,11 +21,7 @@ public class EventController {
         @FXML
         private ImageView ProfileImage;
 
-        @FXML
-        private Label comments;
 
-        @FXML
-        private Label starts;
 
         @FXML
         private Label username;
@@ -55,8 +51,7 @@ public class EventController {
         // Set username and event details
         username.setText("Syrine Zaier");
         EventName.setText(event.getNom());
-        starts.setText("4/5");
-        comments.setText("3K");
+
     }
 
 
