@@ -7,7 +7,7 @@ import java.util.Properties;
 
 public class EmailManager {
     public static void sendEmail(String recipientEmail, String code, String emailMessage) throws MessagingException {
-        final String username = "";
+        final String username = "onsfidha3@gmail.com";
         final String password = "";
 
         Properties prop = new Properties();

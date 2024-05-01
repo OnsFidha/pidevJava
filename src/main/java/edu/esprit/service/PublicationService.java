@@ -87,6 +87,26 @@ public class PublicationService implements IService <Publication> {
         return publications;
     }
 
+
+    public Map<String, Integer> getCountByType() throws SQLException {
+        Map<String, Integer> countByType = new HashMap<>();
+        String sql = "SELECT type, COUNT(*) AS count FROM publication GROUP BY type";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String type = resultSet.getString("type");
+                int count = resultSet.getInt("count");
+                countByType.put(type, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return countByType;
+    }
+
     @Override
     public Publication getOneById(int id) throws SQLException {
         Publication publication = null;
