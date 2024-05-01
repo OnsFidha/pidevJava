@@ -3,6 +3,7 @@ package edu.esprit.controllers;
 import edu.esprit.entities.Evenement;
 
 import edu.esprit.service.EvenementService;
+import edu.esprit.service.ParticipationService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,9 +25,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AfficherEvent implements Initializable {
     @FXML
@@ -36,43 +35,92 @@ public class AfficherEvent implements Initializable {
     private List<Evenement> events;
     private EvenementService evenementService = new EvenementService();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        EvenementService evenementService = new EvenementService();
+//    @Override
+//    public void initialize(URL url, ResourceBundle resourceBundle) {
+//        EvenementService evenementService = new EvenementService();
+//
+//        try {
+//            List<Evenement> events = evenementService.getAll();
+//
+//            int columns = 0;
+//            int rows = 1;
+//
+//            for (Evenement event : events) {
+//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Event.fxml"));
+//                VBox eventbox = fxmlLoader.load();
+//
+//                EventController eventController = fxmlLoader.getController();
+//                eventController.setData(event);
+//                // Add event handling logic
+//                eventbox.setOnMouseClicked(mouseEvent -> {
+//                    if (mouseEvent.getClickCount() == 2) { // Double click
+//                        redirectToEventPage(event);
+//                    }
+//                });
+//
+//                if (columns == 3) {
+//                    columns = 0;
+//                    rows++;
+//                }
+//
+//                eventgrid.add(eventbox, columns++, rows);
+//                GridPane.setMargin(eventbox, new Insets(10));
+//            }
+//        } catch (IOException | SQLException e) {
+//            e.printStackTrace();
+//            // Handle any potential errors here
+//        }
+//
+//    }
+@Override
+public void initialize(URL url, ResourceBundle resourceBundle) {
+    EvenementService evenementService = new EvenementService();
+    ParticipationService participationService = new ParticipationService();
 
-        try {
-            List<Evenement> events = evenementService.getAll();
+    try {
+        List<Evenement> events = evenementService.getAll();
 
-            int columns = 0;
-            int rows = 1;
+        // Create a map to store each event with its participation count
+        Map<Evenement, Integer> participationCountMap = new HashMap<>();
 
-            for (Evenement event : events) {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Event.fxml"));
-                VBox eventbox = fxmlLoader.load();
-
-                EventController eventController = fxmlLoader.getController();
-                eventController.setData(event);
-                // Add event handling logic
-                eventbox.setOnMouseClicked(mouseEvent -> {
-                    if (mouseEvent.getClickCount() == 2) { // Double click
-                        redirectToEventPage(event);
-                    }
-                });
-
-                if (columns == 3) {
-                    columns = 0;
-                    rows++;
-                }
-
-                eventgrid.add(eventbox, columns++, rows);
-                GridPane.setMargin(eventbox, new Insets(10));
-            }
-        } catch (IOException | SQLException e) {
-            e.printStackTrace();
-            // Handle any potential errors here
+        // Populate the map with participation counts for each event
+        for (Evenement event : events) {
+            int participationCount = participationService.getParticipationCountByEvent(event.getId());
+            participationCountMap.put(event, participationCount);
         }
 
+        // Sort the events based on their participation count
+        events.sort(Comparator.comparingInt(participationCountMap::get).reversed());
+
+        int columns = 0;
+        int rows = 1;
+
+        for (Evenement event : events) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Event.fxml"));
+            VBox eventbox = fxmlLoader.load();
+
+            EventController eventController = fxmlLoader.getController();
+            eventController.setData(event);
+            // Add event handling logic
+            eventbox.setOnMouseClicked(mouseEvent -> {
+                if (mouseEvent.getClickCount() == 2) { // Double click
+                    redirectToEventPage(event);
+                }
+            });
+
+            if (columns == 3) {
+                columns = 0;
+                rows++;
+            }
+
+            eventgrid.add(eventbox, columns++, rows);
+            GridPane.setMargin(eventbox, new Insets(10));
+        }
+    } catch (IOException | SQLException e) {
+        e.printStackTrace();
+        // Handle any potential errors here
     }
+}
     @FXML
     void MoveToAdd(MouseEvent event) {
         try {

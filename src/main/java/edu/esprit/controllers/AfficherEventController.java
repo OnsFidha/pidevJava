@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -142,6 +143,10 @@ public class AfficherEventController {
 
 
     }
+
+
+
+
     @FXML
     void AddFb(MouseEvent event) {
         try {
@@ -328,7 +333,7 @@ public class AfficherEventController {
                 // Add participation to the database
                 ParticipationService participationService = new ParticipationService();
                 // Assuming you have the user's ID stored in a variable called userId
-                int userId = 4; // Replace 1 with the actual user ID
+                int userId = 2; // Replace 1 with the actual user ID
                 if (!participationService.hasParticipated(userId, event.getId())) {
                     evenementService.modifier(event);
                     // Display success message

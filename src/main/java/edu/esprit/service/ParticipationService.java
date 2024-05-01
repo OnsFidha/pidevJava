@@ -93,6 +93,23 @@ public class ParticipationService implements IService<Participation> {
 
         return statsData;
     }
+    public int getParticipationCountByEvent(int eventId) throws SQLException {
+        // Execute a SQL query to count participations for the given event ID
+        String sql = "SELECT COUNT(*) AS participation_count FROM participation_evenement WHERE evenement_id = ?";
+        int participationCount = 0;
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, eventId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    participationCount = resultSet.getInt("participation_count");
+                }
+            }
+        }
+
+        return participationCount;
+    }
+
 
     @Override
     public void modifier(Participation participation) throws SQLException {
@@ -113,4 +130,5 @@ public class ParticipationService implements IService<Participation> {
     public Participation getOneById(int id) throws SQLException {
         return null;
     }
+
 }
