@@ -12,6 +12,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,15 +29,12 @@ public class AfficherCommandes {
         try {
             Set<Commande> commandes = commandeService.getAll();
             int index=0;
-            gridCommandes.addRow(index, createGridHeaderLabel("Utilisateur"),
+            gridCommandes.addRow(index, createGridHeaderLabel("Date"), createGridHeaderLabel("Utilisateur"),
                     createGridHeaderLabel("Produit(s)"), createGridHeaderLabel("Montant Total"));
             index++;
             for (Commande commande: commandes){
-//                Button btnModifier = getUpdateButton(produit);
-//                Button btnSupprimer = getDeleteButton(produit);
-//                HBox hbox = new HBox(10); // spacing between nodes
-//                hbox.getChildren().addAll(btnModifier, btnSupprimer);
-                gridCommandes.addRow(index, new Label(commande.getUser().getNom()+" "+commande.getUser().getPrenom()),
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                gridCommandes.addRow(index, new Label(sdf.format(commande.getDate_commande())), new Label(commande.getUser().getNom()+" "+commande.getUser().getPrenom()),
                         getCommandeDetails(commande.getDetailsCommande()),
                         new Label(Objects.toString(commande.getMontant_total())));
                 index++;

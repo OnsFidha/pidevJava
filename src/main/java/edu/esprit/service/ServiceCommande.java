@@ -6,6 +6,7 @@ import edu.esprit.utils.DataSource;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class ServiceCommande implements IService<Commande> {
@@ -105,7 +106,7 @@ public class ServiceCommande implements IService<Commande> {
                 int id = rs.getInt("id");
                 int user_id = rs.getInt("user_id");
                 User user = serviceUser.getOneById(user_id);
-                java.util.Date date_commande = rs.getDate("date_commande");
+                Timestamp date_commande = rs.getTimestamp("date_commande");
                 double montantTotal = rs.getDouble("montant_total");
                 List<DetailCommande> detailCommandes = getDetailCommande(id);
                 Commande commande = new Commande(user, date_commande, "", montantTotal, detailCommandes);
@@ -115,7 +116,7 @@ public class ServiceCommande implements IService<Commande> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return commandes;
+        return commandes.stream().sorted(Comparator.comparing(Commande::getDate_commande).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
     }
 
 

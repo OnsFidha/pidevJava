@@ -8,8 +8,8 @@ import java.util.Properties;
 
 
 public class SendMail {
-    private final static String senderEmail = "******************************";
-    private final static String senderPassword = "******************************";
+    private final static String senderEmail = "shenda.officiel@gmail.com";
+    private final static String senderPassword = "bygo xftt jqhp tvdb";
     public static void send(String recipientEmail) {
         // SMTP server configuration
         String smtpHost = "smtp.gmail.com";

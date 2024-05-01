@@ -1,10 +1,13 @@
 package edu.esprit.controllers.produitsfront;
 
 import edu.esprit.entities.Commande;
-import edu.esprit.entities.DetailCommande;
 import edu.esprit.entities.Produit;
 import edu.esprit.entities.User;
-import edu.esprit.service.*;
+import edu.esprit.model.UserSession;
+import edu.esprit.service.IService;
+import edu.esprit.service.ServiceCommande;
+import edu.esprit.service.ServiceUser;
+import edu.esprit.service.Serviceproduit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -14,8 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.List;
+import java.util.Objects;
 
 public class ProductCard{
     @FXML
@@ -36,22 +38,34 @@ public class ProductCard{
     @FXML
     private ImageView productImage;
 
-    IService<Commande> commandeIService = ServiceCommande.getInstance();
+    @FXML
+    private Label labelMontantTotal;
+
+    @FXML
+    private Label nbreProduitdansLepanier;
+
+    public void setNbreProduitdansLepanier(Label nbreProduitdansLepanier) {
+        this.nbreProduitdansLepanier = nbreProduitdansLepanier;
+    }
+
+    public void setLabelMontantTotal(Label labelMontantTotal) {
+        this.labelMontantTotal = labelMontantTotal;
+    }
+
     IService<Produit> serviceProduit = Serviceproduit.getInstance();
     IService<User> serviceUser = ServiceUser.getInstance();
 
+
     @FXML
-    void passerCommande(ActionEvent event) {
+    void ajouterAuPanier(ActionEvent event) {
         try {
             Produit produit = serviceProduit.getOneById(Integer.parseInt(productId.getText()));
-            User user = serviceUser.getOneById(1);
-            List<DetailCommande> detailCommandes = List.of(new DetailCommande(0, produit, produit.getPrix(), 1));
-            Commande commande = new Commande(user, Calendar.getInstance().getTime(), "", produit.getPrix(), detailCommandes);
-            commandeIService.ajouter(commande);
-            SendMail.send(user.getEmail());
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmation");
-            alert.setContentText("La commande est passé avec success ");
+            UserSession.addProductToCommande(produit);
+            labelMontantTotal.setText(Objects.toString(UserSession.getCommande().getMontant_total()));
+            nbreProduitdansLepanier.setText(Objects.toString(UserSession.getCommande().getDetailsCommande().size()));
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setContentText("Le produit est bien ajouté au panier");
             alert.show();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -59,6 +73,15 @@ public class ProductCard{
     }
 
     public void showProduct(Produit produit){
+        try {
+            UserSession.setLoggedUser(serviceUser.getOneById(1));
+            if (Objects.nonNull(UserSession.getCommande())){
+                labelMontantTotal.setText(Objects.toString(UserSession.getCommande().getMontant_total()));
+                nbreProduitdansLepanier.setText(Objects.toString(UserSession.getCommande().getDetailsCommande().size()));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         productId.setText(String.valueOf(produit.getId()));
         productName.setText(produit.getNom());
         productDescription.setText(produit.getDescription());

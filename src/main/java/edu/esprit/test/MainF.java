@@ -16,8 +16,8 @@ public class MainF extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-   // FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
-       FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+    FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
+      //FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/produitsfront/ListeProduits.fxml"));
 
         try {

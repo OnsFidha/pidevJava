@@ -15,6 +15,13 @@ public class DetailCommande {
         this.quantite = quantite;
     }
 
+    public DetailCommande(Produit produit, double prix, int quantite) {
+        this.commande_id = commande_id;
+        this.produit = produit;
+        this.prix = prix;
+        this.quantite = quantite;
+    }
+
     public int getId() {
         return id;
     }

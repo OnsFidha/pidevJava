@@ -5,15 +5,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 
-public class BaseFront {
-
-    @FXML
-    private AnchorPane baseFrontContentPanel;
+public class BaseFront extends FrontContentPanel{
 
     @FXML
     private Circle circle;
@@ -25,9 +21,10 @@ public class BaseFront {
             Parent root = loader.load();
             // Access the controller of the AnotherView
             ListeProduits controller = loader.getController();
+            controller.setBaseFrontContentPanel(super.getBaseFrontContentPanel());
             controller.showProducts();
-            baseFrontContentPanel.getChildren().clear();
-            baseFrontContentPanel.getChildren().setAll(root);
+            super.getBaseFrontContentPanel().getChildren().clear();
+            super.getBaseFrontContentPanel().getChildren().setAll(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

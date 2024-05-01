@@ -2,7 +2,6 @@ package edu.esprit.entities;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 
 public class Commande {
     private int id;

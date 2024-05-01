@@ -13,9 +13,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.BaseFront">
+<AnchorPane prefHeight="634.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" styleClass="@css\styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.BaseFront">
     <children>
-        <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+        <VBox prefHeight="634.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
             <effect>
                 <DropShadow />
             </effect>
