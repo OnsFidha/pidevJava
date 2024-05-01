@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.application.Platform;
 import javax.mail.*;
@@ -41,7 +42,8 @@ public class ConnectionUserController implements Initializable {
     private TextField email_login;
     @FXML
     private TextField password_login;
-
+    @FXML
+    private ImageView image1;
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
 

@@ -21,7 +21,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import javafx.scene.chart.PieChart;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -79,6 +79,12 @@ public class AdminUserController implements Initializable {
 
     @FXML
     private TextField usersearch;
+    @FXML
+    private PieChart statisticPieChart;
+    @FXML
+    private Label adminCountLabel;
+    @FXML
+    private Label userCountLabel;
 
     ObservableList<String> RolesList = FXCollections.observableArrayList("User", "Admin");
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
@@ -93,6 +99,14 @@ public class AdminUserController implements Initializable {
         String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
         logedUsernamee.setText(nameP);
+        int adminCount = UserS.getCountByRole("Admin");
+        int userCount = UserS.getCountByRole("User");
+        adminCountLabel.setText(Integer.toString(adminCount));
+        userCountLabel.setText(Integer.toString(userCount));
+
+        // Ajouter les données au graphique à secteurs
+        statisticPieChart.getData().add(new PieChart.Data("Administrateurs", adminCount));
+        statisticPieChart.getData().add(new PieChart.Data("Utilisateurs", userCount));
 
     }
 
@@ -291,12 +305,12 @@ public class AdminUserController implements Initializable {
     @FXML
     public void Menu1(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Charts.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Waves - Menu");
+            stage.setTitle("artistool - Menu");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

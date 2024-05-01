@@ -1,5 +1,10 @@
 package edu.esprit.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import com.github.sarxos.webcam.Webcam;
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
@@ -15,11 +20,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,7 +53,8 @@ public class InsriptionContoller {
     private Button imagebtn;
     @FXML
     public ImageView imagepdp;
-
+    @FXML
+    private Button TakePic;
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
     public static final String ACCOUNT_SID = "AC5cb6bfb17d0f2b520920f31cfb9ac577";
@@ -183,6 +188,20 @@ public class InsriptionContoller {
                 e.printStackTrace();
             }
         }
+    }
+    @FXML
+    void TakePic(ActionEvent event) throws IOException {
+
+
+        Webcam webcam = Webcam.getDefault();
+        webcam.open();
+
+        // get image
+        BufferedImage image = webcam.getImage();
+
+        // save image to PNG file
+        ImageIO.write(image, "PNG", new File("src/main/resources/assets/uploads/pdp1.png"));
+        webcam.close();
     }
 
     @FXML

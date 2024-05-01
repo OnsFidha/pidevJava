@@ -50,7 +50,16 @@
             <artifactId>logback-classic</artifactId>
             <version>1.5.6</version> <!-- Remplacez par la dernière version -->
         </dependency>
-
+        <dependency>
+            <groupId>com.github.sarxos</groupId>
+            <artifactId>webcam-capture</artifactId>
+            <version>0.3.12</version> <!-- Use the latest version available -->
+        </dependency>
+       <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.32</version> <!-- Use the latest version available -->
+    </dependency>
         <dependency>
             <groupId>org.apache.servicemix.bundles</groupId>
             <artifactId>org.apache.servicemix.bundles.jaxp-ri</artifactId>

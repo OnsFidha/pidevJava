@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -190,9 +191,30 @@
                      </children></AnchorPane>
                </content>
             </Tab>
+            <Tab text="Charts">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <PieChart fx:id="statisticPieChart" layoutX="126.0" layoutY="78.0" />
+                        <Pane layoutX="128.0" layoutY="432.0" prefHeight="41.0" prefWidth="105.0" styleClass="btn" stylesheets="@css/style.css">
+                           <children>
+                              <Label fx:id="userCountLabel" layoutX="43.0" layoutY="21.0" text="Label" />
+                              <Label layoutX="7.0" layoutY="5.0" prefHeight="18.0" prefWidth="92.0" text="nbr d'utilisateurs" />
+                           </children>
+                        </Pane>
+                        <Pane layoutX="522.0" layoutY="432.0" prefHeight="41.0" prefWidth="104.0" styleClass="btn" stylesheets="@css/style.css">
+                           <children>
+                              <Label fx:id="adminCountLabel" layoutX="42.0" layoutY="21.0" text="Label" />
+                              <Label layoutX="19.0" layoutY="2.0" text="nbr d'admins" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
          </tabs>
       </TabPane>
-      <HBox alignment="TOP_RIGHT" layoutX="217.0" layoutY="15.0" prefHeight="83.0" prefWidth="951.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+      <HBox alignment="CENTER_RIGHT" layoutX="217.0" layoutY="15.0" prefHeight="83.0" prefWidth="951.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
          <effect>
             <DropShadow>
                <color>
@@ -203,12 +225,21 @@
          <children>
             <Pane>
                <children>
-                  <ImageView fx:id="logedUserimage" cache="true" fitHeight="40.0" fitWidth="60.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label fx:id="logedUsernamee" contentDisplay="CENTER" layoutX="-12.0" layoutY="40.0" prefHeight="41.0" prefWidth="92.0" style="-fx-border-color: #BEE5B4; -fx-border-width: 3;" text="Label" textAlignment="CENTER" textFill="#5e4848">
+                  <Label alignment="CENTER" contentDisplay="CENTER" layoutX="-129.0" layoutY="10.0" prefHeight="66.0" prefWidth="559.0" text="Gestion des utilisateurs" textAlignment="CENTER" textFill="#f9a936">
+                     <font>
+                        <Font size="34.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane>
+               <children>
+                  <Label fx:id="logedUsernamee" contentDisplay="CENTER" layoutX="-12.0" layoutY="40.0" prefHeight="41.0" prefWidth="92.0" style="-fx-border-color: #BEE5B4; -fx-border-width: 2; -fx-background-radius: 4;" text="Label" textAlignment="CENTER" textFill="#5e4848">
                      <font>
                         <Font name="Bodoni MT Bold" size="16.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="logedUserimage" cache="true" fitHeight="40.0" fitWidth="60.0" layoutX="32.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </Pane>
          </children>

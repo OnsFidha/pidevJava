@@ -57,6 +57,6 @@ public class CardUser1Controller {
         roleslb.setText(user.getRoles());
         phonelb.setText(String.valueOf(user.getPhone()));
         userpane.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
-        userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
+        userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#202020");
     }
 }

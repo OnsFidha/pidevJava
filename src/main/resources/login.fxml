@@ -42,10 +42,10 @@
             </font>
         </Button>
         <Hyperlink layoutX="168.0" layoutY="420.0" onAction="#changePassword" prefHeight="24.0" prefWidth="134.0" text="Mot de passe oublié ? " />
-      <ImageView fitHeight="768.0" fitWidth="630.0" layoutX="647.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/uploads/rajel.jpg" />
-         </image>
+      <ImageView fx:id="image1" fitHeight="768.0" fitWidth="630.0" layoutX="647.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+              <Image url="@assets/uploads/rajel.jpg" />
+          </image>
       </ImageView>
     </children>
 </AnchorPane>

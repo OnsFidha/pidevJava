@@ -10,6 +10,9 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     private Connection cnx;
@@ -275,4 +278,20 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
 
         return digitMatcher.find() && letterMatcher.find();
     }
-}
+
+    public int getCountByRole(String roles) {
+        int count = 0;
+        String query = "SELECT COUNT(*) AS count FROM `user` WHERE roles = ?";
+        try {
+            PreparedStatement statement = cnx.prepareStatement(query);
+            statement.setString(1, roles);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                count = resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+    }
