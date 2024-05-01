@@ -182,30 +182,30 @@ public List<Evenement> getEvenementsByDateRange(LocalDate startDate, LocalDate e
     return events;
 }
 
-    public List<Evenement> Rechreche(String recherche) {
-        List<Evenement> events = new ArrayList<>();
-        String sql = "SELECT * FROM `evenement` WHERE `nom` LIKE '%"  + recherche+ "%'" ;
-        try {
-            Statement ste = conn.createStatement();
-            ResultSet rs = ste.executeQuery(sql);
-            while (rs.next()) {
-                Evenement event = new Evenement();
-                event.setId(rs.getInt("id"));
-                event.setNom(rs.getString("nom"));
-                event.setDescription(rs.getString("description"));
-                event.setLieu(rs.getString("lieu"));
-                event.setDateDebut(rs.getDate("dateDebut"));
-                event.setDateFin(rs.getDate("dateFin"));
-                event.setImage(rs.getString("image"));
-                event.setNbreParticipants(rs.getInt("nbreparticipants"));
-                event.setNbreMax(rs.getInt("nbreMax"));
-                events.add(event);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return events;
-    }
+//    public List<Evenement> Rechreche(String recherche) {
+//        List<Evenement> events = new ArrayList<>();
+//        String sql = "SELECT * FROM `evenement` WHERE `nom` LIKE '%"  + recherche+ "%'" ;
+//        try {
+//            Statement ste = conn.createStatement();
+//            ResultSet rs = ste.executeQuery(sql);
+//            while (rs.next()) {
+//                Evenement event = new Evenement();
+//                event.setId(rs.getInt("id"));
+//                event.setNom(rs.getString("nom"));
+//                event.setDescription(rs.getString("description"));
+//                event.setLieu(rs.getString("lieu"));
+//                event.setDateDebut(rs.getDate("dateDebut"));
+//                event.setDateFin(rs.getDate("dateFin"));
+//                event.setImage(rs.getString("image"));
+//                event.setNbreParticipants(rs.getInt("nbreparticipants"));
+//                event.setNbreMax(rs.getInt("nbreMax"));
+//                events.add(event);
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return events;
+//    }
 
 
 

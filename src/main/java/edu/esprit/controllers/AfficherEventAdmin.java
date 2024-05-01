@@ -12,8 +12,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -23,6 +25,7 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class AfficherEventAdmin implements Initializable {
     @FXML
@@ -30,6 +33,8 @@ public class AfficherEventAdmin implements Initializable {
 
     @FXML
     private Circle circle;
+    @FXML
+    private TextField eventsearch;
 
     @FXML
     private GridPane eventgrid;
@@ -120,5 +125,36 @@ public class AfficherEventAdmin implements Initializable {
         }
 
 
+    }
+    @FXML
+    void Recherche(ActionEvent Aevent) {
+        String recherche = eventsearch.getText().toLowerCase(); // Convertir la recherche en minuscules
+
+        try {
+            List<Evenement> filteredEvents = evenementService.getAll().stream()
+                    .filter(event -> event.getNom().toLowerCase().contains(recherche))
+                    .collect(Collectors.toList());
+
+            updateEventGrid(filteredEvents); // Mettre à jour la grille avec les événements filtrés
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    private void updateEventGrid(List<Evenement> events) throws IOException {
+        eventgrid.getChildren().clear();
+        int column = 0;
+        int row = 1;
+        for (Evenement event : events) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AdminEvent.fxml"));
+            Pane eventBox = fxmlLoader.load();
+            AdminEventController eventController = fxmlLoader.getController();
+            eventController.setData(event);
+            if (column == 1) {
+                column = 0;
+                ++row;
+            }
+            eventgrid.add(eventBox, column++, row);
+            GridPane.setMargin(eventBox, new Insets(10));
+        }
     }
 }

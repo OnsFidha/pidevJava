@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AfficherEvent implements Initializable {
     @FXML
@@ -191,30 +192,61 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
         }
     }
     @FXML
-    void Recherche(ActionEvent event) {
-        int column = 0;
-        int row = 1;
-        String recherche = eventsearch.getText();
+    void Recherche(ActionEvent Aevent) {
+        String recherche = eventsearch.getText().toLowerCase(); // Convertir la recherche en minuscules
+
         try {
-            eventgrid.getChildren().clear();
-            for (Evenement eventt : evenementService.Rechreche(recherche)){
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/Event.fxml"));
-                Pane userBox = fxmlLoader.load();
-                EventController cardC = fxmlLoader.getController();
-                cardC.setData(eventt);
-                if (column == 3) {
-                    column = 0;
-                    ++row;
-                }
-                eventgrid.add(userBox, column++, row);
-                GridPane.setMargin(userBox, new Insets(10));
-            }
-        } catch (IOException e) {
+            List<Evenement> filteredEvents = evenementService.getAll().stream()
+                    .filter(event -> event.getNom().toLowerCase().contains(recherche))
+                    .collect(Collectors.toList());
+
+            updateEventGrid(filteredEvents); // Mettre à jour la grille avec les événements filtrés
+        } catch (IOException | SQLException e) {
             e.printStackTrace();
         }
-
     }
+    private void updateEventGrid(List<Evenement> events) throws IOException {
+        eventgrid.getChildren().clear();
+        int column = 0;
+        int row = 1;
+        for (Evenement event : events) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/Event.fxml"));
+            Pane eventBox = fxmlLoader.load();
+            EventController eventController = fxmlLoader.getController();
+            eventController.setData(event);
+            if (column == 3) {
+                column = 0;
+                ++row;
+            }
+            eventgrid.add(eventBox, column++, row);
+            GridPane.setMargin(eventBox, new Insets(10));
+        }
+    }
+
+//    void Recherche(ActionEvent event) {
+//        int column = 0;
+//        int row = 1;
+//        String recherche = eventsearch.getText();
+//        try {
+//            eventgrid.getChildren().clear();
+//            for (Evenement eventt : evenementService.Rechreche(recherche)){
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("/Event.fxml"));
+//                Pane userBox = fxmlLoader.load();
+//                EventController cardC = fxmlLoader.getController();
+//                cardC.setData(eventt);
+//                if (column == 3) {
+//                    column = 0;
+//                    ++row;
+//                }
+//                eventgrid.add(userBox, column++, row);
+//                GridPane.setMargin(userBox, new Insets(10));
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
 
 
 //    public void initialize(URL url, ResourceBundle resourceBundle) {
