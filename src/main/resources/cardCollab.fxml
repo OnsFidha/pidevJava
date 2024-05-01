@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="248.0" prefWidth="383.0" styleClass="collab-card" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.cardCollab">
+   <children>
+      <HBox prefHeight="204.0" prefWidth="368.0">
+         <children>
+            <ImageView fx:id="userimage" fitHeight="163.0" fitWidth="169.0" pickOnBounds="true" preserveRatio="true">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
+               <image>
+                  <Image url="@img/user2.png" />
+               </image>
+            </ImageView>
+            <VBox prefHeight="204.0" prefWidth="282.0">
+               <children>
+                  <Label fx:id="user" alignment="CENTER" contentDisplay="CENTER" prefHeight="36.0" prefWidth="162.0" text="Label" textAlignment="CENTER" wrapText="true">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <ImageView fitHeight="19.0" fitWidth="245.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/zigzag.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets left="8.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox prefHeight="45.0" prefWidth="176.0">
+                     <children>
+                        <Label text="Disponibilité:" />
+                        <Label fx:id="dispo" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="106.0" text="Label" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+                  <VBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Compétances:" />
+                        <VBox fx:id="competencesContainer" alignment="CENTER" maxWidth="148.0" prefHeight="22.0" prefWidth="148.0">
+                           <VBox.margin>
+                              <Insets left="20.0" />
+                           </VBox.margin></VBox>
+                     </children>
+                  </VBox>
+
+                  <HBox layoutX="10.0" layoutY="72.0" prefHeight="45.0" prefWidth="176.0">
+                     <children>
+                        <Label prefHeight="18.0" prefWidth="70.0" text="CV:" />
+                        <Label fx:id="cv" alignment="CENTER" contentDisplay="CENTER" prefHeight="43.0" prefWidth="106.0" text="télècharger" textAlignment="CENTER" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button layoutX="174.0" layoutY="204.0" mnemonicParsing="false" onAction="#contacter" styleClass="btn-nrml" stylesheets="@css/style.css" text="Contacter">
+         <opaqueInsets>
+            <Insets bottom="10.0" />
+         </opaqueInsets></Button>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+</AnchorPane>

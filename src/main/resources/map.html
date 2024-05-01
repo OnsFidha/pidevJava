@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Get the leaflet CSS file -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity=
+                  "sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+</head>
+
+<body>
+
+<!-- Specify the map and it's dimensions -->
+<div id="map" style="width: 300px; height: 400px"></div>
+
+<!-- Get the leaflet JavaScript file -->
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity=
+                "sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+<script>
+    // Initialize the map
+    const map = L.map('map')
+
+    // Get the tile layer from OpenStreetMaps
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+        // Specify the maximum zoom of the map
+        maxZoom: 19,
+
+        // Set the attribution for OpenStreetMaps
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Set the view of the map
+    // with the latitude, longitude and the zoom value
+    map.setView([36.846598, 10.211222], 8);
+
+    // Initialize marker variable
+    let marker;
+
+    map.on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        // Remove previous marker if exists
+        if (marker) {
+            marker.remove();
+        }
+
+        // Add marker to the clicked location
+        marker = L.marker([lat, lng]).addTo(map);
+
+        // Envoyer les données à votre contrôleur JavaFX
+       javafxHandler.processCoordinates(lat, lng);
+
+        // Effectuer une requête pour obtenir le nom de la ville et du pays
+        fetch('https://nominatim.openstreetmap.org/reverse?lat=' + e.latlng.lat + '&lon=' + e.latlng.lng + '&format=json')
+            .then(response => response.json())
+            .then(data => {
+                var country = data.address.country;
+                var city = data.address.city || data.address.town || data.address.village || data.address.hamlet;
+
+                // Envoyer les données de la ville et du pays à votre contrôleur JavaFX
+                javafxHandler.processLocation(city, country);
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+</script>
+</body>
+
+</html>

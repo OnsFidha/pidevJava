@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="761.0" prefWidth="1212.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherPub">
+    <children>
+        <VBox prefHeight="761.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+            <effect>
+                <DropShadow />
+            </effect>
+            <children>
+                <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
+                    </image>
+                    <VBox.margin>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                    </VBox.margin>
+                    <viewport>
+                        <Rectangle2D />
+                    </viewport>
+                </ImageView>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/homeIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Home">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets left="30.0" right="40.0" top="40.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/ProductIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Produit">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/postIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/EventIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Evenement">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="30.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </HBox>
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/EventIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Reclamation" textFill="#f9a936">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets bottom="30.0" />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="991.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+            <effect>
+                <DropShadow>
+                    <color>
+                        <Color red="0.5263158082962036" green="0.516569197177887" blue="0.516569197177887" />
+                    </color>
+                </DropShadow>
+            </effect>
+            <children>
+                <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
+                    <HBox.margin>
+                        <Insets />
+                    </HBox.margin>
+                </Label>
+                <Circle fx:id="circle" fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" translateX="780.0" translateY="5.0" />
+
+            </children>
+        </HBox>
+      <AnchorPane layoutX="273.0" layoutY="169.0" prefHeight="472.0" prefWidth="775.0" style="-fx-background-color: #FEFCF3;">
+         <children>
+                 <GridPane fx:id="details" layoutX="10.0" layoutY="14.0" prefHeight="472.0" prefWidth="803.0" styleClass="bg" stylesheets="@css/style.css" visible="true">
+                  <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0" minWidth="10.0" prefWidth="289.5999755859375" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="226.39999999999998" minWidth="10.0" prefWidth="188.80002441406248" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="159.60003662109375" minWidth="10.0" prefWidth="53.80001220703127" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="224.00003662109373" minWidth="10.0" prefWidth="223.19998779296873" />
+                  </columnConstraints>
+                  <rowConstraints>
+                  <RowConstraints maxHeight="87.99999694824218" minHeight="10.0" prefHeight="60.199987792968756" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="107.4" minHeight="10.0" prefHeight="82.60001220703126" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="97.19999389648439" minHeight="0.0" prefHeight="97.19999389648439" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="220.79999389648438" minHeight="0.0" prefHeight="62.800006103515614" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="206.5999816894531" minHeight="0.0" prefHeight="107.19999389648439" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="245.0000061035156" minHeight="0.0" prefHeight="101.39995727539065" vgrow="ALWAYS" />
+                  </rowConstraints>
+                  <children>
+                      <ImageView fx:id="imagePub" fitHeight="314.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                          <image>
+                              <Image url="@img/notfound.jpg" />
+                          </image>
+                      </ImageView>
+                      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="70.0" prefWidth="139.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                          <children>
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                        </ImageView>
+                              <Label prefHeight="26.0" prefWidth="54.0" styleClass="label-value" stylesheets="@css/style.css" text="Type: " />
+                              <Label fx:id="typePub" prefHeight="58.0" prefWidth="99.0" styleClass="label-title" text="Label" />
+                          </children>
+                      </FlowPane>
+                      <FlowPane alignment="CENTER" columnHalignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                          <children>
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                        </ImageView>
+                              <Label alignment="TOP_LEFT" prefHeight="26.0" prefWidth="55.0" styleClass="label-value" text="Lieu:" />
+                              <Label fx:id="lieuPub" prefHeight="98.0" prefWidth="102.0" styleClass="label-title" text="Label" wrapText="true" />
+                          </children>
+                      </FlowPane>
+                      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" prefHeight="77.0" prefWidth="238.0" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                          <children>
+                        <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                           <FlowPane.margin>
+                              <Insets />
+                           </FlowPane.margin>
+                        </ImageView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="84.0" styleClass="label-value" text="Date de création:" wrapText="true" />
+                              <Label fx:id="dateCreationPub" accessibleRole="DATE_PICKER" prefHeight="42.0" prefWidth="100.0" styleClass="label-title" text="Label" />
+                          </children>
+                      </FlowPane>
+                      <Button mnemonicParsing="false" onAction="#getlistCollab" styleClass="btn-icone" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/people.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
+                      <FlowPane alignment="CENTER_LEFT" columnHalignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                          <children>
+                        <ImageView fitHeight="28.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/flech.png" />
+                           </image>
+                        </ImageView>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="54.0" prefWidth="91.0" styleClass="label-value" text="Date de modification:" wrapText="true" />
+                              <Label fx:id="dateModificationPub" accessibleRole="DATE_PICKER" prefHeight="46.0" prefWidth="88.0" styleClass="label-title" text="Label" />
+                          </children>
+                      </FlowPane>
+                      <FlowPane alignment="CENTER" columnHalignment="CENTER" prefHeight="187.0" prefWidth="463.0" styleClass="label-title" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" GridPane.rowSpan="2">
+                          <children>
+                              <Label fx:id="textPub" alignment="CENTER" prefHeight="130.0" prefWidth="224.0" styleClass="label-value" text="Publication text" wrapText="true" />
+                          </children>
+                      </FlowPane>
+                      <Button alignment="CENTER" contentDisplay="CENTER" onAction="#modify" styleClass="btn-icone" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="39.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/edit.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                  </Button>
+      
+                                  <Button mnemonicParsing="false" onAction="#delete" styleClass="btn-icone" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/delete.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
+                      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#showComments" styleClass="btn-icone" GridPane.columnIndex="3" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/feedback.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
+                      <Button contentDisplay="CENTER" mnemonicParsing="false" onAction="#retour" styleClass="btn-icone" stylesheets="@css/style.css" GridPane.columnIndex="3" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+                          <graphic>
+                              <HBox alignment="CENTER">
+                                  <children>
+                                      <ImageView fitHeight="36.0" fitWidth="36.0">
+                                          <image>
+                                              <Image url="@icons/previous.png" /> <!-- Remplacez cet URL par le chemin de votre icône -->
+                                          </image>
+                                      </ImageView>
+                                  </children>
+                              </HBox>
+                          </graphic>
+                      </Button>
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addColaboration" styleClass="btn-nrml" stylesheets="@css/style.css" text="Collaborer" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM">
+                     <GridPane.margin>
+                        <Insets bottom="15.0" />
+                     </GridPane.margin>
+                  </Button>
+                  </children>
+              </GridPane>
+             <AnchorPane fx:id="comments" accessibleRole="PAGINATION" layoutX="-3.0" layoutY="-1.0" prefHeight="472.0" prefWidth="826.0" styleClass="comment-container" stylesheets="@css/style.css" visible="false">
+                 <children>
+                     <Text layoutX="277.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les commentaires" textAlignment="CENTER" />
+
+                 </children>
+                 <styleClass>
+                     <String fx:value="comment-container" />
+                     <String fx:value="comment-card" />
+                 </styleClass>
+             </AnchorPane>
+
+         </children>
+      </AnchorPane>
+    </children>
+
+</AnchorPane>
