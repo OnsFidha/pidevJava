@@ -1,8 +1,6 @@
 package edu.esprit.controllers;
 
-import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
-import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -68,7 +66,7 @@ public class listfeedbackadmin implements Initializable {
     void goBack(MouseEvent event) {
         try {
             // Load the event page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
             Parent root = loader.load();
 
             // Pass any necessary data back to the event page

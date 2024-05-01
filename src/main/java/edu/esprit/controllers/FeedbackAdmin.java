@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import com.dark.programs.speech.translator.GoogleTranslate;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
@@ -45,7 +46,15 @@ public class FeedbackAdmin {
 
         username.setText("Syrine Zaier");
         text.setText(feedback.getText());
+        nbreactions.setText(String.valueOf(feedback.getLikes()));
         this.feedback=feedback;
+
+    }
+
+    @FXML
+    void Translate(MouseEvent event) throws IOException {
+        String Newfeedtext = GoogleTranslate.translate("fr", text.getText());;
+        text.setText(Newfeedtext);
 
     }
 

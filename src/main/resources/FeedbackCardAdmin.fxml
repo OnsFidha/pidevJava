@@ -43,6 +43,14 @@
                                         <Insets />
                                     </VBox.margin>
                                 </Label>
+                        <Label onMouseClicked="#Translate" text="Traduire" textFill="#807e7e" underline="true">
+                           <font>
+                              <Font name="Segoe UI Historic" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
                             </children>
                         </VBox>
                     </children>
@@ -74,14 +82,9 @@
                                 </Label>
                             </children>
                         </HBox>
-                        <Pane prefHeight="31.0" prefWidth="217.0" />
+                        <Pane prefHeight="31.0" prefWidth="253.0" />
                         <HBox alignment="CENTER" spacing="5.0">
                             <children>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@icons/thumbs-up.png" />
-                                    </image>
-                                </ImageView>
                                 <ImageView fitHeight="25.0" fitWidth="20.0" onMouseClicked="#GoToEdit" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@icons/edit.png" />

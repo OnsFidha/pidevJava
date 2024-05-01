@@ -14,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -151,7 +150,7 @@ public class AdminEventController {
                 successAlert.showAndWait();
 
                 // After successful deletion, navigate back to the events page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
                 try {
                     Parent root = loader.load();
 

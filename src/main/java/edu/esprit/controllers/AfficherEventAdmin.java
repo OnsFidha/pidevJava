@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -64,6 +65,30 @@ public class AfficherEventAdmin implements Initializable {
         } catch (IOException | SQLException e) {
             e.printStackTrace();
             // Handle any potential errors here
+        }
+
+    }
+    @FXML
+    void goToStats(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/statsevent.fxml"));
+            Parent root = loader.load();
+
+            // Get the current stage
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Set the new scene
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception gracefully
+            // Show an error message to the user
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Page Navigation Error");
+            alert.setContentText("An error occurred while navigating to the new page. Please try again.");
+            alert.showAndWait();
         }
 
     }

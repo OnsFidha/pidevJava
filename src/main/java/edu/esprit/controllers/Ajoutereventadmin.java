@@ -82,7 +82,7 @@ public class Ajoutereventadmin {
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("L'évenement a été ajouté avec succée");
             alert.show();
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
             try {
                 Parent root = loader.load();
 
@@ -183,7 +183,7 @@ public class Ajoutereventadmin {
     void goBack(MouseEvent event) {
         try {
             // Load the previous FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
             Parent root = loader.load();
 
             // Get the current stage

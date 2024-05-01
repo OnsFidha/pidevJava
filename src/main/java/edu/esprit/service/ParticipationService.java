@@ -80,16 +80,16 @@ public class ParticipationService implements IService<Participation> {
                 "FROM participation_evenement " +
                 "GROUP BY evenement_id";
 
-        try (Connection conn = DataSource.getInstance().getConn();
+
              PreparedStatement statement = conn.prepareStatement(sql);
-             ResultSet resultSet = statement.executeQuery()) {
+             ResultSet resultSet = statement.executeQuery() ;
 
             while (resultSet.next()) {
                 int eventId = resultSet.getInt("evenement_id");
                 int participationCount = resultSet.getInt("participation_count");
                 statsData.add(new Participation(eventId, participationCount));
             }
-        }
+
 
         return statsData;
     }
