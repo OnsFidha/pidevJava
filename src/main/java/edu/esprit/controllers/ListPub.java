@@ -7,10 +7,12 @@ import java.util.Date;
 import java.util.List;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 import java.util.ResourceBundle;
 import edu.esprit.entities.Publication;
@@ -37,6 +39,8 @@ public class ListPub implements Initializable {
     private URL location;
     private Stage stage;
     private Scene scene;
+    @FXML
+    private HBox home;
 
     @FXML
     private GridPane pubList;
@@ -88,7 +92,31 @@ public class ListPub implements Initializable {
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
+
+        // Créer un EventHandler pour gérer les clics sur le HBox
+        EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getHome();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        home.setOnMouseClicked(clickHandler);
     }
+
+    private void getHome() {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
+            try {
+
+                Parent root = loader.load();
+                pubList.getScene().setRoot(root);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+    }
+
     private void redirectToEventPage(Publication publication) {
         FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherPub.fxml"));
             try {
