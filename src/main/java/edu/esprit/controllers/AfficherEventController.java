@@ -3,8 +3,10 @@ package edu.esprit.controllers;
 import com.dark.programs.speech.translator.GoogleTranslate;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
+import edu.esprit.entities.Participation;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.service.ParticipationService;
 import edu.esprit.utils.JavaMailUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -321,16 +323,33 @@ public class AfficherEventController {
             // Update the event in the database
             EvenementService evenementService = new EvenementService();
             try {
-                evenementService.modifier(event);
-                // Display success message
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText(null);
-                alert.setContentText("Vous avez participé à l'événement avec succès.");
-                alert.showAndWait();
+
+
+                // Add participation to the database
+                ParticipationService participationService = new ParticipationService();
+                // Assuming you have the user's ID stored in a variable called userId
+                int userId = 4; // Replace 1 with the actual user ID
+                if (!participationService.hasParticipated(userId, event.getId())) {
+                    evenementService.modifier(event);
+                    // Display success message
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Vous avez participé à l'événement avec succès.");
+                    alert.showAndWait();
+                Participation participation = new Participation(event.getId(), userId);
+                participationService.ajouter(participation);
 
                 // Send email to the user
-                sendParticipationEmail("syrinezaier283@gmail.com", event.getNom());
+                sendParticipationEmail("syrinezaier283@gmail.com", event.getNom());}
+                else {
+                    // User has already participated, display error message
+                    Alert alert2 = new Alert(Alert.AlertType.ERROR);
+                    alert2.setTitle("Error");
+                    alert2.setHeaderText(null);
+                    alert2.setContentText("Vous avez déjà participé à cet événement.");
+                    alert2.showAndWait();
+                }
 
 
             } catch (SQLException e) {

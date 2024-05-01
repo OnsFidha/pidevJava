@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="363.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.StatsEvent">
+   <children>
+      <BarChart fx:id="barChart" layoutX="14.0" layoutY="26.0">
+        <xAxis>
+          <CategoryAxis label="Evenements" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Nombre de participations" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>
