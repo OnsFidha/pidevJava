@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import com.microsoft.cognitiveservices.speech.audio.AudioConfig;
 import edu.esprit.entities.Reclamation;
 import edu.esprit.service.ReclamationService;
 
@@ -38,6 +39,10 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 import java.net.URI;
 import java.math.BigDecimal;
+import java.util.concurrent.Future;
+
+import com.microsoft.cognitiveservices.speech.*;
+import javafx.concurrent.Task;
 
 public class AjoutReclamationController implements Initializable {
 
@@ -157,6 +162,49 @@ public class AjoutReclamationController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    void stt(ActionEvent event) {
+        Task<String> recognitionTask = new Task<String>() {
+            @Override
+            protected String call() throws Exception {
+                SpeechConfig speechConfig = SpeechConfig.fromSubscription("9060f63ba0654e7b8533abfa8e407a6e", "westeurope");
+
+                try (SpeechRecognizer speechRecognizer = new SpeechRecognizer(speechConfig, AudioConfig.fromDefaultMicrophoneInput())) {
+                    System.out.println("Speak into your microphone.");
+
+                    Future<SpeechRecognitionResult> task = speechRecognizer.recognizeOnceAsync();
+                    SpeechRecognitionResult result = task.get();
+
+                    if (result.getReason() == ResultReason.Canceled) {
+                        System.out.println("Cancellation detected.");
+                        return null;
+                    } else if (result.getReason() == ResultReason.NoMatch) {
+                        System.out.println("No speech recognized.");
+                        return null;
+                    } else {
+                        String recognizedText = result.getText();
+                        return recognizedText;
+                    }
+                }
+            }
+        };
+
+        recognitionTask.setOnSucceeded(event1 -> {
+            String transcribedText = recognitionTask.getValue();
+            if (transcribedText != null) {
+                description.setText(transcribedText); // Update the UI element with the transcribed text
+            }
+        });
+
+        recognitionTask.setOnFailed(event1 -> {
+            Throwable exception = recognitionTask.getException();
+            System.err.println("Speech recognition failed: " + exception.getMessage());
+        });
+
+        new Thread(recognitionTask).start();
+    }
+
 }
 
 

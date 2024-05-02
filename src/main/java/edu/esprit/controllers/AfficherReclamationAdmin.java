@@ -15,6 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 import edu.esprit.entities.Reclamation;
 import edu.esprit.service.ReclamationService;
@@ -307,7 +308,7 @@ public class AfficherReclamationAdmin {
     }
 
 
-    @FXML
+   /* @FXML
     void TrierParType(ActionEvent event) {
         ObservableList<Reclamation> reclamations = tableauReclam.getItems();
         reclamations.sort(Comparator.comparing(Reclamation::getType));
@@ -326,6 +327,31 @@ public class AfficherReclamationAdmin {
     void trierParEtat(ActionEvent event) {
         ObservableList<Reclamation> reclamations = tableauReclam.getItems();
         reclamations.sort((rec1, rec2) -> Boolean.compare(rec1.isEtat(), rec2.isEtat()));
+    }*/
+
+    @FXML
+    void TrierParType(ActionEvent event) {
+        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
+        tableauReclam.setItems(reclamations.stream()
+                .sorted(Comparator.comparing(Reclamation::getType))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+    }
+
+
+    @FXML
+    void trierParDate(ActionEvent event) {
+        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
+        tableauReclam.setItems(reclamations.stream()
+                .sorted(Comparator.comparing(Reclamation::getDate_creation))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+    }
+
+    @FXML
+    void trierParEtat(ActionEvent event) {
+        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
+        tableauReclam.setItems(reclamations.stream()
+                .sorted(Comparator.comparing(Reclamation::isEtat))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList)));
     }
 
 
