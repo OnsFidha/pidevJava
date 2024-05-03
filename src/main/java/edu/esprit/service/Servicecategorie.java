@@ -4,7 +4,9 @@ import edu.esprit.entities.Categorie;
 import edu.esprit.utils.DataSource;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -70,8 +72,8 @@ public class Servicecategorie implements IService <Categorie>{
     }
 
     @Override
-    public Set<Categorie> getAll() {
-        Set<Categorie> categories=new HashSet<>();
+    public List<Categorie> getAll() {
+        List<Categorie> categories=new ArrayList<>();
         String req ="select * from categorie";
         try {
             Statement st= conn.createStatement();
@@ -88,7 +90,7 @@ public class Servicecategorie implements IService <Categorie>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return categories;
+        return (List<Categorie>) categories;
     }
 
     @Override

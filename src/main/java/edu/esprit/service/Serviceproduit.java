@@ -5,7 +5,9 @@ import edu.esprit.entities.Produit;
 import edu.esprit.utils.DataSource;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -78,8 +80,8 @@ public class Serviceproduit implements IService <Produit>{
     }
 
     @Override
-    public Set<Produit> getAll() {
-        Set<Produit> produits=new HashSet<>();
+    public List<Produit> getAll() {
+        List<Produit> produits=new ArrayList<>();
         String req ="select * from produit";
         try {
             Statement st= conn.createStatement();
@@ -93,7 +95,7 @@ public class Serviceproduit implements IService <Produit>{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return produits;
+        return (List<Produit>) produits;
     }
 
     @Override

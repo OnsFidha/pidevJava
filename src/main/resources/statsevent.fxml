@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="363.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.StatsEvent">
+   <children>
+      <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="10.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="0.0">
+         <image>
+            <Image url="@icons/previous%20(1).png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </ImageView>
+      <BarChart fx:id="barChart" layoutX="14.0" layoutY="26.0" title="Nombre de participations par evenement" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+        <xAxis>
+          <CategoryAxis label="Evenements" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Nombre de participations" side="LEFT" />
+        </yAxis>
+      </BarChart>
+   </children>
+</AnchorPane>

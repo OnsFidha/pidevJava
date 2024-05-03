@@ -27,7 +27,7 @@ public class AfficherCommandes {
     IService<Commande> commandeService = ServiceCommande.getInstance();
     public void showData() {
         try {
-            Set<Commande> commandes = commandeService.getAll();
+            List<Commande> commandes =  commandeService.getAll();
             int index=0;
             gridCommandes.addRow(index, createGridHeaderLabel("Date"), createGridHeaderLabel("Utilisateur"),
                     createGridHeaderLabel("Produit(s)"), createGridHeaderLabel("Montant Total"));

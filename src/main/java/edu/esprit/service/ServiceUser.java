@@ -35,7 +35,7 @@ public class ServiceUser implements IService<User> {
     }
 
     @Override
-    public Set<User> getAll() {
+    public List<User> getAll() {
         return null;
     }
 

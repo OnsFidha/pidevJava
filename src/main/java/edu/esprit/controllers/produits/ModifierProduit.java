@@ -20,6 +20,7 @@ import javafx.util.StringConverter;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -102,7 +103,7 @@ public class ModifierProduit extends AdminContentPanel {
                 productImageView.setImage(image);
             }
 
-            Set<Categorie> categories = serviceCategorie.getAll();
+            List<Categorie> categories =  serviceCategorie.getAll();
             categorieDropDown.setConverter(new StringConverter<>() {
                 @Override
                 public String toString(Categorie objet) {

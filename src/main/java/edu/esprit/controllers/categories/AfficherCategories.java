@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Set;
 
 import static edu.esprit.utils.CommonUtils.createGridHeaderLabel;
@@ -33,7 +34,7 @@ public class AfficherCategories extends AdminContentPanel{
 
     public void showData() {
         try {
-            Set<Categorie> categories = serviceCategorie.getAll();
+            List<Categorie> categories =  serviceCategorie.getAll();
             int index=0;
             gridCategories.addRow(index, createGridHeaderLabel("Nom"), createGridHeaderLabel("Description"));
             index++;
