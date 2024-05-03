@@ -31,7 +31,7 @@ public class ServiceCommande implements IService<Commande> {
         try {
             PreparedStatement pst = conn.prepareStatement(req, Statement.RETURN_GENERATED_KEYS);
             pst.setInt(1, commande.getUser().getId());
-            pst.setDate(2, new Date(Calendar.getInstance().getTimeInMillis()));
+            pst.setTimestamp(2, new Timestamp(Calendar.getInstance().getTimeInMillis()));
             pst.setDouble(3, commande.getMontant_total());
             pst.executeUpdate();
             ResultSet resultSet = pst.getGeneratedKeys();
