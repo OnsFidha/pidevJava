@@ -16,9 +16,18 @@ public class MainF extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-   // FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
+   //FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
       FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
 
-
+        try {
+            System.setProperty("javafx.graphics", "true");
+            Parent root = loader.load();
+            Scene scene =new Scene(root);
+            primaryStage.setTitle("Artistool - reclamation");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
