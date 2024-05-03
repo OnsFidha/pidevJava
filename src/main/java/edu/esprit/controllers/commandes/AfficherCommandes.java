@@ -2,7 +2,7 @@ package edu.esprit.controllers.commandes;
 
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.DetailCommande;
-import edu.esprit.service.IServiceH;
+import edu.esprit.service.IService;
 import edu.esprit.service.ServiceCommande;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -24,7 +24,7 @@ public class AfficherCommandes {
 
     @FXML
     private GridPane gridCommandes;
-    IServiceH<Commande> commandeService = ServiceCommande.getInstance();
+    IService<Commande> commandeService = ServiceCommande.getInstance();
     public void showData() {
         try {
             Set<Commande> commandes = commandeService.getAll();

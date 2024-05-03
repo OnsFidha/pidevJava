@@ -2,7 +2,7 @@ package edu.esprit.controllers.categories;
 
 import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
-import edu.esprit.service.IServiceH;
+import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,7 +21,7 @@ public class AjouterCategorie extends AdminContentPanel {
     @FXML
     private TextField TFnom;
 
-    IServiceH<Categorie> serviceCategorie = Servicecategorie.getInstance();
+    IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
 
     @FXML
     void ajoutercategorieaction(ActionEvent event) {

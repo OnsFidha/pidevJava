@@ -2,7 +2,7 @@ package edu.esprit.controllers.produits;
 
 import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Produit;
-import edu.esprit.service.IServiceH;
+import edu.esprit.service.IService;
 import edu.esprit.service.Serviceproduit;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -28,7 +28,7 @@ public class AfficherProduits extends AdminContentPanel{
     @FXML
     private GridPane gridProduits;
 
-    IServiceH<Produit> serviceProduit = Serviceproduit.getInstance();
+    IService<Produit> serviceProduit = Serviceproduit.getInstance();
 
     public void showData() {
         try {

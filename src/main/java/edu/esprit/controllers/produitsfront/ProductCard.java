@@ -1,9 +1,11 @@
 package edu.esprit.controllers.produitsfront;
 
+import edu.esprit.entities.Commande;
 import edu.esprit.entities.Produit;
 import edu.esprit.entities.User;
 import edu.esprit.model.UserSession;
-import edu.esprit.service.IServiceH;
+import edu.esprit.service.IService;
+import edu.esprit.service.ServiceCommande;
 import edu.esprit.service.ServiceUser;
 import edu.esprit.service.Serviceproduit;
 import javafx.event.ActionEvent;
@@ -50,8 +52,8 @@ public class ProductCard{
         this.labelMontantTotal = labelMontantTotal;
     }
 
-    IServiceH<Produit> serviceProduit = Serviceproduit.getInstance();
-    IServiceH<User> serviceUser = ServiceUser.getInstance();
+    IService<Produit> serviceProduit = Serviceproduit.getInstance();
+    IService<User> serviceUser = ServiceUser.getInstance();
 
 
     @FXML

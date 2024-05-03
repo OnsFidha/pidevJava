@@ -7,15 +7,15 @@ import java.sql.*;
 import java.util.*;
 
 
-public class ServiceUser implements IServiceH<User> {
+public class ServiceUser implements IService<User> {
     Connection conn = DataSource.getInstance().getConn();
-    static IServiceH<User> serviceUser;
+    static IService<User> serviceUser;
 
     private ServiceUser() {
         System.out.println("ServiceCommande crée");
     }
 
-    public static IServiceH<User> getInstance() {
+    public static IService<User> getInstance() {
         if (serviceUser == null)
             serviceUser = new ServiceUser();
         return serviceUser;

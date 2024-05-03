@@ -3,7 +3,7 @@ package edu.esprit.controllers.produits;
 import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Produit;
-import edu.esprit.service.IServiceH;
+import edu.esprit.service.IService;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.service.Serviceproduit;
 import javafx.collections.FXCollections;
@@ -44,8 +44,8 @@ public class ModifierProduit extends AdminContentPanel {
     @FXML
     private ImageView productImageView;
 
-    IServiceH<Produit> serviceProduit = Serviceproduit.getInstance();
-    IServiceH<Categorie> serviceCategorie = Servicecategorie.getInstance();
+    IService<Produit> serviceProduit = Serviceproduit.getInstance();
+    IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
     @FXML
     void modifierProduit(ActionEvent event) {
         try {

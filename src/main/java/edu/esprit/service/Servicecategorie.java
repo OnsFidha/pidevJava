@@ -8,15 +8,15 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Servicecategorie implements IServiceH<Categorie> {
+public class Servicecategorie implements IService <Categorie>{
     Connection conn= DataSource.getInstance().getConn();
-    static IServiceH<Categorie> servicecategorie;
+    static IService<Categorie> servicecategorie;
 
     private Servicecategorie() {
         System.out.println("Servicecategorie crée");
     }
 
-    public static IServiceH<Categorie> getInstance() {
+    public static IService<Categorie> getInstance() {
         if (servicecategorie == null)
             servicecategorie = new Servicecategorie();
         return servicecategorie;
