@@ -3,7 +3,7 @@ package edu.esprit.controllers.produitsfront;
 import edu.esprit.controllers.FrontContentPanel;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.Produit;
-import edu.esprit.service.IService;
+import edu.esprit.service.IServiceH;
 import edu.esprit.service.Serviceproduit;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +22,7 @@ public class ListeProduits extends FrontContentPanel {
     @FXML
     private GridPane productsList;
 
-    IService<Produit> serviceProduit = Serviceproduit.getInstance();
+    IServiceH<Produit> serviceProduit = Serviceproduit.getInstance();
 
     @FXML
     private Label labelMontantTotal;

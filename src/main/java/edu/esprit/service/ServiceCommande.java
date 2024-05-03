@@ -9,17 +9,17 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
-public class ServiceCommande implements IService<Commande> {
+public class ServiceCommande implements IServiceH<Commande> {
     Connection conn = DataSource.getInstance().getConn();
-    static IService<Commande> serviceCommande;
-    IService<User> serviceUser = ServiceUser.getInstance();
-    IService<Produit> serviceProduit = Serviceproduit.getInstance();
+    static IServiceH<Commande> serviceCommande;
+    IServiceH<User> serviceUser = ServiceUser.getInstance();
+    IServiceH<Produit> serviceProduit = Serviceproduit.getInstance();
 
     private ServiceCommande() {
         System.out.println("ServiceCommande crée");
     }
 
-    public static IService<Commande> getInstance() {
+    public static IServiceH<Commande> getInstance() {
         if (serviceCommande == null)
             serviceCommande = new ServiceCommande();
         return serviceCommande;

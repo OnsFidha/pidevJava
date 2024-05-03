@@ -3,7 +3,7 @@ package edu.esprit.controllers.produits;
 import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
 import edu.esprit.entities.Produit;
-import edu.esprit.service.IService;
+import edu.esprit.service.IServiceH;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.service.Serviceproduit;
 import javafx.collections.FXCollections;
@@ -45,8 +45,8 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
     @FXML
     private ImageView productImageView;
 
-    IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
-    IService<Produit> serviceProduit = Serviceproduit.getInstance();
+    IServiceH<Categorie> serviceCategorie = Servicecategorie.getInstance();
+    IServiceH<Produit> serviceProduit = Serviceproduit.getInstance();
     @FXML
     void ajouterProduit(ActionEvent event) {
         try {

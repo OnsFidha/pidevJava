@@ -2,7 +2,7 @@ package edu.esprit.controllers.categories;
 
 import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
-import edu.esprit.service.IService;
+import edu.esprit.service.IServiceH;
 import edu.esprit.service.Servicecategorie;
 import edu.esprit.utils.CommonUtils;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ public class AfficherCategories extends AdminContentPanel{
     @FXML
     private GridPane gridCategories;
 
-    IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
+    IServiceH<Categorie> serviceCategorie = Servicecategorie.getInstance();
 
     public void showData() {
         try {

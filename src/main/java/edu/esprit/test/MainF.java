@@ -16,18 +16,9 @@ public class MainF extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-    FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
-      //FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
-        //FXMLLoader loader=new FXMLLoader(getClass().getResource("/produitsfront/ListeProduits.fxml"));
+   // FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
+      FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
 
-        try {
-            Parent root = loader.load();
-            Scene scene =new Scene(root);
-            primaryStage.setTitle("Artistool");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+
     }
 }

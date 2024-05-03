@@ -9,16 +9,16 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class Serviceproduit implements IService <Produit>{
+public class Serviceproduit implements IServiceH<Produit> {
     Connection conn= DataSource.getInstance().getConn();
-    IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
+    IServiceH<Categorie> serviceCategorie = Servicecategorie.getInstance();
 
-    static IService<Produit> serviceproduit;
+    static IServiceH<Produit> serviceproduit;
     private Serviceproduit() {
         System.out.println("Serviceproduit crée");
     }
 
-    public static IService<Produit> getInstance() {
+    public static IServiceH<Produit> getInstance() {
         if (serviceproduit == null)
             serviceproduit = new Serviceproduit();
         return serviceproduit;

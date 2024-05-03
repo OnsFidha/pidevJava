@@ -2,7 +2,7 @@ package edu.esprit.controllers.categories;
 
 import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.entities.Categorie;
-import edu.esprit.service.IService;
+import edu.esprit.service.IServiceH;
 import edu.esprit.service.Servicecategorie;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,7 +25,7 @@ public class ModifierCategorie extends AdminContentPanel {
     @FXML
     private TextArea TFdescription;
 
-    IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
+    IServiceH<Categorie> serviceCategorie = Servicecategorie.getInstance();
 
     @FXML
     void modifierCategorieAction(ActionEvent event) {

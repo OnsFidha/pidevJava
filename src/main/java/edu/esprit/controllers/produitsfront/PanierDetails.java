@@ -4,7 +4,7 @@ import edu.esprit.controllers.FrontContentPanel;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.DetailCommande;
 import edu.esprit.model.UserSession;
-import edu.esprit.service.IService;
+import edu.esprit.service.IServiceH;
 import edu.esprit.service.SendMail;
 import edu.esprit.service.ServiceCommande;
 import javafx.event.ActionEvent;
@@ -37,7 +37,7 @@ public class PanierDetails extends FrontContentPanel {
     @FXML
     private GridPane commandeDetailsGrid;
 
-    IService<Commande> commandeIService = ServiceCommande.getInstance();
+    IServiceH<Commande> commandeIService = ServiceCommande.getInstance();
 
     public void afficherPanierDetails(){
         if(Objects.nonNull(UserSession.getCommande())){
