@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="reclamCard" prefHeight="260.0" prefWidth="388.0" style="-fx-background-color: #FEFCF3; -fx-border-radius: 15;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ReclamCardController">
+   <children>
+      <VBox prefHeight="259.0" prefWidth="429.0" style="-fx-background-color: #FEFCF3;">
+         <children>
+            <Label prefHeight="17.0" prefWidth="74.0" text="Type :">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="80.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="TypeReclam" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="20.0" prefWidth="92.0" text="Réclamation :">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="DescReclam" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="80.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="17.0" prefWidth="74.0" text="Etat :">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="EtatReclam" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label prefHeight="20.0" prefWidth="100.0" text="Date création:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="DateCreation" text="Label">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="80.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" />
+      <ImageView fitHeight="165.0" fitWidth="296.0" layoutX="188.0" layoutY="113.0" pickOnBounds="true" preserveRatio="true" x="100.0">
+         <image>
+            <Image url="@img/reclamPhoto-removebg-preview.png" />
+         </image>
+      </ImageView>
+   </children>
+   <cursor>
+      <Cursor fx:constant="HAND" />
+   </cursor>
+   <effect>
+      <DropShadow />
+   </effect>
+</AnchorPane>
