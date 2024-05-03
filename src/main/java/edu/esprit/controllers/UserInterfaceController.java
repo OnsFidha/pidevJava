@@ -4,6 +4,7 @@ import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,7 +16,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -39,11 +42,33 @@ public class UserInterfaceController implements Initializable {
 
     @FXML
     private Label logedUsernamee;
+    @FXML
+    private HBox pub;
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListPub();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        pub.setOnMouseClicked(clickHandler);
         load();
+    }
+    void getListPub(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+SessionManager.getPrename();

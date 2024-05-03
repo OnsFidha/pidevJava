@@ -34,6 +34,9 @@ public class MainPage {
     private WebView musée;
     @FXML
     private HBox pub;
+    @FXML
+    private HBox users;
+
 
     @FXML
     private Circle circle;
@@ -51,7 +54,29 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         pub.setOnMouseClicked(clickHandler);
+        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListUsers();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        users.setOnMouseClicked(clickHandler2);
     }
+
+    private void getListUsers() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserInterface.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
     @FXML
     void openURL() {
      try {

@@ -169,7 +169,7 @@ public class ConnectionUserController implements Initializable {
                 }
                 if (roles.equals("User")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
                         Parent root = loader.load();
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root);

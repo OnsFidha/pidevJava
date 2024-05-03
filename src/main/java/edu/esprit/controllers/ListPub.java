@@ -1,16 +1,22 @@
 package edu.esprit.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
@@ -27,12 +33,21 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
+import org.intellij.lang.annotations.Pattern;
 
 public class ListPub implements Initializable {
 
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+    int id=SessionManager.getId_user();
+    @FXML
+    private Circle logedUserimage;
+//
+//    @FXML
+//    private ImageView logedUserimage;
 
     @FXML
-    private Circle circle;
+    private Label logedUsernamee;
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -48,10 +63,11 @@ public class ListPub implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
-        // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+       logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        logedUserimage.setFill(new ImagePattern(image));
 
         PublicationService ps=new PublicationService();
         List<Publication> publications;
