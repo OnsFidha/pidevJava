@@ -1,5 +1,6 @@
 package org.example;
 
+
 import edu.esprit.entities.Collaboration;
 import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.Publication;
@@ -7,6 +8,7 @@ import edu.esprit.service.CollaborationService;
 import edu.esprit.service.CommentaireService;
 import edu.esprit.service.PublicationService;
 import edu.esprit.utils.DataSource;
+import java.sql.SQLException;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -109,5 +111,6 @@ public class Main {
 //        } catch (SQLException e) {
 //            System.out.println(e.getMessage());
 //        }
+
     }
 }

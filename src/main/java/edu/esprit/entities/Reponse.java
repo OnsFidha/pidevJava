@@ -11,12 +11,6 @@ public class Reponse {
     public Reponse() {
     }
 
-<<<<<<< HEAD
-    public Reponse(int relation_id, String reponse, Date date_reponse) {
-        this.relation_id = relation_id;
-        this.reponse = reponse;
-        this.date_reponse = date_reponse;
-=======
     public Reponse(int id, int relation_id, String reponse) {
         this.id = id;
         this.relation_id = relation_id;
@@ -28,7 +22,6 @@ public class Reponse {
         this.relation_id = relation_id;
         this.reponse = reponse;
         this.date_reponse =  new Date();
->>>>>>> ons
     }
 
     public int getId() {
@@ -62,8 +55,6 @@ public class Reponse {
     public void setDate_reponse(Date date_reponse) {
         this.date_reponse = date_reponse;
     }
-<<<<<<< HEAD
-=======
 
     @Override
     public boolean equals(Object o) {
@@ -87,5 +78,4 @@ public class Reponse {
                 ", date_reponse=" + date_reponse +
                 '}';
     }
->>>>>>> ons
 }
