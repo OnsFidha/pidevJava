@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEventController">
+   <children>
+      <HBox alignment="TOP_CENTER" prefHeight="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="597.0" prefWidth="535.0" spacing="10.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0" style="-fx-background-color: white;">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="30.0" layoutY="10.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/previous.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fx:id="userimg" fitHeight="50.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <image>
+                              <Image url="@img/421921896_755965156003985_1823248101854991315_n.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="username" prefHeight="32.0" prefWidth="177.0" text="Syrine Zaier">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Pane prefHeight="60.0" prefWidth="67.0" HBox.hgrow="ALWAYS" />
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="129.0" spacing="10.0">
+                           <children>
+                              <ImageView fitHeight="50.0" fitWidth="30.0" onMouseClicked="#handleEditClicked" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/edit.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fitHeight="30.0" fitWidth="50.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/delete.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fitHeight="50.0" fitWidth="35.0" onMouseClicked="#AddFb" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/review.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                           </children>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </HBox>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding>
+                  </HBox>
+                  <VBox alignment="CENTER">
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <Label fx:id="eventname" maxWidth="1.7976931348623157E308" text="Nom Event">
+                           <font>
+                              <Font name="Segoe UI Historic" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="eventdesc" maxWidth="1.7976931348623157E308" text="Caption">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <font>
+                              <Font name="Segoe UI Historic" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label maxWidth="1.7976931348623157E308" onMouseClicked="#Translate" styleClass="translate" stylesheets="@css/styles.css" text="Traduire" underline="true">
+                           <font>
+                              <Font name="Segoe UI Historic" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox spacing="20.0">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="132.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/schedule.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="DateD" text="Date début">
+                                       <font>
+                                          <Font name="Segoe UI Historic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="30.0" prefWidth="163.0" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/schedule.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="dateF" text="Date fin">
+                                       <font>
+                                          <Font name="Segoe UI Historic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                        <Pane prefHeight="80.0" prefWidth="225.0" HBox.hgrow="ALWAYS" />
+                        <VBox layoutX="30.0" layoutY="10.0" spacing="20.0">
+                           <children>
+                              <HBox alignment="CENTER" spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/placeholder%20(1).png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="lieu" text="Lieu">
+                                       <font>
+                                          <Font name="Segoe UI Historic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox spacing="10.0">
+                                 <children>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@icons/group.png" />
+                                       </image>
+                                    </ImageView>
+                                    <Label fx:id="nbrmax" text="nbr ">
+                                       <font>
+                                          <Font name="Segoe UI Historic" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <ImageView fx:id="eventimg" fitHeight="280.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button mnemonicParsing="false" onAction="#participer" stylesheets="@css/styles.css" text="Participer">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/link.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="rect-round" />
+                        <String fx:value="particip" />
+                     </styleClass>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+            <ScrollPane minHeight="200.0" prefWidth="535.0" style="-fx-background-color: white;">
+              <content>
+                <AnchorPane maxWidth="589.0" minHeight="0.0" minWidth="0.0" prefHeight="1000.0" prefWidth="589.0" style="-fx-background-color: white;">
+                     <children>
+                        <GridPane fx:id="feedbackgrid" alignment="TOP_CENTER">
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
