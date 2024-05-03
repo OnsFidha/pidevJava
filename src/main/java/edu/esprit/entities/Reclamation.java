@@ -1,8 +1,12 @@
 package edu.esprit.entities;
 
+import javafx.fxml.FXMLLoader;
+
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -106,12 +110,21 @@ public class Reclamation {
     }
 
     private String filterBadWords(String description) {
-        // Chemin vers le fichier contenant la liste des mots interdits
-        String filePath = "C:\\Users\\21624\\Desktop\\pidevJava\\full-list-of-bad-words_text-file_2022_05_05.txt";
+        // Obtenez l'URL de la ressource contenant la liste des mots interdits
+        URL resourceUrl = getClass().getResource("/full-list-of-bad-words_text-file_2022_05_05.txt");
+
+        if (resourceUrl == null) {
+            // Gérer le cas où la ressource n'est pas trouvée
+            System.err.println("Le fichier de mots interdits n'a pas été trouvé dans les ressources.");
+            return description;
+        }
+
+        // Créez un objet File à partir de l'URL
+        File filePath = new File(resourceUrl.getFile());
 
         // Lire la liste des mots interdits à partir du fichier
         List<String> badWords = new ArrayList<>();
-        try (var br = new BufferedReader(new FileReader(filePath))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {
                 badWords.add(line.trim().toLowerCase());

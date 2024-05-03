@@ -37,13 +37,23 @@ public class MainPage {
     @FXML
     private HBox users;
 
-
+    @FXML
+    private HBox recla;
     @FXML
     private Circle circle;
 
     @FXML
     void initialize() {
 
+        EventHandler<MouseEvent> clickHandler3 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListRecla();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        recla.setOnMouseClicked(clickHandler3);
         // Créer un EventHandler pour gérer les clics sur le HBox
         EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
             @Override
@@ -63,6 +73,17 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         users.setOnMouseClicked(clickHandler2);
+    }
+
+    private void getListRecla() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void getListUsers() {

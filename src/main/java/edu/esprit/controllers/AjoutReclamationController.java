@@ -6,6 +6,7 @@ import edu.esprit.service.ReclamationService;
 
 
 import edu.esprit.utils.JavaMailUtil;
+import edu.esprit.utils.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +47,7 @@ import javafx.concurrent.Task;
 
 public class AjoutReclamationController implements Initializable {
 
-
+    int id= SessionManager.getId_user();
 
     @FXML
     private Button Reclamlistbtn;

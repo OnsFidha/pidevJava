@@ -1,6 +1,8 @@
 
 package edu.esprit.controllers;
 
+import edu.esprit.utils.SessionManager;
+import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
         import edu.esprit.entities.Reclamation;
         import edu.esprit.service.ReclamationService;
@@ -14,7 +16,8 @@ import javafx.scene.input.MouseEvent;
         import javafx.scene.image.Image;
         import javafx.scene.layout.AnchorPane;
         import javafx.scene.layout.GridPane;
-        import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
         import javafx.scene.paint.ImagePattern;
         import javafx.scene.shape.Circle;
         import java.io.IOException;
@@ -31,9 +34,19 @@ import javafx.scene.input.MouseEvent;
 
 
 public class AfficherReclamationController implements Initializable {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
 
     @FXML
     private GridPane reclamationsContainer;
+
+    @FXML
+    private Label logedUsernamee;
+
+
+
+
     @FXML
     private TableView<Reclamation> tableauReclam;
     @FXML
@@ -59,7 +72,8 @@ public class AfficherReclamationController implements Initializable {
 
     @FXML
     private Button supprimerReclam;
-
+    @FXML
+    private HBox home;
     @FXML
     private TableColumn<?, ?> typeReclam;
 
@@ -69,8 +83,100 @@ public class AfficherReclamationController implements Initializable {
     private Stage stage;
     private Scene scene;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getHome();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        home.setOnMouseClicked(clickHandler);
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
+        // TODO
+       /* try {
+            afficherReclam();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }*/
+        // Initialize ReclamationService
+        ReclamationService sr = new ReclamationService();
+        List<Reclamation> reclam;
+        try {
+            // Get all reclamations from the service
+            reclam = sr.getAll();
+
+            int column = 0;
+            int row = 0;
+
+            // Iterate over the list of reclamations
+            for (Reclamation reclamation : reclam) {
+                // Load the reclam card FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReclamCard.fxml"));
+                AnchorPane card = loader.load();
 
 
+                // Pass the data to the controller of the card
+                ReclamCardController controller = loader.getController();
+                controller.setData(reclamation);
+
+
+                // Add the card to the GridPane container
+                reclamationsContainer.add(card, column, row);
+
+                // Add mouse event handler to the card
+                card.setOnMouseClicked(event -> {
+                    // Set the color of all cards to white
+                    for (Node node : reclamationsContainer.getChildren()) {
+                        node.setStyle("-fx-background-color: white;");
+                    }
+
+                    // Highlight the selected card
+                    card.setStyle("-fx-background-color: lightblue;");
+
+                    // Retrieve the corresponding reclamation object
+                    Reclamation selectedReclamation = (Reclamation) card.getUserData();
+
+                    // Perform action based on the selected card
+                    // For example:
+                    // If event.getClickCount() == 2, it's a double click
+                    // You can perform an action here, like opening a new window
+                    // Or you can check the button pressed if it's a single click
+                    // (event.isPrimaryButtonDown() for left click, event.isSecondaryButtonDown() for right click)
+                });
+
+                // Set the reclamation object as user data for the card
+                card.setUserData(reclamation);
+
+                // Increment row and reset column if needed
+                column++;
+                if (column == 1) {
+                    column = 0;
+                    row++;
+                }
+            }
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void getHome() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
+        try {
+
+            Parent root = loader.load();
+            circle.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
     @FXML
     void mailer(MouseEvent event) {
 
@@ -294,78 +400,7 @@ public class AfficherReclamationController implements Initializable {
 
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
-        // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
-        // TODO
-       /* try {
-            afficherReclam();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
-        // Initialize ReclamationService
-        ReclamationService sr = new ReclamationService();
-        List<Reclamation> reclam;
-        try {
-            // Get all reclamations from the service
-            reclam = sr.getAll();
 
-            int column = 0;
-            int row = 0;
-
-            // Iterate over the list of reclamations
-            for (Reclamation reclamation : reclam) {
-                // Load the reclam card FXML
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ReclamCard.fxml"));
-                AnchorPane card = loader.load();
-
-
-                // Pass the data to the controller of the card
-                ReclamCardController controller = loader.getController();
-                controller.setData(reclamation);
-
-
-                // Add the card to the GridPane container
-                reclamationsContainer.add(card, column, row);
-
-                // Add mouse event handler to the card
-                card.setOnMouseClicked(event -> {
-                    // Set the color of all cards to white
-                    for (Node node : reclamationsContainer.getChildren()) {
-                        node.setStyle("-fx-background-color: white;");
-                    }
-
-                    // Highlight the selected card
-                    card.setStyle("-fx-background-color: lightblue;");
-
-                    // Retrieve the corresponding reclamation object
-                    Reclamation selectedReclamation = (Reclamation) card.getUserData();
-
-                    // Perform action based on the selected card
-                    // For example:
-                    // If event.getClickCount() == 2, it's a double click
-                    // You can perform an action here, like opening a new window
-                    // Or you can check the button pressed if it's a single click
-                    // (event.isPrimaryButtonDown() for left click, event.isSecondaryButtonDown() for right click)
-                });
-
-                // Set the reclamation object as user data for the card
-                card.setUserData(reclamation);
-
-                // Increment row and reset column if needed
-                column++;
-                if (column == 1) {
-                    column = 0;
-                    row++;
-                }
-            }
-        } catch (SQLException | IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
     private void afficherReclam() throws SQLException {
