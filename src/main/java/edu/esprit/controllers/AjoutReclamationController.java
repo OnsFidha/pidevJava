@@ -133,7 +133,14 @@ public class AjoutReclamationController implements Initializable {
                  //   .create();
 
             System.out.println("msg whatsapp envoyee");
-            JavaMailUtil.sendEmail( "sana.khiari2002@gmail.com", "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
+            new Thread(()->{
+                try {
+                    JavaMailUtil.sendEmail( "sana.khiari2002@gmail.com", "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+
+            }).start();
 
 
 
