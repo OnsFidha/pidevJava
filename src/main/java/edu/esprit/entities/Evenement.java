@@ -29,6 +29,21 @@ public class Evenement {
         this.image = image;
     }
 
+<<<<<<< HEAD
+=======
+    public Evenement(String nom, String description, String lieu, Date dateDebut, Date dateFin, Integer nbreParticipants, Integer nbreMax, String image) {
+        this.nom = nom;
+        this.description = description;
+        this.lieu = lieu;
+        this.dateDebut = dateDebut;
+        this.dateFin = dateFin;
+        this.nbreParticipants = nbreParticipants;
+        this.nbreMax = nbreMax;
+        this.image = image;
+    }
+
+
+>>>>>>> ons
     public int getId() {
         return id;
     }

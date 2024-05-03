@@ -1,0 +1,320 @@
+
+.pane {
+    -fx-background-color: #FEFCF3;
+}
+.pane1 {
+    -fx-background-color: #f8a835;
+}
+
+.btn {
+    -fx-background-color: #f8a835; /* Couleur unique */
+    -fx-background-radius: 15px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-border-color: #bde7b7;
+    -fx-text-fill: white;
+}
+
+.btn:hover {
+    -fx-transition: -fx-background-color 1s;
+    -fx-border-color: white;
+    -fx-background-color: #93d9f2; /* Couleur unique pour le survol */
+}
+
+
+.text-field {
+    -fx-border-width: 0.1em; /* Vous pouvez ajuster cette valeur selon vos besoins */
+    -fx-border-color: rgba(248, 168, 53, 0.6);
+}
+
+
+.text-field:focused,
+.text-field:hover {
+    -fx-border-color: rgba(147, 217, 242, 0.6);
+}
+
+.combo-box {
+    -fx-background-color: white;
+    -fx-border-color: #bde7b7;
+}
+
+.combo-box .arrow {
+    -fx-background-color: #bde7b7;
+}
+
+.infolabel {
+    -fx-border-width: 0.5px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+    -fx-border-color: #f8a835;
+}
+
+.MainButton {
+    -fx-background-radius: 15px;
+    -fx-border-width: 2px;
+    -fx-border-radius: 15px;
+    -fx-background-color: #f76a79;
+    -fx-border-color: #fdee6d;
+}
+
+.MainButton:hover {
+    -fx-border-color: #93d9f2;
+}
+
+.scrollpanes {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.tab-pane > .tab-header-area {
+    -fx-padding: 3;
+}
+
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: rgba(0, 0, 0, 0.07);
+    -fx-background-insets: 0, 0 0 1px 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: #bde7b7;
+    -fx-background-insets: 0 0 1px 0;
+    -fx-padding: 4px;
+    -fx-border-color: #c9c9c9;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab > .tab-container > .tab-label {
+    -fx-text-fill: #f76a79;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-background-color: #f8a835, white;
+    -fx-background-insets: 0, 0 0 2px 0;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .tab-label {
+    -fx-text-fill: #f76a79;
+}
+
+.tab-pane > .tab-header-area > .headers-region > .tab:selected > .tab-container > .focus-indicator {
+    -fx-opacity: 0;
+}
+
+.hboxcard {
+    -fx-background-image: url("/assets/cardbg.png");
+}
+=======
+.primary-color{
+    -fx-background-color: #F4F5F9;
+}
+.bg{
+    -fx-background-color: #FEFCF3;
+}
+.small-button {
+    -fx-pref-width: 35px;
+    -fx-pref-height: 35px;
+}
+.btn-icone {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-background-radius: 0; /* Assurez-vous que le rayon de fond est à 0 pour éliminer tout contour arrondi */
+}
+
+
+.pagination .page-link {
+    -fx-background-color: orange;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Style pour les boutons de pagination lorsqu'ils sont désactivés */
+.pagination .page-link:disabled {
+    -fx-background-color: lightgray;
+}
+
+/* Style pour les flèches de pagination */
+.pagination .arrow-button {
+    -fx-background-color: orange;
+    -fx-shape: null;
+}
+
+/* Style pour les flèches de pagination lorsqu'elles sont désactivées */
+.pagination .arrow-button:disabled {
+    -fx-background-color: lightgray;
+}
+.btn-nrml{
+    -fx-text-fill: white;
+    -fx-background-color: #ff9f5e;
+    -fx-background-radius: 10;
+}
+.comment-text {
+    -fx-font-size: 14px;
+    /* Autres styles de texte */
+}
+
+.user-label {
+    -fx-font-size: 12px;
+    -fx-padding: 20;
+}
+.comment-card {
+    -fx-background-color: #FEFCF3; /* Changer la couleur de fond */
+    -fx-border-radius: 10px;
+    -fx-border-color:orange;
+    -fx-background-radius: 10px;
+    border: 1px solid white; /* Ajouter une bordure autour des commentaires */
+    padding: 0px; /* Espacement à l'intérieur des commentaires */
+
+}
+.collab-card {
+    -fx-background-color: #FEFCF3; /* Changer la couleur de fond */
+    -fx-border-radius: 10px;
+    -fx-border-color:orange;
+    -fx-background-radius: 10px;
+    border: 1px solid white; /* Ajouter une bordure autour des commentaires */
+}
+
+.no-comment-label {
+    -fx-font-size: 20px; /* Taille de police plus grande */
+    -fx-alignment: center; /* Alignement au centre */
+    -fx-padding: 0 50; /* Réglage du padding gauche et droit pour centrer le texte */
+    -fx-margin: 0 50;
+    -fx-start-margin: 0 50;
+
+}
+
+
+/* Style pour les contrôles d'entrée en surbrillance */
+.text-input:focused {
+    -fx-border-color: pink; /* Couleur de la bordure en surbrillance */
+    -fx-border-width: 1px; /* Largeur de la bordure en surbrillance */
+    -fx-background-color: #fff; /* Couleur de fond en surbrillance */
+}
+.text-input {
+    -fx-background-color: #f8f9fa; /* Couleur de fond */
+    -fx-border-color: #ced4da; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-border-radius: 4px; /* Rayon de la bordure */
+    -fx-padding: 3px; /* Espacement interne */
+    -fx-font-size: 12px; /* Taille de police */
+}
+.error{
+    -fx-text-fill: red;
+    -fx-font-weight: bold;
+}
+.label-title {
+    -fx-font-size:17 px; /* Taille de police */
+    -fx-text-fill: #1E1E1E; /* Couleur du texte */
+    -fx-padding: 2px; /* Rembourrage */
+}#reclamCard {
+     -fx-background-color: #FEFCF3; /* Couleur de fond de la carte */
+     -fx-border-color: #FEFCF3 ; /* Couleur de la bordure */
+     -fx-border-width: 1px; /* Largeur de la bordure */
+     -fx-border-radius: 20px; /* Rayon de la bordure */
+     -fx-padding: 15px; /* Espacement interne */
+     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 2); /* Ombre portée */
+ }
+
+#reclamCard:hover {
+    -fx-background-color: pink; /* Couleur de fond au survol */
+    -fx-border-radius: 20px; /* Rayon de la bordure au survol */
+}
+
+.title-style {
+    -fx-font-size: 36px; /* Taille de police */
+    -fx-text-fill: #333333; /* Couleur du texte */
+    -fx-font-family: Raleway, Arial, Helvetica, sans-serif;/* Police */
+
+    -fx-line-spacing: 1.7; /* Espacement des lignes */
+    /* Ajoutez d'autres propriétés CSS selon vos préférences */
+}
+
+.vbox-container {
+    -fx-background-color: #FEFCF3; /* Couleur de fond du conteneur */
+    -fx-padding: 10px; /* Espacement intérieur du conteneur */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    /*-fx-border-color: #ccc; !* Couleur de la bordure *!*/
+    -fx-border-radius: 10px; /* Rayon des coins de la bordure */
+}
+
+#imgPub {
+    -fx-fit-width: 100%; /* Adapter la largeur de l'image à la carte */
+    -fx-fit-height: 182.0; /* Hauteur fixe de l'image */
+    -fx-alignment: center;
+}
+
+.label-style {
+    -fx-font-size: 14px; /* Taille de police */
+    -fx-font-weight: bold; /* Gras */
+    -fx-text-fill: #333333; /* Couleur du texte */
+}
+
+.label-value {
+    -fx-font-size: 15px; /* Taille de police */
+    -fx-text-fill: #555555; /* Couleur du texte */
+    -fx-padding: 2px; /* Rembourrage */
+}
+.btn-icone .icon {
+    -fx-padding: 5; /* Ajoutez un remplissage pour un peu d'espace autour de l'icône */
+}
+.shadow{
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 10,0,0,10);
+}
+.rect-round{
+    -fx-background-radius: 20;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.selected{
+    -fx-background-color: #F4F5F9;
+}
+.mouse-moved:hover{
+    -fx-background-color: #EFEFEF;
+}
+.mouse-moved2:hover{
+    -fx-background-color: #fcd5bb;
+
+}
+.mouse-moved3:hover{
+    -fx-background-color: #bff2c0;
+
+}
+.reactions-container{
+    -fx-background-color: #fff;
+    -fx-background-radius: 50;
+    -fx-effect: dropShadow(three-pass-box, rgba(0,0,0,0.1), 5.0,0.0,0.0,5.0);
+    -fx-border-width: 1;
+    -fx-border-color: #B8B9BB;
+    -fx-border-radius: 50;
+}
+.comment-textfield-centered {
+    -fx-alignment: center;
+}
+.comment-container{
+    -fx-padding: 20;
+}
+.comment-label {
+    -fx-font-size: 14px; /* Taille de police pour les labels */
+    -fx-text-fill: #383838; /* Couleur du texte */
+    -fx-padding: 20;
+}
+
+.comment-textfield {
+    -fx-font-size: 14px; /* Taille de police pour les textfields */
+    -fx-border-color: transparent; /* Supprime la bordure par défaut */
+    -fx-focus-color: transparent; /* Supprime la couleur du focus */
+    -fx-background-color: transparent; /* Supprime le fond du textfield */
+    -fx-padding: 12; /* Supprime l'espacement interne */
+    -fx-alignment: center;
+    -fx-pref-width: 600px;
+    -fx-pref-height: 100px;
+    -fx-wrap-text: true;
+}
+
+.comment-textfield:readonly {
+    -fx-alignment: left;
+    -fx-border-color: transparent; /* Supprime la bordure */
+    -fx-background-color: transparent; /* Supprime le fond */
+    -fx-padding: 20; /* Supprime l'espacement interne */
+    -fx-opacity: 1.0; /* Assurez-vous que le texte est complètement visible */
+    -fx-wrap-text: true;
+}

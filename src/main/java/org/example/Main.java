@@ -1,62 +1,116 @@
 package org.example;
 
-import edu.esprit.entities.Reclamation;
-import edu.esprit.entities.Reponse;
-import edu.esprit.service.ReclamationService;
-import edu.esprit.service.ReponseService;
+
+import edu.esprit.entities.Collaboration;
+import edu.esprit.entities.Commentaire;
+import edu.esprit.entities.Publication;
+import edu.esprit.service.CollaborationService;
+import edu.esprit.service.CommentaireService;
+import edu.esprit.service.PublicationService;
 import edu.esprit.utils.DataSource;
 import java.sql.SQLException;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         System.out.println(DataSource.getInstance());
+        PublicationService ps=new PublicationService();
+        CommentaireService cs=new CommentaireService();
+        CollaborationService cols=new CollaborationService();
 
-        ReclamationService reclam = new ReclamationService();
-        ReponseService rep = new ReponseService();
 
-        try {
-            reclam.ajouter(new Reclamation("type21234","decription212345 "));
+                try {
+                    System.out.println(cols.getListByIdPublication(4));
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+                    System.out.println(e.getMessage());
+                }
+//
+//        try {
+//            ps.ajouter(new Publication("offre2","test2 test2","Tunis",3,"heheh2"));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+        /**
+         * TEST CRUD PUBLICATION
+        **/
+//        try {
+//            ps.ajouter(new Publication("offre","test test","Tunis",2,"heheh"));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try {
+//            ps.ajouter(new Publication("offre2","test2 test2","Tunis",3,"heheh2"));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        //try {
-           // rep.ajouter(new Reponse(1,"ajout reponse test 22 "));
-        //} catch (SQLException e) {
-         //   System.out.println(e.getMessage());
-        //}
+//        try {
+//            ps.modifier(new Publication(1,"offreModif2","modif","modif",""));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
 
 
+//        try {
+//            System.out.println("alll \n"+ps.getAll());
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try {
+//            System.out.println("one by Id \n"+ps.getOneById(1));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }  try {
+//            System.out.println("liste comm by pub\n"+ps.getCommentairesByPublicationId(1));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-       // try {rep.supprimer(3);
-        //}catch (SQLException s){
-          //  System.out.println(s.getMessage());
-        //}
+//        try {ps.supprimer(11);
+//        }catch (SQLException s){
+//            System.out.println(s.getMessage());
+//        }
+        /**
+         * TEST CRUD COMMENTAIRE
+        **/
+//        try {
+//            cs.ajouter(new Commentaire("test",1));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try {
+//            cs.ajouter(new Commentaire("test3",1));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        //try {
-          //  reclam.modifier(new Reclamation(2,"type modif","description modif"));
-        //} catch (SQLException e) {
-          //  System.out.println(e.getMessage());
-        //}
+//        try {
+//            cs.modifier(new Commentaire(7,"CommentModif2"));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        //try {
-          //rep.modifier(new Reponse(3,1,"reponse modif"));
-        //} catch (SQLException e) {
-          //System.out.println(e.getMessage());
-        //}
 
-        try {
-            System.out.println("liste des reponses \n"+rep.getAll());
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            System.out.println("alll \n"+cs.getAll());
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
 
-        try {
-            System.out.println("one by Id \n"+rep.getOneById(1));
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {cs.supprimer(7);
+//        }catch (SQLException s){
+//            System.out.println(s.getMessage());
+//        }
+//        try {
+//            System.out.println("one by Id \n"+cs.getOneById(7));
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+
     }
 }
