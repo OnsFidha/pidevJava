@@ -10,4 +10,8 @@ public interface IService <T>{
     void supprimer(int id) throws SQLException;
     List<T> getAll() throws SQLException;
      T getOneById(int id) throws SQLException;
+
+    default T getOneByName(String nom){
+        return null;
+    }
 }

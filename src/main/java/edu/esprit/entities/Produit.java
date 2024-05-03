@@ -15,8 +15,8 @@ public class Produit {
         this.categorie = categorie;
         this.setQuantite(quantite);
         this.setPrix(prix);
-        this.nom = nom;
-        this.description = description;
+        this.setNom(nom);
+        this.setDescription(description);
         this.image = image;
     }
 
@@ -25,8 +25,8 @@ public class Produit {
         this.categorie = categorie;
         this.setQuantite(quantite);
         this.setPrix(prix);
-        this.nom = nom;
-        this.description = description;
+        this.setNom(nom);
+        this.setDescription(description);
         this.image = image;
     }
 
@@ -74,17 +74,23 @@ public class Produit {
     }
 
     public void setPrix(double prix) {
-        if (quantite<=0){
+        if (prix<=0){
             throw new IllegalArgumentException("Le prix doit être supérieur à 0");
         }
         this.prix = prix;
     }
 
     public void setNom(String nom) {
+        if (nom==null || nom.trim().equalsIgnoreCase("")){
+            throw new IllegalArgumentException("Le champ Nom est obligatoire");
+        }
         this.nom = nom;
     }
 
     public void setDescription(String description) {
+        if (description==null || description.trim().equalsIgnoreCase("")){
+            throw new IllegalArgumentException("Le champ Description est obligatoire");
+        }
         this.description = description;
     }
 
