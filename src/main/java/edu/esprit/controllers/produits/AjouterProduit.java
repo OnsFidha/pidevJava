@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.scene.image.ImageView;
@@ -89,7 +90,7 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            Set<Categorie> categories = serviceCategorie.getAll();
+            List<Categorie> categories =  serviceCategorie.getAll();
             if (categories!=null && !categories.isEmpty()) {
                 categorieDropDown.setConverter(new StringConverter<>() {
                     @Override

@@ -19,6 +19,7 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -32,7 +33,7 @@ public class AfficherProduits extends AdminContentPanel{
 
     public void showData() {
         try {
-            Set<Produit> produits = serviceProduit.getAll();
+            List<Produit> produits =  serviceProduit.getAll();
             int index=0;
             gridProduits.addRow(index, createGridHeaderLabel("Nom"),
                     createGridHeaderLabel("Catégorie"), createGridHeaderLabel("Prix"),
@@ -121,8 +122,7 @@ public class AfficherProduits extends AdminContentPanel{
             super.getAdminPanelContent().getChildren().clear();
             super.getAdminPanelContent().getChildren().setAll(root);
         } catch (IOException e) {
-            displayAlertErreure("Error", "Il y a un problème lors de la redirection vers la bonne interface");
-        }
+            e.printStackTrace();        }
     }
 
     private void displayAlertErreure(String title, String content) {

@@ -96,8 +96,8 @@ public class ServiceCommande implements IService<Commande> {
     }
 
     @Override
-    public Set<Commande> getAll() {
-        Set<Commande> commandes = new HashSet<>();
+    public List<Commande> getAll() {
+        List<Commande> commandes = new ArrayList<>();
         String req = "select * from commande";
         try {
             Statement st = conn.createStatement();
@@ -116,7 +116,9 @@ public class ServiceCommande implements IService<Commande> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return commandes.stream().sorted(Comparator.comparing(Commande::getDate_commande).reversed()).collect(Collectors.toCollection(LinkedHashSet::new));
+        return  commandes.stream()
+                .sorted(Comparator.comparing(Commande::getDate_commande).reversed())
+                .collect(Collectors.toList());
     }
 
 

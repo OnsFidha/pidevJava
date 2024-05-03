@@ -16,18 +16,18 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #FEFCF3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherReclamationAdmin">
+<AnchorPane prefHeight="661.0" prefWidth="1315.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.BaseAdmin">
 
     <children>
-        <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #BEE5B4;">
+        <VBox prefHeight="661.0" prefWidth="204.0" style="-fx-background-color: #BEE5B4;">
             <effect>
                 <DropShadow />
             </effect>
             <children>
                 <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
-                    </image>
+<!--                    <image>-->
+<!--                        <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />-->
+<!--                    </image>-->
                     <VBox.margin>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                     </VBox.margin>
@@ -67,29 +67,6 @@
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/ProductIcon.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets top="5.0" />
-                            </HBox.margin>
-                        </ImageView>
-                        <Label text="Produit">
-                            <font>
-                                <Font size="24.0" />
-                            </font>
-                            <HBox.margin>
-                                <Insets />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
-                    </VBox.margin>
-                </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
-                    <children>
-                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
                                 <Image url="@icons/postIcon.png" />
                             </image>
                             <HBox.margin>
@@ -112,7 +89,82 @@
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox fx:id="categoriesHbox" onMouseClicked="#showCategories" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/categoriesIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="d" text="Categories">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="productsHbox" onMouseClicked="#showProducts" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/ProductIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Produits">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+                <HBox fx:id="commandesHbox" onMouseClicked="#showCommandes" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/ProductIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Commandes">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                </HBox>
+                <HBox prefHeight="37.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -230,6 +282,7 @@
 
             </children>
         </HBox>
+      <AnchorPane fx:id="adminPanelContent" layoutX="219.0" layoutY="114.0" prefHeight="540.0" prefWidth="1085.0" />
 
     </children>
 

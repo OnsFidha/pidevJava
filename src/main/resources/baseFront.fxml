@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,9 +13,9 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AjouterEvent">
+<AnchorPane prefHeight="634.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" styleClass="@css\styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.BaseFront">
     <children>
-        <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+        <VBox prefHeight="634.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
             <effect>
                 <DropShadow />
             </effect>
@@ -58,7 +54,7 @@
                         <Insets left="30.0" right="40.0" top="40.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox onMouseClicked="#showProducts" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -117,7 +113,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Evenement"  textFill="#f9a936">
+                        <Label text="Evenement">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -140,7 +136,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Reclamation">
+                        <Label text="Reclamation" textFill="#f9a936">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -164,7 +160,7 @@
                 </DropShadow>
             </effect>
             <children>
-                <Label prefHeight="53.0" prefWidth="127.0" text="Syrine Zaier" translateX="820.0" translateY="15.0">
+                <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>
@@ -173,6 +169,7 @@
 
             </children>
         </HBox>
+      <AnchorPane fx:id="baseFrontContentPanel" layoutX="232.0" layoutY="118.0" prefHeight="467.0" prefWidth="981.0" />
 
     </children>
 
