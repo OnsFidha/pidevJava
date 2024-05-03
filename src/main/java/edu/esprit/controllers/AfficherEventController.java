@@ -346,7 +346,7 @@ public class AfficherEventController {
                 participationService.ajouter(participation);
 
                 // Send email to the user
-                sendParticipationEmail("syrinezaier283@gmail.com", event.getNom());}
+                sendParticipationEmail("syrinezaier283@gmail.com", event.getNom(),event);}
                 else {
                     // User has already participated, display error message
                     Alert alert2 = new Alert(Alert.AlertType.ERROR);
@@ -372,9 +372,9 @@ public class AfficherEventController {
 
     }
 
-    private void sendParticipationEmail(String recipientEmail, String eventName) {
+    private void sendParticipationEmail(String recipientEmail, String eventName, Evenement event) {
         try {
-            JavaMailUtil.sendEventEmail(recipientEmail, eventName);
+            JavaMailUtil.sendEventEmail(recipientEmail, eventName, event);
         } catch (Exception e) {
             // Handle email sending error
             e.printStackTrace();
