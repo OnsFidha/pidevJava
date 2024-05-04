@@ -269,7 +269,7 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/icons/UserIcon.png" />
+                        <Image url="@icons/UserIcon.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="5.0" />
@@ -292,7 +292,7 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/icons/ProductIcon.png" />
+                        <Image url="@icons/postIcon.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="5.0" />
@@ -313,14 +313,6 @@
             </HBox>
             <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../../Downloads/icons/postIcon.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
                   <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
                      <font>
                         <Font size="24.0" />
@@ -329,6 +321,14 @@
                         <Insets />
                      </HBox.margin>
                   </Label>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/postIcon.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
                </children>
                <padding>
                   <Insets left="30.0" />
@@ -341,13 +341,13 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/icons/EventIcon.png" />
+                        <Image url="@icons/EventIcon.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label text="Evenement" textFill="#f9a936">
+                  <Label text="Evenement" textFill="#1b1b1a">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -364,7 +364,7 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/icons/ReclamIcon.png" />
+                        <Image url="@icons/ReclamIcon.pngicons/ReclamIcon.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="5.0" />
@@ -390,7 +390,7 @@
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../Downloads/icons/ReponsIcon.png" />
+                        <Image url="@icons/ReponsIcon.pngicons/ReponsIcon.png" />
                      </image>
                      <HBox.margin>
                         <Insets top="5.0" />

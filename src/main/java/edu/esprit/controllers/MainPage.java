@@ -5,6 +5,11 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import java.util.ResourceBundle;
 import javafx.scene.image.Image;
@@ -18,6 +23,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 
 public class MainPage {
@@ -50,14 +56,22 @@ public class MainPage {
 
     @FXML
     private HBox recla;
+    @FXML
+    private Button AdminP;
 
     @FXML
-    private HBox users;
+    private Label users;
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
     @FXML
     void initialize() {
+        if (SessionManager.getRoles().equals("User")) {
+            AdminP.setVisible(false);
+        }
+        if (SessionManager.getRoles().equals("Admin")) {
+            AdminP.setVisible(true);
+        }
 
         logedUsernamee.setText(nameP);
         int img = imagePath.lastIndexOf("\\");
@@ -113,6 +127,19 @@ public class MainPage {
         produit.setOnMouseClicked(clickHandler5);
     }
 
+    public void PanelAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     private void getListProduit() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
         try {
