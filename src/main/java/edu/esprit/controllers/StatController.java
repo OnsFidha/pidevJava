@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +20,21 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import edu.esprit.utils.DataSource;
 
 public class StatController implements Initializable {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+    @FXML
+    private Label logedUsernamee;
+
     private Connection cnx;
     private PreparedStatement pst;
     private ResultSet rs;
@@ -42,6 +54,9 @@ public class StatController implements Initializable {
     private Button statics1111;
     @FXML
     private Button account;
+
+    @FXML
+    private Circle circle;
 
     // Constructeur du contrôleur
     public StatController() {
@@ -84,6 +99,13 @@ public class StatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
         // Requête SQL pour obtenir les statistiques sur les réclamations par type
         String req = "SELECT type, COUNT(*) AS count FROM Reclamation GROUP BY type";
 

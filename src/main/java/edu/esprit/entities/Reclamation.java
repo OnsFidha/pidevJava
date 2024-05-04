@@ -20,18 +20,28 @@ public class Reclamation {
     private boolean etat;
     private Date date_creation;
 
+    private int id_user;
+
+    public int getId_user() {
+        return id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
+
     public Reclamation() {
     }
 
-    public Reclamation(int id, String type, String description) {
-        this.id = id;
+
+    public Reclamation(String type, String description) {
         this.type = type;
         this.description = description;
         this.etat = false;
-
+        this.date_creation = new Date();
     }
-
-    public Reclamation(String type, String description) {
+    public Reclamation(int id_user ,String type, String description) {
+        this.id_user=id_user;
         this.type = type;
         this.description = description;
         this.etat = false;

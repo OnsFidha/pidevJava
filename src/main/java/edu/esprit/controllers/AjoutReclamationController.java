@@ -16,8 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -31,8 +30,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import com.twilio.Twilio;
 import com.twilio.converter.Promoter;
@@ -46,6 +43,14 @@ import com.microsoft.cognitiveservices.speech.*;
 import javafx.concurrent.Task;
 
 public class AjoutReclamationController implements Initializable {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+
+
+
+    @FXML
+    private Label logedUsernamee;
 
     int id= SessionManager.getId_user();
 
@@ -86,9 +91,15 @@ public class AjoutReclamationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
 
 
         comb.setItems(FXCollections.observableArrayList("Publication non visible sur la plateforme",
@@ -122,6 +133,7 @@ public class AjoutReclamationController implements Initializable {
 
             // Initialiser la date de création à la date actuelle
             r.setDate_creation(new Date());
+            r.setId_user(id);
 
             ReclamationService pst = new ReclamationService();
             pst.ajouter(r);

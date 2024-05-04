@@ -3,16 +3,15 @@ package edu.esprit.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.ImagePattern;
@@ -25,6 +24,12 @@ import javax.mail.internet.InternetAddress;
 import static edu.esprit.utils.JavaMailUtil.sendEmail2;
 
 public class EnvoyerEmailController {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+    @FXML
+    private Label logedUsernamee;
+
 
     @FXML
     private ResourceBundle resources;
@@ -110,9 +115,15 @@ public class EnvoyerEmailController {
     @FXML
     void initialize() {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
     }
 
     // Méthode pour vérifier si une adresse email est valide

@@ -164,7 +164,7 @@
                 </DropShadow>
             </effect>
             <children>
-                <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
+                <Label fx:id="logedUsernamee" prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>

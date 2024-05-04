@@ -37,12 +37,15 @@ public class AfficherReclamationController implements Initializable {
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
+    int id=SessionManager.getId_user();
 
     @FXML
     private GridPane reclamationsContainer;
 
     @FXML
     private Label logedUsernamee;
+
+
 
 
 
@@ -111,7 +114,7 @@ public class AfficherReclamationController implements Initializable {
         List<Reclamation> reclam;
         try {
             // Get all reclamations from the service
-            reclam = sr.getAll();
+            reclam = sr.getAll2(id);
 
             int column = 0;
             int row = 0;
@@ -257,7 +260,7 @@ public class AfficherReclamationController implements Initializable {
         List<Reclamation> reclam;
         try {
             // Get all reclamations from the service
-            reclam = sr.getAll();
+            reclam = sr.getAll2(id);
 
             int column = 0;
             int row = 0;

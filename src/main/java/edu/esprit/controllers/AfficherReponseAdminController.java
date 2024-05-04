@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import edu.esprit.utils.SessionManager;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,10 @@ import javafx.stage.Stage;
 import javax.swing.*;
 
 public class AfficherReponseAdminController {
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
 
     @FXML
     private ResourceBundle resources;
@@ -66,6 +71,9 @@ public class AfficherReponseAdminController {
 
     @FXML
     private TableView<Reponse> tableauRep;
+    @FXML
+    private Label logedUsernamee;
+
 
 
     @FXML
@@ -196,9 +204,15 @@ public class AfficherReponseAdminController {
     @FXML
     void initialize() {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
         // TODO
         try {
             afficherReponse();
