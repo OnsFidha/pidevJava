@@ -120,6 +120,7 @@ public class ConnectionUserController implements Initializable {
                 hexString.append(hex);
             }
             String mdpHash = hexString.toString();
+            System.out.println("PWD: "+mdpHash);
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, email_login.getText());
             stm.setString(2, mdpHash);
