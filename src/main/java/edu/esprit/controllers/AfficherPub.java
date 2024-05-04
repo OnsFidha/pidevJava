@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import edu.esprit.service.CommentaireService;
+import edu.esprit.utils.SessionManager;
 import javafx.animation.TranslateTransition;
 import edu.esprit.entities.Commentaire;
 import javafx.geometry.Pos;
@@ -32,7 +33,8 @@ import javax.swing.*;
 
 public class AfficherPub {
 
-
+        @FXML
+        private Button edit;
         @FXML
         private ResourceBundle resources;
 
@@ -60,6 +62,8 @@ public class AfficherPub {
         private Label typePub;
         private Label errortext;
         private Publication p;
+        private int idUser;
+        int id=SessionManager.getId_user() ;
         @FXML
         private GridPane details;
         private HashMap<Integer, TextField> commentaireFields; // HashMap pour stocker les TextField des commentaires
@@ -69,6 +73,11 @@ public class AfficherPub {
         }
         @FXML
         void initialize() {
+            if(id==idUser){
+                edit.setVisible(true);
+            }else{
+                edit.setVisible(false);
+            }
 //        comments.setVisible(false);
             commentaireFields = new HashMap<>(); // Initialisation de la HashMap
                 }
@@ -557,5 +566,9 @@ public class AfficherPub {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setIdUser(int idUserId) {
+            this.idUser=idUserId;
     }
 }

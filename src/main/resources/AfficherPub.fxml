@@ -264,7 +264,7 @@
                               <Label fx:id="textPub" alignment="CENTER" prefHeight="130.0" prefWidth="224.0" styleClass="label-value" text="Publication text" wrapText="true" />
                           </children>
                       </FlowPane>
-                      <Button alignment="CENTER" contentDisplay="CENTER" onAction="#modify" styleClass="btn-icone" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                      <Button fx:id="edit" alignment="CENTER" contentDisplay="CENTER" onAction="#modify" styleClass="btn-icone" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
                           <graphic>
                               <HBox alignment="CENTER">
                                   <children>

@@ -86,6 +86,30 @@ public class JavaMailUtil {
 
 
     }
+    private static Message prepareEventMessage(Session session, String myAccountEmail, String recepient, Evenement event) {
+        try {
+            Message message=new MimeMessage(session);
+            message.setFrom(new InternetAddress (myAccountEmail));
+            message.setRecipient(Message.RecipientType.TO, new InternetAddress (recepient));
+            message.setSubject("Invitation ♥");
+            message.setText("Cher(e) Participant(e),\n\n"
+                    + "Vous êtes cordialement invité(e) à l'événement : " + event.getNom() + "\n"
+                    + "Description de l'événement : " + event.getDescription() + "\n"
+                    + "Date : " + event.getDateDebut() + "\n"
+                    + "Lieu : " + event.getLieu() + "\n\n"
+                    + "Nous espérons vous y voir nombreux et partager ensemble des moments mémorables.\n\n"
+                    + "Cordialement,\n"
+                    + "Team ARTISTOOL");
+            message.reply(false);
+            return message;
+
+        }
+        catch(Exception e)
+        {
+            e.getMessage();
+        }
+        return null;
+    }
 
     public static void sendEmail2(String recepient,String s, String o) throws Exception
     {
@@ -133,29 +157,6 @@ public class JavaMailUtil {
         }
         return null;
     }
-    private static Message prepareEventMessage(Session session, String myAccountEmail, String recepient, Evenement event) {
-        try {
-            Message message=new MimeMessage(session);
-            message.setFrom(new InternetAddress (myAccountEmail));
-            message.setRecipient(Message.RecipientType.TO, new InternetAddress (recepient));
-            message.setSubject("Invitation ♥");
-            message.setText("Cher(e) Participant(e),\n\n"
-                    + "Vous êtes cordialement invité(e) à l'événement : " + event.getNom() + "\n"
-                    + "Description de l'événement : " + event.getDescription() + "\n"
-                    + "Date : " + event.getDateDebut() + "\n"
-                    + "Lieu : " + event.getLieu() + "\n\n"
-                    + "Nous espérons vous y voir nombreux et partager ensemble des moments mémorables.\n\n"
-                    + "Cordialement,\n"
-                    + "Team ARTISTOOL");
-            message.reply(false);
-            return message;
 
-        }
-        catch(Exception e)
-        {
-            e.getMessage();
-        }
-        return null;
-    }
 
 }

@@ -5,6 +5,7 @@ import java.util.Objects;
 
 public class Publication {
     private int id;
+    private int id_user_id;
     private String type;
     private String text;
     private String lieu;
@@ -34,6 +35,14 @@ public class Publication {
 
     public int getId() {
         return id;
+    }
+
+    public int getId_user_id() {
+        return id_user_id;
+    }
+
+    public void setId_user_id(int id_user_id) {
+        this.id_user_id = id_user_id;
     }
 
     public String getType() {
@@ -112,11 +121,11 @@ public class Publication {
     @Override
     public String toString() {
         return "Publication{" +
-                "type='" + type + '\'' +
-                ", text='" + text + '\'' +
-                ", lieu='" + lieu + '\'' +
+
                 ", dateCreation=" + dateCreation +
                 ", datemodificationn=" + dateModification +
+                ", idUser=" + id_user_id +
+
                 '}'+'\n';
     }
 }
