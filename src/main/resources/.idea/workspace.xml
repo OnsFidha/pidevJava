@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="89854e5f-294f-45e1-bc72-a3d618a18027" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../../../.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../full-list-of-bad-words_text-file_2022_05_05.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../../jar/tess4j-5.11.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AddCollaboration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AdminListPub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AdminPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AdminUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AfficherPub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AfficherPubAd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AfficherReclamationAdmin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AfficherReclamationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AfficherReponseAdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AjoutReclamationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AjouterCom.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AjouterPub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/AjouterReponseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/BadWordsApi.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/CardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/CardUser1Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/CardUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ConnectionUserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/EmailManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/EnvoyerEmailController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/FrontContentPanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/InsriptionContoller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ListCollab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ListComm.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ListPub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/MainPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ModifierPub.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ModifierRecalationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ModifierReponseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ReclamCardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/ReponseClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/StatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/UserInterfaceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/cardCollab.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/produitsfront/PanierDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/entities/Collaboration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/entities/Commentaire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/entities/Utilisateur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/interfaces/IUtilisateur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/service/CollaborationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/service/CommentaireService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/service/IserviceH.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/service/PublicationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/service/ReclamationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/service/ReponseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/services/ServiceUtilisateur.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/test/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/utils/JavaMailUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/utils/MyDataBase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../java/edu/esprit/utils/SessionManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminListPub.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AdminUser.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AfficherPub.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AfficherPubAd.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AfficherReclamation.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AfficherReclamationAdmin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AfficherReponseAdmin.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AjoutReclamation.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AjouterCom.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AjouterPub.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AjouterReponse.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CardUser.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CardUser1.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/EnvoyerEmail.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ListPub.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MainPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Menu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModifierPub.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModifierReclamation.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ModifierReponse.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReclamCard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Register.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ReponseClient.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/UserInterface.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/addCollaboration.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/adminPage.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/1308a5cd-bb39-4c1c-9a1b-94eac6ca6f96_logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/1db55684-e694-4792-9d20-b222c4745d12_331684443_607658104537948_6178044142794621968_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/27d4f506-53ed-434d-9cd0-8b785acb87ff_artiste.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/314461294_3268962069985889_7992303666512631894_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/331684443_607658104537948_6178044142794621968_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/332112237_1203055763671907_4119675567396009099_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/347585519_5785800684855192_4264884320232918150_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/376797745_3463524697242891_7766695552261825189_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/376ca6ee-6765-43e2-9e07-5e11573c70be_c94925b4-7c90-4f12-9014-de755ee7bee9_332112237_1203055763671907_4119675567396009099_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/39f7fe65-8089-4167-8ce4-29a54f5ef7df_pdp1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/453ee45e-3c4a-4b7f-8648-12f63a29854a_376797745_3463524697242891_7766695552261825189_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/48506bc4-f74b-4ebf-886a-f21a75e0c901_1112.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/49e2f897-48ab-4a49-b41f-f74fc52a5c0c_1db55684-e694-4792-9d20-b222c4745d12_331684443_607658104537948_6178044142794621968_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/6dc6fe0b-0cae-4072-8463-72997eb86d4f_1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/758acbff-48f4-43cb-aedb-5c9b06543f35_1112.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/76494d99-fc2e-4a47-bf9a-2c569015f6c4_347585519_5785800684855192_4264884320232918150_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/7bb78d06-f54d-4c29-af37-a5610e02e5b1_27d4f506-53ed-434d-9cd0-8b785acb87ff_artiste.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/88721a0b-1528-4972-8e11-ea038e0f62cf_artiste.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/91e8834d-9271-4cfb-844e-cbec1a9e3fa2_88721a0b-1528-4972-8e11-ea038e0f62cf_artiste.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/947082d2-e4d5-4acc-9828-5d089ff59674_1112.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/a7b2a45a-c1d6-457f-8d83-ab7664b1d271_1112.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/acb96fd0-2740-45f2-b5f6-0b7a35648a35_331684443_607658104537948_6178044142794621968_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/artiste.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/b913a4cd-d2ff-4f5c-b9b6-37280c6cf441_rajel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/c94925b4-7c90-4f12-9014-de755ee7bee9_332112237_1203055763671907_4119675567396009099_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/ccc1e0e1-2a2e-40f7-8160-5d72e8ce639b_550d7b69-a6b4-496e-9a2b-f1ade2f76e23_artiste.png.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/d237540e-0d7e-4c8b-b3cc-110d6e8035d7_376ca6ee-6765-43e2-9e07-5e11573c70be_c94925b4-7c90-4f12-9014-de755ee7bee9_332112237_1203055763671907_4119675567396009099_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/dab2e769-c653-4165-852f-0a53e6e9979e_331684443_607658104537948_6178044142794621968_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/dd94c810-b861-40b2-89c7-c8cbef31ddbc_314461294_3268962069985889_7992303666512631894_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/deae6c22-0fdd-43b0-9faa-0b7523e36604_5eeb32d0-1369-4ee0-a2aa-ffafe5965956_376797745_3463524697242891_7766695552261825189_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/e0aca1eb-a0bb-452b-9709-2e18f0ddbcb3_376ca6ee-6765-43e2-9e07-5e11573c70be_c94925b4-7c90-4f12-9014-de755ee7bee9_332112237_1203055763671907_4119675567396009099_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/ecea05af-ba90-41f5-92d5-86f6a2a36c7d_746A52~1.JPG" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/ee07f2cd-5c33-4733-a185-59856a0ac52c_1112.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/f64da61d-fea7-456f-bcb4-551633010906_376ca6ee-6765-43e2-9e07-5e11573c70be_c94925b4-7c90-4f12-9014-de755ee7bee9_332112237_1203055763671907_4119675567396009099_n.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-delete-60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-edit-64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-event-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-grid-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-logout-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-marketplace-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-menu-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-music-notation-50.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-refresh-60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-sort-60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-teach-60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-upload-64.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/icons8-users-60.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/rajel.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/uploads/top-view-paint-brush-corner.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cardCollab.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cardPub.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/comments.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/cupertino-dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/cupertino-light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/dracula.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/nord-dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/nord-light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/primer-dark.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/primer-light.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/full-list-of-bad-words_text-file_2022_05_05.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/addC.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/bin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/delete.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/desktop.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/detailss.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/download.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/edit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/email.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/facebook-reactions (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/facebook-reactions (2).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/facebook-reactions (3).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/facebook-reactions.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/facebook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/flech.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/group.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/like.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/more.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/people.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/placeholder (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/previous.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/right-arrow.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/schedule.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/thumbs-up.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/icons/zigzag.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Event1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Event2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Event3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Event4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/Event5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/notfound.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/reclamPhoto-removebg-preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/sanaPic.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/user1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img/user2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d1d46703bb8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d1eea7cc80f.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d39ca07e1e9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d39d2074366.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d3ca6b528c9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d3caf222fd6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65d46b8e66fcd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65e38742616a5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/65e462834d754.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/gallery-11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/gallery-12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/gallery-13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/gallery-14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/imgPub/gallery-15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/listCollab.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/loadingscene.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/musee.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/produitsfront/PanierDetails.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/stat.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/categories/AfficherCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/categories/AfficherCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/categories/AjouterCategorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/categories/AjouterCategorie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/categories/ModifierCategorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/categories/ModifierCategorie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/commandes/AfficherCommandes.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/commandes/AfficherCommandes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/produits/AfficherProduits.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/produits/AfficherProduits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/produits/AjouterProduit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/produits/AjouterProduit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/produits/ModifierProduit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/produits/ModifierProduit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/produitsfront/ListeProduits.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/produitsfront/ListeProduits.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/controllers/produitsfront/ProductCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/controllers/produitsfront/ProductCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/entities/Evenement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/entities/Publication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/entities/Publication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/entities/Reclamation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/entities/Reclamation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/entities/Reponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/entities/Reponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/service/IService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/service/ServiceCommande.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/service/ServiceCommande.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/service/ServiceUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/service/ServiceUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/service/Servicecategorie.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/service/Servicecategorie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/service/Serviceproduit.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/service/Serviceproduit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/edu/esprit/test/MainF.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/edu/esprit/test/MainFX.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java/org/example/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/org/example/MainCategorie.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../java/org/example/MainProduit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseAdmin.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/BaseAdmin.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BaseFront.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/BaseFront.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2fxelfgpR8N6mSPLyacn3c3WW40" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "Merging henda",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/HP/IdeaProjects/pidev/src/main/resources",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-corretto-19.0.2-4caba194b151-48ba4555" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="89854e5f-294f-45e1-bc72-a3d618a18027" name="Changes" comment="" />
+      <created>1714747309055</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714747309055</updated>
+      <workItem from="1714747310256" duration="31000" />
+    </task>
+    <servers />
+  </component>
+</project>

@@ -42,9 +42,7 @@ public class ListPub implements Initializable {
     int id=SessionManager.getId_user();
     @FXML
     private Circle logedUserimage;
-//
-//    @FXML
-//    private ImageView logedUserimage;
+
 
     @FXML
     private Label logedUsernamee;
@@ -145,6 +143,7 @@ public class ListPub implements Initializable {
                 pub.setDateCreationPub(new Date());
                 pub.setPhoto(publication.getPhoto());
                 pub.setDateModificationPub(new Date());
+                pub.setIdUser(publication.getId_user_id());
                 pubList.getScene().setRoot(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);

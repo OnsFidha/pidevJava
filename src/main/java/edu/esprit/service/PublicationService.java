@@ -75,8 +75,7 @@ public class PublicationService implements IService <Publication> {
                 publication.setPhoto(resultSet.getString("photo"));
                 publication.setDateCreation(resultSet.getDate("date_creation"));
                 publication.setDateModification(resultSet.getDate("date_modification"));
-               // publication.setUserId(resultSet.getInt("id_user_id"));
-
+                publication.setId_user_id(resultSet.getInt("id_user_id"));
                 publications.add(publication);
             }
         } catch (SQLException e) {

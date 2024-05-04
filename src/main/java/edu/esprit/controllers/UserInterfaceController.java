@@ -12,6 +12,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -44,10 +45,27 @@ public class UserInterfaceController implements Initializable {
     private Label logedUsernamee;
     @FXML
     private HBox pub;
+    @FXML
+    private HBox home;
+    @FXML
+    private HBox recla;
+    @FXML
+    private HBox produit;
+    @FXML
+    private HBox event;
+    @FXML
+    private Button AdminP;
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        if (SessionManager.getRoles().equals("User")) {
+            AdminP.setVisible(false);
+        }
+        if (SessionManager.getRoles().equals("Admin")) {
+            AdminP.setVisible(true);
+        }
 
         EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
             @Override
@@ -59,6 +77,70 @@ public class UserInterfaceController implements Initializable {
         // Ajouter l'EventHandler au HBox
         pub.setOnMouseClicked(clickHandler);
         load();
+        ////////////
+        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getHome();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        home.setOnMouseClicked(clickHandler);
+        load();
+        /////////////
+        EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListProduit();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        produit.setOnMouseClicked(clickHandler);
+        load();
+        /////////////////
+        EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListEvent();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        event.setOnMouseClicked(clickHandler5);
+        load();
+        /////////////////////
+        EventHandler<MouseEvent> clickHandler7 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListRecla();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        recla.setOnMouseClicked(clickHandler7);
+        load();
+    }
+    private void getListEvent() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void getListRecla() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
     void getListPub(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
@@ -70,6 +152,27 @@ public class UserInterfaceController implements Initializable {
             throw new RuntimeException(e);
         }
     }
+    private void getListProduit() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    void getHome(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
@@ -99,7 +202,19 @@ public class UserInterfaceController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    public void PanelAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     public void TriName(ActionEvent actionEvent) {
         int column = 0;

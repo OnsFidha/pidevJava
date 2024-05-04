@@ -1,25 +1,29 @@
 package edu.esprit.controllers;
 
-import java.awt.*;
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
 
-import javafx.concurrent.Worker;
+import javafx.event.ActionEvent;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import java.util.ResourceBundle;
+import javafx.scene.image.Image;
+import edu.esprit.utils.SessionManager;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 
 public class MainPage {
@@ -32,20 +36,48 @@ public class MainPage {
 
     @FXML
     private WebView musée;
-    @FXML
-    private HBox pub;
-    @FXML
-    private HBox users;
-    @FXML
-    private HBox event;
 
     @FXML
-    private HBox recla;
+    private HBox event;
     @FXML
     private Circle circle;
 
     @FXML
+    private Label logedUsernamee;
+
+    @FXML
+    private HBox home;
+
+    @FXML
+    private HBox produit;
+
+    @FXML
+    private HBox pub;
+
+    @FXML
+    private HBox recla;
+    @FXML
+    private Button AdminP;
+
+    @FXML
+    private Label users;
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+    @FXML
     void initialize() {
+        if (SessionManager.getRoles().equals("User")) {
+            AdminP.setVisible(false);
+        }
+        if (SessionManager.getRoles().equals("Admin")) {
+            AdminP.setVisible(true);
+        }
+
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
 
         EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
             @Override
@@ -84,6 +116,39 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         users.setOnMouseClicked(clickHandler2);
+        EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListProduit();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        produit.setOnMouseClicked(clickHandler5);
+    }
+
+    public void PanelAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void getListProduit() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void getListEvent() {
