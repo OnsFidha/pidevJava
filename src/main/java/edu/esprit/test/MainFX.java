@@ -1,6 +1,5 @@
 package edu.esprit.test;
 
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,11 +17,16 @@ public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) {
 
+
      //   FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherReclamationAdmin.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherReponseAdmin.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/stat.fxml"));
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("/login.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/login.fxml"));
+     //   FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
+
+      //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
 
         try {
             Parent root = loader.load();
@@ -39,4 +43,5 @@ public class MainFX extends Application {
 
 
 }
+
 

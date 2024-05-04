@@ -36,6 +36,8 @@ public class MainPage {
     private HBox pub;
     @FXML
     private HBox users;
+    @FXML
+    private HBox event;
 
     @FXML
     private HBox recla;
@@ -45,6 +47,15 @@ public class MainPage {
     @FXML
     void initialize() {
 
+        EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListEvent();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        event.setOnMouseClicked(clickHandler4);
         EventHandler<MouseEvent> clickHandler3 = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
@@ -73,6 +84,17 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         users.setOnMouseClicked(clickHandler2);
+    }
+
+    private void getListEvent() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     private void getListRecla() {

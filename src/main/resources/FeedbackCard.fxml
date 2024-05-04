@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="424.0" style="-fx-background-color: white; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.FeedbackController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="392.0" styleClass="rect-round" stylesheets="@css/styles.css">
+         <children>
+            <HBox prefHeight="51.0" prefWidth="381.0">
+               <HBox.margin>
+                  <Insets left="20.0" top="10.0" />
+               </HBox.margin>
+               <children>
+                  <ImageView fx:id="UserImg" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/user2.png" />
+                     </image>
+                  </ImageView>
+                  <VBox prefHeight="41.0" prefWidth="190.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label fx:id="username" text="Syrine Zaier">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="text" text="Feedback">
+                           <font>
+                              <Font name="Segoe UI Historic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <Label onMouseClicked="#Translate" styleClass="translate" stylesheets="@css/styles.css" text="Traduire" textFill="#868686" underline="true">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </HBox>
+      <StackPane alignment="CENTER_LEFT">
+         <children>
+            <HBox alignment="CENTER" stylesheets="@css/styles.css">
+               <children>
+                  <HBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@icons/thumbs-up.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </HBox>
+                        <Label fx:id="nbreactions" text="Nb reactions">
+                           <font>
+                              <Font name="Segoe UI Historic" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </HBox>
+                  <Pane prefHeight="31.0" prefWidth="170.0" />
+                  <HBox alignment="CENTER" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#LikeFeed" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/thumbs-up.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="20.0" onMouseClicked="#GoToEdit" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/edit.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                        <ImageView fitHeight="25.0" fitWidth="30.0" onMouseClicked="#Delete" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@icons/delete.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+      </StackPane>
+   </children>
+   <effect>
+      <DropShadow>
+         <color>
+            <Color red="0.5394737124443054" green="0.5394737124443054" blue="0.5394737124443054" />
+         </color>
+      </DropShadow>
+   </effect>
+</VBox>
