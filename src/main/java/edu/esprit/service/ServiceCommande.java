@@ -1,18 +1,24 @@
 package edu.esprit.service;
 
-import edu.esprit.entities.*;
+import edu.esprit.entities.Commande;
+import edu.esprit.entities.DetailCommande;
+import edu.esprit.entities.Produit;
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.utils.DataSource;
 
 import java.sql.*;
-import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 
 public class ServiceCommande implements IService<Commande> {
     Connection conn = DataSource.getInstance().getConn();
     static IService<Commande> serviceCommande;
-    IService<User> serviceUser = ServiceUser.getInstance();
+    private final ServiceUtilisateur serviceUser = new ServiceUtilisateur();
     IService<Produit> serviceProduit = Serviceproduit.getInstance();
 
     private ServiceCommande() {
@@ -105,7 +111,7 @@ public class ServiceCommande implements IService<Commande> {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 int user_id = rs.getInt("user_id");
-                User user = serviceUser.getOneById(user_id);
+                Utilisateur user = serviceUser.getOneById(user_id);
                 Timestamp date_commande = rs.getTimestamp("date_commande");
                 double montantTotal = rs.getDouble("montant_total");
                 List<DetailCommande> detailCommandes = getDetailCommande(id);

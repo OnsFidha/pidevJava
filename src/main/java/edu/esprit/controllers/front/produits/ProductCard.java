@@ -1,10 +1,8 @@
 package edu.esprit.controllers.front.produits;
 
 import edu.esprit.entities.Produit;
-import edu.esprit.entities.User;
-import edu.esprit.model.UserSession;
+import edu.esprit.model.UserCommande;
 import edu.esprit.service.IService;
-import edu.esprit.service.ServiceUser;
 import edu.esprit.service.Serviceproduit;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,16 +49,14 @@ public class ProductCard{
     }
 
     IService<Produit> serviceProduit = Serviceproduit.getInstance();
-    IService<User> serviceUser = ServiceUser.getInstance();
-
 
     @FXML
     void ajouterAuPanier(ActionEvent event) {
         try {
             Produit produit = serviceProduit.getOneById(Integer.parseInt(productId.getText()));
-            UserSession.addProductToCommande(produit);
-            labelMontantTotal.setText(Objects.toString(UserSession.getCommande().getMontant_total()));
-            nbreProduitdansLepanier.setText(Objects.toString(UserSession.getCommande().getDetailsCommande().size()));
+            UserCommande.addProductToCommande(produit);
+            labelMontantTotal.setText(Objects.toString(UserCommande.getCommande().getMontant_total()));
+            nbreProduitdansLepanier.setText(Objects.toString(UserCommande.getCommande().getDetailsCommande().size()));
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Information");
             alert.setContentText("Le produit est bien ajouté au panier");
@@ -71,15 +67,11 @@ public class ProductCard{
     }
 
     public void showProduct(Produit produit){
-        try {
-            UserSession.setLoggedUser(serviceUser.getOneById(1));
-            if (Objects.nonNull(UserSession.getCommande())){
-                labelMontantTotal.setText(Objects.toString(UserSession.getCommande().getMontant_total()));
-                nbreProduitdansLepanier.setText(Objects.toString(UserSession.getCommande().getDetailsCommande().size()));
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
+        if (Objects.nonNull(UserCommande.getCommande())){
+            labelMontantTotal.setText(Objects.toString(UserCommande.getCommande().getMontant_total()));
+            nbreProduitdansLepanier.setText(Objects.toString(UserCommande.getCommande().getDetailsCommande().size()));
         }
+
         productId.setText(String.valueOf(produit.getId()));
         productName.setText(produit.getNom());
         productDescription.setText(produit.getDescription());

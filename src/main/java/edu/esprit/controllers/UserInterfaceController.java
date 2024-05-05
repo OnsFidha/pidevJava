@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import edu.esprit.controllers.front.produits.ManageFrontTemplateMenu;
 import edu.esprit.entities.Utilisateur;
 import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.utils.SessionManager;
@@ -92,7 +93,7 @@ public class UserInterfaceController implements Initializable {
         EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                getListProduit();
+                ManageFrontTemplateMenu.loadProducts(produit);
             }
         };
 
@@ -144,16 +145,6 @@ public class UserInterfaceController implements Initializable {
     }
     void getListPub(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
-        try {
-
-            Parent root = loader.load();
-            pub.getScene().setRoot(root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    private void getListProduit() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
         try {
 
             Parent root = loader.load();

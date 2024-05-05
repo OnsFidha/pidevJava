@@ -6,7 +6,6 @@ import edu.esprit.controllers.admin.commandes.AfficherCommandes;
 import edu.esprit.controllers.admin.produits.AfficherProduits;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,10 +14,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class AdminTemplate extends AdminContentPanel implements Initializable {
+public class AdminTemplate extends AdminContentPanel{
 
     @FXML
     private Button BtnRecherche;
@@ -34,6 +31,33 @@ public class AdminTemplate extends AdminContentPanel implements Initializable {
 
     @FXML
     private HBox productsHbox;
+
+    @FXML
+    private HBox adminEventLabel;
+
+    @FXML
+    private HBox adminPubLabel;
+
+    @FXML
+    private HBox adminReclamationsLabel;
+
+    @FXML
+    private HBox adminResponsesLabel;
+
+    @FXML
+    private HBox adminusersLabel;
+
+    @FXML
+    private HBox categoriesLabel;
+
+    @FXML
+    private HBox commandesLabel;
+
+    @FXML
+    private Label homeLabel;
+
+    @FXML
+    private HBox productsLabel;
 
     @FXML
     void showCategories(MouseEvent event) {
@@ -83,8 +107,33 @@ public class AdminTemplate extends AdminContentPanel implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    @FXML
+    void showAdminEvents(MouseEvent event) {
+        ManageAdminTemplateMenu.loadEvents(adminEventLabel);
+    }
 
+    @FXML
+    void showAdminHome(MouseEvent event) {
+        ManageAdminTemplateMenu.loadHome(homeLabel);
+    }
+
+    @FXML
+    void showAdminPub(MouseEvent event) {
+        ManageAdminTemplateMenu.loadPub(adminPubLabel);
+    }
+
+    @FXML
+    void showAdminReclamations(MouseEvent event) {
+        ManageAdminTemplateMenu.loadReclamations(adminReclamationsLabel);
+    }
+
+    @FXML
+    void showAdminResponses(MouseEvent event) {
+        ManageAdminTemplateMenu.loadResponses(adminResponsesLabel);
+    }
+
+    @FXML
+    void showUsers(MouseEvent event) {
+        ManageAdminTemplateMenu.loadUsers(adminusersLabel);
     }
 }

@@ -31,7 +31,7 @@
                         <Rectangle2D />
                     </viewport>
                 </ImageView>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="homeLabel" onMouseClicked="#showHome" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -54,7 +54,7 @@
                         <Insets left="30.0" right="40.0" top="40.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox onMouseClicked="#showProducts" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -77,7 +77,7 @@
                         <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="pubLabel" onMouseClicked="#showPub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -103,7 +103,7 @@
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="eventsLabel" onMouseClicked="#showEvents" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -126,7 +126,7 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="reclamationsLabel" onMouseClicked="#showReclamation" prefHeight="41.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -160,7 +160,7 @@
                 </DropShadow>
             </effect>
             <children>
-                <Label prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
+                <Label fx:id="logedUsernamee" prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>

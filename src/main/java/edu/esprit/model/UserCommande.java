@@ -3,36 +3,27 @@ package edu.esprit.model;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.DetailCommande;
 import edu.esprit.entities.Produit;
-import edu.esprit.entities.User;
+import edu.esprit.entities.Utilisateur;
 
 import java.math.BigDecimal;
 import java.util.*;
 
-public class UserSession {
-    private static User loggedUser;
+public class UserCommande {
     private static Commande commande;
-
-    public static User getLoggedUser() {
-        return loggedUser;
-    }
-
-    public static void setLoggedUser(User loggedUser) {
-        UserSession.loggedUser = loggedUser;
-    }
 
     public static Commande getCommande() {
         return commande;
     }
 
     public static void setCommande(Commande commande) {
-        UserSession.commande = commande;
+        UserCommande.commande = commande;
     }
 
     public static void addProductToCommande(Produit produit){
         if (commande==null){
             List<DetailCommande> detailsCommande = new ArrayList<>();
             detailsCommande.add(new DetailCommande(produit, produit.getPrix(), 1));
-            commande = new Commande(loggedUser, Calendar.getInstance().getTime(), "", produit.getPrix(),
+            commande = new Commande(Utilisateur.getCurrent_User(), Calendar.getInstance().getTime(), "", produit.getPrix(),
                     detailsCommande);
         }else{
             Optional<DetailCommande> optDetailCommande = commande.getDetailsCommande().stream()

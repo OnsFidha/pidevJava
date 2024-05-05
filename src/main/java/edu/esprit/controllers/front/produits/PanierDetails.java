@@ -3,7 +3,7 @@ package edu.esprit.controllers.front.produits;
 import edu.esprit.controllers.FrontContentPanel;
 import edu.esprit.entities.Commande;
 import edu.esprit.entities.DetailCommande;
-import edu.esprit.model.UserSession;
+import edu.esprit.model.UserCommande;
 import edu.esprit.service.IService;
 import edu.esprit.service.SendMail;
 import edu.esprit.service.ServiceCommande;
@@ -40,10 +40,10 @@ public class PanierDetails extends FrontContentPanel {
     IService<Commande> commandeIService = ServiceCommande.getInstance();
 
     public void afficherPanierDetails(){
-        if(Objects.nonNull(UserSession.getCommande())){
-            montantTotalValue.setText(Objects.toString(UserSession.getCommande().getMontant_total()));
-            List<DetailCommande> detailCommandes = UserSession.getCommande().getDetailsCommande();
-            if(commandeDetailsGrid.getChildren().size()>0){
+        if(Objects.nonNull(UserCommande.getCommande())){
+            montantTotalValue.setText(Objects.toString(UserCommande.getCommande().getMontant_total()));
+            List<DetailCommande> detailCommandes = UserCommande.getCommande().getDetailsCommande();
+            if(!commandeDetailsGrid.getChildren().isEmpty()){
                 commandeDetailsGrid.getChildren().clear();
             }
             int index=0;
@@ -83,7 +83,7 @@ public class PanierDetails extends FrontContentPanel {
     private Button addProductElement(DetailCommande detailCommande) {
         Button btn = manageQuantiteButton("+");
         EventHandler<ActionEvent> btnHandler = event -> {
-            UserSession.addProductToCommande(detailCommande.getProduit());
+            UserCommande.addProductToCommande(detailCommande.getProduit());
             afficherPanierDetails();
         };
         btn.setOnAction(btnHandler);
@@ -93,7 +93,7 @@ public class PanierDetails extends FrontContentPanel {
     private Button minusProductElement(DetailCommande detailCommande) {
         Button btn = manageQuantiteButton(" - ");
         EventHandler<ActionEvent> btnHandler = event -> {
-            UserSession.minusProductToCommande(detailCommande.getProduit());
+            UserCommande.minusProductToCommande(detailCommande.getProduit());
             afficherPanierDetails();
         };
         btn.setOnAction(btnHandler);
@@ -124,15 +124,16 @@ public class PanierDetails extends FrontContentPanel {
         confirm.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
                 try {
-                    commandeIService.ajouter(UserSession.getCommande());
-                    UserSession.setCommande(null);
+                    commandeIService.ajouter(UserCommande.getCommande());
+                    String userEmail = UserCommande.getCommande().getUser().getEmail();
                     Alert information = new Alert(Alert.AlertType.INFORMATION);
                     information.setTitle("Information");
                     information.setContentText("La commande est passé avec success ");
                     information.showAndWait().ifPresent(responseInfo -> {
+                        UserCommande.setCommande(null);
                         retournerVersLaListeProduit(event);
                     });
-                    SendMail.send(UserSession.getLoggedUser().getEmail());
+                    SendMail.send(userEmail);
                 } catch (SQLException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");

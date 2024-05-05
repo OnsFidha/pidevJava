@@ -33,7 +33,8 @@ public class AfficherCommandes {
             index++;
             for (Commande commande: commandes){
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
-                gridCommandes.addRow(index, new Label(sdf.format(commande.getDate_commande())), new Label(commande.getUser().getNom()+" "+commande.getUser().getPrenom()),
+                gridCommandes.addRow(index, new Label(sdf.format(commande.getDate_commande())),
+                        new Label(commande.getUser().getName()+" "+commande.getUser().getPrename()),
                         getCommandeDetails(commande.getDetailsCommande()),
                         new Label(Objects.toString(commande.getMontant_total())));
                 index++;

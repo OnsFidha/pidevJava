@@ -25,22 +25,25 @@
             </effect>
             <children>
                 <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-<!--                    <image>-->
-<!--                        <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />-->
-<!--                    </image>-->
                     <VBox.margin>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                     </VBox.margin>
                     <viewport>
                         <Rectangle2D />
                     </viewport>
+                    <image>
+                        <Image url="@../img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
+                    </image>
                 </ImageView>
-                <Label text="Admin" textFill="#f9a936" translateX="75.0">
+                <Label fx:id="homeLabel" onMouseClicked="#showAdminHome" text="Admin" textFill="#f9a936" translateX="75.0">
                     <font>
                         <Font size="36.0" />
                     </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
                 </Label>
-                <HBox prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+                <HBox fx:id="adminusersLabel" onMouseClicked="#showUsers" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -55,15 +58,15 @@
                                 <Font size="24.0" />
                             </font>
                             <HBox.margin>
-                                <Insets />
+                                <Insets bottom="10.0" />
                             </HBox.margin>
                         </Label>
                     </children>
-                    <VBox.margin>
-                        <Insets left="30.0" top="10.0" />
-                    </VBox.margin>
+               <VBox.margin>
+                  <Insets left="30.0" />
+               </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="adminPubLabel" onMouseClicked="#showAdminPub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -86,62 +89,62 @@
                         <Insets left="30.0" />
                     </padding>
                     <VBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets bottom="10.0" />
                     </VBox.margin>
                 </HBox>
-            <HBox fx:id="categoriesHbox" onMouseClicked="#showCategories" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
-               <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/categoriesIcon.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="d" text="Categories">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
+                <HBox fx:id="productsLabel" onMouseClicked="#showProducts" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/ProductIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Produits">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
                         <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </HBox>
-            <HBox fx:id="productsHbox" onMouseClicked="#showProducts" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
-               <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../icons/ProductIcon.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label text="Produits">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="10.0" left="30.0" />
+                    </padding>
+                </HBox>
+                <HBox fx:id="categoriesLabel" onMouseClicked="#showCategories" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../icons/categoriesIcon.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label text="Categories">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <VBox.margin>
                         <Insets />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </HBox>
-                <HBox fx:id="commandesHbox" onMouseClicked="#showCommandes" prefHeight="36.0" prefWidth="213.0" spacing="3.0">
+                    </VBox.margin>
+                    <padding>
+                        <Insets bottom="10.0" left="30.0" />
+                    </padding>
+                </HBox>
+                <HBox fx:id="commandesLabel" onMouseClicked="#showCommandes" prefHeight="37.0" prefWidth="213.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -161,10 +164,10 @@
                         </Label>
                     </children>
                     <padding>
-                        <Insets left="30.0" />
+                        <Insets bottom="10.0" left="30.0" />
                     </padding>
                 </HBox>
-                <HBox prefHeight="37.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="adminEventLabel" onMouseClicked="#showAdminEvents" prefHeight="37.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -179,7 +182,7 @@
                                 <Font size="24.0" />
                             </font>
                             <HBox.margin>
-                                <Insets bottom="30.0" />
+                                <Insets bottom="10.0" />
                             </HBox.margin>
                         </Label>
                     </children>
@@ -187,7 +190,7 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
-                <HBox prefHeight="2.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="adminReclamationsLabel" onMouseClicked="#showAdminReclamations" prefHeight="2.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -213,7 +216,7 @@
                         <Insets bottom="10.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="adminResponsesLabel" onMouseClicked="#showAdminResponses" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -233,7 +236,7 @@
                         </Label>
                     </children>
                     <VBox.margin>
-                        <Insets left="30.0" right="40.0" />
+                        <Insets left="30.0" />
                     </VBox.margin>
                 </HBox>
             </children>
@@ -282,7 +285,7 @@
 
             </children>
         </HBox>
-      <AnchorPane fx:id="adminPanelContent" layoutX="219.0" layoutY="114.0" prefHeight="540.0" prefWidth="1085.0" />
+        <AnchorPane fx:id="adminPanelContent" layoutX="219.0" layoutY="114.0" prefHeight="540.0" prefWidth="1085.0" />
 
     </children>
 
