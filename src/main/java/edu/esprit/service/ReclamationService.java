@@ -13,14 +13,15 @@ public class ReclamationService implements IService <Reclamation> {
     Connection conn= DataSource.getInstance().getConn();
     @Override
     public void ajouter(Reclamation reclamation) throws SQLException{
-        String sql = "INSERT INTO reclamation (type, description,etat,date_creation) VALUES (?, ?,?,?)";
+        //String sql = "INSERT INTO reclamation (type, description,etat,date_creation) VALUES (?, ?,?,?)";
+        String sql = "INSERT INTO reclamation (type, description,etat,date_creation,id_user_id) VALUES (?,?, ?,?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1,reclamation.getType());
             statement.setString(2, reclamation.getDescription());
             statement.setBoolean(3, reclamation.isEtat());
             statement.setTimestamp(4, new Timestamp(reclamation.getDate_creation().getTime()));
-
+            statement.setInt(5, reclamation.getId_user());
             //statement.setTimestamp(4, new Timestamp(reclamation.getDate_creation().getTime()));
             statement.executeUpdate();
             System.out.println("Bien ajoutee");
@@ -89,6 +90,32 @@ public class ReclamationService implements IService <Reclamation> {
 
         return reclamations;
     }
+
+    public List<Reclamation> getAll2(int id_user) throws SQLException {
+        List<Reclamation> reclamations = new ArrayList<>();
+        String sql = "SELECT * FROM reclamation WHERE id_user_id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, id_user); // Set the value of id_user_id
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Reclamation reclamation = new Reclamation();
+                reclamation.setId(resultSet.getInt("id"));
+                reclamation.setType(resultSet.getString("type"));
+                reclamation.setDescription(resultSet.getString("description"));
+                reclamation.setEtat(resultSet.getBoolean("etat"));
+                reclamation.setDate_creation(resultSet.getDate("date_creation"));
+
+                reclamations.add(reclamation);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return reclamations;
+    }
+
 
     @Override
     public Reclamation getOneById(int id) throws SQLException {

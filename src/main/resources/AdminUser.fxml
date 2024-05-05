@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="780.0" prefWidth="1180.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AdminUserController">
+<AnchorPane prefHeight="692.0" prefWidth="1168.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AdminUserController">
    <children>
-      <TabPane fx:id="usertp" layoutX="216.0" layoutY="103.0" prefHeight="690.0" prefWidth="951.0" style="-fx-border-color: #f8a835; -fx-border-width: 2; -fx-border-radius: 3;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="29.0">
+      <TabPane fx:id="usertp" layoutX="216.0" layoutY="103.0" prefHeight="596.0" prefWidth="950.0" style="-fx-border-color: #f8a835; -fx-border-width: 2; -fx-border-radius: 3;" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="29.0">
          <tabs>
             <Tab fx:id="gusertab" text="Gestion Utilisateurs">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="647.0" prefWidth="946.0" style="-fx-background-color: #F5EDE6;">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="849.0" style="-fx-background-color: #F5EDE6;">
                      <children>
-                        <ImageView fitHeight="809.0" fitWidth="1180.0" layoutX="-219.0" layoutY="-147.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="868.0" fitWidth="1160.0" layoutX="-219.0" layoutY="-147.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@assets/uploads/top-view-paint-brush-corner.jpg" />
                            </image>
@@ -200,7 +214,7 @@
             </Tab>
          </tabs>
       </TabPane>
-      <HBox alignment="CENTER_RIGHT" layoutX="217.0" layoutY="15.0" prefHeight="83.0" prefWidth="951.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
+      <HBox alignment="CENTER_RIGHT" layoutX="217.0" layoutY="8.0" prefHeight="83.0" prefWidth="951.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;">
          <effect>
             <DropShadow>
                <color>
@@ -230,7 +244,7 @@
             </Pane>
          </children>
       </HBox>
-      <VBox prefHeight="794.0" prefWidth="212.0" style="-fx-background-color: #BEE5B4;">
+      <VBox prefHeight="701.0" prefWidth="212.0" style="-fx-background-color: #BEE5B4;">
          <effect>
             <DropShadow />
          </effect>
@@ -346,7 +360,7 @@
                   <Insets left="30.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="2.0" prefWidth="204.0" spacing="3.0">
+            <HBox onMouseClicked="#reclamAdmin" prefHeight="2.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -372,7 +386,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox onMouseClicked="#reponseAdmin" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>

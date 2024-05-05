@@ -108,15 +108,16 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         pub.setOnMouseClicked(clickHandler);
-//        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
-//            @Override
-//            public void handle(MouseEvent event) {
-//                getListUsers();
-//            }
-//        };
+        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+           public void handle(MouseEvent event) {
+                getListUsers();
+            }
+
+        };
 
         // Ajouter l'EventHandler au HBox
-//        users.setOnMouseClicked(clickHandler2);
+        users.setOnMouseClicked(clickHandler2);
         EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import edu.esprit.entities.Reclamation;
 import edu.esprit.entities.Reponse;
 import edu.esprit.service.ReponseService;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -24,6 +25,12 @@ import edu.esprit.utils.DataSource;
 import java.sql.*;
 
 public class ReponseClientController {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+    @FXML
+    private Label logedUsernamee;
+
 
     @FXML
     private ResourceBundle resources;
@@ -72,9 +79,15 @@ public class ReponseClientController {
     @FXML
     void initialize() {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
         ReponseDeClient();
 
     }
@@ -93,7 +106,7 @@ public class ReponseClientController {
                     date_rep.setText(formattedDate);
                 } else {
                     reponse.setText("Votre réclamation n'a pas encore été répondue.");
-                    date_rep.setText("*********");
+                    date_rep.setText("**********************************************");
                 }
             } else {
                 reponse.setText("Aucune réclamation sélectionnée.");

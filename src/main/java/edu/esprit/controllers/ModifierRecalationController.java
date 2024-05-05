@@ -2,6 +2,7 @@ package edu.esprit.controllers;
 
 import edu.esprit.entities.Reclamation;
 import edu.esprit.service.ReclamationService;
+import edu.esprit.utils.SessionManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -28,8 +26,14 @@ import java.util.ResourceBundle;
 
 
 public class ModifierRecalationController  implements Initializable {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
-        @FXML
+    @FXML
+    private Label logedUsernamee;
+
+
+    @FXML
         private Button Reclamlistbtn;
 
         @FXML
@@ -108,9 +112,15 @@ public class ModifierRecalationController  implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
 
         ObservableList<String> items = FXCollections.observableArrayList(
                 "Publication non visible sur la plateforme",

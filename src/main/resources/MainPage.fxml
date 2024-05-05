@@ -89,8 +89,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-<!--                  <Label fx:id="users" onMouseClicked="#UserInterface" text="Utilisateurs">-->
-                  <Label fx:id="users" text="Utilisateurs">
+                  <Label fx:id="users"  text="Utilisateurs">
                      <font>
                         <Font size="24.0" />
                      </font>
