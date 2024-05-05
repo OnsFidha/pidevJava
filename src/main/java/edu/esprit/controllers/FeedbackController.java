@@ -3,8 +3,12 @@ package edu.esprit.controllers;
 import com.dark.programs.speech.translator.GoogleTranslate;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
+import edu.esprit.entities.User;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.services.ServiceUtilisateur;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -34,18 +38,49 @@ public class FeedbackController {
 
     @FXML
     private Label username;
+    @FXML
+    private ImageView delete;
+
+    @FXML
+    private ImageView like;
+
+    @FXML
+    private ImageView modif;
+    private boolean hasLiked = false;
+
+    ServiceUtilisateur serviceuser = new ServiceUtilisateur();
+    private int userIdCreatedByFeedback;
+
+
 
     private Feedback feedback;
+
     public void setData(Feedback feedback){
+        Utilisateur userevent = serviceuser.getUtilisateurById(feedback.getId_user_id());
+         userIdCreatedByFeedback = userevent.getId();
+
+        int loggedInUserId = SessionManager.getId_user();
+
+        // Vérifiez si l'utilisateur connecté est celui qui a créé l'événement
+        boolean isUserFeedCreator = loggedInUserId == userIdCreatedByFeedback;
+        System.out.println(userIdCreatedByFeedback+ " " + loggedInUserId + " " + isUserFeedCreator);
+
+        // Rendre les boutons de modification et de suppression visibles uniquement pour l'utilisateur qui a créé l'événement
+        modif.setVisible(isUserFeedCreator);
+        delete.setVisible(isUserFeedCreator);
+
+        String imagePath = userevent.getImage();
 
 
 
-        Image image = new Image("/img/user2.png");
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
         UserImg.setImage(image);
 
 
         String nbrlikes= String.valueOf(feedback.getLikes());
-        username.setText("Syrine Zaier");
+        username.setText(userevent.getPrename()+" "+ userevent.getName());
         text.setText(feedback.getText());
         nbreactions.setText(nbrlikes);
         this.feedback=feedback;
@@ -53,20 +88,32 @@ public class FeedbackController {
     }
     @FXML
     void LikeFeed(MouseEvent event) {
-        feedback.setLikes(feedback.getLikes() + 1);
+        if (!hasLiked) {
+            // Incrémenter le nombre de likes dans l'objet Feedback
+            feedback.setLikes(feedback.getLikes() + 1);
 
-        // Update the UI to display the new number of likes
-        nbreactions.setText(String.valueOf(feedback.getLikes()));
+            // Mettre à jour l'UI pour afficher le nouveau nombre de likes
+            nbreactions.setText(String.valueOf(feedback.getLikes()));
 
-        // Update the database to save the changes
-        FeedbackService feedbackService = new FeedbackService();
-        try {
-            feedbackService.updateLikes(feedback.getId(), feedback.getLikes());
-        } catch (SQLException e) {
-            // Handle the SQLException
-            e.printStackTrace();
+            // Mettre à jour la base de données pour enregistrer les modifications
+            FeedbackService feedbackService = new FeedbackService();
+            try {
+                feedbackService.updateLikes(feedback.getId(), feedback.getLikes());
+            } catch (SQLException e) {
+                // Gérer l'exception SQL
+                e.printStackTrace();
+            }
+
+            // Mettre hasLiked à true pour indiquer que l'utilisateur a déjà cliqué sur le bouton "like"
+            hasLiked = true;
+        } else {
+            // Afficher un message à l'utilisateur pour lui dire qu'il a déjà cliqué sur le bouton "like"
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information");
+            alert.setHeaderText(null);
+            alert.setContentText("Vous avez déjà cliqué sur le bouton \"like\".");
+            alert.showAndWait();
         }
-
     }
     @FXML
     void Translate(MouseEvent event) throws IOException {
@@ -139,6 +186,7 @@ public class FeedbackController {
                         AfficherEventController eventController = loader.getController();
 
                         // Pass the event data to the AfficherEventController
+                        System.out.println(feedback.getId_evenment());
                         eventController.setEventData(feedback.getId_evenment());
 
                         // Get the current stage

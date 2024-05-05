@@ -5,6 +5,7 @@ import edu.esprit.entities.Evenement;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.ParticipationService;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,10 +16,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 
@@ -33,6 +37,23 @@ public class AfficherEvent implements Initializable {
     private GridPane eventgrid;
     @FXML
     private TextField eventsearch;
+    @FXML
+    private HBox event;
+    @FXML
+    private HBox home;
+
+    @FXML
+    private HBox produit;
+
+    @FXML
+    private HBox pub;
+
+    @FXML
+    private HBox recla;
+
+    @FXML
+    private HBox users;
+
     private List<Evenement> events;
     private EvenementService evenementService = new EvenementService();
 
@@ -121,6 +142,53 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
         e.printStackTrace();
         // Handle any potential errors here
     }
+    EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            getHome();
+        }
+    };
+
+    // Ajouter l'EventHandler au HBox
+    home.setOnMouseClicked(clickHandler4);
+    EventHandler<MouseEvent> clickHandler3 = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            getListRecla();
+        }
+    };
+
+    // Ajouter l'EventHandler au HBox
+    recla.setOnMouseClicked(clickHandler3);
+    // Créer un EventHandler pour gérer les clics sur le HBox
+    EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            getListPub();
+        }
+    };
+
+    // Ajouter l'EventHandler au HBox
+    pub.setOnMouseClicked(clickHandler);
+    EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            getListUsers();
+        }
+    };
+
+    // Ajouter l'EventHandler au HBox
+    users.setOnMouseClicked(clickHandler2);
+    EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent event) {
+            getListProduit();
+        }
+    };
+
+    // Ajouter l'EventHandler au HBox
+    produit.setOnMouseClicked(clickHandler5);
+
 }
     @FXML
     void MoveToAdd(MouseEvent event) {
@@ -223,107 +291,61 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
         }
     }
 
-//    void Recherche(ActionEvent event) {
-//        int column = 0;
-//        int row = 1;
-//        String recherche = eventsearch.getText();
-//        try {
-//            eventgrid.getChildren().clear();
-//            for (Evenement eventt : evenementService.Rechreche(recherche)){
-//                FXMLLoader fxmlLoader = new FXMLLoader();
-//                fxmlLoader.setLocation(getClass().getResource("/Event.fxml"));
-//                Pane userBox = fxmlLoader.load();
-//                EventController cardC = fxmlLoader.getController();
-//                cardC.setData(eventt);
-//                if (column == 3) {
-//                    column = 0;
-//                    ++row;
-//                }
-//                eventgrid.add(userBox, column++, row);
-//                GridPane.setMargin(userBox, new Insets(10));
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
 
-//    public void initialize(URL url, ResourceBundle resourceBundle) {
-//        events= new ArrayList<>(data());
-//
-//        int columns=0;
-//        int rows=1;
-//        try{
-//            for ( int i=0; i < events.size(); i++){
-//                FXMLLoader fxmlloader = new FXMLLoader();
-//                fxmlloader.setLocation(getClass().getResource("/Event.fxml"));
-//
-//                VBox eventbox = fxmlloader.load();
-//
-//                EventController eventController = fxmlloader.getController();
-//                eventController.setData(events.get(i));
-//
-//                if ( columns == 3){
-//                    columns = 0;
-//                    ++rows;
-//                }
-//
-//                eventgrid.add(eventbox, columns++, rows);
-//                GridPane.setMargin(eventbox, new Insets(10));
-//            }
-//        }
-//        catch(IOException e){
-//            e.printStackTrace();
-//        }
-//
-//
-//    }
-//    private List<Evenement> data(){
-//        List<Evenement> ls= new ArrayList<>();
-//        try {
-//            // Retrieve events from the database using the service class
-//            ls = evenementService.getAll();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//            // Handle any potential errors here
-//        }
+    private void getListProduit() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    void getListPub(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getHome() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListRecla() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListUsers() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserInterface.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
-//        Evenement event = new Event();
-//        event.setProfileImageSrc("/img/user2.png");
-//        event.setEventImageSrc("/img/Event5.png");
-//        event.setUsername("Syrine Zaier");
-//        event.setEventName("Art Event");
-//        event.setNbStars("0/5");
-//        event.setNbComments("2K");
-//        ls.add(event);
-//
-//        Evenement event2 = new Event();
-//        event2.setProfileImageSrc("/img/user1.png");
-//        event2.setEventImageSrc("/img/Event3.png");
-//        event2.setUsername("Syrine Zaier");
-//        event2.setEventName("Art Event");
-//        event2.setNbStars("5/5");
-//        event2.setNbComments("24K");
-//        ls.add(event2);
-//
-//        Evenement event3 = new Event();
-//        event3.setProfileImageSrc("/img/user1.png");
-//        event3.setEventImageSrc("/img/Event3.png");
-//        event3.setUsername("Syrine Zaier");
-//        event3.setEventName("Art Event");
-//        event3.setNbStars("5/5");
-//        event3.setNbComments("24K");
-//        ls.add(event3);
-//        Evenement event4 = new Event();
-//        event4.setProfileImageSrc("/img/user1.png");
-//        event4.setEventImageSrc("/img/Event3.png");
-//        event4.setUsername("Syrine Zaier");
-//        event4.setEventName("Art Event");
-//        event4.setNbStars("5/5");
-//        event4.setNbComments("24K");
-//        ls.add(event4);
-//        return ls;
-//    }
 }

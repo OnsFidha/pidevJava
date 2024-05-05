@@ -15,7 +15,7 @@ public class EvenementService implements IService <Evenement>{
         Connection conn= DataSource.getInstance().getConn();
         @Override
         public void ajouter(Evenement event) throws SQLException {
-            String sql = "INSERT INTO evenement (nom, description, lieu, nbre_participants, nbre_max, date_debut, date_fin, image) VALUES (?, ?, ?, ?, ?,?,?,?)";
+            String sql = "INSERT INTO evenement (nom, description, lieu, nbre_participants, nbre_max, date_debut, date_fin, image,id_user_id) VALUES (?, ?, ?, ?, ?,?,?,?,?)";
 
             try (PreparedStatement statement = conn.prepareStatement(sql)) {
                 statement.setString(1, event.getNom());
@@ -25,6 +25,7 @@ public class EvenementService implements IService <Evenement>{
                 statement.setInt(5, event.getNbreMax());
                 statement.setDate(7, new Date(event.getDateFin().getTime()));
                 statement.setDate(6, new Date(event.getDateDebut().getTime()));
+                statement.setInt(9, event.getId_user_id());
 
                 statement.setString(8, event.getImage());
                 statement.executeUpdate();
@@ -89,7 +90,7 @@ public class EvenementService implements IService <Evenement>{
                     event.setNbreParticipants(resultSet.getInt("nbre_participants"));
                     event.setNbreMax(resultSet.getInt("nbre_max"));
                     event.setImage(resultSet.getString("image"));
-                    // event.setUserId(resultSet.getInt("id_user_id"));
+                    event.setId_user_id(resultSet.getInt("id_user_id"));
 
                     events.add(event);
                 }
@@ -121,6 +122,7 @@ public class EvenementService implements IService <Evenement>{
                     event.setNbreParticipants(resultSet.getInt("nbre_participants"));
                     event.setNbreMax(resultSet.getInt("nbre_max"));
                     event.setImage(resultSet.getString("image"));
+                    event.setId_user_id(resultSet.getInt("id_user_id"));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -175,6 +177,7 @@ public List<Evenement> getEvenementsByDateRange(LocalDate startDate, LocalDate e
             event.setImage(resultSet.getString("image"));
             event.setNbreParticipants(resultSet.getInt("nbre_participants"));
             event.setNbreMax(resultSet.getInt("nbre_max"));
+            event.setId_user_id(resultSet.getInt("id_user_id"));
             events.add(event);
         }
     } catch (SQLException e) {

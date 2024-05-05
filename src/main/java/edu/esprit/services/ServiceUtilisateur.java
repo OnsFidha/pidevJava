@@ -294,4 +294,28 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         }
         return count;
     }
+
+    public Utilisateur getUtilisateurById(int userId) {
+        Utilisateur utilisateur = null;
+        String sql = "SELECT * FROM `user` WHERE `id` = ?";
+        try {
+            PreparedStatement stm = cnx.prepareStatement(sql);
+            stm.setInt(1, userId);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                utilisateur = new Utilisateur();
+                utilisateur.setId(rs.getInt("id"));
+                utilisateur.setName(rs.getString("name"));
+                utilisateur.setPrename(rs.getString("prename"));
+                utilisateur.setEmail(rs.getString("email"));
+                utilisateur.setPassword(rs.getString("password"));
+                utilisateur.setPhone(rs.getInt("phone"));
+                utilisateur.setRoles(rs.getString("roles"));
+                utilisateur.setImage(rs.getString("image"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return utilisateur;
+    }
     }

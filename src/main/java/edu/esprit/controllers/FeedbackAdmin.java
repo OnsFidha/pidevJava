@@ -3,8 +3,10 @@ package edu.esprit.controllers;
 import com.dark.programs.speech.translator.GoogleTranslate;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.services.ServiceUtilisateur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -36,15 +38,22 @@ public class FeedbackAdmin {
     private Label username;
 
     private Feedback feedback;
+    ServiceUtilisateur serviceuser = new ServiceUtilisateur();
+
     public void setData(Feedback feedback){
 
 
+        Utilisateur userevent = serviceuser.getUtilisateurById(feedback.getId_user_id());
+        String imagePath = userevent.getImage();
 
-        Image image = new Image("/img/user2.png");
+
+
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
         UserImg.setImage(image);
 
-
-        username.setText("Syrine Zaier");
+        username.setText(userevent.getPrename()+" "+ userevent.getName());
         text.setText(feedback.getText());
         nbreactions.setText(String.valueOf(feedback.getLikes()));
         this.feedback=feedback;

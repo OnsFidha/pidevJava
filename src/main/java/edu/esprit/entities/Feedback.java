@@ -7,27 +7,39 @@ public class Feedback {
     private int id_evenment;
     private String text;
     private int Likes;
+    private int id_user_id;
 
     public Feedback() {
     }
 
-    public Feedback(int id, int id_evenment, String text) {
+    public Feedback(int id, int id_evenment, String text, int id_user_id) {
         this.id = id;
         this.id_evenment = id_evenment;
         this.text = text;
+        this.id_user_id=id_user_id;
 
     }
-    public Feedback(int id_evenment, String text) {
+    public Feedback(int id_evenment, String text, int id_user_id) {
         this.id_evenment = id_evenment;
         this.text = text;
+        this.id_user_id=id_user_id;
 
     }
 
 
-    public Feedback(int id_evenment, String text, int Likes) {
+    public Feedback(int id_evenment, String text, int Likes, int id_user_id) {
         this.id_evenment = id_evenment;
         this.text = text;
         this.Likes=Likes;
+        this.id_user_id=id_user_id;
+    }
+
+    public int getId_user_id() {
+        return id_user_id;
+    }
+
+    public void setId_user_id(int id_user_id) {
+        this.id_user_id = id_user_id;
     }
 
     public int getLikes() {

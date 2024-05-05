@@ -15,11 +15,12 @@ public class FeedbackService implements IService<Feedback>{
 
     @Override
     public void ajouter(Feedback feedback) throws SQLException {
-        String sql = "INSERT INTO feedback (id_evenement_id, text) VALUES (?, ?)";
+        String sql = "INSERT INTO feedback (id_evenement_id, text,id_user_id) VALUES (?,?, ?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setInt(1,feedback.getId_evenment());
             statement.setString(2, feedback.getText());
+            statement.setInt(3, feedback.getId_user_id());
 
             statement.executeUpdate();
             System.out.println("Ajouté avec succés");
@@ -90,8 +91,8 @@ public class FeedbackService implements IService<Feedback>{
                 feedback.setId_evenment(resultSet.getInt("id_evenement"));
                 feedback.setText(resultSet.getString("text"));
                 feedback.setLikes(resultSet.getInt("Likes"));
+                feedback.setId_user_id(resultSet.getInt("id_user_id"));
 
-                // publication.setUserId(resultSet.getInt("id_user_id"));
 
                 feedbacks.add(feedback);
             }
@@ -118,6 +119,7 @@ public class FeedbackService implements IService<Feedback>{
                 feedback.setId_evenment(resultSet.getInt("id_evenement_id"));
                 feedback.setText(resultSet.getString("text"));
                 feedback.setLikes(resultSet.getInt("Likes"));
+                feedback.setId_user_id(resultSet.getInt("id_user_id"));
 
 
                 // feedback.setUserId(resultSet.getInt("id_user_id"));
@@ -146,6 +148,7 @@ public class FeedbackService implements IService<Feedback>{
                 feedback.setId_evenment(resultSet.getInt("id_evenement"));
                 feedback.setText(resultSet.getString("text"));
                 feedback.setLikes(resultSet.getInt("Likes"));
+                feedback.setId_user_id(resultSet.getInt("id_user_id"));
 
 
             }

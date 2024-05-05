@@ -16,8 +16,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="619.0" prefWidth="1238.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherEvent">
@@ -38,7 +36,7 @@
                         <Rectangle2D />
                     </viewport>
                 </ImageView>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="home" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -48,7 +46,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                  <Label text="Acceuil">
+                  <Label text="Home">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -58,7 +56,7 @@
                         <Insets left="30.0" right="40.0" top="40.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="produit" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -81,7 +79,7 @@
                         <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="pub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -107,7 +105,7 @@
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="event" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -130,7 +128,7 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="recla" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -153,26 +151,34 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
+                <HBox fx:id="users" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                    <children>
+                        <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@icons/group.png" />
+                            </image>
+                            <HBox.margin>
+                                <Insets top="5.0" />
+                            </HBox.margin>
+                        </ImageView>
+                        <Label prefHeight="35.0" prefWidth="134.0" text="Utilisateurs">
+                            <font>
+                                <Font size="24.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets />
+                            </HBox.margin>
+                        </Label>
+                    </children>
+                    <padding>
+                        <Insets left="30.0" />
+                    </padding>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </HBox>
             </children>
         </VBox>
-        <HBox layoutX="221.0" layoutY="10.0" prefHeight="83.0" prefWidth="997.0" style="-fx-background-color: #FEFCF3; -fx-background-radius: 10;" AnchorPane.bottomAnchor="526.0" AnchorPane.leftAnchor="221.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="10.0">
-            <effect>
-                <DropShadow>
-                    <color>
-                        <Color red="0.5263158082962036" green="0.516569197177887" blue="0.516569197177887" />
-                    </color>
-                </DropShadow>
-            </effect>
-            <children>
-                <Label prefHeight="53.0" prefWidth="127.0" text="Syrine Zaier" translateX="820.0" translateY="15.0">
-                    <HBox.margin>
-                        <Insets />
-                    </HBox.margin>
-                </Label>
-                <Circle fx:id="circle" fill="DODGERBLUE" radius="35.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="INSIDE" translateX="780.0" translateY="5.0" />
-
-            </children>
-        </HBox>
       <VBox layoutX="217.0" layoutY="101.0" prefHeight="510.0" prefWidth="1000.0" style="-fx-background-color: #FEFCF3;" stylesheets="@css/styles.css" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="217.0" AnchorPane.rightAnchor="21.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="75.0" prefWidth="200.0">

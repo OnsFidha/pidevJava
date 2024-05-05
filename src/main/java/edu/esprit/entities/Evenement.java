@@ -13,11 +13,20 @@ public class Evenement {
     private Integer nbreParticipants;
     private Integer nbreMax;
     private String image;
+    private int id_user_id;
+
+    public int getId_user_id() {
+        return id_user_id;
+    }
+
+    public void setId_user_id(int id_user_id) {
+        this.id_user_id = id_user_id;
+    }
 
     public Evenement() {
     }
 
-    public Evenement(int id, String nom, String description, String lieu, Date dateDebut, Date dateFin, Integer nbreParticipants, Integer nbreMax, String image) {
+    public Evenement(int id, String nom, String description, String lieu, Date dateDebut, Date dateFin, Integer nbreParticipants, Integer nbreMax, String image,int id_user_id) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -27,9 +36,10 @@ public class Evenement {
         this.nbreParticipants = nbreParticipants;
         this.nbreMax = nbreMax;
         this.image = image;
+        this.id_user_id=id_user_id;
     }
 
-    public Evenement(String nom, String description, String lieu, Date dateDebut, Date dateFin, Integer nbreParticipants, Integer nbreMax, String image) {
+    public Evenement(String nom, String description, String lieu, Date dateDebut, Date dateFin, Integer nbreParticipants, Integer nbreMax, String image, int id_user_id) {
         this.nom = nom;
         this.description = description;
         this.lieu = lieu;
@@ -38,6 +48,7 @@ public class Evenement {
         this.nbreParticipants = nbreParticipants;
         this.nbreMax = nbreMax;
         this.image = image;
+        this.id_user_id=id_user_id;
     }
 
 

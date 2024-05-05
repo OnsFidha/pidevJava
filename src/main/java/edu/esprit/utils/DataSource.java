@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class DataSource {
     private Connection conn;
-    final String url = "jdbc:mysql://localhost:3306/pidev2";
+    final String url = "jdbc:mysql://localhost:3307/pidev3";
     final String user = "root";
     final String pwd = "";
     static DataSource instance;

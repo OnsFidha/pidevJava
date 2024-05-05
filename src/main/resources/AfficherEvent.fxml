@@ -51,7 +51,7 @@
                         <Pane prefHeight="60.0" prefWidth="67.0" HBox.hgrow="ALWAYS" />
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="129.0" spacing="10.0">
                            <children>
-                              <ImageView fitHeight="50.0" fitWidth="30.0" onMouseClicked="#handleEditClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="modif" fitHeight="50.0" fitWidth="30.0" onMouseClicked="#handleEditClicked" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@icons/edit.png" />
                                  </image>
@@ -59,7 +59,7 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </ImageView>
-                              <ImageView fitHeight="30.0" fitWidth="50.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="delete" fitHeight="30.0" fitWidth="50.0" onMouseClicked="#onDeleteClicked" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@icons/delete.png" />
                                  </image>
@@ -126,6 +126,9 @@
                                        <image>
                                           <Image url="@icons/schedule.png" />
                                        </image>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
                                     </ImageView>
                                     <Label fx:id="DateD" text="Date début">
                                        <font>
@@ -140,6 +143,9 @@
                                        <image>
                                           <Image url="@icons/schedule.png" />
                                        </image>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
                                     </ImageView>
                                     <Label fx:id="dateF" text="Date fin">
                                        <font>
@@ -150,7 +156,7 @@
                               </HBox>
                            </children>
                         </VBox>
-                        <Pane prefHeight="80.0" prefWidth="225.0" HBox.hgrow="ALWAYS" />
+                        <Pane prefHeight="100.0" prefWidth="240.0" HBox.hgrow="ALWAYS" />
                         <VBox layoutX="30.0" layoutY="10.0" spacing="20.0">
                            <children>
                               <HBox alignment="CENTER" spacing="10.0">
@@ -186,7 +192,7 @@
                      </children>
                   </HBox>
                   <ImageView fx:id="eventimg" fitHeight="280.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button mnemonicParsing="false" onAction="#participer" stylesheets="@css/styles.css" text="Participer">
+                  <Button fx:id="participbtn" mnemonicParsing="false" onAction="#participer" stylesheets="@css/styles.css" text="Participer">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -205,7 +211,7 @@
                         <Font size="14.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets />
                      </VBox.margin>
                   </Button>
                </children>

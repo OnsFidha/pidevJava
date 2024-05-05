@@ -27,6 +27,7 @@ public class MainFX extends Application {
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
      //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseAdmin.fxml"));
       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+//        FXMLLoader loader=new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
 
         try {
             Parent root = loader.load();

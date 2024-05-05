@@ -86,6 +86,7 @@ public class AdminUserController implements Initializable {
     @FXML
     private Label userCountLabel;
 
+
     ObservableList<String> RolesList = FXCollections.observableArrayList("User", "Admin");
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;

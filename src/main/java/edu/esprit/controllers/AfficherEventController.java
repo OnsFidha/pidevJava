@@ -4,10 +4,13 @@ import com.dark.programs.speech.translator.GoogleTranslate;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.entities.Participation;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
 import edu.esprit.service.ParticipationService;
+import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.utils.JavaMailUtil;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +18,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -34,8 +35,6 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import javafx.scene.control.ButtonType;
 
 
 public class AfficherEventController {
@@ -64,18 +63,42 @@ public class AfficherEventController {
     private ImageView userimg;
     @FXML
     private GridPane feedbackgrid;
+    @FXML
+    private ImageView modif;
+
+    @FXML
+    private Button participbtn;
+    @FXML
+    private ImageView delete;
 
     @FXML
     private Label username;
     private Evenement event;
+
     private List<Feedback> feedbacks;
     private FeedbackService feedbackService = new FeedbackService();
+    ServiceUtilisateur serviceuser = new ServiceUtilisateur();
+    private int userIdCreatedByEvent;
 
-    @FXML
-    void initialize() {
 
-    }
+
     public void setData(Evenement event){
+
+        Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
+         int userIdCreatedByEvent = userevent.getId();
+
+        int loggedInUserId = SessionManager.getId_user();
+
+        // Vérifiez si l'utilisateur connecté est celui qui a créé l'événement
+        boolean isUserEventCreator = loggedInUserId == userIdCreatedByEvent;
+        System.out.println(userIdCreatedByEvent+ " " + loggedInUserId + " " + isUserEventCreator);
+
+        // Rendre les boutons de modification et de suppression visibles uniquement pour l'utilisateur qui a créé l'événement
+        modif.setVisible(isUserEventCreator);
+        delete.setVisible(isUserEventCreator);
+
+        // Ne rendre pas le bouton de participation visible pour l'utilisateur qui a créé l'événement
+        participbtn.setVisible(!isUserEventCreator);
         if (event.getImage() != null) {
             try {
                 // Prepend "file:///" to the file path
@@ -94,11 +117,14 @@ public class AfficherEventController {
 
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-        Image nimage = new Image("/img/user2.png");
+        String imagePath = userevent.getImage();
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image nimage = new Image("assets/uploads/"+nomFichier);
         userimg.setImage(nimage);
 
 //            username.setText(event.getUsername());
-        username.setText("Syrine Zaier");
+        username.setText(userevent.getPrename()+" "+ userevent.getName());
         eventname.setText(event.getNom());
         eventdesc.setText(event.getDescription());
         lieu.setText(event.getLieu());
@@ -140,6 +166,11 @@ public class AfficherEventController {
             e.printStackTrace();
             // Handle any potential errors here
         }
+
+
+    }
+    @FXML
+    void initialize() {
 
 
     }
@@ -219,6 +250,7 @@ public class AfficherEventController {
 
 
     public void setEventData(int id) {
+
         EvenementService eventService = new EvenementService();
         try {
         Evenement event = eventService.getOneById(id);
@@ -243,13 +275,18 @@ public class AfficherEventController {
                 // For example, set a default image or display an error message
                 System.err.println("Image path is null for the event: " + event.getNom());
             }
+            Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
+
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-        Image image = new Image("/img/user2.png");
+            String imagePath = userevent.getImage();
+            int img = imagePath.lastIndexOf("\\");
+            String nomFichier = imagePath.substring(img + 1);
+            Image image = new Image("assets/uploads/"+nomFichier);
         userimg.setImage(image);
 
 //            username.setText(event.getUsername());
-        username.setText("Syrine Zaier");
+        username.setText(userevent.getPrename()+" "+ userevent.getName());
         eventname.setText(event.getNom());
         eventdesc.setText(event.getDescription());
         lieu.setText(event.getLieu());

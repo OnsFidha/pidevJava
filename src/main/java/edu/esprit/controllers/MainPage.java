@@ -53,6 +53,8 @@ public class MainPage {
 
     @FXML
     private HBox users;
+
+
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 

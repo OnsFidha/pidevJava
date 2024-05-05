@@ -4,6 +4,7 @@ import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -27,6 +28,7 @@ public class AddFeedback {
 
     @FXML
     void Add(MouseEvent event) {
+        String FeedbackText = TextFeed.getText();
         if (TextFeed.getText().isEmpty()) {
             showAlert("Veuillez remplir tous les champs.");
             return;
@@ -36,9 +38,17 @@ public class AddFeedback {
             showAlert("Le feedback ne peut pas dépasser 255 caractères.");
             return;
         }
-        Feedback feed=new Feedback(eventId,TextFeed.getText());
+
         FeedbackService fs=new FeedbackService();
         try {
+            String filteredText = BadWordsApi.filterBadWords(FeedbackText);
+            if (!filteredText.equals(FeedbackText)) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Le commentaire contient des mots interdits et a été filtré.");
+                alert.show();
+                FeedbackText = filteredText; // Remplacez le texte par le texte filtré
+            }
+            Feedback feed=new Feedback(eventId,FeedbackText, SessionManager.getId_user());
             fs.ajouter(feed);
             Alert alert=new Alert(Alert.AlertType.INFORMATION);
             alert.setContentText("Votre feedback a été ajouté avec succées");
@@ -71,7 +81,7 @@ public class AddFeedback {
             catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             Alert alert1=new Alert(Alert.AlertType.ERROR);
             alert1.setContentText(e.getMessage());
             alert1.show();

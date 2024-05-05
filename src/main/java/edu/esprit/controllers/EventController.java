@@ -2,6 +2,8 @@ package edu.esprit.controllers;
 
 import edu.esprit.entities.Evenement;
 
+import edu.esprit.entities.Utilisateur;
+import edu.esprit.services.ServiceUtilisateur;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -26,7 +28,10 @@ public class EventController {
         @FXML
         private Label username;
 
+    ServiceUtilisateur serviceuser = new ServiceUtilisateur();
+
     public void setData(Evenement event) {
+        Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
         // Load event image
         if (event.getImage() != null) {
             try {
@@ -45,11 +50,17 @@ public class EventController {
         }
 
         // Load profile image (assuming "/img/user2.png" is a valid image path)
-        Image profileImage = new Image("/img/user2.png");
-        ProfileImage.setImage(profileImage);
+        String imagePath = userevent.getImage();
+
+
+
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        ProfileImage.setImage(image);
 
         // Set username and event details
-        username.setText("Syrine Zaier");
+        username.setText(userevent.getPrename()+" "+ userevent.getName());
         EventName.setText(event.getNom());
 
     }

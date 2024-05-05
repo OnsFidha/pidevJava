@@ -3,6 +3,7 @@ package edu.esprit.controllers;
 import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -50,7 +51,7 @@ public class editFeedAdmin {
             showAlert("Le feedback ne peut pas dépasser 255 caractères.");
             return;
         }
-        Feedback feed=new Feedback(feedId,eventId,TextFeed.getText());
+        Feedback feed=new Feedback(feedId,eventId,TextFeed.getText(), SessionManager.getId_user());
         FeedbackService fs=new FeedbackService();
         try {
             fs.modifier(feed);

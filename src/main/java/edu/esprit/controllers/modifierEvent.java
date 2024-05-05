@@ -1,6 +1,7 @@
 package edu.esprit.controllers;
 import edu.esprit.entities.Evenement;
 import edu.esprit.service.EvenementService;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -123,7 +124,7 @@ public class modifierEvent {
             newImagePath = oldImagePath;
         }
 
-        Evenement ev=new Evenement(eventId,NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),newImagePath);
+        Evenement ev=new Evenement(eventId,NomEvent.getText(),DescEvent.getText(),LieuEvent.getText(), Date.valueOf(DDEvent.getValue()),Date.valueOf(DFEvent.getValue()),0,Integer.parseInt(NbrparticipantsEvent.getText()),newImagePath, SessionManager.getId_user());
         EvenementService es=new EvenementService();
         try {
             es.modifier(ev);

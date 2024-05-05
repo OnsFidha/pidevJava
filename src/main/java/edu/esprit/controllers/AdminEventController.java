@@ -1,7 +1,9 @@
 package edu.esprit.controllers;
 
 import edu.esprit.entities.Evenement;
+import edu.esprit.entities.Utilisateur;
 import edu.esprit.service.EvenementService;
+import edu.esprit.services.ServiceUtilisateur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -49,7 +51,12 @@ public class AdminEventController {
 
     private Evenement event;
 
+    ServiceUtilisateur serviceuser = new ServiceUtilisateur();
+
+
     public void setData(Evenement event){
+        Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
+
 
         if (event.getImage() != null) {
             String imagePath = "file:///" + event.getImage();
@@ -62,11 +69,15 @@ public class AdminEventController {
         }
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-        Image image = new Image("/img/user2.png");
+        String imagePath = userevent.getImage();
+
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
         userimg.setImage(image);
 
-//            username.setText(event.getUsername());
-        username.setText("Syrine Zaier");
+        // Set username and event details
+        username.setText(userevent.getPrename()+" "+ userevent.getName());
         eventname.setText(event.getNom());
         eventdesc.setText(event.getDescription());
         datedeb.setText(event.getDateDebut().toString());
@@ -78,6 +89,8 @@ public class AdminEventController {
     }
 
     public void setEventData(int id) {
+        Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
+
         EvenementService eventService = new EvenementService();
         try {
             Evenement event = eventService.getOneById(id);
@@ -94,11 +107,15 @@ public class AdminEventController {
             }
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-            Image image = new Image("/img/user2.png");
+            String imagePath = userevent.getImage();
+
+            int img = imagePath.lastIndexOf("\\");
+            String nomFichier = imagePath.substring(img + 1);
+            Image image = new Image("assets/uploads/"+nomFichier);
             userimg.setImage(image);
 
-//            username.setText(event.getUsername());
-            username.setText("Syrine Zaier");
+            // Set username and event details
+            username.setText(userevent.getPrename()+" "+ userevent.getName());
             eventname.setText(event.getNom());
             eventdesc.setText(event.getDescription());
             lieu.setText(event.getLieu());

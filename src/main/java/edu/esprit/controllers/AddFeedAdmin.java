@@ -4,6 +4,7 @@ import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
 import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -34,7 +35,9 @@ public class AddFeedAdmin {
             showAlert("Le feedback ne peut pas dépasser 255 caractères.");
             return;
         }
-        Feedback feed=new Feedback(eventId,TextFeed.getText());
+//        int IdUsertest= 1;
+        Feedback feed=new Feedback(eventId,TextFeed.getText(), SessionManager.getId_user());
+//        Feedback feed=new Feedback(eventId,TextFeed.getText(), IdUsertest);
         FeedbackService fs=new FeedbackService();
         try {
             fs.ajouter(feed);
