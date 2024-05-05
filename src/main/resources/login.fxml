@@ -10,10 +10,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ConnectionUserController">
+<AnchorPane prefHeight="586.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ConnectionUserController">
     <children>
-        <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" text="mehdibchir02@gmail.com" />
-        <PasswordField fx:id="password_login" layoutX="168.0" layoutY="375.0" prefHeight="45.0" prefWidth="295.0" promptText="Mot de passe" text="azertyuiop" />
+        <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" text="onsfidha3@gmail.com" />
+        <PasswordField fx:id="password_login" layoutX="168.0" layoutY="375.0" prefHeight="45.0" prefWidth="295.0" promptText="Mot de passe" text="ONS123456*" />
         <Label alignment="CENTER" layoutX="105.0" layoutY="206.0" prefHeight="45.0" prefWidth="422.0" text="Connectez-vous à votre compte">
             <font>
                 <Font name="Roboto Bold" size="24.0" />
@@ -42,7 +42,7 @@
             </font>
         </Button>
         <Hyperlink layoutX="168.0" layoutY="420.0" onAction="#changePassword" prefHeight="24.0" prefWidth="134.0" text="Mot de passe oublié ? " />
-      <ImageView fx:id="image1" fitHeight="768.0" fitWidth="630.0" layoutX="647.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="image1" fitHeight="591.0" fitWidth="433.0" layoutX="675.0" pickOnBounds="true" preserveRatio="true">
           <image>
               <Image url="@assets/uploads/rajel.jpg" />
           </image>

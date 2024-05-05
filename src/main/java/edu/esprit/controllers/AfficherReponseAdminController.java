@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import edu.esprit.utils.SessionManager;
 import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
@@ -29,6 +30,10 @@ import javafx.stage.Stage;
 import javax.swing.*;
 
 public class AfficherReponseAdminController {
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
 
     @FXML
     private ResourceBundle resources;
@@ -66,6 +71,9 @@ public class AfficherReponseAdminController {
 
     @FXML
     private TableView<Reponse> tableauRep;
+    @FXML
+    private Label logedUsernamee;
+
 
 
     @FXML
@@ -195,11 +203,14 @@ public class AfficherReponseAdminController {
 
     @FXML
     void initialize() {
-        // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
-        // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
-        // TODO
+
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
+
         try {
             afficherReponse();
         } catch (SQLException e) {
@@ -218,6 +229,69 @@ public class AfficherReponseAdminController {
         reponse.setCellValueFactory(new PropertyValueFactory<>("reponse"));
         dateReponse.setCellValueFactory(new PropertyValueFactory<>("date_reponse"));
 
+
+    }
+
+    @FXML
+    void RetourEvent(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminEvent.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void RetourProduit(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamationAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void RetourPublication(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void RetourUtilisateur(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

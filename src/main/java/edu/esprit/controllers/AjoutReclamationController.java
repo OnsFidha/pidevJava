@@ -16,8 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -31,8 +30,6 @@ import java.util.Date;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import com.twilio.Twilio;
 import com.twilio.converter.Promoter;
@@ -46,6 +43,14 @@ import com.microsoft.cognitiveservices.speech.*;
 import javafx.concurrent.Task;
 
 public class AjoutReclamationController implements Initializable {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+
+
+
+    @FXML
+    private Label logedUsernamee;
 
     int id= SessionManager.getId_user();
 
@@ -68,7 +73,7 @@ public class AjoutReclamationController implements Initializable {
     private ComboBox<String> comb;
 
     public static final String ACCOUNT_SID = "AC0caafa1f675f3f429a7df499c1e754b7";
-    public static final String AUTH_TOKEN = "***********************************";
+    public static final String AUTH_TOKEN = "144c7ae996f32cd5efd81738130912ef";
 
     @FXML
     void Selecttype(ActionEvent event) {
@@ -86,9 +91,15 @@ public class AjoutReclamationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
 
 
         comb.setItems(FXCollections.observableArrayList("Publication non visible sur la plateforme",
@@ -122,21 +133,22 @@ public class AjoutReclamationController implements Initializable {
 
             // Initialiser la date de création à la date actuelle
             r.setDate_creation(new Date());
+            r.setId_user(id);
 
             ReclamationService pst = new ReclamationService();
             pst.ajouter(r);
 
-           // Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            //Message message = Message.creator(
-             //               new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
-               //             new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
-                //            "Sana khiari a envoyee une Reclamation , vous pouvez le contacter sur : 24171676")
-                 //   .create();
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                            new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
+                            new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
+                            SessionManager.getName() +" a envoyee une Reclamation , vous pouvez le contacter sur : "+ SessionManager.getPhone())
+                    .create();
 
             System.out.println("msg whatsapp envoyee");
             new Thread(()->{
                 try {
-                    JavaMailUtil.sendEmail( "sana.khiari2002@gmail.com", "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
+                    JavaMailUtil.sendEmail( SessionManager.getEmail(), "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

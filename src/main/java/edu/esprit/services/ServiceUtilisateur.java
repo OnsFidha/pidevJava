@@ -206,6 +206,30 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         }
     }
 
+    @Override
+    public Utilisateur getOneById(int id) {
+        String req ="select * from user WHERE id=?";
+        try {
+            PreparedStatement pst= cnx.prepareStatement(req);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()){
+                Utilisateur user = new Utilisateur();
+                user.setId(rs.getInt("id"));
+                user.setName(rs.getString("name"));
+                user.setPrename(rs.getString("prename"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                user.setPhone(rs.getInt("phone"));
+                user.setRoles(rs.getString("roles"));
+                return user;
+            }
+            return null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public boolean updatePassword(String email, String newPassword) {
         String req = "UPDATE `user` SET `password` = ? WHERE `email` = ?";
         try {

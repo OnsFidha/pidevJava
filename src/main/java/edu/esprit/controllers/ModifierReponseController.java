@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 import edu.esprit.entities.Reponse;
 import edu.esprit.service.ReclamationService;
 import edu.esprit.service.ReponseService;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
@@ -24,6 +26,12 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 public class ModifierReponseController {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+    @FXML
+    private Label logedUsernamee;
+
 
     @FXML
     private ResourceBundle resources;
@@ -151,9 +159,15 @@ public class ModifierReponseController {
     @FXML
     void initialize() {
         // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
+        //Image img = new Image("/img/sanaPic.jpg");
         // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        //circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
 
 
     }

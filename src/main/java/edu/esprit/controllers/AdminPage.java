@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import edu.esprit.controllers.admin.ManageAdminTemplateMenu;
 import edu.esprit.service.PublicationService;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
@@ -7,7 +8,9 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 
 import java.sql.SQLException;
@@ -26,6 +29,9 @@ public class AdminPage {
 
     @FXML
     private NumberAxis yAxis;
+
+    @FXML
+    private HBox productsLabel;
 
     private PublicationService publicationService = new PublicationService(); // Remplacez par votre classe de service
 
@@ -76,5 +82,10 @@ public class AdminPage {
 
         label.setVisible(false);
         return stackPane;
+    }
+
+    @FXML
+    void showProducts(MouseEvent event) {
+        ManageAdminTemplateMenu.loadProducts(productsLabel);
     }
 }

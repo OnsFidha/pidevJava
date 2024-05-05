@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Commande {
     private int id;
-    private User user ;
+    private Utilisateur user ;
 
     private Date date_commande;
     private String reference;
@@ -13,7 +13,7 @@ public class Commande {
 
     private List<DetailCommande> detailsCommande;
 
-    public Commande(User user, Date date_commande, String reference, double montant_total, List<DetailCommande> detailsCommande) {
+    public Commande(Utilisateur user, Date date_commande, String reference, double montant_total, List<DetailCommande> detailsCommande) {
         this.user = user;
         this.date_commande = date_commande;
         this.reference = reference;
@@ -29,11 +29,11 @@ public class Commande {
         this.id = id;
     }
 
-    public User getUser() {
+    public Utilisateur getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Utilisateur user) {
         this.user = user;
     }
 
