@@ -102,7 +102,7 @@
 .hboxcard {
     -fx-background-image: url("/assets/cardbg.png");
 }
-=======
+
 .primary-color{
     -fx-background-color: #F4F5F9;
 }
@@ -204,7 +204,8 @@
     -fx-font-size:17 px; /* Taille de police */
     -fx-text-fill: #1E1E1E; /* Couleur du texte */
     -fx-padding: 2px; /* Rembourrage */
-}#reclamCard {
+}
+#reclamCard {
      -fx-background-color: #FEFCF3; /* Couleur de fond de la carte */
      -fx-border-color: #FEFCF3 ; /* Couleur de la bordure */
      -fx-border-width: 1px; /* Largeur de la bordure */

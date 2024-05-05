@@ -73,9 +73,9 @@ public class ProductCard{
         }
 
         productId.setText(String.valueOf(produit.getId()));
-        productName.setText(produit.getNom());
-        productDescription.setText(produit.getDescription());
-        productPrice.setText(String.valueOf(produit.getPrix()));
+        productName.setText("Nom: ".concat(produit.getNom()));
+        productDescription.setText("Description: ".concat(produit.getDescription()));
+        productPrice.setText("Prix: "+produit.getPrix());
         if(produit.getImage()!=null && !produit.getImage().trim().equalsIgnoreCase("")){
             Image image = new Image(produit.getImage());
             productImage.setImage(image);

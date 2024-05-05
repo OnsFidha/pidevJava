@@ -22,7 +22,7 @@ public class MainFX extends Application {
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherReclamationAdmin.fxml"));
         //FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherReponseAdmin.fxml"));
         // FXMLLoader loader=new FXMLLoader(getClass().getResource("/stat.fxml"));
-     //   FXMLLoader loader=new FXMLLoader(getClass().getResource("/adminPage.fxml"));
+       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/adminPage.fxml"));
        FXMLLoader loader=new FXMLLoader(getClass().getResource("/login.fxml"));
       //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
       // FXMLLoader loader=new FXMLLoader(getClass().getResource("/admin/AdminTemplate.fxml"));

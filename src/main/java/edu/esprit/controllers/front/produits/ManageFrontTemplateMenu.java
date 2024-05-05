@@ -16,10 +16,10 @@ public class ManageFrontTemplateMenu {
         loadNewPage(item, "/MainPage.fxml");
     }
     public static void loadPub(HBox item){
-        loadNewPage(item, "/AfficherPub.fxml");
+        loadNewPage(item, "/ListPub.fxml.fxml");
     }
     public static void loadEvents(HBox item){
-        loadNewPage(item, "/AfficherEvent.fxml");
+        loadNewPage(item, "/AfficherEvenements.fxml");
     }
     public static void loadReclamations(HBox item){
         loadNewPage(item, "/AfficherReclamation.fxml");

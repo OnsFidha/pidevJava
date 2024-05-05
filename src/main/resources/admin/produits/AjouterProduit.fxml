@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -30,6 +31,13 @@
       <ChoiceBox fx:id="categorieDropDown" layoutX="160.0" layoutY="265.0" prefHeight="25.0" prefWidth="210.0" />
       <ImageView fx:id="productImageView" fitHeight="348.0" fitWidth="317.0" layoutX="442.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="selectImageBtn" layoutX="158.0" layoutY="339.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="26.0" prefWidth="150.0" text="Choisir une image" />
-      <Button fx:id="ajouterProduitBtn" layoutX="342.0" layoutY="441.0" mnemonicParsing="false" onAction="#ajouterProduit" styleClass="btn-add" text="Ajouter" />
+      <Button fx:id="ajouterProduitBtn" layoutX="342.0" layoutY="441.0" mnemonicParsing="false" onAction="#ajouterProduit" styleClass="btn-add" text="Ajouter">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../icons/addicon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>

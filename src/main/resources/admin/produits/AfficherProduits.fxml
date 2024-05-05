@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -9,28 +11,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="545.0" prefWidth="1082.0" styleClass="window-content" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.admin.produits.AfficherProduits">
+<AnchorPane prefHeight="545.0" prefWidth="1082.0" styleClass="window-content" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.admin.produits.AfficherProduits">
    <children>
       <Text layoutX="300.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     Liste des  produits" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="489.80001220703116">
          <font>
             <Font name="System Bold Italic" size="36.0" />
          </font>
       </Text>
-      <Button fx:id="ajouterProduitBtn" layoutX="44.0" layoutY="84.0" mnemonicParsing="false" onAction="#goToAddProductView" prefHeight="26.0" prefWidth="77.0" styleClass="btn-add" text="Ajouter">
+      <Button fx:id="ajouterProduitBtn" layoutX="44.0" layoutY="84.0" mnemonicParsing="false" onAction="#goToAddProductView" prefHeight="39.0" prefWidth="120.0" styleClass="btn-add" text="Ajouter">
          <font>
             <Font name="System Bold Italic" size="14.0" />
-         </font></Button>
-      <ScrollPane layoutX="14.0" layoutY="145.0" prefHeight="366.0" prefWidth="1023.0">
+         </font>
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../icons/addicon.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
+      <ScrollPane layoutX="14.0" layoutY="145.0" prefHeight="366.0" prefWidth="1023.0" styleClass="product-grid" stylesheets="@../../css/styles.css">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="996.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="996.0" styleClass="product-grid" stylesheets="@../../css/styles.css">
                <children>
-                  <GridPane fx:id="gridProduits" layoutX="14.0" layoutY="23.0" prefHeight="30.0" prefWidth="959.0" styleClass="grid-content" vgap="10.0">
+                  <GridPane fx:id="gridProduits" layoutX="14.0" layoutY="23.0" prefWidth="959.0" styleClass="product-grid" vgap="10.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="197.0" minWidth="10.0" prefWidth="173.19999084472656" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.00000915527343" minWidth="10.0" prefWidth="149.79998779296878" />
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.00000915527343" minWidth="5.799963378906227" prefWidth="81.39999999999998" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0000244140625" minWidth="10.0" prefWidth="82.39999999999998" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.79997558593755" minWidth="10.0" prefWidth="189.60000000000002" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.00000915527343" minWidth="10.0" prefWidth="153.4" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="240.00000915527343" minWidth="5.799963378906227" prefWidth="147.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0000244140625" minWidth="10.0" prefWidth="200.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="196.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="276.0" minWidth="10.0" prefWidth="268.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
