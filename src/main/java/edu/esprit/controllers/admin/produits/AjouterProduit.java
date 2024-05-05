@@ -115,6 +115,8 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
     @FXML
     void selectImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
+        File initialDirectory = new File(AjouterProduit.class.getResource("/assets/uploads/produits").getPath());
+        fileChooser.setInitialDirectory(initialDirectory);
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
         );

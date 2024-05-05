@@ -13,7 +13,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="634.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" styleClass="@css\styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.front.produits.FrontTemplate">
+<AnchorPane prefHeight="634.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.front.produits.FrontTemplate">
     <children>
         <VBox prefHeight="634.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
             <effect>
@@ -160,7 +160,7 @@
                 </DropShadow>
             </effect>
             <children>
-                <Label fx:id="logedUsernamee" prefHeight="53.0" prefWidth="127.0" text="Sana Khiari" translateX="820.0" translateY="15.0">
+                <Label fx:id="loggedUsername" prefHeight="53.0" prefWidth="127.0" translateX="820.0" translateY="15.0">
                     <HBox.margin>
                         <Insets />
                     </HBox.margin>

@@ -22,28 +22,6 @@ public class ManageAdminTemplateMenu {
         }
     }
 
-    public static void loadCommandes(HBox item){
-        try {
-            FXMLLoader loader = new FXMLLoader(ManageAdminTemplateMenu.class.getResource("/admin/AdminTemplate.fxml"));
-            Parent root = loader.load();
-            AdminTemplate adminTemplate = loader.getController();
-            adminTemplate.showCommandes(null);
-            item.getScene().setRoot(root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-    public static void loadCategories(HBox item){
-        try {
-            FXMLLoader loader = new FXMLLoader(ManageAdminTemplateMenu.class.getResource("/admin/AdminTemplate.fxml"));
-            Parent root = loader.load();
-            AdminTemplate adminTemplate = loader.getController();
-            adminTemplate.showCategories(null);
-            item.getScene().setRoot(root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
     public static void loadEvents(HBox item){
         loadNewPage(item, "/baseAdminEvent.fxml");
     }
@@ -57,7 +35,7 @@ public class ManageAdminTemplateMenu {
     }
 
     public static void loadReclamations(HBox item){
-        loadNewPage(item, "/AfficherReclamation.fxml");
+        loadNewPage(item, "/AfficherReclamationAdmin.fxml");
     }
 
     public static void loadResponses(HBox item) {

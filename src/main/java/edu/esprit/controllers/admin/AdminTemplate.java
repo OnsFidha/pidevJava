@@ -4,18 +4,24 @@ import edu.esprit.controllers.AdminContentPanel;
 import edu.esprit.controllers.admin.categories.AfficherCategories;
 import edu.esprit.controllers.admin.commandes.AfficherCommandes;
 import edu.esprit.controllers.admin.produits.AfficherProduits;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class AdminTemplate extends AdminContentPanel{
+public class AdminTemplate extends AdminContentPanel implements Initializable {
 
     @FXML
     private Button BtnRecherche;
@@ -27,7 +33,7 @@ public class AdminTemplate extends AdminContentPanel{
     private Circle circle;
 
     @FXML
-    private Label d;
+    private Label loggedUsername;
 
     @FXML
     private HBox productsHbox;
@@ -135,5 +141,16 @@ public class AdminTemplate extends AdminContentPanel{
     @FXML
     void showUsers(MouseEvent event) {
         ManageAdminTemplateMenu.loadUsers(adminusersLabel);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        loggedUsername.setText(SessionManager.getName()+" "+SessionManager.getPrename());
+        if (SessionManager.getImage()!=null){
+            int img = SessionManager.getImage().lastIndexOf("\\");
+            String nomFichier = SessionManager.getImage().substring(img + 1);
+            Image image = new Image("assets/uploads/"+nomFichier);
+            circle.setFill(new ImagePattern(image));
+        }
     }
 }

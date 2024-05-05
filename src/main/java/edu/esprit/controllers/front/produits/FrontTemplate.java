@@ -23,7 +23,7 @@ public class FrontTemplate extends FrontContentPanel implements Initializable {
     private Circle circle;
 
     @FXML
-    private Label logedUsernamee;
+    private Label loggedUsername;
 
     @FXML
     private HBox eventsLabel;
@@ -44,11 +44,13 @@ public class FrontTemplate extends FrontContentPanel implements Initializable {
     }
 
     private void addUserInfo(){
-        logedUsernamee.setText(SessionManager.getName()+" "+SessionManager.getPrename());
-        int img = SessionManager.getImage().lastIndexOf("\\");
-        String nomFichier = SessionManager.getImage().substring(img + 1);
-        Image image = new Image("assets/uploads/"+nomFichier);
-        circle.setFill(new ImagePattern(image));
+        loggedUsername.setText(SessionManager.getName()+" "+SessionManager.getPrename());
+        if (SessionManager.getImage()!=null){
+            int img = SessionManager.getImage().lastIndexOf("\\");
+            String nomFichier = SessionManager.getImage().substring(img + 1);
+            Image image = new Image("assets/uploads/"+nomFichier);
+            circle.setFill(new ImagePattern(image));
+        }
     }
 
     void showProducts(MouseEvent event) {

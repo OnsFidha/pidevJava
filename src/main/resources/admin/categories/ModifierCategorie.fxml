@@ -4,6 +4,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -19,9 +21,16 @@
       <TextField fx:id="TFnom" layoutX="201.0" layoutY="131.0" prefHeight="26.0" prefWidth="204.0" />
       <TextArea fx:id="TFdescription" layoutX="201.0" layoutY="178.0" prefHeight="39.0" prefWidth="204.0" />
       <Label fx:id="TFlabelIdCategorie" layoutX="201.0" layoutY="93.0" prefHeight="18.0" prefWidth="124.0" visible="false" />
-      <Button fx:id="btnModifierCategorie" layoutX="294.0" layoutY="276.0" mnemonicParsing="false" onAction="#modifierCategorieAction" styleClass="btn-update" text=" Modifier" textAlignment="CENTER">
+      <Button fx:id="btnModifierCategorie" layoutX="250.0" layoutY="274.0" mnemonicParsing="false" onAction="#modifierCategorieAction" styleClass="btn-update" text=" Modifier" textAlignment="CENTER">
          <font>
             <Font name="System Bold Italic" size="14.0" />
-         </font></Button>
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../icons/edit.png" />
+               </image>
+            </ImageView>
+         </graphic></Button>
    </children>
 </AnchorPane>

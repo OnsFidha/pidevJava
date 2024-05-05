@@ -10,6 +10,7 @@ import edu.esprit.service.Serviceproduit;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -40,8 +41,6 @@ public class ListeProduits extends FrontContentPanel {
 
     @FXML
     private ChoiceBox<Categorie> categorieDropDown;
-
-    Commande commande;
 
     public void showProducts(){
         try {
@@ -93,6 +92,7 @@ public class ListeProduits extends FrontContentPanel {
     }
 
     private void addProductsToGrid(List<Produit> produits) {
+        productsList.setAlignment(Pos.CENTER);
         productsList.getChildren().clear();
         int index=0;
         for (int i = 0; i< produits.size(); i++){

@@ -14,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -51,7 +53,7 @@ public class AfficherCategories extends AdminContentPanel{
     }
 
     private Button getDeleteButton(Categorie categorie) {
-        Button btnSupprimer = new Button("Supprimer");
+        Button btnSupprimer = new Button("Supprimer", new ImageView(new Image("/icons/delete.png", 15, 15, true, true)));
         btnSupprimer.getStyleClass().add("btn-delete");
         EventHandler<ActionEvent> btnSupprimerHandler = event -> {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -74,7 +76,7 @@ public class AfficherCategories extends AdminContentPanel{
     }
 
     private Button getUpdateButton(Categorie categorie) {
-        Button btn = new Button("Modifier");
+        Button btn = new Button("Modifier", new ImageView(new Image("/icons/edit.png", 15, 15, true, true)));
         btn.getStyleClass().add("btn-update");
         AnchorPane tmpAdminContentPanel = super.getAdminPanelContent();
         EventHandler<ActionEvent> btnHandler = new EventHandler<ActionEvent>() {
