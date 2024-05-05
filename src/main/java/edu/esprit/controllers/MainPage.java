@@ -6,6 +6,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
+import edu.esprit.controllers.front.produits.ManageFrontTemplateMenu;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -107,19 +108,19 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         pub.setOnMouseClicked(clickHandler);
-        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                getListUsers();
-            }
-        };
+//        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+//            @Override
+//            public void handle(MouseEvent event) {
+//                getListUsers();
+//            }
+//        };
 
         // Ajouter l'EventHandler au HBox
-        users.setOnMouseClicked(clickHandler2);
+//        users.setOnMouseClicked(clickHandler2);
         EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                getListProduit();
+                ManageFrontTemplateMenu.loadProducts(produit);
             }
         };
 
@@ -138,16 +139,6 @@ public class MainPage {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-    private void getListProduit() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
-        try {
-
-            Parent root = loader.load();
-            pub.getScene().setRoot(root);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -12,8 +12,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1159.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.ConnectionUserController">
     <children>
-        <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" text="mehdibchir02@gmail.com" />
-        <PasswordField fx:id="password_login" layoutX="168.0" layoutY="375.0" prefHeight="45.0" prefWidth="295.0" promptText="Mot de passe" text="azertyuiop" />
+        <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" text="onsfidha3@gmail.com" />
+        <PasswordField fx:id="password_login" layoutX="168.0" layoutY="375.0" prefHeight="45.0" prefWidth="295.0" promptText="Mot de passe" text="ONS123456*" />
         <Label alignment="CENTER" layoutX="105.0" layoutY="206.0" prefHeight="45.0" prefWidth="422.0" text="Connectez-vous à votre compte">
             <font>
                 <Font name="Roboto Bold" size="24.0" />

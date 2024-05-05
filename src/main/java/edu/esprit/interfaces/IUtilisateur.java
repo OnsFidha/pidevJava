@@ -13,4 +13,5 @@ public interface IUtilisateur<T> {
     void Update(T t);
     void Delete(T t);
     void DeleteByID(int id);
+    T getOneById(int id);
 }

@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -15,16 +13,16 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.MainPage">
+<AnchorPane prefHeight="634.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" styleClass="@css\styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.front.produits.FrontTemplate">
     <children>
-        <VBox prefHeight="600.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
+        <VBox prefHeight="634.0" prefWidth="204.0" style="-fx-background-color: #FEFCF3;">
             <effect>
                 <DropShadow />
             </effect>
             <children>
                 <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
+                        <Image url="@../../img/Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png" />
                     </image>
                     <VBox.margin>
                         <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -33,17 +31,17 @@
                         <Rectangle2D />
                     </viewport>
                 </ImageView>
-                <HBox fx:id="home" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="homeLabel" onMouseClicked="#showHome" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/homeIcon.png" />
+                                <Image url="@../../icons/homeIcon.png" />
                             </image>
                             <HBox.margin>
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Home" textFill="#f9a936">
+                        <Label text="Home">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -56,17 +54,17 @@
                         <Insets left="30.0" right="40.0" top="40.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox fx:id="produit" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/ProductIcon.png" />
+                                <Image url="@../../icons/ProductIcon.png" />
                             </image>
                             <HBox.margin>
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label text="Produit">
+                        <Label text="Produit" textFill="#f9a936">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -79,34 +77,11 @@
                         <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
                     </VBox.margin>
                 </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
-               <children>
-                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/uploads/artiste.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets top="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label fx:id="users" onMouseClicked="#UserInterface" text="Utilisateurs">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets bottom="30.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </HBox>
-                <HBox fx:id="pub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="pubLabel" onMouseClicked="#showPub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/postIcon.png" />
+                                <Image url="@../../icons/postIcon.png" />
                             </image>
                             <HBox.margin>
                                 <Insets top="5.0" />
@@ -128,11 +103,11 @@
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox fx:id="event" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="eventsLabel" onMouseClicked="#showEvents" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/EventIcon.png" />
+                                <Image url="@../../icons/EventIcon.png" />
                             </image>
                             <HBox.margin>
                                 <Insets top="5.0" />
@@ -151,11 +126,11 @@
                         <Insets left="30.0" />
                     </padding>
                 </HBox>
-                <HBox fx:id="recla" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox fx:id="reclamationsLabel" onMouseClicked="#showReclamation" prefHeight="41.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@icons/EventIcon.png" />
+                                <Image url="@../../icons/EventIcon.png" />
                             </image>
                             <HBox.margin>
                                 <Insets top="5.0" />
@@ -194,21 +169,7 @@
 
             </children>
         </HBox>
-        <Label layoutX="453.0" layoutY="165.0" stylesheets="@css/style.css" text="Consulter notre musée en ligne ">
-         <styleClass>
-            <String fx:value="label-title" />
-            <String fx:value="title-style" />
-         </styleClass>
-      </Label>
-      <Button layoutX="833.0" layoutY="250.0" mnemonicParsing="false" onAction="#openURL" prefHeight="35.0" prefWidth="78.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Essayer" />
-      <Button fx:id="AdminP" layoutX="1076.0" layoutY="99.0" mnemonicParsing="false" onAction="#PanelAdmin" style="-fx-background-color: #f9a936;" styleClass="btn" text=" Admin       " textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" />
-         </graphic>
-         <font>
-            <Font name="Roboto Regular" size="16.0" />
-         </font>
-      </Button>
+      <AnchorPane fx:id="baseFrontContentPanel" layoutX="232.0" layoutY="118.0" prefHeight="467.0" prefWidth="981.0" />
 
     </children>
 
