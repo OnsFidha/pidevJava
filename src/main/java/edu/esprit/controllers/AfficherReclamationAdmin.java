@@ -1,5 +1,6 @@
 package edu.esprit.controllers;
 
+import edu.esprit.utils.SessionManager;
 import javafx.scene.input.MouseEvent;
 
 import java.io.File;
@@ -43,7 +44,13 @@ import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 
 public class AfficherReclamationAdmin {
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
+
+
+    @FXML
+    private Label logedUsernamee;
     @FXML
     private ResourceBundle resources;
 
@@ -212,11 +219,13 @@ public class AfficherReclamationAdmin {
 
     @FXML
     void initialize() {
-        // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
-        // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
-        // TODO
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
+
         try {
             afficherReclam();
         } catch (SQLException e) {
@@ -308,26 +317,7 @@ public class AfficherReclamationAdmin {
     }
 
 
-   /* @FXML
-    void TrierParType(ActionEvent event) {
-        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
-        reclamations.sort(Comparator.comparing(Reclamation::getType));
 
-    }
-
-
-    @FXML
-    void trierParDate(ActionEvent event) {
-
-        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
-        reclamations.sort(Comparator.comparing(Reclamation::getDate_creation));
-    }
-
-    @FXML
-    void trierParEtat(ActionEvent event) {
-        ObservableList<Reclamation> reclamations = tableauReclam.getItems();
-        reclamations.sort((rec1, rec2) -> Boolean.compare(rec1.isEtat(), rec2.isEtat()));
-    }*/
 
     @FXML
     void TrierParType(ActionEvent event) {
@@ -354,6 +344,68 @@ public class AfficherReclamationAdmin {
                 .collect(Collectors.toCollection(FXCollections::observableArrayList)));
     }
 
+    @FXML
+    void RetourEvent(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminEvent.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void RetourProduit(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamationAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void RetourPublication(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void RetourUtilisateur(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
 }
 

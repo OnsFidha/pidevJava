@@ -73,7 +73,7 @@ public class AjoutReclamationController implements Initializable {
     private ComboBox<String> comb;
 
     public static final String ACCOUNT_SID = "AC0caafa1f675f3f429a7df499c1e754b7";
-    public static final String AUTH_TOKEN = "***********************************";
+    public static final String AUTH_TOKEN = "144c7ae996f32cd5efd81738130912ef";
 
     @FXML
     void Selecttype(ActionEvent event) {
@@ -138,17 +138,17 @@ public class AjoutReclamationController implements Initializable {
             ReclamationService pst = new ReclamationService();
             pst.ajouter(r);
 
-           // Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
-            //Message message = Message.creator(
-             //               new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
-               //             new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
-                //            "Sana khiari a envoyee une Reclamation , vous pouvez le contacter sur : 24171676")
-                 //   .create();
+            Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+            Message message = Message.creator(
+                            new com.twilio.type.PhoneNumber("whatsapp:+21624171676"),
+                            new com.twilio.type.PhoneNumber("whatsapp:+14155238886"),
+                            SessionManager.getName() +" a envoyee une Reclamation , vous pouvez le contacter sur : "+ SessionManager.getPhone())
+                    .create();
 
             System.out.println("msg whatsapp envoyee");
             new Thread(()->{
                 try {
-                    JavaMailUtil.sendEmail( "sana.khiari2002@gmail.com", "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
+                    JavaMailUtil.sendEmail( SessionManager.getEmail(), "Bonjour cher Artiste  ,  \n Votre demande sera prise en compte et nous vous répondrons dans les meilleurs délais. \n Vous serez notifiés via une maill les details de traitement de votre reclamation \n Merci !! ");
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }

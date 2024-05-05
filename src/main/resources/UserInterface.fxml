@@ -16,7 +16,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="771.0" prefWidth="1153.0" style="-fx-background-color: #F5EDE6;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.UserInterfaceController">
+<AnchorPane prefHeight="600.0" prefWidth="1230.0" style="-fx-background-color: #F5EDE6;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.UserInterfaceController">
    <children>
       <ScrollPane layoutX="209.0" layoutY="175.0" prefHeight="594.0" prefWidth="972.0" styleClass="scrollpanes">
          <content>

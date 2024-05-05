@@ -103,12 +103,7 @@ public class AfficherReclamationController implements Initializable {
         Image image = new Image("assets/uploads/"+nomFichier);
         circle.setFill(new ImagePattern(image));
 
-        // TODO
-       /* try {
-            afficherReclam();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
+
         // Initialize ReclamationService
         ReclamationService sr = new ReclamationService();
         List<Reclamation> reclam;
@@ -434,6 +429,70 @@ public class AfficherReclamationController implements Initializable {
         });
 
         DateReclam.setCellValueFactory(new PropertyValueFactory<>("date_creation"));
+
+    }
+
+
+    @FXML
+    void RetourProduit(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/front/produits/FrontTemplate.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    void RetourPublication(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+    @FXML
+    void retourEvent(MouseEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    void retourUtilisateur(MouseEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserInterface.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("artistool ");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

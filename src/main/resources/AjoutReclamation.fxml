@@ -192,7 +192,7 @@
                     </font>
                 </Label>
                 <ComboBox fx:id="comb" onAction="#Selecttype" prefHeight="33.0" prefWidth="441.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 15;" translateX="140.0" translateY="45.0" />
-                <Label text="Description de la réclamation" translateX="190.0" translateY="60.0">
+                <Label text="Text  de la réclamation" translateX="190.0" translateY="60.0">
                     <font>
                         <Font name="System Bold" size="24.0" />
                     </font>
@@ -214,8 +214,28 @@
                         </DropShadow>
                     </effect>
                 </Button>
+            <Button mnemonicParsing="false" onAction="#stt" prefHeight="37.0" prefWidth="87.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" textFill="WHITE" translateX="500.0" translateY="35.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <effect>
+                  <DropShadow height="46.72" radius="19.4525" width="33.09">
+                     <color>
+                        <Color red="0.5789473652839661" green="0.5789473652839661" blue="0.5789473652839661" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/voix.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
         </VBox>
+        <!-- Buttons -->
         <Button fx:id="Reclamlistbtn" layoutX="579.0" layoutY="533.0" mnemonicParsing="false" onAction="#rrtourListReclam" prefHeight="36.0" prefWidth="331.0" style="-fx-background-color: #BEE5B4; -fx-background-radius: 3;" text="Retour à la liste des réclamations" textFill="WHITE">
             <font>
                 <Font size="14.0" />
@@ -228,6 +248,5 @@
                 </DropShadow>
             </effect>
         </Button>
-      <Button layoutX="391.0" layoutY="538.0" mnemonicParsing="false" onAction="#stt" text="Button" />
     </children>
 </AnchorPane>

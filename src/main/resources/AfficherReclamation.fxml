@@ -57,7 +57,7 @@
                         <Insets left="30.0" right="40.0" top="40.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox onMouseClicked="#RetourProduit" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -80,6 +80,29 @@
                         <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
                     </VBox.margin>
                 </HBox>
+            <HBox onMouseClicked="#retourUtilisateur" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/uploads/artiste.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="users" text="Utilisateurs">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="15.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
                 <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -90,7 +113,7 @@
                                 <Insets top="5.0" />
                             </HBox.margin>
                         </ImageView>
-                        <Label prefHeight="35.0" prefWidth="134.0" text="Publication">
+                        <Label onMouseClicked="#RetourPublication" prefHeight="35.0" prefWidth="134.0" text="Publication">
                             <font>
                                 <Font size="24.0" />
                             </font>
@@ -106,7 +129,7 @@
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </HBox>
-                <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <HBox onMouseClicked="#retourEvent" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -121,7 +144,7 @@
                                 <Font size="24.0" />
                             </font>
                             <HBox.margin>
-                                <Insets bottom="30.0" />
+                                <Insets bottom="15.0" />
                             </HBox.margin>
                         </Label>
                     </children>
@@ -144,7 +167,7 @@
                                 <Font size="24.0" />
                             </font>
                             <HBox.margin>
-                                <Insets bottom="30.0" />
+                                <Insets bottom="15.0" />
                             </HBox.margin>
                         </Label>
                     </children>
@@ -167,7 +190,7 @@
                         <Font size="24.0" />
                      </font>
                      <HBox.margin>
-                        <Insets bottom="30.0" />
+                        <Insets bottom="5.0" />
                      </HBox.margin>
                   </Label>
                </children>
