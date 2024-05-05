@@ -29,9 +29,6 @@ public class MainPage {
     private URL location;
 
     @FXML
-    private WebView musée;
-
-    @FXML
     private HBox event;
     @FXML
     private Circle circle;
@@ -102,7 +99,7 @@ public class MainPage {
 
         // Ajouter l'EventHandler au HBox
         users.setOnMouseClicked(clickHandler2);
-        EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
+        EventHandler<MouseEvent> clickHandler10 = new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
                 getListProduit();
@@ -110,13 +107,12 @@ public class MainPage {
         };
 
         // Ajouter l'EventHandler au HBox
-        produit.setOnMouseClicked(clickHandler5);
+        produit.setOnMouseClicked(clickHandler10);
     }
 
     private void getListProduit() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/front/produits/FrontTemplate.fxml"));
         try {
-
             Parent root = loader.load();
             pub.getScene().setRoot(root);
         } catch (IOException e) {

@@ -3,10 +3,12 @@ package edu.esprit.controllers;
 import java.io.File;
 import java.net.URL;
 import java.security.cert.PolicyNode;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
 
 import edu.esprit.entities.Publication;
+import edu.esprit.service.PublicationService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -47,8 +49,10 @@ public class CardController {
 
 
         }
-        public void setData(Publication pub){
-
+        public void setData(Publication pub) throws SQLException {
+                PublicationService pc=new PublicationService();
+                String nom=pc.getUserNamePrenameByPublicationId(pub.getId());
+                userPub.setText(nom);
                 String imageName = pub.getPhoto();
                 String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/pub/";
                 String imagePath = destinationDirectory + imageName;

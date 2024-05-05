@@ -98,7 +98,7 @@ public class UserInterfaceController implements Initializable {
         };
 
         // Ajouter l'EventHandler au HBox
-        produit.setOnMouseClicked(clickHandler);
+        produit.setOnMouseClicked(clickHandler4);
         load();
         /////////////////
         EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {

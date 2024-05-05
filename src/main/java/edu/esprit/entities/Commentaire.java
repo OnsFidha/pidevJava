@@ -6,19 +6,29 @@ import java.util.Objects;
 public class Commentaire {
     private int id;
     private int id_publication_id;
+    private int id_user_id;
     private String text;
     private Date dateCreation;
     public Commentaire() {
     }
 
-    public Commentaire( String text,int id_publication_id) {
+    public Commentaire( String text,int id_publication_id,int id_user_id) {
         this.id_publication_id = id_publication_id;
         this.text = text;
+        this.id_user_id=id_user_id;
     }
 
     public Commentaire(int id, String text) {
         this.id = id;
         this.text = text;
+    }
+
+    public int getId_user_id() {
+        return id_user_id;
+    }
+
+    public void setId_user_id(int id_user_id) {
+        this.id_user_id = id_user_id;
     }
 
     public int getId() {

@@ -28,11 +28,28 @@ public class CollaborationService implements IService<Collaboration>{
                 collaboration.setId(idCollaboration); // Mettre à jour l'ID de la collaboration avec l'ID généré
                 // Maintenant, vous pouvez ajouter la nouvelle collaboration à la table de liaison avec Publication
                     ajouterPublicationCollaboration(collaboration.getId_publication(), idCollaboration);
+                    ajouterUserCollaboration(collaboration.getId_user(), idCollaboration);
+
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw e;
         }
+    }
+
+    private void ajouterUserCollaboration(int idUser, int idCollaboration) throws SQLException {
+        String sql = "INSERT INTO collaboration_user ( collaboration_id,user_id) VALUES (?, ?)";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, idCollaboration);
+            statement.setInt(2, idUser);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
     }
 
     private void ajouterPublicationCollaboration(int idPublication, int idCollaboration) throws SQLException {
@@ -149,5 +166,37 @@ public class CollaborationService implements IService<Collaboration>{
         }
 
         return collaboration;
+    }
+
+    public String getUserNameByCollaborationId(int collaborationId) throws SQLException {
+        String userName = null;
+        String sql = "SELECT u.name, u.prename FROM user u JOIN collaboration_user cu ON u.id = cu.user_id WHERE cu.collaboration_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, collaborationId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    String nom = resultSet.getString("name");
+                    String prenom = resultSet.getString("prename");
+                    userName = nom + " " + prenom;
+                }
+            }
+        }
+        return userName;
+    }
+
+    public String getUserImageByCollaborationId(int collaborationId) throws SQLException {
+        String userImage = null;
+        String sql = "SELECT u.image FROM user u JOIN collaboration_user cu ON u.id = cu.user_id WHERE cu.collaboration_id = ?";
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, collaborationId);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    userImage = resultSet.getString("image");
+                }
+            }
+        }
+        return userImage;
     }
 }

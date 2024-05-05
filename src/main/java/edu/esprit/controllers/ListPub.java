@@ -39,11 +39,22 @@ public class ListPub implements Initializable {
 
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
-    int id=SessionManager.getId_user();
+    @FXML
+    private HBox prod;
+
+    @FXML
+    private HBox users;
+    @FXML
+    private HBox event;
+    int id=SessionManager.getId_user() ;
+    @FXML
+    private HBox home;
+    @FXML
+    private HBox pub;
+    @FXML
+    private HBox recla;
     @FXML
     private Circle logedUserimage;
-
-
     @FXML
     private Label logedUsernamee;
     @FXML
@@ -52,20 +63,75 @@ public class ListPub implements Initializable {
     private URL location;
     private Stage stage;
     private Scene scene;
-    @FXML
-    private HBox home;
 
     @FXML
     private GridPane pubList;
     private List<Publication> list;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       logedUsernamee.setText(nameP);
+        logedUsernamee.setText(nameP);
         int img = imagePath.lastIndexOf("\\");
         String nomFichier = imagePath.substring(img + 1);
         Image image = new Image("assets/uploads/"+nomFichier);
         logedUserimage.setFill(new ImagePattern(image));
+
+        EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListEvent();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        event.setOnMouseClicked(clickHandler4);
+        EventHandler<MouseEvent> clickHandler3 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListRecla();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        recla.setOnMouseClicked(clickHandler3);
+        // Créer un EventHandler pour gérer les clics sur le HBox
+        EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListPub();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        pub.setOnMouseClicked(clickHandler);
+        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListUsers();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        users.setOnMouseClicked(clickHandler2);
+        EventHandler<MouseEvent> clickHandler5 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListProduit();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        prod.setOnMouseClicked(clickHandler5);
+        EventHandler<MouseEvent> clickHandler6 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getHome();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        home.setOnMouseClicked(clickHandler6);
 
         PublicationService ps=new PublicationService();
         List<Publication> publications;
@@ -107,18 +173,61 @@ public class ListPub implements Initializable {
             e.printStackTrace();
         }
 
-        // Créer un EventHandler pour gérer les clics sur le HBox
-        EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                getHome();
-            }
-        };
 
-        // Ajouter l'EventHandler au HBox
-        home.setOnMouseClicked(clickHandler);
+    }
+    void getListPub(){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void getListProduit() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
+    private void getListEvent() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvenements.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListRecla() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamation.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListUsers() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserInterface.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private void getHome() {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
             try {
@@ -136,14 +245,14 @@ public class ListPub implements Initializable {
             try {
                 Parent root=loader.load();
                 AfficherPub pub= loader.getController();
+                pub.initialize(publication);
                 pub.initData(publication);
                 pub.setTypePub(publication.getType());
                 pub.setTextPub(publication.getText());
                 pub.setLieuPub(publication.getLieu());
-                pub.setDateCreationPub(new Date());
+                pub.setDateCreationPub(publication.getDateCreation());
                 pub.setPhoto(publication.getPhoto());
-                pub.setDateModificationPub(new Date());
-                pub.setIdUser(publication.getId_user_id());
+                pub.setDateModificationPub(publication.getDateModification());
                 pubList.getScene().setRoot(root);
             } catch (IOException e) {
                 throw new RuntimeException(e);

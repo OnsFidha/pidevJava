@@ -3,12 +3,16 @@ package edu.esprit.controllers;
 import edu.esprit.entities.Collaboration;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.CollaborationService;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 import java.io.IOException;
@@ -21,9 +25,13 @@ public class ListCollab implements Initializable {
 
     @FXML
     private ResourceBundle resources;
-
+    @FXML
+    private Label logedUsernamee;
     @FXML
     private URL location;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+ SessionManager.getPrename();
 
     @FXML
     private Circle circle;
@@ -38,6 +46,12 @@ public class ListCollab implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
         CollaborationService cs = new CollaborationService();
         List<Collaboration> collaborateurs;
         try {

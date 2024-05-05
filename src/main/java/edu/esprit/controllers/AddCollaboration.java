@@ -11,19 +11,25 @@ import java.util.ResourceBundle;
 import edu.esprit.entities.Collaboration;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.CollaborationService;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
 public class AddCollaboration {
-
-
+    @FXML
+    private Label logedUsernamee;
     @FXML
     private ResourceBundle resources;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
     @FXML
     private URL location;
@@ -49,10 +55,17 @@ public class AddCollaboration {
     @FXML
     private Label fichierError;
     private Publication p;
-
+    int id= SessionManager.getId_user() ;
     @FXML
     void initialize() {
+
         cv.setEditable(false);
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
     }
 
     public void choose_file(ActionEvent actionEvent) {
@@ -119,7 +132,7 @@ public class AddCollaboration {
             fichierError.setText(""); // Effacer le message d'erreur s'il y en avait un
         }
         if (isValid) {
-        Collaboration c = new Collaboration(disponibilite.getText(), competence.getText(), cv.getText(),p.getId());
+        Collaboration c = new Collaboration(disponibilite.getText(), competence.getText(), cv.getText(),p.getId(),id);
         CollaborationService cs = new CollaborationService();
         try {
             cs.ajouter(c);

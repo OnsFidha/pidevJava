@@ -2,6 +2,7 @@ package edu.esprit.controllers;
 
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
+import edu.esprit.utils.SessionManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,6 +32,11 @@ import java.util.ResourceBundle;
 public class AdminListPub implements Initializable {
     @FXML
     private ResourceBundle resources;
+    @FXML
+    private Label logedUsernamee;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+ SessionManager.getPrename();
 
     @FXML
     private URL location;
@@ -46,10 +52,11 @@ public class AdminListPub implements Initializable {
     private Pagination pagination;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Load image from resources
-        Image img = new Image("/img/sanaPic.jpg");
-        // Set image as fill for the circle
-        circle.setFill(new ImagePattern(img));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
 
         // Initialize the publication list
         initPublicationList();
@@ -95,7 +102,11 @@ public class AdminListPub implements Initializable {
 
                     // Pass the data to the controller of the card
                     CardController controller = loader.getController();
-                    controller.setData(publication);
+                    try {
+                        controller.setData(publication);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                     card.setOnMouseClicked(mouseEvent -> {
                         if (mouseEvent.getClickCount() == 2) {
                             redirectToDetail(publication);

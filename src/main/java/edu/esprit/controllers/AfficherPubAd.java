@@ -2,12 +2,15 @@ package edu.esprit.controllers;
 
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -17,12 +20,18 @@ import javafx.stage.Stage;
 
 import javax.swing.*;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 public class AfficherPubAd {
-
+    @FXML
+    private Label logedUsernamee;
     @FXML
     private Circle circle;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
     @FXML
     private AnchorPane comments;
@@ -49,14 +58,23 @@ public class AfficherPubAd {
     private Label typePub;
 
     @FXML
-    void retour() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+    void retour1() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
         try {
             Parent root = loader.load();
             textPub.getScene().setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    @FXML
+    void initialize(URL url, ResourceBundle resourceBundle) {
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
     }
 
 //    @FXML

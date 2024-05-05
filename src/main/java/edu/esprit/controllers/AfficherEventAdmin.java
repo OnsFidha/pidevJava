@@ -71,11 +71,11 @@ public class AfficherEventAdmin implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         EvenementService evenementService = new EvenementService();
-//        logedUsernamee.setText(nameP);
-//        int img = imagePath.lastIndexOf("\\");
-//        String nomFichier = imagePath.substring(img + 1);
-//        Image image = new Image("assets/uploads/"+nomFichier);
-//        circle.setFill(new ImagePattern(image));
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
 
 
 
@@ -156,7 +156,7 @@ public class AfficherEventAdmin implements Initializable {
 
     }
     private void getListProduit() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdmin.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminTemplate.fxml"));
         try {
 
             Parent root = loader.load();

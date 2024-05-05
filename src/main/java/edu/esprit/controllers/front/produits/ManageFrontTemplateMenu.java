@@ -16,7 +16,7 @@ public class ManageFrontTemplateMenu {
         loadNewPage(item, "/MainPage.fxml");
     }
     public static void loadPub(HBox item){
-        loadNewPage(item, "/ListPub.fxml.fxml");
+        loadNewPage(item, "/ListPub.fxml");
     }
     public static void loadEvents(HBox item){
         loadNewPage(item, "/AfficherEvenements.fxml");

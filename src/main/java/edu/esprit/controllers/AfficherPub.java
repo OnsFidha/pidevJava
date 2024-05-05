@@ -26,6 +26,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -34,13 +36,24 @@ import javax.swing.*;
 public class AfficherPub {
 
         @FXML
+        private Button colab;
+
+        @FXML
+        private Button listColab;
+
+        @FXML
+        private Button sup;
+        @FXML
         private Button edit;
         @FXML
         private ResourceBundle resources;
+        String imagePath = SessionManager.getImage();
+        String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
         @FXML
         private URL location;
-
+        @FXML
+        private Label logedUsernamee;
         @FXML
         private AnchorPane comments;
 
@@ -57,28 +70,35 @@ public class AfficherPub {
         private Label textPub;
         @FXML
         private ImageView imagePub;
-
+        @FXML
+        private Circle circle;
         @FXML
         private Label typePub;
         private Label errortext;
         private Publication p;
-        private int idUser;
         int id=SessionManager.getId_user() ;
         @FXML
         private GridPane details;
         private HashMap<Integer, TextField> commentaireFields; // HashMap pour stocker les TextField des commentaires
         List<Commentaire> commentaires;
+
+
         public void initData(Publication publication) {
-            this.p = publication;
+
+        this.p = publication;
         }
         @FXML
-        void initialize() {
-            if(id==idUser){
-                edit.setVisible(true);
-            }else{
-                edit.setVisible(false);
-            }
-//        comments.setVisible(false);
+        void initialize( Publication ID) {
+            logedUsernamee.setText(nameP);
+            int img = imagePath.lastIndexOf("\\");
+            String nomFichier = imagePath.substring(img + 1);
+            Image image = new Image("assets/uploads/"+nomFichier);
+            circle.setFill(new ImagePattern(image));
+
+            edit.setVisible(ID.getId_user_id()==id);
+            sup.setVisible(ID.getId_user_id()==id);
+            colab.setVisible(ID.getId_user_id()!=id|| Objects.equals(ID.getType(), "Offre"));
+            listColab.setVisible(ID.getId_user_id()==id|| Objects.equals(ID.getType(), "Offre"));
             commentaireFields = new HashMap<>(); // Initialisation de la HashMap
                 }
         @FXML
@@ -118,6 +138,10 @@ public class AfficherPub {
                     } else {
                         // Pour chaque commentaire, créez des labels pour afficher les détails du commentaire
                         for (Commentaire commentaire : commentaires) {
+                            int userId = commentaire.getId();
+                            String userName = cs.getUserNameByCommentId(userId);
+                            String userImagePath = cs.getUserImageByCommentId(userId);
+
                             commentsView.getStyleClass().add("comment-container");
                             HBox commentBox = new HBox(); // Utilisation de HBox pour chaque commentaire
                             commentBox.setSpacing(20); // Définir l'espacement entre les éléments
@@ -126,45 +150,62 @@ public class AfficherPub {
                             VBox commentContent = new VBox(); // Créer un VBox pour contenir le texte du commentaire et le nom d'utilisateur
                             commentContent.setAlignment(Pos.TOP_LEFT); // Aligner les éléments en haut à gauche
 
-                            Label userLabel = new Label("Utilisateur: " + "test mr");
+                            Label userLabel = new Label(userName);
                             userLabel.getStyleClass().addAll("user-label", "small-text", "grey-text"); // Appliquer le style au label de l'utilisateur
-                             errortext = new Label();
-                             errortext.getStyleClass().addAll("error","comment-textfield");
+
+                            // Créer un ImageView pour afficher l'image de l'utilisateur
+                            ImageView userImageView = new ImageView(new File(userImagePath).toURI().toString());
+                            userImageView.setFitHeight(60); // Ajuster la hauteur de l'image
+                            userImageView.setFitWidth(60); // Ajuster la largeur de l'image
+
+                            // Ajouter le nom d'utilisateur et l'image dans un HBox pour les positionner côte à côte
+                            HBox userInfoBox = new HBox(userImageView, userLabel);
+                            userInfoBox.setAlignment(Pos.CENTER_LEFT); // Aligner les éléments à gauche
+                            userInfoBox.setSpacing(10); // Espacement entre l'image et le nom d'utilisateur
+
+                            errortext = new Label();
+                            errortext.getStyleClass().addAll("error", "comment-textfield");
                             TextField commentaireField = new TextField(commentaire.getText());
                             commentaireField.setEditable(false);
                             commentaireField.getStyleClass().addAll("comment-textfield", "comment-textfield-centered");
                             commentaireField.getStyleClass().addAll("comment-text", "small-text", "grey-text"); // Appliquer le style au champ de texte
                             commentaireFields.put(commentaire.getId(), commentaireField); // Ajouter le champ de texte à la HashMap
-                            commentContent.getChildren().addAll(commentaireField, errortext,userLabel); // Ajouter d'abord le texte du commentaire puis le nom d'utilisateur
+
+                            commentContent.getChildren().addAll(commentaireField, errortext, userInfoBox); // Ajouter d'abord le texte du commentaire puis le nom d'utilisateur et l'image
 
                             HBox buttonBox = new HBox(); // Créer une boîte horizontale pour les boutons
                             buttonBox.setAlignment(Pos.CENTER_RIGHT); // Aligner les boutons à droite
                             buttonBox.setSpacing(10); // Définir l'espacement entre les boutons
-                            Button editButton = createIconButton("/icons/edit.png", () -> {
-                                if (!commentaireField.isEditable()) {
-                                    // Si le commentaire n'est pas en mode édition, activez l'édition et définissez le focus sur le champ de texte
-                                    commentaireField.setEditable(true);
-                                    commentaireField.requestFocus();
-                                } else {
-                                    // Si le commentaire est en mode édition, effectuez la modification
-                                    try {
-                                        editComment(commentaire.getId());
-                                    } catch (SQLException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                    // Vérifiez si la modification a réussi avant d'afficher l'alerte
-                                }
-                            });
-                            Button deleteButton = createIconButton("/icons/delete.png", () -> {
-                                deleteComment(commentaire.getId());
-                            });
-                            editButton.getStyleClass().addAll("btn-icone", "small-button");
-                            deleteButton.getStyleClass().addAll("btn-icone", "small-button");
 
-                            buttonBox.getChildren().addAll(editButton, deleteButton); // Ajouter les boutons à la boîte horizontale
+                            if (commentaire.getId_user_id() == id) {
+                                Button editButton = createIconButton("/icons/edit.png", () -> {
+                                    if (!commentaireField.isEditable()) {
+                                        // Si le commentaire n'est pas en mode édition, activez l'édition et définissez le focus sur le champ de texte
+                                        commentaireField.setEditable(true);
+                                        commentaireField.requestFocus();
+                                    } else {
+                                        // Si le commentaire est en mode édition, effectuez la modification
+                                        try {
+                                            editComment(commentaire.getId());
+                                        } catch (SQLException e) {
+                                            throw new RuntimeException(e);
+                                        }
+                                        // Vérifiez si la modification a réussi avant d'afficher l'alerte
+                                    }
+                                });
+                                Button deleteButton = createIconButton("/icons/delete.png", () -> {
+                                    deleteComment(commentaire.getId());
+                                });
+                                editButton.getStyleClass().addAll("btn-icone", "small-button");
+                                deleteButton.getStyleClass().addAll("btn-icone", "small-button");
+
+                                buttonBox.getChildren().addAll(editButton, deleteButton); // Ajouter les boutons à la boîte horizontale
+                            }
+
                             commentBox.getChildren().addAll(commentContent, buttonBox);
                             container.getChildren().add(commentBox);
                         }
+
                     }
 
                     // Ajouter les boutons de retour et d'ajout à la vue des commentaires
@@ -318,9 +359,9 @@ public class AfficherPub {
 
         }
 
+
         public void setTextPub(String textPub) {
             this.textPub.setText(textPub);
-
         }
 
         public void setTypePub(String typePub) {
@@ -331,6 +372,16 @@ public class AfficherPub {
         @FXML
         void retour() {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+            try {
+                Parent root = loader.load();
+                lieuPub.getScene().setRoot(root);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        @FXML
+        void retour2() {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
             try {
                 Parent root = loader.load();
                 lieuPub.getScene().setRoot(root);
@@ -489,6 +540,10 @@ public class AfficherPub {
                     } else {
                         // Pour chaque commentaire, créez des labels pour afficher les détails du commentaire
                         for (Commentaire commentaire : commentaires) {
+                            int userId = commentaire.getId();
+                            String userName = cs.getUserNameByCommentId(userId);
+                            String userImagePath = cs.getUserImageByCommentId(userId);
+
                             commentsView.getStyleClass().add("comment-container");
                             HBox commentBox = new HBox(); // Utilisation de HBox pour chaque commentaire
                             commentBox.setSpacing(20); // Définir l'espacement entre les éléments
@@ -497,15 +552,26 @@ public class AfficherPub {
                             VBox commentContent = new VBox(); // Créer un VBox pour contenir le texte du commentaire et le nom d'utilisateur
                             commentContent.setAlignment(Pos.TOP_LEFT); // Aligner les éléments en haut à gauche
 
-                            Label userLabel = new Label("Utilisateur: " + "test mr");
+                            Label userLabel = new Label(userName);
                             userLabel.getStyleClass().addAll("user-label", "small-text", "grey-text"); // Appliquer le style au label de l'utilisateur
+                            userLabel.setMaxWidth(200); // Limiter la largeur du label pour éviter qu'il ne prenne trop de place horizontalement
+
+                            // Créer un ImageView pour afficher l'image de l'utilisateur
+                            ImageView userImageView = new ImageView(new File(userImagePath).toURI().toString());
+                            userImageView.setFitHeight(60); // Ajuster la hauteur de l'image
+                            userImageView.setFitWidth(60); // Ajuster la largeur de l'image
+
+                            // Ajouter le nom d'utilisateur et l'image dans un HBox pour les positionner côte à côte
+                            HBox userInfoBox = new HBox(userImageView, userLabel);
+                            userInfoBox.setAlignment(Pos.CENTER_LEFT); // Aligner les éléments au centre gauche
+                            userInfoBox.setSpacing(10); // Espacement entre l'image et le nom d'utilisateur
 
                             TextField commentaireField = new TextField(commentaire.getText());
                             commentaireField.setEditable(false);
                             commentaireField.getStyleClass().addAll("comment-textfield", "comment-textfield-centered");
                             commentaireField.getStyleClass().addAll("comment-text", "small-text", "grey-text"); // Appliquer le style au champ de texte
                             commentaireFields.put(commentaire.getId(), commentaireField); // Ajouter le champ de texte à la HashMap
-                            commentContent.getChildren().addAll(commentaireField, userLabel); // Ajouter d'abord le texte du commentaire puis le nom d'utilisateur
+                            commentContent.getChildren().addAll(commentaireField, userInfoBox); // Ajouter d'abord le texte du commentaire puis le nom d'utilisateur et l'image
 
                             HBox buttonBox = new HBox(); // Créer une boîte horizontale pour les boutons
                             buttonBox.setAlignment(Pos.CENTER_RIGHT); // Aligner les boutons à droite
@@ -517,10 +583,11 @@ public class AfficherPub {
 
                             deleteButton.getStyleClass().addAll("btn-icone", "small-button");
 
-                            buttonBox.getChildren().addAll( deleteButton); // Ajouter les boutons à la boîte horizontale
+                            buttonBox.getChildren().addAll(deleteButton); // Ajouter les boutons à la boîte horizontale
                             commentBox.getChildren().addAll(commentContent, buttonBox);
                             container.getChildren().add(commentBox);
                         }
+
                     }
 
                     // Ajouter les boutons de retour et d'ajout à la vue des commentaires
@@ -568,7 +635,16 @@ public class AfficherPub {
         }
     }
 
-    public void setIdUser(int idUserId) {
-            this.idUser=idUserId;
+
+    public void delete1(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
+        try {
+            Parent root = loader.load();
+            lieuPub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
+
 }
