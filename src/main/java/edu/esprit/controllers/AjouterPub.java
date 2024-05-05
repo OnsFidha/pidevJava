@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
+import edu.esprit.utils.SessionManager;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.web.WebEngine;
 import javafx.stage.FileChooser;
@@ -47,9 +49,13 @@ public class AjouterPub {
 
     @FXML
     private TextField photoPub;
-
+    @FXML
+    private Label logedUsernamee;
     @FXML
     private Label typeError;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
     @FXML
     private ImageView imagePub;
@@ -58,7 +64,7 @@ public class AjouterPub {
     private ComboBox typePub;
     @FXML
     private WebView webView;
-
+    int id= SessionManager.getId_user() ;
     @FXML
     void retour() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
@@ -115,7 +121,7 @@ public class AjouterPub {
 
         // Si tous les champs sont remplis, ajouter la publication
         if (isValid) {
-            Publication p = new Publication(selectedType, TextPub.getText(), lieuPub.getText(), 2, photoPub.getText());
+            Publication p = new Publication(selectedType, TextPub.getText(), lieuPub.getText(), 2, photoPub.getText(),id);
             PublicationService ps = new PublicationService();
             try {
                 ps.ajouter(p);
@@ -174,16 +180,23 @@ public class AjouterPub {
     }
     @FXML
     void initialize() {
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
         photoPub.setEditable(false);
         WebEngine engine = webView.getEngine();
-        engine.load(getClass().getResource("/map.html").toExternalForm());
-        // Permet à JavaScript d'appeler la méthode processCoordinates() dans le contrôleur
-        engine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == Worker.State.SUCCEEDED) {
-                JSObject window = (JSObject) engine.executeScript("window");
-                window.setMember("javafxHandler", new JavaFXHandler());
-            }
-        });
+            engine.load(getClass().getResource("/map.html").toExternalForm());
+            // Permet à JavaScript d'appeler la méthode processCoordinates() dans le contrôleur
+            engine.getLoadWorker().stateProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue == Worker.State.SUCCEEDED) {
+                    JSObject window = (JSObject) engine.executeScript("window");
+                    window.setMember("javafxHandler", new JavaFXHandler());
+                }
+            });
+
     }
     public class JavaFXHandler {
         public void processCoordinates(double lat, double lng) {

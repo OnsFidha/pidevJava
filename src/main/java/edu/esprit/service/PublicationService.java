@@ -12,7 +12,7 @@ public class PublicationService implements IService <Publication> {
     Connection conn= DataSource.getInstance().getConn();
     @Override
     public void ajouter(Publication publication) throws SQLException {
-        String sql = "INSERT INTO publication (type, text, lieu, avis, photo) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO publication (type, text, lieu, avis, photo,id_user_id) VALUES (?, ?, ?, ?, ? ,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sql)) {
             statement.setString(1, publication.getType());
@@ -20,6 +20,7 @@ public class PublicationService implements IService <Publication> {
             statement.setString(3, publication.getLieu());
             statement.setInt(4, publication.getAvis());
             statement.setString(5, publication.getPhoto());
+            statement.setInt(6, publication.getId_user_id());
             statement.executeUpdate();
         }
      catch (SQLException e) {
@@ -106,6 +107,24 @@ public class PublicationService implements IService <Publication> {
         return countByType;
     }
 
+    public String getUserNamePrenameByPublicationId(int publicationId) throws SQLException {
+        String userNamePrename = null;
+        String sql = "SELECT u.name, u.prename FROM publication p JOIN user u ON p.id_user_id = u.id WHERE p.id = ?";
+
+        try (PreparedStatement statement = conn.prepareStatement(sql)) {
+            statement.setInt(1, publicationId);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                userNamePrename = resultSet.getString("name") + " " + resultSet.getString("prename");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e;
+        }
+
+        return userNamePrename;
+    }
+
     @Override
     public Publication getOneById(int id) throws SQLException {
         Publication publication = null;
@@ -124,7 +143,7 @@ public class PublicationService implements IService <Publication> {
                 publication.setPhoto(resultSet.getString("photo"));
                 publication.setDateCreation(resultSet.getDate("date_creation"));
                 publication.setDateModification(resultSet.getDate("date_modification"));
-
+                publication.setId_user_id(resultSet.getInt("id_user_id"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

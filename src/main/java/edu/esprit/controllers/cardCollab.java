@@ -1,11 +1,18 @@
 package edu.esprit.controllers;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.sql.SQLException;
 import java.util.Properties;
 import java.util.ResourceBundle;
 import edu.esprit.entities.Collaboration;
+import edu.esprit.service.CollaborationService;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.fxml.FXML;
@@ -15,9 +22,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import javax.mail.MessagingException;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class cardCollab {
 
@@ -44,12 +54,61 @@ public class cardCollab {
     @FXML
     private VBox competencesContainer;
 
+   // String imagePath = SessionManager.getImage();
+    //String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
+
+
     @FXML
     void initialize() {
-
+        cv.setOnMouseClicked(event -> {
+            // Récupérer le nom du fichier PDF depuis le label
+            String fileName = cv.getText();
+            if (fileName != null && !fileName.isEmpty()) {
+                // Récupérer le chemin complet du fichier PDF
+                String sourceFilePath = "C:/Users/HP/Desktop/projetIntegration/pidev/public/cv/" + fileName;
+                File sourceFile = new File(sourceFilePath);
+                if (sourceFile.exists()) {
+                    // Ouvrir une boîte de dialogue pour choisir l'emplacement de téléchargement
+                    FileChooser fileChooser = new FileChooser();
+                    fileChooser.setTitle("Enregistrer sous");
+                    fileChooser.setInitialFileName(fileName);
+                    File destinationFile = fileChooser.showSaveDialog(new Stage());
+                    if (destinationFile != null) {
+                        try {
+                            // Copier le fichier depuis son emplacement actuel vers l'emplacement de téléchargement
+                            Files.copy(Paths.get(sourceFilePath), destinationFile.toPath());
+                            // Ouvrir le fichier PDF après le téléchargement
+                            Desktop.getDesktop().open(destinationFile);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            // Gérer les erreurs de copie ou d'ouverture du fichier
+                        }
+                    }
+                } else {
+                    // Gérer le cas où le fichier source n'existe pas
+                }
+            }
+        });
     }
+
     public void setData(Collaboration collaborateur) {
-        user.setText("Noussa"); // Remplir le nom du collaborateur dans le label user
+        CollaborationService cs=new CollaborationService();
+        try {
+            String userName = cs.getUserNameByCollaborationId(collaborateur.getId());
+            String userImage = cs.getUserImageByCollaborationId(collaborateur.getId());
+
+            if (userName != null) {
+                user.setText(userName);
+            }
+
+            if (userImage != null) {
+                Image image = new Image(new File(userImage).toURI().toString());
+                userimage.setImage(image);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les erreurs de récupération des données de l'utilisateur
+        }
 
         String competencesString = collaborateur.getCompetence();
         String[] competences = competencesString.split(" ");

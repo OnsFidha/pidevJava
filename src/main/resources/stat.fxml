@@ -45,7 +45,7 @@
                 <children>
                     <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                         <image>
-                            <Image url="@icons/UserIcon.png" />
+                            <Image url="@icons/group.png" />
                         </image>
                         <HBox.margin>
                             <Insets top="5.0" />

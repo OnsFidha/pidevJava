@@ -12,7 +12,7 @@
    <children>
       <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" translateX="10.0" translateY="10.0" AnchorPane.bottomAnchor="213.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="310.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@icons/previous%20(1).png" />
+            <Image url="@icons/previous.png" />
          </image>
          <cursor>
             <Cursor fx:constant="HAND" />

@@ -1,11 +1,8 @@
 package edu.esprit.controllers;
 
 import com.dark.programs.speech.translator.GoogleTranslate;
-import edu.esprit.entities.Evenement;
 import edu.esprit.entities.Feedback;
-import edu.esprit.entities.User;
 import edu.esprit.entities.Utilisateur;
-import edu.esprit.service.EvenementService;
 import edu.esprit.service.FeedbackService;
 import edu.esprit.services.ServiceUtilisateur;
 import edu.esprit.utils.SessionManager;
@@ -21,7 +18,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
 

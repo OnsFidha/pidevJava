@@ -57,7 +57,7 @@
                   <Insets left="30.0" right="40.0" top="40.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox fx:id="prod" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -80,7 +80,7 @@
                   <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox fx:id="pub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -129,7 +129,7 @@
                   <Insets bottom="30.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox fx:id="event" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -152,7 +152,7 @@
                   <Insets left="30.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox fx:id="recla" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -163,6 +163,29 @@
                      </HBox.margin>
                   </ImageView>
                   <Label text="Reclamation">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="30.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </HBox>
+            <HBox fx:id="users" layoutX="10.0" layoutY="460.0" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+               <children>
+                  <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@icons/group.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="Utilisateur">
                      <font>
                         <Font size="24.0" />
                      </font>

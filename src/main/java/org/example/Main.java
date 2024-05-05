@@ -23,7 +23,6 @@ public class Main {
         CommentaireService cs=new CommentaireService();
         CollaborationService cols=new CollaborationService();
 
-
                 try {
                     System.out.println(cols.getListByIdPublication(4));
         } catch (SQLException e) {

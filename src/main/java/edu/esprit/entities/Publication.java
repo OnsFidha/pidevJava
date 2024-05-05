@@ -16,12 +16,13 @@ public class Publication {
 
     public Publication() {
     }
-    public Publication(String type, String text, String lieu, Integer avis, String photo) {
+    public Publication(String type, String text, String lieu, Integer avis, String photo,int id_user_id) {
         this.type = type;
         this.text = text;
         this.lieu = lieu;
         this.avis = avis;
         this.photo = photo;
+        this.id_user_id= id_user_id;
     }
 
 

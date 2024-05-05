@@ -9,6 +9,7 @@ import com.mysql.cj.xdevapi.JsonParser;
 import edu.esprit.entities.Commentaire;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.CommentaireService;
+import edu.esprit.utils.SessionManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,12 +18,19 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
 public class AjouterCom {
 
     @FXML
     private ResourceBundle resources;
+    @FXML
+    private Label logedUsernamee;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
     @FXML
     private URL location;
@@ -35,6 +43,7 @@ public class AjouterCom {
     @FXML
     private TextArea text;
     private Publication p;
+    int id= SessionManager.getId_user() ;
 
     @FXML
     void addCom(ActionEvent event) {
@@ -65,6 +74,7 @@ public class AjouterCom {
                 Commentaire commentaire = new Commentaire();
                 commentaire.setId_publication(this.p.getId());
                 commentaire.setText(commentaireText);
+                commentaire.setId_user_id(id);
 
                 CommentaireService commentaireService = new CommentaireService();
                 try {
@@ -94,5 +104,11 @@ public class AjouterCom {
 
     @FXML
     void initialize() {
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
     }
 }

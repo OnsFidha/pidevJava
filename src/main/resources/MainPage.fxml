@@ -79,7 +79,7 @@
                         <Insets bottom="30.0" left="30.0" right="40.0" top="20.0" />
                     </VBox.margin>
                 </HBox>
-            <HBox prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+            <HBox fx:id="users" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                <children>
                   <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -89,7 +89,7 @@
                         <Insets top="5.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label fx:id="users"  text="Utilisateurs">
+                  <Label text="Utilisateurs">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -201,14 +201,6 @@
          </styleClass>
       </Label>
       <Button layoutX="833.0" layoutY="250.0" mnemonicParsing="false" onAction="#openURL" prefHeight="35.0" prefWidth="78.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Essayer" />
-      <Button fx:id="AdminP" layoutX="1076.0" layoutY="99.0" mnemonicParsing="false" onAction="#PanelAdmin" style="-fx-background-color: #f9a936;" styleClass="btn" text=" Admin       " textFill="WHITE">
-         <graphic>
-            <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true" />
-         </graphic>
-         <font>
-            <Font name="Roboto Regular" size="16.0" />
-         </font>
-      </Button>
 
     </children>
 

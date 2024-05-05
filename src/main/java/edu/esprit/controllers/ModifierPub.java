@@ -11,10 +11,12 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
+import edu.esprit.utils.SessionManager;
 import javafx.concurrent.Worker;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.web.WebView;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
@@ -29,7 +31,8 @@ import javafx.stage.FileChooser;
 import netscape.javascript.JSObject;
 
 public class ModifierPub {
-
+    @FXML
+    private Label logedUsernamee;
     @FXML
     private ResourceBundle resources;
 
@@ -69,6 +72,9 @@ public class ModifierPub {
     private WebView webView;
     private Publication p;
     boolean isValid;
+
+    String imagePath = SessionManager.getImage();
+    String nameP= SessionManager.getName()+" "+SessionManager.getPrename();
 
     @FXML
     void ModifyPub(ActionEvent event) {
@@ -185,6 +191,12 @@ public class ModifierPub {
 
     @FXML
     void initialize() {
+        logedUsernamee.setText(nameP);
+        int img = imagePath.lastIndexOf("\\");
+        String nomFichier = imagePath.substring(img + 1);
+        Image image = new Image("assets/uploads/"+nomFichier);
+        circle.setFill(new ImagePattern(image));
+
         photoPub.setEditable(false);
         WebEngine engine = webView.getEngine();
         engine.load(getClass().getResource("/map.html").toExternalForm());

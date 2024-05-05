@@ -294,7 +294,7 @@ public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
     private void getListProduit() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/front/produits/FrontTemplate.fxml"));
         try {
 
             Parent root = loader.load();

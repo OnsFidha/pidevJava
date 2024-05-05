@@ -148,7 +148,9 @@ public class ConnectionUserController implements Initializable {
                         Task<Parent> task = new Task<>() {
                             @Override
                             protected Parent call() throws Exception {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminPage.fxml"));
+                                // FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+
                                 return loader.load();
                             }
                         };

@@ -12,11 +12,16 @@ public class Collaboration {
 
     }
 
-    public Collaboration(String disponibilite, String competence, String cv, int id_publication) {
+    public Collaboration(String disponibilite, String competence, String cv, int id_publication,int id_user) {
         this.disponibilite = disponibilite;
         this.competence = competence;
         this.cv = cv;
         this.id_publication = id_publication;
+        this.id_user=id_user;
+    }
+
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
     public void setId(int id) {

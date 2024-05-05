@@ -347,7 +347,7 @@ public class AfficherReclamationAdmin {
     @FXML
     void RetourEvent(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminEvent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -363,7 +363,7 @@ public class AfficherReclamationAdmin {
     @FXML
     void RetourProduit(MouseEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamationAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("admin/AdminTemplate.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
