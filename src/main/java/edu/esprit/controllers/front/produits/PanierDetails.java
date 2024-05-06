@@ -118,6 +118,15 @@ public class PanierDetails extends FrontContentPanel {
 
     @FXML
     void passerCommande(ActionEvent event) {
+        if(Objects.isNull(UserCommande.getCommande())
+                || Objects.isNull(UserCommande.getCommande().getDetailsCommande())
+                || UserCommande.getCommande().getDetailsCommande().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setContentText("Votre panier est vide, stp ajouter des produits au panier");
+            alert.showAndWait();
+            return;
+        }
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Confirmation");
         confirm.setContentText("Voulez-vous passer la commande");
