@@ -4,27 +4,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="545.0" prefWidth="1082.0" styleClass="window-content" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.admin.commandes.AfficherCommandes">
+<AnchorPane prefHeight="545.0" prefWidth="1082.0" styleClass="window-content" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.admin.commandes.AfficherCommandes">
    <children>
-      <Text layoutX="300.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="     Liste des  commandes" textAlignment="CENTER" textOrigin="CENTER" wrappingWidth="489.80001220703116">
-         <font>
-            <Font name="System Bold Italic" size="36.0" />
-         </font>
-      </Text>
-      <ScrollPane layoutX="14.0" layoutY="145.0" prefHeight="366.0" prefWidth="1023.0" styleClass="product-grid" stylesheets="@../../css/styles.css">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="996.0" styleClass="product-grid" stylesheets="@../../css/styles.css">
+      <HBox layoutX="92.0" layoutY="22.0" prefHeight="100.0" prefWidth="784.0">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text=" Liste des Commandes" textAlignment="RIGHT" textOrigin="CENTER" wrappingWidth="569.8000274658202">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+      <ScrollPane layoutX="92.0" layoutY="142.0" prefHeight="246.0" prefWidth="795.0" styleClass="product-grid" stylesheets="@../../css/styles.css">
+         <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="890.0" styleClass="product-grid" stylesheets="@../../css/styles.css">
                <children>
-                  <GridPane fx:id="gridCommandes" layoutX="14.0" layoutY="23.0" prefHeight="30.0" prefWidth="981.0" styleClass="product-grid" stylesheets="@../../css/styles.css" vgap="10.0">
+                  <GridPane fx:id="gridCommandes" layoutX="14.0" layoutY="23.0" prefWidth="873.0" styleClass="product-grid" stylesheets="@../../css/styles.css" vgap="10.0">
                     <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.00003967285156" minWidth="10.0" prefWidth="238.00003967285156" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="238.00003967285156" minWidth="10.0" prefWidth="238.00003967285156" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="546.4000366210937" minWidth="10.0" prefWidth="504.7999603271485" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.79997558593755" minWidth="10.0" prefWidth="217.59996337890618" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="259.1999755859375" minWidth="10.0" prefWidth="173.3999755859375" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="317.59997863769536" minWidth="10.0" prefWidth="171.79999999999998" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="391.1999755859375" minWidth="10.0" prefWidth="350.4000122070312" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="296.0000244140625" minWidth="10.0" prefWidth="120.79998779296875" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -32,7 +37,7 @@
                   </GridPane>
                </children>
             </AnchorPane>
-        </content>
+         </content>
       </ScrollPane>
    </children>
 </AnchorPane>

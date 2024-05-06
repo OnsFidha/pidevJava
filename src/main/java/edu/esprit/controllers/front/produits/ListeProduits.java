@@ -45,7 +45,7 @@ public class ListeProduits extends FrontContentPanel {
     public void showProducts(){
         try {
             addCategorieToDropDown();
-            List<Produit> produits = serviceProduit.getAll().stream().toList();
+            List<Produit> produits = serviceProduit.getAll();
             addProductsToGrid(produits);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +81,7 @@ public class ListeProduits extends FrontContentPanel {
 
     void filterProductByCategory(Categorie categorie){
         try {
-            List<Produit> produits = serviceProduit.getAll().stream().toList();
+            List<Produit> produits = serviceProduit.getAll();
             if(Objects.nonNull(categorie) && categorie.getId()!=-1){
                 produits = produits.stream().filter(produit -> produit.getCategorie().getId()==categorie.getId()).toList();
             }

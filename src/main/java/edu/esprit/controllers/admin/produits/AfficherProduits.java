@@ -35,6 +35,7 @@ public class AfficherProduits extends AdminContentPanel{
     public void showData() {
         try {
             List<Produit> produits =  serviceProduit.getAll();
+            gridProduits.getChildren().clear();
             int index=0;
             gridProduits.addRow(index, createGridHeaderLabel("Nom"),
                     createGridHeaderLabel("Catégorie"), createGridHeaderLabel("Prix"),

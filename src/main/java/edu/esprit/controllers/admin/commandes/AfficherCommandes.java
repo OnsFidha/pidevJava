@@ -19,7 +19,7 @@ import java.util.Objects;
 
 import static edu.esprit.utils.CommonUtils.createGridHeaderLabel;
 
-public class AfficherCommandes {
+public class  AfficherCommandes {
 
     @FXML
     private GridPane gridCommandes;
@@ -28,8 +28,10 @@ public class AfficherCommandes {
         try {
             List<Commande> commandes =  commandeService.getAll();
             int index=0;
-            gridCommandes.addRow(index, createGridHeaderLabel("Date"), createGridHeaderLabel("Utilisateur"),
-                    createGridHeaderLabel("Produit(s)"), createGridHeaderLabel("Montant Total"));
+            gridCommandes.addRow(index, createGridHeaderLabel("Date"),
+                    createGridHeaderLabel("Utilisateur"),
+                    createGridHeaderLabel("Produit(s)"),
+                    createGridHeaderLabel("Montant"));
             index++;
             for (Commande commande: commandes){
                 SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");

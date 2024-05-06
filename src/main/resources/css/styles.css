@@ -85,7 +85,7 @@
     -fx-background-color: #BEE5B4;
     -fx-font-weight: bold;
 }
-.grid-content .header-node {
+.header-node {
      -fx-font-size: 20px;
      -fx-font-weight: bold;
 }
