@@ -105,7 +105,7 @@ public class AfficherReclamationAdmin {
             PDPageContentStream contentStream = new PDPageContentStream(document, page);
 
             // Load your logo image
-            File logoFile = new File("C:\\Users\\21624\\Desktop\\pidevJava\\src\\main\\resources\\img\\Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png");
+            File logoFile = new File("C:\\Users\\HP\\IdeaProjects\\ons+mehdi+sana\\src\\main\\resources\\img\\Copie_de_Beige_Watercolor_Project_Presentation-removebg-preview.png");
             PDImageXObject logoImage = PDImageXObject.createFromFileByContent(logoFile, document);
 
             // Draw your logo on the page

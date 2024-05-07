@@ -227,8 +227,8 @@
                                             </VBox.margin>
                                             <items>
                                                 <FXCollections fx:factory="observableArrayList">
-                                                    <String fx:value="Ordinaire" />
-                                                    <String fx:value="Offre" />
+                                                    <String fx:value="ordinaire" />
+                                                    <String fx:value="offre" />
                                                 </FXCollections>
                                             </items>
                                         </ComboBox>

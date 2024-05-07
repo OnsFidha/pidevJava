@@ -142,8 +142,8 @@ public class AjouterEvent {
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
-//            String destinationDirectory = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/";
-            String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
+       String destinationDirectory = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/";
+      //      String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
 
 
             // Generate a unique file name
@@ -155,8 +155,8 @@ public class AjouterEvent {
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
                 // Store the relative path of the selected image in the event object
-//                String relativeImagePath = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
-                String relativeImagePath = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/" + fileName;
+           String relativeImagePath = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
+      //          String relativeImagePath = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/" + fileName;
 
 
 

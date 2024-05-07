@@ -81,7 +81,7 @@
                   <Insets right="5.0" />
                </HBox.margin>
             </Button>
-            <Label fx:id="logedUsernamee" style="-fx-border-color: #f76a79; -fx-border-width: 2;" text="Label" textFill="WHITE">
+            <Label fx:id="logedUsernamee" prefHeight="26.0" prefWidth="108.0" style="-fx-border-color: #f76a79; -fx-border-width: 2;" text="Label">
                <font>
                   <Font name="Bodoni MT Bold" size="16.0" />
                </font>

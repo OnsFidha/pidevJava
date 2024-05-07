@@ -4,10 +4,12 @@ import edu.esprit.entities.Collaboration;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.CollaborationService;
 import edu.esprit.utils.SessionManager;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -21,7 +23,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ListCollab implements Initializable {
+public class ListCollab  {
 
     @FXML
     private ResourceBundle resources;
@@ -29,7 +31,8 @@ public class ListCollab implements Initializable {
     private Label logedUsernamee;
     @FXML
     private URL location;
-
+    @FXML
+    private Label non;
     String imagePath = SessionManager.getImage();
     String nameP= SessionManager.getName()+" "+ SessionManager.getPrename();
 
@@ -44,8 +47,8 @@ public class ListCollab implements Initializable {
         this.p=p;
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    public void initialize(Publication p) {
         logedUsernamee.setText(nameP);
         int img = imagePath.lastIndexOf("\\");
         String nomFichier = imagePath.substring(img + 1);
@@ -55,12 +58,14 @@ public class ListCollab implements Initializable {
         CollaborationService cs = new CollaborationService();
         List<Collaboration> collaborateurs;
         try {
-            collaborateurs = cs.getListByIdPublication(1);
+            collaborateurs = cs.getListByIdPublication(p.getId());
 
             int column = 0;
             int row = 0;
             int maxColumnsPerRow = 2;
-
+            if(collaborateurs.isEmpty()){
+                non.setText("pas de collaboration pour le moment");
+            }else{
             for (Collaboration collaborateur : collaborateurs) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/cardCollab.fxml"));
                 AnchorPane card = loader.load();
@@ -84,10 +89,19 @@ public class ListCollab implements Initializable {
                 liste.setHgap(25);
                 liste.setVgap(250);
              //   GridPane.setMargin(card, new Insets(7));
-            }
+            }}
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
 
+    public void retour(ActionEvent actionEvent) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListPub.fxml"));
+        try {
+            Parent root = loader.load();
+            liste.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

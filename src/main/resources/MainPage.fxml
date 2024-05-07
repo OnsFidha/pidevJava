@@ -33,6 +33,16 @@
                         <Rectangle2D />
                     </viewport>
                 </ImageView>
+                <HBox  prefHeight="22.0" prefWidth="204.0" spacing="3.0">
+                <Button mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
+                    <HBox.margin>
+                        <Insets top="5.0" />
+                    </HBox.margin>
+                </HBox>
                 <HBox fx:id="home" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
                         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -101,6 +111,7 @@
                <padding>
                   <Insets left="30.0" />
                </padding>
+
             </HBox>
                 <HBox fx:id="pub" prefHeight="22.0" prefWidth="204.0" spacing="3.0">
                     <children>
@@ -194,13 +205,28 @@
 
             </children>
         </HBox>
-        <Label layoutX="453.0" layoutY="165.0" stylesheets="@css/style.css" text="Consulter notre musée en ligne ">
+        <Label layoutX="460.0" layoutY="93.0" stylesheets="@css/style.css" text="Consulter notre musée en ligne ">
          <styleClass>
             <String fx:value="label-title" />
             <String fx:value="title-style" />
          </styleClass>
       </Label>
-      <Button layoutX="833.0" layoutY="250.0" mnemonicParsing="false" onAction="#openURL" prefHeight="35.0" prefWidth="78.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Essayer" />
+      <Button layoutX="983.0" layoutY="469.0" mnemonicParsing="false" onAction="#openURL" prefHeight="35.0" prefWidth="78.0" styleClass="btn-nrml" stylesheets="@css/style.css" text="Essayer" />
+      <ImageView fitHeight="288.0" fitWidth="472.0" layoutX="257.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="icons/1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="220.0" fitWidth="260.0" layoutX="801.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="icons/2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="206.0" fitWidth="472.0" layoutX="257.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="icons/3.png" />
+         </image>
+      </ImageView>
 
     </children>
 

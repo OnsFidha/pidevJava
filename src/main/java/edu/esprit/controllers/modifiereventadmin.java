@@ -182,10 +182,12 @@ public class modifiereventadmin {
             File selectedFile = fileChooser.showOpenDialog(null);
 
             if (selectedFile != null) {
-                String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
+                String destinationDirectory = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/";
+                //      String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
 
-                // Générer un nom de fichier unique
-                fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
+
+                // Generate a unique file name
+                 fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
 
                 try {
                     // Copy the selected file to the destination directory
@@ -193,7 +195,7 @@ public class modifiereventadmin {
                     Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
                     // Store the relative path of the selected image in the event object
-                    String relativeImagePath = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/" + fileName;
+                    String relativeImagePath = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
                     Nevent.setImage(relativeImagePath); // Update the Event object with the relative image path
 
                     // Update the image of the ImageView

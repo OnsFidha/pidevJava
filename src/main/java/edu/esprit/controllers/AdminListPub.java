@@ -3,6 +3,7 @@ package edu.esprit.controllers;
 import edu.esprit.entities.Publication;
 import edu.esprit.service.PublicationService;
 import edu.esprit.utils.SessionManager;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.image.Image;
@@ -39,17 +41,36 @@ public class AdminListPub implements Initializable {
     String nameP= SessionManager.getName()+" "+ SessionManager.getPrename();
 
     @FXML
-    private URL location;
-    @FXML
     private Button BtnRecherche;
 
     @FXML
     private Circle circle;
 
     @FXML
-    private GridPane pubList;
+    private HBox event;
+
+
+
     @FXML
     private Pagination pagination;
+
+    @FXML
+    private HBox produit;
+
+    @FXML
+    private HBox pub;
+
+    @FXML
+    private GridPane pubList;
+
+    @FXML
+    private HBox recla;
+
+    @FXML
+    private HBox reponse;
+
+    @FXML
+    private HBox users;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logedUsernamee.setText(nameP);
@@ -57,6 +78,53 @@ public class AdminListPub implements Initializable {
         String nomFichier = imagePath.substring(img + 1);
         Image image = new Image("assets/uploads/"+nomFichier);
         circle.setFill(new ImagePattern(image));
+        EventHandler<MouseEvent> clickHandler4 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListEvent();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        event.setOnMouseClicked(clickHandler4);
+        EventHandler<MouseEvent> clickHandler3 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListRecla();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        recla.setOnMouseClicked(clickHandler3);
+        // Créer un EventHandler pour gérer les clics sur le HBox
+        EventHandler<MouseEvent> clickHandler = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListPub();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        pub.setOnMouseClicked(clickHandler);
+        EventHandler<MouseEvent> clickHandler2 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListUsers();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        users.setOnMouseClicked(clickHandler2);
+        EventHandler<MouseEvent> clickHandler10 = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                getListProduit();
+            }
+        };
+
+        // Ajouter l'EventHandler au HBox
+        produit.setOnMouseClicked(clickHandler10);
+
 
         // Initialize the publication list
         initPublicationList();
@@ -143,7 +211,70 @@ public class AdminListPub implements Initializable {
             e.printStackTrace();
         }
     }
+    private void getListRep() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReponseAdmin.fxml"));
+        try {
 
+            Parent root = loader.load();
+            pubList.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private void getListPub() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminListPub.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pub.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListProduit() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/admin/AdminTemplate.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pubList.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListRecla() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReclamationAdmin.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pubList.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListEvent() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/baseAdminEvent.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pubList.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void getListUsers() {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+        try {
+
+            Parent root = loader.load();
+            pubList.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
     private void deletePublication(Publication publication) {
         PublicationService publicationService = new PublicationService();
         try {

@@ -56,7 +56,11 @@ public class CardUser1Controller {
         emaillb.setText(user.getEmail());
         roleslb.setText(user.getRoles());
         phonelb.setText(String.valueOf(user.getPhone()));
+        nomprenomlb.setStyle("-fx-text-fill: #000");
+        phonelb.setStyle("-fx-text-fill: #000");
+        roleslb.setStyle("-fx-text-fill: #000");
+        emaillb.setStyle("-fx-text-fill: #000");
         userpane.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
-        userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#202020");
+        userpane.setStyle("-fx-border-radius: 5px;-fx-border-color:#000");
     }
 }

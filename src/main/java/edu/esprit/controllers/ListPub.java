@@ -186,9 +186,8 @@ public class ListPub implements Initializable {
         }
     }
     private void getListProduit() {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/BaseFront.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/front/produits/FrontTemplate.fxml"));
         try {
-
             Parent root = loader.load();
             pub.getScene().setRoot(root);
         } catch (IOException e) {

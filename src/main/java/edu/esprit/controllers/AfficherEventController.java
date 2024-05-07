@@ -370,7 +370,7 @@ public class AfficherEventController {
                 // Add participation to the database
                 ParticipationService participationService = new ParticipationService();
                 // Assuming you have the user's ID stored in a variable called userId
-                int userId = 2; // Replace 1 with the actual user ID
+                int userId = SessionManager.getId_user(); // Replace 1 with the actual user ID
                 if (!participationService.hasParticipated(userId, event.getId())) {
                     evenementService.modifier(event);
                     // Display success message

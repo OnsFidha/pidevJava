@@ -629,6 +629,7 @@ public class AfficherPub {
             Parent root = loader.load();
             ListCollab listCollab = loader.getController();
             listCollab.initData(this.p);
+            listCollab.initialize(this.p);
             lieuPub.getScene().setRoot(root);
         } catch (IOException e) {
             throw new RuntimeException(e);

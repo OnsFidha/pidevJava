@@ -40,6 +40,7 @@ import java.util.ResourceBundle;
 import java.util.UUID;
 
 public class AdminUserController implements Initializable {
+
     @FXML
     private ResourceBundle resources;
     @FXML
@@ -74,10 +75,8 @@ public class AdminUserController implements Initializable {
     private Label uinfolabel;
     @FXML
     private ImageView logedUserimage;
-
     @FXML
     private Label logedUsernamee;
-
     @FXML
     private TextField usersearch;
     @FXML
@@ -86,14 +85,12 @@ public class AdminUserController implements Initializable {
     private Label adminCountLabel;
     @FXML
     private Label userCountLabel;
-
-
     ObservableList<String> RolesList = FXCollections.observableArrayList("User", "Admin");
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
-
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb)
+    {
         load();
         rolescb.setValue("User");
         rolescb.setItems(RolesList);
@@ -112,7 +109,8 @@ public class AdminUserController implements Initializable {
 
     }
 
-    private boolean emailExists(String email) throws SQLException {
+    private boolean emailExists(String email) throws SQLException
+    {
         cnx = MyDataBase.getInstance().getCnx();
         String query = "SELECT * FROM `user` WHERE email=?";
         PreparedStatement statement = cnx.prepareStatement(query);
@@ -122,7 +120,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void AjouterUser(ActionEvent actionEvent) throws SQLException {
+    public void AjouterUser(ActionEvent actionEvent) throws SQLException
+    {
         String NAME = nametf.getText();
         String PRENAME = prenametf.getText();
         String EMAIL = emailtf.getText();
@@ -147,7 +146,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void ModifierUser(ActionEvent actionEvent) {
+    public void ModifierUser(ActionEvent actionEvent)
+    {
         int ID = Integer.parseInt(idtf.getText());
         String NAME = nametf.getText();
         String PRENAME = prenametf.getText();
@@ -171,7 +171,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void pdpup(ActionEvent actionEvent) {
+    public void pdpup(ActionEvent actionEvent)
+    {
         String imagePath = null;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Image File");
@@ -206,7 +207,8 @@ public class AdminUserController implements Initializable {
         }
     }
 
-    public void load() {
+    public void load()
+    {
         int column = 0;
         int row = 1;
         try {
@@ -229,7 +231,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void TriName(ActionEvent actionEvent){
+    public void TriName(ActionEvent actionEvent)
+    {
         int column = 0;
         int row = 1;
         try {
@@ -252,12 +255,14 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void refresh(ActionEvent actionEvent){
+    public void refresh(ActionEvent actionEvent)
+    {
         load();
     }
 
     @FXML
-    public void TriEmail(ActionEvent actionEvent){
+    public void TriEmail(ActionEvent actionEvent)
+    {
         int column = 0;
         int row = 1;
         try {
@@ -280,7 +285,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void RechercheName(ActionEvent actionEvent) {
+    public void RechercheName(ActionEvent actionEvent)
+    {
         int column = 0;
         int row = 1;
         String recherche = usersearch.getText();
@@ -305,7 +311,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void Menu1(ActionEvent actionEvent) {
+    public void Menu1(ActionEvent actionEvent)
+    {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Charts.fxml"));
             Parent root = loader.load();
@@ -320,7 +327,8 @@ public class AdminUserController implements Initializable {
     }
 
     @FXML
-    public void Deconnection(ActionEvent actionEvent) {
+    public void Deconnection(ActionEvent actionEvent)
+     {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
             Parent root = loader.load();

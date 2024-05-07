@@ -115,7 +115,6 @@ public class PanierDetails extends FrontContentPanel {
             throw new RuntimeException(e);
         }
     }
-
     @FXML
     void passerCommande(ActionEvent event) {
         if(Objects.isNull(UserCommande.getCommande())
