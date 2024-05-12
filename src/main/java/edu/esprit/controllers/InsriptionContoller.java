@@ -33,7 +33,7 @@ import java.sql.Connection;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
-
+import org.mindrot.jbcrypt.BCrypt;
 public class InsriptionContoller {
     @FXML
     private TextField namereg;
@@ -75,8 +75,7 @@ public class InsriptionContoller {
                 "Your verification code is: " + code
         ).create();
     }
-
-    @FXML
+@FXML
     public void inscription(javafx.event.ActionEvent actionEvent) {
         int PHONE = Integer.parseInt(phonereg.getText());
         String NAME = namereg.getText();
@@ -92,12 +91,10 @@ public class InsriptionContoller {
             } else if (UserS.checkUserExists(EMAIL)) {
                 //chercher si l'email existe deja
                 reginfo.setText("Email déjà existe");
-            }
-            else if (!UserS.isValidPassword(mdpreg.getText())) {
+            } else if (!UserS.isValidPassword(mdpreg.getText())) {
                 //chercher si le mot depasse est faile
                 reginfo.setText("mot de passe faible");
-            }
-            else {
+            } else {
                 this.verificationCode = generateVerificationCode();
                 sendVerificationCode(String.valueOf(PHONE), this.verificationCode);
                 boolean isCodeVerified = false;
@@ -110,21 +107,11 @@ public class InsriptionContoller {
                     if (result.isPresent()) {
                         String inputCode = result.get();
                         if (inputCode.equals(this.verificationCode)) {
+                            // Hasher le mot de passe avec Bcrypt
+                            String hashedPassword = BCrypt.hashpw(MDP, BCrypt.gensalt());
 
-                            MessageDigest md = MessageDigest.getInstance("SHA-256");
-                            byte[] hash = md.digest(mdpreg.getText().getBytes());
-                            //String mdpHash = Utility.toHexString(hash);
-                            StringBuilder hexString = new StringBuilder();
-                            for (byte hashByte : hash) {
-                                String hex = Integer.toHexString(0xff & hashByte);
-                                if (hex.length() == 1) {
-                                    hexString.append('0');
-                                }
-                                hexString.append(hex);
-                            }
-                            String mdpHash = hexString.toString();
                             isCodeVerified = true;
-                            UserS.Add(new Utilisateur(0, NAME, PRENAME, EMAIL, mdpHash, PHONE,"User", IMAGE));
+                            UserS.Add(new Utilisateur(0, NAME, PRENAME, EMAIL, hashedPassword, PHONE,"[\"User\"]", IMAGE));
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
                                 Parent root = loader.load();
@@ -134,7 +121,7 @@ public class InsriptionContoller {
                                 stage.setTitle("artistool - Connection");
                                 stage.show();
                             } catch (IOException e) {
-                                System.out.println(e.getMessage());;
+                                System.out.println(e.getMessage());
                             }
                         } else {
                             Alert errorAlert = new Alert(Alert.AlertType.ERROR);

@@ -87,7 +87,7 @@
       </Label>
       <ImageView fitHeight="768.0" fitWidth="547.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@assets/uploads/yeux-scintillaient-couleurs-vibrantes-feuilles-automne-generative-ai%20-%20Copie.jpg" />
+            <Image url="@assets/uploads/1.jpg" />
          </image>
       </ImageView>
         <Label layoutX="665.0" layoutY="544.0" prefHeight="39.0" prefWidth="160.0" text="Vous avez déja un compte ?" />

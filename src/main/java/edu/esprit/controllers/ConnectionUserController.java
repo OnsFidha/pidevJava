@@ -32,6 +32,8 @@ import java.util.Optional;
 import java.util.Properties;
 import java.util.Random;
 import java.util.ResourceBundle;
+import org.mindrot.jbcrypt.BCrypt;
+
 
 public class ConnectionUserController implements Initializable {
     @FXML
@@ -103,117 +105,105 @@ public class ConnectionUserController implements Initializable {
 
     int loginAttempts = 0;
     int MAX_ATTEMPTS=5;
+    private String convertBcryptPrefixTo2a(String hash) {
+        if (hash != null && hash.startsWith("$2y$")) {
+            return "$2a$" + hash.substring(4);
+        }
+        return hash;
+    }
     @FXML
     public void connecter(ActionEvent actionEvent) throws IOException {
-        String qry = "SELECT * FROM `user` WHERE `email`=? AND `password`=?";
-
+        String qry = "SELECT * FROM `user` WHERE `email`=?";
         cnx = MyDataBase.getInstance().getCnx();
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(password_login.getText().getBytes());
-            StringBuilder hexString = new StringBuilder();
-            for (byte hashByte : hash) {
-                String hex = Integer.toHexString(0xff & hashByte);
-                if (hex.length() == 1) {
-                    hexString.append('0');
-                }
-                hexString.append(hex);
-            }
-            String mdpHash = hexString.toString();
-            System.out.println("PWD: "+mdpHash);
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, email_login.getText());
-            stm.setString(2, mdpHash);
             ResultSet rs = stm.executeQuery();
-            Utilisateur CurUser;
-
             if (rs.next()) {
-                CurUser = new Utilisateur(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getString("email"), rs.getString("password"), rs.getInt("phone"), rs.getString("roles"), rs.getString("image"));
-                Utilisateur.setCurrent_User(CurUser);
-                SessionManager.getInstace(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getInt("phone"), rs.getString("email"), rs.getString("roles"), rs.getString("image"));
-                String roles = rs.getString("roles");
-                System.out.println("Login Successful");
-                ///////////////////
-                loginAttempts = 0;
-                System.out.println(SessionManager.getEmail());
-                if (roles.equals("Admin")) {
-                    try {
-                        FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
-                        Parent loadingRoot = loadingLoader.load();
-                        Stage loadingStage = new Stage();
-                        //loadingStage.initModality(Modality.APPLICATION_MODAL);
-                        loadingStage.setScene(new Scene(loadingRoot));
-                        loadingStage.setTitle("Loading...");
-                        loadingStage.show();
+                String storedPasswordHash = rs.getString("password");
 
-                        Task<Parent> task = new Task<>() {
-                            @Override
-                            protected Parent call() throws Exception {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminPage.fxml"));
-                                // FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
 
-                                return loader.load();
-                            }
-                        };
-                        task.setOnSucceeded(event -> {
-                            loadingStage.close();
-                            Parent root = task.getValue();
+                storedPasswordHash = convertBcryptPrefixTo2a(storedPasswordHash);
+                if (BCrypt.checkpw(password_login.getText(), storedPasswordHash)) {
+                    Utilisateur CurUser = new Utilisateur(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getString("email"), rs.getString("password"), rs.getInt("phone"), rs.getString("roles"), rs.getString("image"));
+                    Utilisateur.setCurrent_User(CurUser);
+                    SessionManager.getInstace(rs.getInt("id"), rs.getString("name"), rs.getString("prename"), rs.getInt("phone"), rs.getString("email"), rs.getString("roles"), rs.getString("image"));
+                    String roles = rs.getString("roles");
+                    System.out.println("Login Successful");
+                    loginAttempts = 0;
+                    System.out.println(SessionManager.getEmail());
+                    if (roles.equals("[\"Admin\"]")) {
+                        try {
+                            FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
+                            Parent loadingRoot = loadingLoader.load();
+                            Stage loadingStage = new Stage();
+                            loadingStage.setScene(new Scene(loadingRoot));
+                            loadingStage.setTitle("Loading...");
+                            loadingStage.show();
+                            Task<Parent> task = new Task<>() {
+                                @Override
+                                protected Parent call() throws Exception {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminPage.fxml"));
+                                    return loader.load();
+                                }
+                            };
+                            task.setOnSucceeded(event -> {
+                                loadingStage.close();
+                                Parent root = task.getValue();
+                                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                Scene scene = new Scene(root);
+                                scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+                                stage.setScene(scene);
+                                stage.setTitle("artistool - Admin Dashboard");
+                                stage.show();
+                            });
+                            new Thread(task).start();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    if (roles.equals("[\"User\"]")) {
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
+                            Parent root = loader.load();
                             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                             Scene scene = new Scene(root);
-                            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
                             stage.setScene(scene);
-                            stage.setTitle("artistool - Admin Dashboard");
+                            stage.setTitle("artistool - Menu");
                             stage.show();
-                        });
-                        new Thread(task).start();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }
-                if (roles.equals("User")) {
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/MainPage.fxml"));
-                        Parent root = loader.load();
-                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.setTitle("artistool - Menu");
-                        stage.show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                } else {
+                    loginFailed();
                 }
             } else {
-                loginAttempts++;
-
-                // Calculer le nombre de tentatives restantes
-                int remainingAttempts = MAX_ATTEMPTS - loginAttempts;
-
-                // Vérifier si le nombre de tentatives de connexion infructueuses atteint 3
-                if (loginAttempts >= MAX_ATTEMPTS) {
-                    // Afficher une alerte pour indiquer que trop de tentatives ont échoué
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur de connexion");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Trop de tentatives de connexion infructueuses. L'application se ferme.");
-                    alert.showAndWait();
-
-                    // Fermer l'application
-                    Platform.exit(); // Assurez-vous d'importer javafx.application.Platform si nécessaire
-                } else {
-                    // Afficher une alerte pour indiquer que la connexion a échoué avec le nombre de tentatives restantes
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur de connexion");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Login Failed. " + remainingAttempts + " tentative(s) restante(s)");
-                    alert.showAndWait();
-                }
+                loginFailed();
             }
-            } catch (Exception ex) {
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
 
+    private void loginFailed() {
+        loginAttempts++;
+        int remainingAttempts = MAX_ATTEMPTS - loginAttempts;
+        if (loginAttempts >= MAX_ATTEMPTS) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de connexion");
+            alert.setHeaderText(null);
+            alert.setContentText("Trop de tentatives de connexion infructueuses. L'application se ferme.");
+            alert.showAndWait();
+            Platform.exit();
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de connexion");
+            alert.setHeaderText(null);
+            alert.setContentText("Login Failed. " + remainingAttempts + " tentative(s) restante(s)");
+            alert.showAndWait();
+        }
+    }
     @FXML
     void changePassword(ActionEvent event) {
         TextInputDialog emailDialog = new TextInputDialog();
