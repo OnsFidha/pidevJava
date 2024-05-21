@@ -81,11 +81,10 @@ public class AfficherEventController {
     private int userIdCreatedByEvent;
 
 
-
     public void setData(Evenement event){
 
         Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
-         int userIdCreatedByEvent = userevent.getId();
+        int userIdCreatedByEvent = userevent.getId();
 
         int loggedInUserId = SessionManager.getId_user();
 
@@ -99,29 +98,46 @@ public class AfficherEventController {
 
         // Ne rendre pas le bouton de participation visible pour l'utilisateur qui a créé l'événement
         participbtn.setVisible(!isUserEventCreator);
-        if (event.getImage() != null) {
-            try {
-                // Prepend "file:///" to the file path
-                String imagePath = "file:///" + event.getImage();
-                Image image = new Image(imagePath);
-                eventimg.setImage(image);
-            } catch (Exception e) {
-                e.printStackTrace();
-                System.err.println("Failed to load image for the event: " + event.getNom());
-            }
+//        if (event.getImage() != null) {
+//            try {
+//                // Prepend "file:///" to the file path
+//                String imagePath =  event.getImage();
+//                Image image = new Image(imagePath);
+//                eventimg.setImage(image);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//                System.err.println("Failed to load image for the event: " + event.getNom());
+//            }
+//        } else {
+//            // Handle the case where image path is null
+//            // For example, set a default image or display an error message
+//            System.err.println("Image path is null for the event: " + event.getNom());
+//        }
+        String imageName = event.getImage();
+        String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/";
+        String imagePath = destinationDirectory + imageName;
+        File file = new File(imagePath);
+        if (file.exists()) {
+            Image image = new Image(file.toURI().toString());
+            eventimg.setImage(image);
         } else {
-            // Handle the case where image path is null
-            // For example, set a default image or display an error message
-            System.err.println("Image path is null for the event: " + event.getNom());
+
         }
 
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-        String imagePath = userevent.getImage();
-        int img = imagePath.lastIndexOf("\\");
-        String nomFichier = imagePath.substring(img + 1);
-        Image nimage = new Image("assets/uploads/"+nomFichier);
+//        String imagePath = userevent.getImage();
+//        int img = imagePath.lastIndexOf("\\");
+//        String nomFichier = imagePath.substring(img + 1);
+//        Image nimage = new Image("assets/uploads/"+nomFichier);
+//        userimg.setImage(nimage);
+        String imagePath2 = userevent.getImage();
+        int img = imagePath2.lastIndexOf("\\");
+        String nomFichier = imagePath2.substring(img + 1);
+        String imageUrl = "file:///C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods/" + nomFichier;
+        Image nimage = new Image(imageUrl);
         userimg.setImage(nimage);
+
 
 //            username.setText(event.getUsername());
         username.setText(userevent.getPrename()+" "+ userevent.getName());

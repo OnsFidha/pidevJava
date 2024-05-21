@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class CardUser1Controller {
+
     @FXML
     private Pane userpane;
     @FXML
@@ -39,18 +40,15 @@ public class CardUser1Controller {
             ;
 
     public void setData1(Utilisateur user) {
-        String imagePath = user.getImage();
-        if (imagePath != null) {
-            try {
-                File file = new File(imagePath);
-                FileInputStream inputStream = new FileInputStream(file);
-                Image image = new Image(inputStream);
-                pdpimage.setImage(image);
-            } catch (FileNotFoundException e) {
-                System.err.println("Image file not found: " + imagePath);
-            }
-        } else {
-            System.err.println("Image path is null for user: " + user);
+        String userImagePath = user.getImage(); // Supposons que user.getImage() retourne le nom du fichier image
+        String imageUrl = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods/" + userImagePath;
+        try {
+            File file = new File(imageUrl);
+            FileInputStream inputStream = new FileInputStream(file);
+            Image image = new Image(inputStream);
+            pdpimage.setImage(image);
+        } catch (FileNotFoundException e) {
+            System.err.println("Image file not found: " + imageUrl);
         }
         nomprenomlb.setText(user.getName() + " " + user.getPrename());
         emaillb.setText(user.getEmail());

@@ -117,7 +117,10 @@
                            </font>
                         </Label>
                         <TextField fx:id="idtf" disable="true" layoutX="552.0" layoutY="215.0" opacity="0.02" prefHeight="29.0" prefWidth="152.0" />
-                        <ImageView fx:id="imagepdp" fitHeight="200.0" fitWidth="200.0" layoutX="435.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imagepdp" fitHeight="200.0" fitWidth="200.0" layoutX="435.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/notfound.jpg" />
+                           </image></ImageView>
                      </children>
                   </AnchorPane>
                </content>

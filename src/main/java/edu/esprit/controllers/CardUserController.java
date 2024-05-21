@@ -47,18 +47,16 @@ public class CardUserController {
 
 
     public void setData(Utilisateur user) {
-        String imagePath = user.getImage();
-        if (imagePath != null) {
-            try {
-                File file = new File(imagePath);
-                FileInputStream inputStream = new FileInputStream(file);
-                Image image = new Image(inputStream);
-                cardimage.setImage(image);
-            } catch (FileNotFoundException e) {
-                System.err.println("Image file not found: " + imagePath);
-            }
-        } else {
-            System.err.println("Image path is null for user: " + user);
+        String userImagePath = user.getImage(); // Supposons que user.getImage() retourne le nom du fichier image
+        String imageUrl = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods/" + userImagePath;
+
+        try {
+            File file = new File(imageUrl);
+            FileInputStream inputStream = new FileInputStream(file);
+            Image image = new Image(inputStream);
+            cardimage.setImage(image);
+        } catch (FileNotFoundException e) {
+            System.err.println("Image file not found: " + imageUrl);
         }
         cardnameprename.setText(user.getName() + " " + user.getPrename());
         cardemail.setText(user.getEmail());
@@ -95,13 +93,18 @@ public class CardUserController {
             AUC.emailtf.setText(uemail);
             AUC.mdptf.setText(umdp);
             AUC.rolescb.setValue(urole);
-            AUC.pdptf.setText(uimage);
-            if (uimage != null) {
-                File file = new File(uimage);
+            // Corriger le chemin de l'image
+            String imageUrl = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/" + uimage;
+            try {
+                File file = new File(imageUrl);
                 FileInputStream inputStream = new FileInputStream(file);
                 Image image = new Image(inputStream);
                 AUC.imagepdp.setImage(image);
+            } catch (FileNotFoundException e) {
+                System.err.println("Image file not found: " + imageUrl);
             }
+
+            AUC.pdptf.setText(uimage);
 
             stage.setScene(scene);
             stage.show();

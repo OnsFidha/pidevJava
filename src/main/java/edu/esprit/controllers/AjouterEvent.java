@@ -132,22 +132,24 @@ public class AjouterEvent {
         return str.matches("\\d+");
     }
 
+
     @FXML
     public void choose_file(ActionEvent Aevent) {
+        String fileName;
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
-                new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+                new FileChooser.ExtensionFilter("Tous les fichiers", "."));
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
-       String destinationDirectory = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/";
-      //      String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
+//                String destinationDirectory = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/";
+            String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/";
 
 
-            // Generate a unique file name
-            String fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
+            // Générer un nom de fichier unique
+            fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
 
             try {
                 // Copy the selected file to the destination directory
@@ -155,10 +157,8 @@ public class AjouterEvent {
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
                 // Store the relative path of the selected image in the event object
-           String relativeImagePath = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
-      //          String relativeImagePath = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/" + fileName;
-
-
+//                    String relativeImagePath = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
+                String relativeImagePath = fileName;
 
                 event.setImage(relativeImagePath); // Update the Event object with the relative image path
 
@@ -182,8 +182,9 @@ public class AjouterEvent {
                 alert.showAndWait();
             }
         } else {
-            System.out.println("No file selected.");
+            System.out.println("Aucun fichier sélectionné.");
         }
+
     }
 
 

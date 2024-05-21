@@ -75,7 +75,7 @@ public class InsriptionContoller {
                 "Your verification code is: " + code
         ).create();
     }
-@FXML
+    @FXML
     public void inscription(javafx.event.ActionEvent actionEvent) {
         int PHONE = Integer.parseInt(phonereg.getText());
         String NAME = namereg.getText();
@@ -155,16 +155,16 @@ public class InsriptionContoller {
                 if (!Files.exists(destinationFolder)) {
                     Files.createDirectories(destinationFolder);
                 }
-                String fileName = UUID.randomUUID().toString() + "_" + selectedFile.getName();
+                String fileName = selectedFile.getName(); // Obtient le nom du fichier avec l'extension
                 Path destinationPath = destinationFolder.resolve(fileName);
                 Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-                imagePath = destinationPath.toString();
+                imagePath = destinationPath.getFileName().toString(); // Obtient le nom du fichier sans le chemin complet
                 System.out.println("Image uploaded successfully: " + imagePath);
-                imagereg.setText(imagePath);
+                imagereg.setText(imagePath); // Seulement le nom du fichier sans le chemin complet
                 if (imagePath != null) {
                     try {
-                        File file = new File(imagePath);
-                        FileInputStream inputStream = new FileInputStream(file);
+                        // Utilisez le chemin complet pour afficher l'image
+                        FileInputStream inputStream = new FileInputStream(destinationPath.toFile());
                         Image image = new Image(inputStream);
                         imagepdp.setImage(image);
                     } catch (FileNotFoundException e) {
@@ -176,18 +176,26 @@ public class InsriptionContoller {
             }
         }
     }
+
     @FXML
     void TakePic(ActionEvent event) throws IOException {
-
 
         Webcam webcam = Webcam.getDefault();
         webcam.open();
 
-        // get image
+// get image
         BufferedImage image = webcam.getImage();
 
-        // save image to PNG file
-        ImageIO.write(image, "PNG", new File("src/main/resources/assets/uploads/pdp1.png"));
+// Save image to PNG file in the first location
+        File file1 = new File("src/main/resources/assets/uploads/1.png");
+        ImageIO.write(image, "PNG", file1);
+
+// Copy the file to the second location
+        Path destinationFolder = Paths.get("C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods");
+        Files.createDirectories(destinationFolder);
+        Path destinationPath = destinationFolder.resolve("1.png");
+        Files.copy(file1.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+
         webcam.close();
     }
 

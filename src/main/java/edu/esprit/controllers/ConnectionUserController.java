@@ -147,6 +147,7 @@ public class ConnectionUserController implements Initializable {
                                     return loader.load();
                                 }
                             };
+
                             task.setOnSucceeded(event -> {
                                 loadingStage.close();
                                 Parent root = task.getValue();

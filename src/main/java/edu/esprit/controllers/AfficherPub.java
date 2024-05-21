@@ -94,7 +94,6 @@ public class AfficherPub {
             String nomFichier = imagePath.substring(img + 1);
             Image image = new Image("assets/uploads/"+nomFichier);
             circle.setFill(new ImagePattern(image));
-
             edit.setVisible(ID.getId_user_id()==id);
             sup.setVisible(ID.getId_user_id()==id);
             colab.setVisible(ID.getId_user_id()!=id|| Objects.equals(ID.getType(), "Offre"));
@@ -152,9 +151,12 @@ public class AfficherPub {
 
                             Label userLabel = new Label(userName);
                             userLabel.getStyleClass().addAll("user-label", "small-text", "grey-text"); // Appliquer le style au label de l'utilisateur
+                            String imageUrl = "file:///C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods/" + userImagePath;
+                            File imageFile = new File(imageUrl);
+                            Image image = new Image(imageUrl);
 
-                            // Créer un ImageView pour afficher l'image de l'utilisateur
-                            ImageView userImageView = new ImageView(new File(userImagePath).toURI().toString());
+                            // Créer un ImageView et définir l'image
+                            ImageView userImageView = new ImageView(image);
                             userImageView.setFitHeight(60); // Ajuster la hauteur de l'image
                             userImageView.setFitWidth(60); // Ajuster la largeur de l'image
 

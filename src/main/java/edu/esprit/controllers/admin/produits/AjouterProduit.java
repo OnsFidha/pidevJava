@@ -20,6 +20,10 @@ import javafx.util.StringConverter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -48,14 +52,22 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
 
     IService<Categorie> serviceCategorie = Servicecategorie.getInstance();
     IService<Produit> serviceProduit = Serviceproduit.getInstance();
+
     @FXML
     void ajouterProduit(ActionEvent event) {
         try {
             Categorie categorie = categorieDropDown.getValue();
             Image image = productImageView.getImage();
+            String imagePath = image == null ? "" : image.getUrl();
+            String imageName = "";
+            if (!imagePath.isEmpty()) {
+                File file = new File(imagePath);
+                imageName = file.getName(); // Obtient le nom du fichier à partir de l'URL de l'image
+            }
+
             Produit produit = new Produit(categorie, Integer.parseInt(TFquantite.getText()), Double.parseDouble(TFprix.getText()),
-                    TFnom.getText(), TFdescription.getText(), image==null?"":image.getUrl());
-            serviceProduit.ajouter(produit);
+                    TFnom.getText(), TFdescription.getText(), imageName);
+          serviceProduit.ajouter(produit);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
             alert.setContentText("Produit ajouté avec succès");
@@ -75,12 +87,12 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
                     }
                 }
             });
-        } catch (SQLException|IllegalArgumentException e) {
+        } catch (SQLException | IllegalArgumentException e) {
             displayAlertErreure("Exception", e.getMessage());
         }
     }
 
-   private void displayAlertErreure(String title, String content) {
+    private void displayAlertErreure(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setContentText(content);
@@ -90,8 +102,8 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         try {
-            List<Categorie> categories =  serviceCategorie.getAll();
-            if (categories!=null && !categories.isEmpty()) {
+            List<Categorie> categories = serviceCategorie.getAll();
+            if (categories != null && !categories.isEmpty()) {
                 categorieDropDown.setConverter(new StringConverter<>() {
                     @Override
                     public String toString(Categorie objet) {
@@ -115,6 +127,8 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
     @FXML
     void selectImage(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
+        String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/images/";
+
         File initialDirectory = new File(AjouterProduit.class.getResource("/assets/uploads/produits").getPath());
         fileChooser.setInitialDirectory(initialDirectory);
         fileChooser.getExtensionFilters().addAll(
@@ -126,6 +140,18 @@ public class AjouterProduit extends AdminContentPanel implements Initializable {
             String imagePath = selectedFile.toURI().toString();
             Image image = new Image(imagePath);
             productImageView.setImage(image);
+
+            // Copier le fichier sélectionné vers la destination spécifiée
+            try {
+                Path sourcePath = selectedFile.toPath();
+                String fileName = selectedFile.getName();
+                Path destinationPath = Paths.get(destinationDirectory + fileName);
+                Files.copy(sourcePath, destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            } catch (IOException e) {
+                e.printStackTrace(); // Gérer les exceptions selon votre cas d'utilisation
+            }
         }
     }
+
+
 }

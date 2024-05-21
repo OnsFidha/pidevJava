@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.sql.SQLException;
 import java.util.Objects;
 
@@ -76,9 +77,16 @@ public class ProductCard{
         productName.setText("Nom: ".concat(produit.getNom()));
         productDescription.setText("Description: ".concat(produit.getDescription()));
         productPrice.setText("Prix: "+produit.getPrix());
-        if(produit.getImage()!=null && !produit.getImage().trim().equalsIgnoreCase("")){
-            Image image = new Image(produit.getImage());
-            productImage.setImage(image);
+
+        String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/images/";
+        String imagePath = destinationDirectory + produit.getImage(); // Assuming produit.getImage() contains the image name
+
+        if(!produit.getImage().isEmpty()) {
+            File file = new File(imagePath);
+            if (file.exists()) {
+                Image image = new Image(file.toURI().toString());
+                productImage.setImage(image);
+            }
         }
     }
 }

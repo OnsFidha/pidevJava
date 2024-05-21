@@ -55,6 +55,7 @@ public class CardController {
                 userPub.setText(nom);
                 String imageName = pub.getPhoto();
                 String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/pub/";
+
                 String imagePath = destinationDirectory + imageName;
                 File file = new File(imagePath);
                 if (file.exists()) {

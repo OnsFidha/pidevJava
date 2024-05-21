@@ -18,6 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -58,26 +59,64 @@ public class AdminEventController {
         Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
 
 
-        if (event.getImage() != null) {
-            String imagePath = "file:///" + event.getImage();
-            Image image = new Image(imagePath);
+//        if (event.getImage() != null) {
+//            String imagePath = "file:///" + event.getImage();
+//            Image image = new Image(imagePath);
+//            eventimg.setImage(image);
+//        } else {
+//            // Handle the case where image path is null
+//            // For example, set a default image or display an error message
+//            System.err.println("Image path is null for the event: " + event.getNom());
+//        }
+        String imageName = event.getImage();
+        String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/";
+        String imagePath = destinationDirectory + imageName;
+        File file = new File(imagePath);
+        if (file.exists()) {
+            Image image = new Image(file.toURI().toString());
             eventimg.setImage(image);
         } else {
-            // Handle the case where image path is null
-            // For example, set a default image or display an error message
-            System.err.println("Image path is null for the event: " + event.getNom());
+
         }
 
 //            image= new Image(getClass().getResourceAsStream(event.getProfileImageSrc()));
-        String imagePath = userevent.getImage();
+//        String imagePath2 = userevent.getImage();
+//        Image nimage;
+//
+//        if (imagePath2 != null && !imagePath2.isEmpty()) {
+//            int img = imagePath2.lastIndexOf("\\");
+//            String nomFichier = imagePath2.substring(img + 1);
+//            String imageUrl = "file:///C:/Users/21655/OneDrive/Desktop/pidevJava/target/classes/assets/uploads/" + nomFichier;
+//            nimage = new Image(imageUrl);
+//        } else {
+//            // Si l'image est null, charger l'image par défaut
+//            String defaultImageUrl = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/photo_1713731873133.png";
+//            nimage = new Image(defaultImageUrl);
+//        }
+//
+//        userimg.setImage(nimage);
+        String imagePath2;
+        if (userevent != null) {
+            imagePath2 = userevent.getImage();
+        } else {
+            // Si userevent est null, définissez une image par défaut ou un chemin vide selon votre logique
+            imagePath2 = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/65e4be4e32e84.jpg"; // ou imagePath2 = "chemin/vers/image/default.jpg";
+        }
 
-        int img = imagePath.lastIndexOf("\\");
-        String nomFichier = imagePath.substring(img + 1);
-        Image image = new Image("assets/uploads/"+nomFichier);
-        userimg.setImage(image);
+        int img = imagePath2.lastIndexOf("\\");
+        String nomFichier = imagePath2.substring(img + 1);
+        String imageUrl = "file:///C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods/" + nomFichier;
+        Image nimage = new Image(imageUrl);
+        userimg.setImage(nimage);
 
         // Set username and event details
-        username.setText(userevent.getPrename()+" "+ userevent.getName());
+        if (userevent != null) {
+            String fullName = userevent.getPrename() + " " + userevent.getName();
+            username.setText(fullName);
+        } else {
+            // Gérer le cas où userevent est null, par exemple en définissant un texte par défaut
+            username.setText("Utilisateur inconnu");
+        }
         eventname.setText(event.getNom());
         eventdesc.setText(event.getDescription());
         datedeb.setText(event.getDateDebut().toString());
@@ -87,7 +126,6 @@ public class AdminEventController {
         this.event = event;
 //
     }
-
     public void setEventData(int id) {
         Utilisateur userevent = serviceuser.getUtilisateurById(event.getId_user_id());
 

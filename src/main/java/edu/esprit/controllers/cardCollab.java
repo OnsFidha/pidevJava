@@ -102,7 +102,9 @@ public class cardCollab {
             }
 
             if (userImage != null) {
-                Image image = new Image(new File(userImage).toURI().toString());
+                String uImage = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uplaods/" + userImage;
+
+                Image image = new Image(new File(uImage).toURI().toString());
                 userimage.setImage(image);
             }
         } catch (SQLException e) {

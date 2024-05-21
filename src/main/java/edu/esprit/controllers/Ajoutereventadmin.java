@@ -128,12 +128,14 @@ public class Ajoutereventadmin {
             fileChooser.setTitle("Choisir une image");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
-                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+                    new FileChooser.ExtensionFilter("Tous les fichiers", "."));
             File selectedFile = fileChooser.showOpenDialog(null);
 
             if (selectedFile != null) {
 
-                String destinationDirectory = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/";
+//                String destinationDirectory = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/";
+                String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/";
+
 
                 // Générer un nom de fichier unique
                 fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
@@ -144,7 +146,9 @@ public class Ajoutereventadmin {
                     Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
                     // Store the relative path of the selected image in the event object
-                    String relativeImagePath = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
+//                    String relativeImagePath = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
+                    String relativeImagePath = fileName;
+
                     event.setImage(relativeImagePath); // Update the Event object with the relative image path
 
                     // Update the image of the ImageView
@@ -171,7 +175,6 @@ public class Ajoutereventadmin {
             }
         }
     }
-
     // Utility method to get file extension
     private String getFileExtension(String fileName) {
         int dotIndex = fileName.lastIndexOf('.');

@@ -60,14 +60,15 @@ public class modifiereventadmin {
         DescEvent.setText(event.getDescription());
         LieuEvent.setText(event.getLieu());
         NbrparticipantsEvent.setText(Integer.toString(event.getNbreMax()));
-        if (event.getImage() != null) {
-            String imagePath = "file:///" + event.getImage();
-            Image image = new Image(imagePath);
+        String imageName = event.getImage();
+        String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/";
+        String imagePath = destinationDirectory + imageName;
+        File file = new File(imagePath);
+        if (file.exists()) {
+            Image image = new Image(file.toURI().toString());
             eventimg.setImage(image);
         } else {
-            // Handle the case where image path is null
-            // For example, set a default image or display an error message
-            System.err.println("Image path is null for the event: " + event.getNom());
+
         }
 
         // You can pre-fill date pickers similarly
@@ -80,6 +81,7 @@ public class modifiereventadmin {
         DFEvent.setValue(endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
 
     }
+
     @FXML
     void edit(ActionEvent Aevent) {
         int eventId = event.getId();
@@ -178,16 +180,16 @@ public class modifiereventadmin {
             fileChooser.setTitle("Choisir une image");
             fileChooser.getExtensionFilters().addAll(
                     new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif"),
-                    new FileChooser.ExtensionFilter("Tous les fichiers", "*.*"));
+                    new FileChooser.ExtensionFilter("Tous les fichiers", "."));
             File selectedFile = fileChooser.showOpenDialog(null);
 
             if (selectedFile != null) {
-                String destinationDirectory = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/";
-                //      String destinationDirectory = "C:/Users/21655/OneDrive/Desktop/pidevJava/src/main/resources/img/";
+//                String destinationDirectory = "C:/Users/HP/IdeaProjects/ons+mehdi+sana/src/main/resources/img/";
+                String destinationDirectory = "C:/Users/HP/Desktop/projetIntegration/pidev/public/uploads/";
 
 
                 // Generate a unique file name
-                 fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
+                fileName = "photo_" + System.currentTimeMillis() + getFileExtension(selectedFile.getName());
 
                 try {
                     // Copy the selected file to the destination directory
@@ -195,7 +197,9 @@ public class modifiereventadmin {
                     Files.copy(selectedFile.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
 
                     // Store the relative path of the selected image in the event object
-                    String relativeImagePath = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
+//                    String relativeImagePath = "C:/Users/HP/deaProjects/ons+mehdi+sana/src/main/resources/img/" + fileName;
+                    String relativeImagePath = fileName;
+
                     Nevent.setImage(relativeImagePath); // Update the Event object with the relative image path
 
                     // Update the image of the ImageView
@@ -222,7 +226,6 @@ public class modifiereventadmin {
             }
         }
     }
-
     // Utility method to get file extension
     private String getFileExtension(String fileName) {
         int dotIndex = fileName.lastIndexOf('.');
